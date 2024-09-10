@@ -399,7 +399,7 @@ export default function Home({ showRedirectModal }) {
           </div>
         </div>
       </div> */}
-      <Footer showRedirectModal={showRedirectModal} />
+      {/* <Footer showRedirectModal={showRedirectModal} /> */}
     </div>
   );
 }

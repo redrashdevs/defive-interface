@@ -1,4 +1,3 @@
-import { IconType } from 'react-icons';
 import './RoadmapCard.scss';
 
 import checkedIcon from "img/ic_checked.svg";
@@ -25,7 +24,6 @@ export default function RoadmapCard({
       <div className='Roadmap-card-top'>
         <div className="Roadmap-card-icon" style={{backgroundColor: iconBgColor}}>
           {Icon}
-          {/* <Icon color={iconColor}/> */}
           {isCompleted && <div className="Roadmap-card-icon-checked">
             <img src={checkedIcon} alt="Check icon" />
           </div>}

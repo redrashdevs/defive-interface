@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import './RoadmapSlider.scss'; // CSS file for styles
 
 const RoadmapSlider = () => {
