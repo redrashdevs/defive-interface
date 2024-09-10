@@ -234,6 +234,10 @@
   max-width: 51.4rem;
 }
 
+.Home-tokenomics-doc-btn__icon {
+  margin-left: 0.8rem;
+}
+
 .Home-tokenomics-card-container {
   display: flex;
   justify-content: space-between;

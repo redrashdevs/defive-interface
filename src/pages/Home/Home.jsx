@@ -28,6 +28,7 @@ import { bigNumberify, formatAmount, numberWithCommas } from "lib/numbers";
 import useV2Stats from "domain/synthetics/stats/useV2Stats";
 import { SyntheticsStateContextProvider } from "context/SyntheticsStateContext/SyntheticsStateContextProvider";
 import Roadmap from "@/components/Roadmap/Roadmap";
+import { TbArrowNarrowRight } from "react-icons/tb";
 
 export default function Home({ showRedirectModal }) {
   const arbV2Stats = useV2Stats(ARBITRUM);
@@ -231,10 +232,11 @@ export default function Home({ showRedirectModal }) {
               D5 (DeFive) is the core token of our decentralized exchange. It lets you trade, earn, and have a say in the future of our platform.
             </Trans>
           </p>
-          <a href="https://gmxio.gitbook.io/gmx/" className="default-btn Home-tokenomics-documentation">
+          <a href="https://gmxio.gitbook.io/gmx/" className="default-btn Home-tokenomics-doc-btn">
             <Trans>
               Read More in Docs
             </Trans>
+            <TbArrowNarrowRight size={20} className="Home-tokenomics-doc-btn__icon" />
           </a>
           <div className="Home-tokenomics-card-container">
             <div className="Home-tokenomics-card">
