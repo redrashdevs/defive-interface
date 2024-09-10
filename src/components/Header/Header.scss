@@ -94,12 +94,15 @@
 .App-header-container-left {
   display: flex;
   align-items: center;
+  flex: 1;
 }
 
 .App-header-container-center {
   display: flex;
   align-items: center;
+  justify-content: center;
   min-width: 0;
+  flex: 4;
 }
 
 .App-header-top {
@@ -191,6 +194,8 @@
 .App-header-container-right {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  flex: 1;
 }
 
 .App-header-user {

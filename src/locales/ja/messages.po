@@ -158,6 +158,10 @@ msgstr ""
 msgid "The execution price will constantly vary based on fees and price impact to guarantee that you receive the minimum receive amount."
 msgstr ""
 
+#: src/pages/Home/Home.jsx
+msgid "Decentralized<0/>Perpetual Exchange"
+msgstr "分散型<0/>パーペチュアル取引所"
+
 #: src/pages/Stake/StakeV2.tsx
 msgid "Current Reserved"
 msgstr ""
@@ -605,10 +609,6 @@ msgstr ""
 
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
 msgid "{0} <0/><1> to </1>{1} <2/>"
-msgstr ""
-
-#: src/pages/Home/Home.jsx
-msgid "Your Favorite<0/>Decentralized Perpetual Exchange"
 msgstr ""
 
 #: src/components/Synthetics/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
@@ -2162,6 +2162,7 @@ msgid "Borrow Fee Rate"
 msgstr ""
 
 #: src/components/Header/AppHeaderUser.tsx
+#: src/components/Header/AppHeaderUser.tsx
 #: src/components/ModalViews/RedirectModal.tsx
 #: src/pages/Home/Home.jsx
 msgid "Launch App"
@@ -2541,6 +2542,7 @@ msgid "Max pool capacity reached for {0}. Please mint GLP using another token"
 msgstr "{0}の最大プールキャパシティ到達。別のトークンを使用してGLPをミントしてください"
 
 #: src/components/Header/AppHeaderUser.tsx
+#: src/components/Header/AppHeaderUser.tsx
 msgid "Trade"
 msgstr "トレード"
 
@@ -2829,10 +2831,6 @@ msgstr ""
 #: src/components/Glp/GlpSwap.jsx
 msgid "Buying..."
 msgstr "購入中"
-
-#: src/pages/Home/Home.jsx
-msgid "Trade BTC, ETH, FTM and other top cryptos with up to 100x leverage directly from your wallet"
-msgstr ""
 
 #: src/components/Synthetics/TradeFeesRow/TradeFeesRow.tsx
 msgid "Swap UI Fee"
@@ -7370,6 +7368,10 @@ msgstr ""
 
 #: src/components/Synthetics/PositionSeller/PositionSeller.tsx
 msgid "Close {0} {1}"
+msgstr ""
+
+#: src/pages/Home/Home.jsx
+msgid "Trade BTC, ETH, AVAX and other top cryptocurrencies with up to 100x leverage directly from your wallet"
 msgstr ""
 
 #: src/pages/Stake/StakeV2.tsx
