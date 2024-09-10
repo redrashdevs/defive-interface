@@ -128,17 +128,26 @@ export default function Home({ showRedirectModal }) {
           <div className="Home-title-section">
             <div className="Home-title">
               <Trans>
-                Decentralized
+                Your Favorite
                 <br />
-                Perpetual Exchange
+                Decentralized Perpetual Exchange
               </Trans>
             </div>
             <div className="Home-description">
               <Trans>
-                Trade BTC, ETH, AVAX and other top cryptocurrencies with up to 100x leverage directly from your wallet
+                Trade BTC, ETH, FTM and other top cryptos with up to 100x leverage directly from your wallet
               </Trans>
             </div>
-            <LaunchExchangeButton />
+            {/* <LaunchExchangeButton /> */}
+            {/* an email input to stay updated! */}
+            <div className="Home-email-input-container">
+              <div className="Home-email-input">
+                <input type="email" placeholder="Email" />
+                <button>
+                  Stay Updated
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <div className="Home-latest-info-container default-container">
