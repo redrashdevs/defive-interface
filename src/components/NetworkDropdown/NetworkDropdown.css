@@ -1,8 +1,9 @@
 .App-header-network {
   position: relative;
-  border: 1px solid var(--dark-blue-border);
-  border-radius: var(--border-radius-sm);
+  background: var(--color-neutral-800);
+  border-radius: 50%;
   height: 3.6rem;
+  width: 3.6rem;
   display: inline-flex;
   align-items: center;
   color: var(--color-white);
@@ -40,7 +41,7 @@
 
 .network-dropdown > button.transparent {
   height: 3.6rem;
-  border-radius: 0.4rem;
+  border-radius: 50%;
   border: none;
   pointer-events: none;
   display: inline-flex;

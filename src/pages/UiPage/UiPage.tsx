@@ -107,6 +107,10 @@ const colors = {
     "300": "bg-green-300",
     "500": "bg-green-500",
   },
+  neutral: {
+    800: '#1F1E1E',
+    950: '#0A0A0A',
+  },
   white: "bg-white",
   black: "bg-black",
 };

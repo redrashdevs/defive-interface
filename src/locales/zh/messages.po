@@ -918,10 +918,6 @@ msgstr ""
 msgid "Deactivate"
 msgstr ""
 
-#: src/components/Header/HomeHeaderLinks.tsx
-msgid "Protocol"
-msgstr ""
-
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "Overview"
 msgstr "总览"
@@ -2166,7 +2162,6 @@ msgid "Borrow Fee Rate"
 msgstr ""
 
 #: src/components/Header/AppHeaderUser.tsx
-#: src/components/Header/AppHeaderUser.tsx
 #: src/components/ModalViews/RedirectModal.tsx
 #: src/pages/Home/Home.jsx
 msgid "Launch App"
@@ -2546,7 +2541,6 @@ msgid "Max pool capacity reached for {0}. Please mint GLP using another token"
 msgstr "已达到{0}池的最大容量。请使用另一个代币挖GLP"
 
 #: src/components/Header/AppHeaderUser.tsx
-#: src/components/Header/AppHeaderUser.tsx
 msgid "Trade"
 msgstr "交易"
 
@@ -2783,10 +2777,6 @@ msgstr ""
 
 #: src/pages/Stake/StakeV2.tsx
 msgid "Stake failed."
-msgstr ""
-
-#: src/components/Header/HomeHeaderLinks.tsx
-msgid "App"
 msgstr ""
 
 #: src/components/Synthetics/GmAssetDropdown/GmAssetDropdown.tsx
@@ -3835,7 +3825,6 @@ msgid "Additionally, trigger orders are market orders and are not guaranteed to 
 msgstr "此外，触发订单為市场订单，不保证以触发价格结算"
 
 #: src/components/Header/AppHeaderLinks.tsx
-#: src/components/Header/HomeHeaderLinks.tsx
 msgid "Docs"
 msgstr ""
 
@@ -3863,6 +3852,10 @@ msgstr "去中心化选策略"
 #: src/components/AddressDropdown/AddressDropdown.tsx
 #: src/components/Synthetics/SubaccountModal/SubaccountModal.tsx
 msgid "Address copied to your clipboard"
+msgstr ""
+
+#: src/components/Header/HomeHeaderLinks.tsx
+msgid "Documentation"
 msgstr ""
 
 #: src/components/Header/AppHeaderLinks.tsx
@@ -4075,10 +4068,6 @@ msgstr ""
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "POOL"
 msgstr "池子"
-
-#: src/components/Header/HomeHeaderLinks.tsx
-msgid "Voting"
-msgstr ""
 
 #: src/components/Exchange/TradeHistory.jsx
 msgid "This position was liquidated as the max leverage of 100x was exceeded."
@@ -4757,6 +4746,10 @@ msgstr "供应"
 msgid "LONG LIQ."
 msgstr "<<<<<<< HEAD"
 
+#: src/components/Header/HomeHeaderLinks.tsx
+msgid "X(Twitter)"
+msgstr ""
+
 #: src/components/Synthetics/GmSwap/GmConfirmationBox/GmConfirmationBox.tsx
 msgid "Error submitting withdrawal"
 msgstr ""
@@ -4824,6 +4817,10 @@ msgstr "最低要求抵押品"
 msgid "Search Pool"
 msgstr ""
 
+#: src/components/Header/HomeHeaderLinks.tsx
+msgid "Community"
+msgstr ""
+
 #: src/components/TokenCard/TokenCard.tsx
 msgid "{arbitrumLink} and {avalancheLink} GM Pools are <0>incentivized{sparkle}.</0>"
 msgstr ""
@@ -4881,10 +4878,6 @@ msgstr ""
 
 #: src/components/Synthetics/TradeboxPoolWarnings/TradeboxPoolWarnings.tsx
 msgid "You can get a {0} / 1h better net rate in the {1} market pool.<0><1>Switch to {2} market pool</1>.</0>"
-msgstr ""
-
-#: src/components/Header/HomeHeaderLinks.tsx
-msgid "Governance"
 msgstr ""
 
 #: src/components/Exchange/ConfirmationBox.jsx
@@ -6220,6 +6213,10 @@ msgstr "下载"
 #: src/components/Migration/Migration.jsx
 msgid "Migration failed"
 msgstr "转移失败"
+
+#: src/components/Header/HomeHeaderLinks.tsx
+msgid "Developers"
+msgstr ""
 
 #: src/components/Synthetics/SubaccountModal/SubaccountModal.tsx
 msgid "Max auto top-up amount"

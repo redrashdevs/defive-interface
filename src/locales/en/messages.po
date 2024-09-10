@@ -918,10 +918,6 @@ msgstr "Deactivating..."
 msgid "Deactivate"
 msgstr "Deactivate"
 
-#: src/components/Header/HomeHeaderLinks.tsx
-msgid "Protocol"
-msgstr "Protocol"
-
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "Overview"
 msgstr "Overview"
@@ -2166,7 +2162,6 @@ msgid "Borrow Fee Rate"
 msgstr "Borrow Fee Rate"
 
 #: src/components/Header/AppHeaderUser.tsx
-#: src/components/Header/AppHeaderUser.tsx
 #: src/components/ModalViews/RedirectModal.tsx
 #: src/pages/Home/Home.jsx
 msgid "Launch App"
@@ -2546,7 +2541,6 @@ msgid "Max pool capacity reached for {0}. Please mint GLP using another token"
 msgstr "Max pool capacity reached for {0}. Please mint GLP using another token"
 
 #: src/components/Header/AppHeaderUser.tsx
-#: src/components/Header/AppHeaderUser.tsx
 msgid "Trade"
 msgstr "Trade"
 
@@ -2784,10 +2778,6 @@ msgstr "Lev."
 #: src/pages/Stake/StakeV2.tsx
 msgid "Stake failed."
 msgstr "Stake failed."
-
-#: src/components/Header/HomeHeaderLinks.tsx
-msgid "App"
-msgstr "App"
 
 #: src/components/Synthetics/GmAssetDropdown/GmAssetDropdown.tsx
 msgid "Add {marketName} to Wallet"
@@ -3838,7 +3828,6 @@ msgid "Additionally, trigger orders are market orders and are not guaranteed to 
 msgstr "Additionally, trigger orders are market orders and are not guaranteed to settle at the trigger price."
 
 #: src/components/Header/AppHeaderLinks.tsx
-#: src/components/Header/HomeHeaderLinks.tsx
 msgid "Docs"
 msgstr "Docs"
 
@@ -3867,6 +3856,10 @@ msgstr "Decentralized Options Strategies"
 #: src/components/Synthetics/SubaccountModal/SubaccountModal.tsx
 msgid "Address copied to your clipboard"
 msgstr "Address copied to your clipboard"
+
+#: src/components/Header/HomeHeaderLinks.tsx
+msgid "Documentation"
+msgstr "Documentation"
 
 #: src/components/Header/AppHeaderLinks.tsx
 #: src/components/NetworkDropdown/NetworkDropdown.tsx
@@ -4078,10 +4071,6 @@ msgstr "{0}: {1}, Price: {priceDisplay}"
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "POOL"
 msgstr "POOL"
-
-#: src/components/Header/HomeHeaderLinks.tsx
-msgid "Voting"
-msgstr "Voting"
 
 #: src/components/Exchange/TradeHistory.jsx
 msgid "This position was liquidated as the max leverage of 100x was exceeded."
@@ -4760,6 +4749,10 @@ msgstr "Supply"
 msgid "LONG LIQ."
 msgstr "LONG LIQ."
 
+#: src/components/Header/HomeHeaderLinks.tsx
+msgid "X(Twitter)"
+msgstr "X(Twitter)"
+
 #: src/components/Synthetics/GmSwap/GmConfirmationBox/GmConfirmationBox.tsx
 msgid "Error submitting withdrawal"
 msgstr "Error submitting withdrawal"
@@ -4827,6 +4820,10 @@ msgstr "Min. required Collateral"
 msgid "Search Pool"
 msgstr "Search Pool"
 
+#: src/components/Header/HomeHeaderLinks.tsx
+msgid "Community"
+msgstr "Community"
+
 #: src/components/TokenCard/TokenCard.tsx
 msgid "{arbitrumLink} and {avalancheLink} GM Pools are <0>incentivized{sparkle}.</0>"
 msgstr "{arbitrumLink} and {avalancheLink} GM Pools are <0>incentivized{sparkle}.</0>"
@@ -4885,10 +4882,6 @@ msgstr "Settling Positions' Fees"
 #: src/components/Synthetics/TradeboxPoolWarnings/TradeboxPoolWarnings.tsx
 msgid "You can get a {0} / 1h better net rate in the {1} market pool.<0><1>Switch to {2} market pool</1>.</0>"
 msgstr "You can get a {0} / 1h better net rate in the {1} market pool.<0><1>Switch to {2} market pool</1>.</0>"
-
-#: src/components/Header/HomeHeaderLinks.tsx
-msgid "Governance"
-msgstr "Governance"
 
 #: src/components/Exchange/ConfirmationBox.jsx
 #: src/components/Exchange/ConfirmationBox.jsx
@@ -6226,6 +6219,10 @@ msgstr "Download"
 #: src/components/Migration/Migration.jsx
 msgid "Migration failed"
 msgstr "Migration failed"
+
+#: src/components/Header/HomeHeaderLinks.tsx
+msgid "Developers"
+msgstr "Developers"
 
 #: src/components/Synthetics/SubaccountModal/SubaccountModal.tsx
 msgid "Max auto top-up amount"

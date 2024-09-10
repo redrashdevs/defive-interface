@@ -69,11 +69,11 @@ export function AppHeaderUser({ openSettings, small, disconnectAccountAndCloseSe
   if (!active || !account) {
     return (
       <div className="App-header-user">
-        <div data-qa="trade" className={cx("App-header-trade-link", { "homepage-header": isHomeSite() })}>
+        {/* <div data-qa="trade" className={cx("App-header-trade-link", { "homepage-header": isHomeSite() })}>
           <HeaderLink className="default-btn" to={tradeLink!} showRedirectModal={showRedirectModal}>
             {isHomeSite() ? <Trans>Launch App</Trans> : <Trans>Trade</Trans>}
           </HeaderLink>
-        </div>
+        </div> */}
 
         {showConnectionOptions && openConnectModal ? (
           <>

@@ -52,6 +52,10 @@ const colors = {
     300: "#56dba8",
     500: "#0ecc83",
   },
+  neutral: {
+    800: '#1F1E1E',
+    950: '#0A0A0A',
+  },
   white: "#ffffff",
   black: "#000000",
 };
