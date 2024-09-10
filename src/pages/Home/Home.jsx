@@ -4,7 +4,6 @@ import "./Home.css";
 
 import simpleSwapIcon from "img/ic_simpleswaps.svg";
 import costIcon from "img/ic_cost.svg";
-import liquidityIcon from "img/ic_liquidity.svg";
 import totaluserIcon from "img/ic_totaluser.svg";
 
 import statsIcon from "img/ic_stats.svg";
@@ -150,77 +149,70 @@ export default function Home({ showRedirectModal }) {
             </div>
           </div>
         </div>
-        <div className="Home-latest-info-container default-container">
-          <div className="Home-latest-info-block">
-            <img src={tradingIcon} alt="Total Trading Volume Icon" className="Home-latest-info__icon" />
-            <div className="Home-latest-info-content">
-              <div className="Home-latest-info__title">
-                <Trans>Total Trading Volume</Trans>
-              </div>
-              <div className="Home-latest-info__value">${formatAmount(totalVolumeSum, USD_DECIMALS, 0, true)}</div>
+      </div>
+      <div className="Home-benefits-section">
+      <div className="Home-benefits row1 default-container">
+          <div className="Home-benefit Home-benefit__easy">
+            <div className="Home-benefit-title">
+              <Trans>
+                Easy
+              </Trans>
+            </div>
+            <div className="Home-benefit-description">
+              <Trans>
+                Whether you're a beginner or seasoned pro, DeFive makes it easy.
+              </Trans>
             </div>
           </div>
-          <div className="Home-latest-info-block">
-            <img src={statsIcon} alt="Open Interest Icon" className="Home-latest-info__icon" />
-            <div className="Home-latest-info-content">
-              <div className="Home-latest-info__title">
-                <Trans>Open Interest</Trans>
-              </div>
-              <div className="Home-latest-info__value">${formatAmount(openInterest, USD_DECIMALS, 0, true)}</div>
+          <div className="Home-benefit Home-benefit__secure">
+            <div className="Home-benefit-title">
+              <Trans>Secure</Trans>
+            </div>
+            <div className="Home-benefit-description">
+              <Trans>
+                Your $crypto,<br/> your control.
+              </Trans>
             </div>
           </div>
-          <div className="Home-latest-info-block">
-            <img src={totaluserIcon} alt="Total Users Icon" className="Home-latest-info__icon" />
-            <div className="Home-latest-info-content">
-              <div className="Home-latest-info__title">
-                <Trans>Total Users</Trans>
-              </div>
-              <div className="Home-latest-info__value">{numberWithCommas(totalUsers.toFixed(0))}</div>
+          <div className="Home-benefit Home-benefit__open">
+            <div className="Home-benefit-title">
+              <Trans>Open</Trans>
+            </div>
+            <div className="Home-benefit-description">
+              <Trans>
+                Get started by reading docs, or view the code on Github
+              </Trans>
             </div>
           </div>
         </div>
-      </div>
-      <div className="Home-benefits-section">
-        <div className="Home-benefits default-container">
-          <div className="Home-benefit">
-            <div className="Home-benefit-icon">
-              <img src={liquidityIcon} alt="Reduce Liquidation Risks Icon" className="Home-benefit-icon-symbol" />
-              <div className="Home-benefit-title">
-                <Trans>Reduce Liquidation Risks</Trans>
-              </div>
+        <div className="Home-benefits row2 default-container">
+          <div className="Home-benefit Home-benefit__save-cost">
+            <div className="Home-benefit-title">
+              <Trans>Save on Costs</Trans>
             </div>
             <div className="Home-benefit-description">
               <Trans>
-                An aggregate of high-quality price feeds determine when liquidations occur. This keeps positions safe
-                from temporary wicks.
+                Trade with minimal spread and low impact.
               </Trans>
             </div>
           </div>
-          <div className="Home-benefit">
-            <div className="Home-benefit-icon">
-              <img src={costIcon} alt="Save on Costs Icon" className="Home-benefit-icon-symbol" />
-              <div className="Home-benefit-title">
-                <Trans>Save on Costs</Trans>
-              </div>
+          <div className="Home-benefit Home-benefit__reduce-risks">
+            <div className="Home-benefit-title">
+              <Trans>Reduce Risks</Trans>
             </div>
             <div className="Home-benefit-description">
               <Trans>
-                Enter and exit positions with minimal spread and low price impact. Get the optimal price without
-                incurring additional costs.
+                Reliable price feeds trigger timely liquidations, protecting your positions.
               </Trans>
             </div>
           </div>
-          <div className="Home-benefit">
-            <div className="Home-benefit-icon">
-              <img src={simpleSwapIcon} alt="Simple Swaps Icon" className="Home-benefit-icon-symbol" />
-              <div className="Home-benefit-title">
-                <Trans>Simple Swaps</Trans>
-              </div>
+          <div className="Home-benefit Home-benefit__rewards">
+            <div className="Home-benefit-title">
+              <Trans>Rewards</Trans>
             </div>
             <div className="Home-benefit-description">
               <Trans>
-                Open positions through a simple swap interface. Conveniently swap from any supported asset into the
-                position of your choice.
+                Instantly Earn $D5 after each action
               </Trans>
             </div>
           </div>

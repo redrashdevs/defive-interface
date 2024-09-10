@@ -158,10 +158,6 @@ msgstr ""
 msgid "The execution price will constantly vary based on fees and price impact to guarantee that you receive the minimum receive amount."
 msgstr ""
 
-#: src/pages/Home/Home.jsx
-msgid "Decentralized<0/>Perpetual Exchange"
-msgstr "去中心化<0/>永续交易所"
-
 #: src/pages/Stake/StakeV2.tsx
 msgid "Current Reserved"
 msgstr ""
@@ -359,6 +355,10 @@ msgstr "添加了推荐代码"
 
 #: src/components/Synthetics/MarketTokenSelector/MarketTokenSelector.tsx
 msgid "SELLABLE"
+msgstr ""
+
+#: src/pages/Home/Home.jsx
+msgid "Open"
 msgstr ""
 
 #: src/pages/Dashboard/DashboardV2.tsx
@@ -611,6 +611,10 @@ msgstr ""
 msgid "{0} <0/><1> to </1>{1} <2/>"
 msgstr ""
 
+#: src/pages/Home/Home.jsx
+msgid "Your Favorite<0/>Decentralized Perpetual Exchange"
+msgstr ""
+
 #: src/components/Synthetics/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 msgid "Claim {totalUsd}"
 msgstr ""
@@ -655,10 +659,6 @@ msgstr ""
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/swap.ts
 msgid "Acceptable price for the order."
 msgstr "订单的可接受价格"
-
-#: src/pages/Home/Home.jsx
-msgid "Open positions through a simple swap interface. Conveniently swap from any supported asset into the position of your choice."
-msgstr "通过简单的互换界面开立头寸。方便地从任何币值换成你选择的头寸"
 
 #: src/components/Synthetics/UserIncentiveDistributionList/UserIncentiveDistributionList.tsx
 msgid "Incentives Distribution History"
@@ -715,6 +715,7 @@ msgid "Open Interest Balance"
 msgstr ""
 
 #: src/components/Referrals/ClaimAffiliatesModal/ClaimAffiliatesModal.tsx
+#: src/pages/Home/Home.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
@@ -1121,6 +1122,10 @@ msgstr ""
 #: src/components/TokenCard/TokenCard.tsx
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "GM is the liquidity provider token for GMX V2 markets. Accrues 63% of the V2 markets generated fees."
+msgstr ""
+
+#: src/pages/Home/Home.jsx
+msgid "Whether you're a beginner or seasoned pro, DeFive makes it easy."
 msgstr ""
 
 #: src/components/ToastifyDebug/ToastifyDebug.tsx
@@ -1530,10 +1535,6 @@ msgstr ""
 msgid "Global Leaderboard"
 msgstr ""
 
-#: src/pages/Home/Home.jsx
-msgid "Simple Swaps"
-msgstr "简易交易"
-
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "No results found"
@@ -1612,6 +1613,10 @@ msgstr ""
 
 #: src/components/Exchange/PositionsList.jsx
 msgid "Use the \"Close\" button to reduce your Position Size, or to set Take-Profit / Stop-Loss Orders."
+msgstr ""
+
+#: src/pages/Home/Home.jsx
+msgid "Get started by reading docs, or view the code on Github"
 msgstr ""
 
 #: src/components/Synthetics/Claims/SettleAccruedCard.tsx
@@ -1828,10 +1833,6 @@ msgstr ""
 msgid "Requested increase of {tokenSymbol} {longOrShortText} by {0} USD."
 msgstr "要求增加{tokenSymbol} {longOrShortText} 由 {0} USD"
 
-#: src/pages/Home/Home.jsx
-msgid "Enter and exit positions with minimal spread and low price impact. Get the optimal price without incurring additional costs."
-msgstr ""
-
 #: src/domain/synthetics/common/incentivesAirdropMessages.ts
 msgid "STIP.b trading incentives"
 msgstr ""
@@ -1925,10 +1926,6 @@ msgstr ""
 #: src/components/Exchange/SwapBox.jsx
 msgid "Liquidity data not loaded"
 msgstr "未加载流动资金数据"
-
-#: src/pages/Home/Home.jsx
-msgid "Total Trading Volume"
-msgstr "总交易量"
 
 #: src/components/Exchange/ConfirmationBox.jsx
 #: src/components/Synthetics/TradeBox/TradeBoxRows/CollateralSpreadRow.tsx
@@ -2161,7 +2158,6 @@ msgstr ""
 msgid "Borrow Fee Rate"
 msgstr ""
 
-#: src/components/Header/AppHeaderUser.tsx
 #: src/components/Header/AppHeaderUser.tsx
 #: src/components/ModalViews/RedirectModal.tsx
 #: src/pages/Home/Home.jsx
@@ -2542,7 +2538,6 @@ msgid "Max pool capacity reached for {0}. Please mint GLP using another token"
 msgstr "已达到{0}池的最大容量。请使用另一个代币挖GLP"
 
 #: src/components/Header/AppHeaderUser.tsx
-#: src/components/Header/AppHeaderUser.tsx
 msgid "Trade"
 msgstr "交易"
 
@@ -2587,10 +2582,6 @@ msgstr "质押"
 #: src/components/Exchange/PositionSeller.jsx
 msgid "Invalid Liquidation Price"
 msgstr ""
-
-#: src/pages/Home/Home.jsx
-msgid "An aggregate of high-quality price feeds determine when liquidations occur. This keeps positions safe from temporary wicks."
-msgstr "高质量价格供给的总和决定了清算时间。使头寸不受暂时波动的影响"
 
 #: src/components/Exchange/PositionSeller.jsx
 msgid "Swap amount from {0} to {1} exceeds {2} available liquidity. Choose a different \"Receive\" token."
@@ -2831,6 +2822,10 @@ msgstr ""
 #: src/components/Glp/GlpSwap.jsx
 msgid "Buying..."
 msgstr "购买中..."
+
+#: src/pages/Home/Home.jsx
+msgid "Trade BTC, ETH, FTM and other top cryptos with up to 100x leverage directly from your wallet"
+msgstr ""
 
 #: src/components/Synthetics/TradeFeesRow/TradeFeesRow.tsx
 msgid "Swap UI Fee"
@@ -3285,7 +3280,6 @@ msgstr "核准失败"
 #: src/components/Synthetics/TVChart/TVChartHeader.tsx
 #: src/components/Synthetics/TVChart/TVChartHeader.tsx
 #: src/pages/Dashboard/DashboardV2.tsx
-#: src/pages/Home/Home.jsx
 msgid "Open Interest"
 msgstr "开启利息"
 
@@ -3351,6 +3345,10 @@ msgstr ""
 
 #: src/components/Exchange/SwapBox.jsx
 msgid "Swap amount exceeds Available Liquidity."
+msgstr ""
+
+#: src/pages/Home/Home.jsx
+msgid "Easy"
 msgstr ""
 
 #: src/components/Synthetics/TradeBox/TradeBox.tsx
@@ -3930,10 +3928,6 @@ msgstr "订单"
 msgid "Media Kit"
 msgstr "多媒体工具"
 
-#: src/pages/Home/Home.jsx
-msgid "Reduce Liquidation Risks"
-msgstr "降低清算风险"
-
 #: src/pages/PositionsOverview/PositionsOverview.jsx
 msgid "collateral"
 msgstr "抵押品"
@@ -4288,6 +4282,10 @@ msgstr ""
 msgid "Leverage Trading Terminal"
 msgstr ""
 
+#: src/pages/Home/Home.jsx
+msgid "Instantly Earn $D5 after each action"
+msgstr ""
+
 #: src/components/Synthetics/TradeFeesRow/TradeFeesRow.tsx
 msgid "The bonus rebate is an estimate and can be up to {0}% of the open fee. It will be airdropped as {incentivesTokenTitle} tokens on a pro-rata basis. <0><1>Read more</1>.</0>"
 msgstr ""
@@ -4349,6 +4347,10 @@ msgstr "选择一个包含{0}的池子，以将其用作抵押品"
 #: src/lib/contracts/callContract.tsx
 msgid "Transaction completed!"
 msgstr "交易完成!"
+
+#: src/pages/Home/Home.jsx
+msgid "Reduce Risks"
+msgstr ""
 
 #: src/components/Migration/Migration.jsx
 #: src/pages/BeginAccountTransfer/BeginAccountTransfer.tsx
@@ -4777,6 +4779,10 @@ msgstr ""
 
 #: src/components/Exchange/NetValueTooltip.tsx
 msgid "Net Value: Initial Collateral + PnL - Borrow Fee - Close Fee"
+msgstr ""
+
+#: src/pages/Home/Home.jsx
+msgid "Secure"
 msgstr ""
 
 #: src/pages/Stake/StakeV2.tsx
@@ -5475,6 +5481,10 @@ msgstr "复制"
 msgid "Amount"
 msgstr "数量"
 
+#: src/pages/Home/Home.jsx
+msgid "Trade with minimal spread and low impact."
+msgstr ""
+
 #: src/components/Exchange/SwapBox.jsx
 msgid "<0>{0} is required for collateral.</0><1>Swap amount from {1} to {2} exceeds {3} Available Liquidity. Reduce the \"Pay\" size, or use {4} as the \"Pay\" token to use it for collateral.</1><2>You can buy {5} on 1inch.</2>"
 msgstr ""
@@ -5604,6 +5614,10 @@ msgstr "超过100倍的最大杠杆率，扣除损失和费用后的剩余抵押
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/shared.ts
 msgid "Not enough Available Liquidity to fill the Order."
 msgstr "没有足够的可用流动性来填补订单。"
+
+#: src/pages/Home/Home.jsx
+msgid "Reliable price feeds trigger timely liquidations, protecting your positions."
+msgstr ""
 
 #: src/pages/OrdersOverview/OrdersOverview.jsx
 msgid "Order size exceeds position"
@@ -7288,7 +7302,6 @@ msgid "Complete Transfer"
 msgstr "完成转移"
 
 #: src/pages/Dashboard/DashboardV2.tsx
-#: src/pages/Home/Home.jsx
 msgid "Total Users"
 msgstr "用户总数"
 
@@ -7368,10 +7381,6 @@ msgstr ""
 
 #: src/components/Synthetics/PositionSeller/PositionSeller.tsx
 msgid "Close {0} {1}"
-msgstr ""
-
-#: src/pages/Home/Home.jsx
-msgid "Trade BTC, ETH, AVAX and other top cryptocurrencies with up to 100x leverage directly from your wallet"
 msgstr ""
 
 #: src/pages/Stake/StakeV2.tsx
@@ -7622,6 +7631,10 @@ msgstr ""
 
 #: src/components/InterviewModal/InterviewModal.tsx
 msgid "Anonymous chat with GMX"
+msgstr ""
+
+#: src/pages/Home/Home.jsx
+msgid "Your $crypto,<0/> your control."
 msgstr ""
 
 #: src/components/Exchange/OrdersList.jsx
