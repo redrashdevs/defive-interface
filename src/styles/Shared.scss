@@ -197,20 +197,19 @@ a.plain {
 }
 
 .default-btn {
-  background: var(--color-blue-600);
-  border-radius: 4px;
+  background: var(--color-neutral-200);
+  border-radius: 4rem;
   font-size: var(--font-sm);
-  line-height: 2rem;
+  line-height: 4rem;
   font-weight: normal;
   letter-spacing: 0px;
-  color: var(--color-white) !important;
+  color: var(--color-neutral-800) !important;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  /* padding: 9px 16px!important; */
   text-decoration: none;
   box-sizing: border-box;
   position: relative;
-  min-height: 3.6rem;
+  min-height: 4rem;
   display: inline-flex !important;
   align-items: center;
   text-align: center;

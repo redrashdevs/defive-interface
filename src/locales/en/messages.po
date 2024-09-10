@@ -22,10 +22,6 @@ msgstr "Unrealized Base PnL"
 msgid "Wallet not connected"
 msgstr "Wallet not connected"
 
-#: src/pages/Home/Home.jsx
-msgid "Available on your preferred network"
-msgstr "Available on your preferred network"
-
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "Decentralized Trading Protocol"
 msgstr "Decentralized Trading Protocol"
@@ -101,10 +97,6 @@ msgstr "Daily Loss"
 #: src/components/Synthetics/StatusNotification/SubaccountNotification.tsx
 msgid "Subaccount activated"
 msgstr "Subaccount activated"
-
-#: src/pages/Home/Home.jsx
-msgid "GMX is currently live on Arbitrum and Avalanche."
-msgstr "GMX is currently live on Arbitrum and Avalanche."
 
 #: src/components/Glp/GlpSwap.jsx
 msgid "Max Pool Capacity"
@@ -323,6 +315,10 @@ msgstr "Cancel Stop-Loss Order"
 #: src/domain/synthetics/trade/utils/validation.ts
 msgid "Max pool USD exceeded"
 msgstr "Max pool USD exceeded"
+
+#: src/pages/Home/Home.jsx
+msgid "Provide Liquidity"
+msgstr "Provide Liquidity"
 
 #: src/pages/AccountDashboard/HistoricalLists.tsx
 #: src/pages/Exchange/Exchange.tsx
@@ -911,6 +907,10 @@ msgstr "Min. Receive"
 msgid "Estimated Fee Refund"
 msgstr "Estimated Fee Refund"
 
+#: src/pages/Home/Home.jsx
+msgid "Exchange Liquidity"
+msgstr "Exchange Liquidity"
+
 #: src/components/Synthetics/SubaccountModal/SubaccountModal.tsx
 msgid "Deactivating..."
 msgstr "Deactivating..."
@@ -1132,6 +1132,10 @@ msgstr "Whether you're a beginner or seasoned pro, DeFive makes it easy."
 msgid "Hide error"
 msgstr "Hide error"
 
+#: src/pages/Home/Home.jsx
+msgid "D5 (DeFive) is the core token of our decentralized exchange. It lets you trade, earn, and have a say in the future of our platform."
+msgstr "D5 (DeFive) is the core token of our decentralized exchange. It lets you trade, earn, and have a say in the future of our platform."
+
 #: src/components/Referrals/TradersStats.tsx
 msgid "The owner of this Referral Code has set a custom discount of {currentTierDiscount}% instead of the standard {0}% for Tier {1}."
 msgstr "The owner of this Referral Code has set a custom discount of {currentTierDiscount}% instead of the standard {0}% for Tier {1}."
@@ -1341,6 +1345,10 @@ msgstr "NFT Wallet"
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "GMX Proposals Voting page"
 msgstr "GMX Proposals Voting page"
+
+#: src/pages/Home/Home.jsx
+msgid "Earn Reward"
+msgstr "Earn Reward"
 
 #: src/components/Synthetics/GmSwap/GmFees/GmFees.tsx
 msgid "Fees and Price Impact"
@@ -1948,9 +1956,17 @@ msgstr "Index"
 msgid "Decentralized Finance Dashboard"
 msgstr "Decentralized Finance Dashboard"
 
+#: src/pages/Home/Home.jsx
+msgid "Hold D5 tokens to vote on important decisions and shape the future of DeFive."
+msgstr "Hold D5 tokens to vote on important decisions and shape the future of DeFive."
+
 #: src/components/Glp/GlpSwap.jsx
 msgid "GLP buy disabled, pending {0} upgrade"
 msgstr "GLP buy disabled, pending {0} upgrade"
+
+#: src/pages/Home/Home.jsx
+msgid "D5 Tokenomics"
+msgstr "D5 Tokenomics"
 
 #: src/components/Migration/Migration.jsx
 msgid "Migrating..."
@@ -2196,6 +2212,10 @@ msgstr "Could not decrease {0} {longOrShortText}, +{1} USD, Acceptable Price: {
 #: src/components/Synthetics/SubaccountModal/SubaccountModal.tsx
 msgid "Top-up"
 msgstr "Top-up"
+
+#: src/pages/Home/Home.jsx
+msgid "Vault"
+msgstr "Vault"
 
 #: src/components/Synthetics/MarketsList/MarketsList.tsx
 msgid "NET RATE / 1 H"
@@ -2659,6 +2679,10 @@ msgstr "The esGMX (IOU) token is transferrable. You can add the token to your wa
 #: src/pages/BeginAccountTransfer/BeginAccountTransfer.tsx
 msgid "Self-transfer not supported"
 msgstr "Self-transfer not supported"
+
+#: src/pages/Home/Home.jsx
+msgid "Team"
+msgstr "Team"
 
 #: src/pages/Exchange/Exchange.tsx
 msgid "Decreased {tokenSymbol} {longOrShortText}, -{0} USD."
@@ -4891,6 +4915,10 @@ msgstr "Settling Positions' Fees"
 msgid "You can get a {0} / 1h better net rate in the {1} market pool.<0><1>Switch to {2} market pool</1>.</0>"
 msgstr "You can get a {0} / 1h better net rate in the {1} market pool.<0><1>Switch to {2} market pool</1>.</0>"
 
+#: src/pages/Home/Home.jsx
+msgid "Governance"
+msgstr "Governance"
+
 #: src/components/Exchange/ConfirmationBox.jsx
 #: src/components/Exchange/ConfirmationBox.jsx
 #: src/components/Exchange/OrdersList.jsx
@@ -5056,6 +5084,10 @@ msgstr "After claiming you will be able to vest a maximum of {0} esGMX at a rati
 msgid "Today"
 msgstr "Today"
 
+#: src/pages/Home/Home.jsx
+msgid "Development"
+msgstr "Development"
+
 #: src/pages/BeginAccountTransfer/BeginAccountTransfer.tsx
 #: src/pages/NftWallet/NftWallet.jsx
 msgid "Receiver Address"
@@ -5192,6 +5224,10 @@ msgstr "Couldn't find a swap path with enough liquidity"
 #: src/components/Synthetics/PositionItem/PositionItem.tsx
 msgid "Since your position's Collateral is {0} with a value larger than the Position Size, the Collateral value will increase to cover any negative PnL."
 msgstr "Since your position's Collateral is {0} with a value larger than the Position Size, the Collateral value will increase to cover any negative PnL."
+
+#: src/pages/Home/Home.jsx
+msgid "Public Sale"
+msgstr "Public Sale"
 
 #: src/pages/Stake/StakeV2.tsx
 #: src/pages/Stake/StakeV2.tsx
@@ -5346,6 +5382,10 @@ msgstr "Acknowledge epoch is ending in {minutes} minutes"
 #: src/components/InterviewModal/InterviewModal.tsx
 msgid "We want your insights to help improve GMX. For security reasons, we won't contact you first. Please send the message \"I have feedback\" to any of our official accounts:"
 msgstr "We want your insights to help improve GMX. For security reasons, we won't contact you first. Please send the message \"I have feedback\" to any of our official accounts:"
+
+#: src/pages/Home/Home.jsx
+msgid "Stake your D5 tokens to earn more tokens and a share of trading fees."
+msgstr "Stake your D5 tokens to earn more tokens and a share of trading fees."
 
 #: src/pages/ClaimEsGmx/ClaimEsGmx.jsx
 msgid "Claim esGMX"
@@ -5904,6 +5944,10 @@ msgstr "Acceptable Price"
 #: src/components/Synthetics/StatusNotification/GmStatusNotification.tsx
 msgid "Sell request sent"
 msgstr "Sell request sent"
+
+#: src/pages/Home/Home.jsx
+msgid "Read More in Docs"
+msgstr "Read More in Docs"
 
 #: src/components/Exchange/PositionEditor.jsx
 #: src/components/Exchange/PositionSeller.jsx
@@ -6737,6 +6781,10 @@ msgstr "<0>Your wallet is not connected to {0}.</0><1/><2>Switch to {1}</2>"
 msgid "Transaction was cancelled."
 msgstr "Transaction was cancelled."
 
+#: src/pages/Home/Home.jsx
+msgid "Support our platform by providing liquidity and earn rewards."
+msgstr "Support our platform by providing liquidity and earn rewards."
+
 #: src/components/Exchange/ConfirmationBox.jsx
 #: src/components/Synthetics/TradeBox/hooks/useTradeButtonState.tsx
 msgid "Accept confirmation of trigger orders"
@@ -7292,6 +7340,7 @@ msgid "Deposit {0} USD into {1} {longOrShortText}"
 msgstr "Deposit {0} USD into {1} {longOrShortText}"
 
 #: src/pages/Dashboard/DashboardV2.tsx
+#: src/pages/Home/Home.jsx
 msgid "Distribution"
 msgstr "Distribution"
 
@@ -7532,6 +7581,10 @@ msgstr "Sell"
 msgid "Сonvert {0} to {1}"
 msgstr "Сonvert {0} to {1}"
 
+#: src/pages/Home/Home.jsx
+msgid "Pre-Sale & ISPO"
+msgstr "Pre-Sale & ISPO"
+
 #: src/domain/synthetics/orders/utils.tsx
 msgid "short"
 msgstr "short"
@@ -7642,6 +7695,10 @@ msgstr "Anonymous chat with GMX"
 #: src/pages/Home/Home.jsx
 msgid "Your $crypto,<0/> your control."
 msgstr "Your $crypto,<0/> your control."
+
+#: src/pages/Home/Home.jsx
+msgid "Yield Rewards"
+msgstr "Yield Rewards"
 
 #: src/components/Exchange/OrdersList.jsx
 #: src/components/Exchange/OrdersList.jsx

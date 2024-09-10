@@ -218,36 +218,137 @@ export default function Home({ showRedirectModal }) {
           </div>
         </div>
       </div>
-      <div className="Home-cta-section">
-        <div className="Home-cta-container default-container">
-          <div className="Home-cta-info">
-            <div className="Home-cta-info__title">
-              <Trans>Available on your preferred network</Trans>
+      <div className="Home-tokenomics-section">
+        <div className="Home-tokenomics-container default-container">
+          <h2 className="Home-tokenomics-title">
+            <Trans>
+              D5 Tokenomics
+            </Trans>
+          </h2>
+          <p className="Home-tokenomics-description">
+            <Trans>
+              D5 (DeFive) is the core token of our decentralized exchange. It lets you trade, earn, and have a say in the future of our platform.
+            </Trans>
+          </p>
+          <a href="https://gmxio.gitbook.io/gmx/" className="default-btn Home-tokenomics-documentation">
+            <Trans>
+              Read More in Docs
+            </Trans>
+          </a>
+          <div className="Home-tokenomics-card-container">
+            <div className="Home-tokenomics-card">
+              <div className="Home-tokenomics-card__title">
+                <Trans>
+                  Earn Reward
+                </Trans>
+              </div>
+              <div className="Home-tokenomics-card__description">
+                <Trans>
+                  Stake your D5 tokens to earn more tokens and a share of trading fees.
+                </Trans>
+              </div>
             </div>
-            <div className="Home-cta-info__description">
-              <Trans>GMX is currently live on Arbitrum and Avalanche.</Trans>
+            <div className="Home-tokenomics-card">
+              <div className="Home-tokenomics-card__title">
+                <Trans>
+                  Governance
+                </Trans>
+              </div>
+              <div className="Home-tokenomics-card__description">
+                <Trans>
+                  Hold D5 tokens to vote on important decisions and shape the future of DeFive.
+                </Trans>
+              </div>
+            </div>
+            <div className="Home-tokenomics-card">
+              <div className="Home-tokenomics-card__title">
+                <Trans>
+                  Provide Liquidity
+                </Trans>
+              </div>
+              <div className="Home-tokenomics-card__description">
+                <Trans>
+                  Support our platform by providing liquidity and earn rewards.
+                </Trans>
+              </div>
             </div>
           </div>
-          <div className="Home-cta-options">
-            <div className="Home-cta-option Home-cta-option-arbitrum">
-              <div className="Home-cta-option-icon">
-                <img src={arbitrumIcon} width="96" alt="Arbitrum Icon" />
-              </div>
-              <div className="Home-cta-option-info">
-                <div className="Home-cta-option-title">Arbitrum</div>
-                <div className="Home-cta-option-action">
-                  <LaunchExchangeButton />
+
+          <div className="Home-tokenomics-distribution">
+            <div className="Home-tokenomics-distribution__title">
+              <Trans>
+                Distribution
+              </Trans>
+            </div>
+            <div className="Home-tokenomics-distribution-rows">
+              <div className="Home-tokenomics-distribution-row">
+                <div className="Home-tokenomics-distribution-row__title">
+                  <Trans>
+                    Yield Rewards
+                  </Trans>
+                </div>
+                <div className="Home-tokenomics-distribution-row__percentage">
+                  30%
                 </div>
               </div>
-            </div>
-            <div className="Home-cta-option Home-cta-option-ava">
-              <div className="Home-cta-option-icon">
-                <img src={avaxIcon} width="96" alt="Avalanche Icon" />
+              <div className="Home-tokenomics-distribution-row">
+                <div className="Home-tokenomics-distribution-row__title">
+                  <Trans>
+                    Public Sale
+                  </Trans>
+                </div>
+                <div className="Home-tokenomics-distribution-row__percentage">
+                  20%
+                </div>
               </div>
-              <div className="Home-cta-option-info">
-                <div className="Home-cta-option-title">Avalanche</div>
-                <div className="Home-cta-option-action">
-                  <LaunchExchangeButton />
+              <div className="Home-tokenomics-distribution-row">
+                <div className="Home-tokenomics-distribution-row__title">
+                  <Trans>
+                    Vault
+                  </Trans>
+                </div>
+                <div className="Home-tokenomics-distribution-row__percentage">
+                  10%
+                </div>
+              </div>
+              <div className="Home-tokenomics-distribution-row">
+                <div className="Home-tokenomics-distribution-row__title">
+                  <Trans>
+                    Team
+                  </Trans>
+                </div>
+                <div className="Home-tokenomics-distribution-row__percentage">
+                  10%
+                </div>
+              </div>
+              <div className="Home-tokenomics-distribution-row">
+                <div className="Home-tokenomics-distribution-row__title">
+                  <Trans>
+                    Exchange Liquidity
+                  </Trans>
+                </div>
+                <div className="Home-tokenomics-distribution-row__percentage">
+                  10%
+                </div>
+              </div>
+              <div className="Home-tokenomics-distribution-row">
+                <div className="Home-tokenomics-distribution-row__title">
+                  <Trans>
+                    Development
+                  </Trans>
+                </div>
+                <div className="Home-tokenomics-distribution-row__percentage">
+                  10%
+                </div>
+              </div>
+              <div className="Home-tokenomics-distribution-row">
+                <div className="Home-tokenomics-distribution-row__title">
+                  <Trans>
+                    Pre-Sale & ISPO
+                  </Trans>
+                </div>
+                <div className="Home-tokenomics-distribution-row__percentage">
+                  10%
                 </div>
               </div>
             </div>

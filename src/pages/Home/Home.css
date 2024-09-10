@@ -114,7 +114,7 @@
 .Home-benefits-section {
   /* background: var(--color-slate-800); */
   padding-top: 2.4rem;
-  padding-bottom: 5.6rem;
+  padding-bottom: 6.4rem;
 }
 
 .Home-benefits {
@@ -210,6 +210,155 @@
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.Home-tokenomics-section {
+  padding-top: 6.4rem;
+  padding-bottom: 6.4rem;
+}
+
+.Home-tokenomics-title {
+  color: var(--color-neutral-200);
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 5.04rem;
+  margin-bottom: 0.8rem;
+}
+
+.Home-tokenomics-description {
+  color: var(--color-neutral-200); opacity: 0.7;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  margin-bottom: 2.4rem;
+  font-weight: 500;
+  max-width: 51.4rem;
+}
+
+.Home-tokenomics-card-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 3.2rem;
+  margin-bottom: 1.6rem;
+  gap: 1.6rem;
+}
+
+.Home-tokenomics-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex: 1;
+  background: var(--color-neutral-900);
+  border-radius: 0.8rem;
+  padding: 2.4rem;
+  min-height: 25.6rem;
+  min-width: 25.6rem;
+}
+
+.Home-tokenomics-card__title {
+  color: var(--color-neutral-200);
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+}
+
+.Home-tokenomics-card__description {
+  color: var(--color-neutral-200); opacity: 0.7;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  font-weight: 500;
+}
+
+.Home-tokenomics-distribution {
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem;
+  gap: 0.4rem;
+  background: var(--color-neutral-900);
+  border-radius: 0.8rem;
+}
+
+.Home-tokenomics-distribution__title {
+  color: var(--color-neutral-200);
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  font-weight: 700;
+  padding: 0.8rem;
+}
+
+.Home-tokenomics-distribution-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.6rem 2.4rem;
+}
+
+.Home-tokenomics-distribution-row__title {
+  font-size: 1.4rem;
+  line-height: 3.2rem;
+  font-weight: 600;
+}
+
+.Home-tokenomics-distribution-row__percentage {
+  font-size: 2.4rem;
+  line-height: 3.2rem;
+  font-weight: 800;
+}
+
+.Home-tokenomics-distribution-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.Home-tokenomics-distribution-row:nth-child(1) {
+  background: #37AD0014;
+  color: #37AD00;
+  height: 14.4rem;
+  border-radius: 0.8rem 0.8rem 0 0;
+}
+
+.Home-tokenomics-distribution-row:nth-child(2) {
+  background: #37AD001F;
+  color: #37AD00;
+  height: 9.6rem;
+}
+
+.Home-tokenomics-distribution-row:nth-child(3) {
+  background: #37AD0033;
+  color: #37AD00;
+  height: 4.8rem;
+  padding: 0.8rem 2.4rem;
+}
+
+.Home-tokenomics-distribution-row:nth-child(4) {
+  background: #37AD0052;
+  color: #37AD00;
+  height: 4.8rem;
+  padding: 0.8rem 2.4rem;
+}
+
+.Home-tokenomics-distribution-row:nth-child(5) {
+  background: #37AD00A3;
+  color: #FFFFFF;
+  height: 4.8rem;
+  padding: 0.8rem 2.4rem;
+}
+
+.Home-tokenomics-distribution-row:nth-child(6) {
+  background: #37AD00D9;
+  color: #FFFFFF;
+  height: 4.8rem;
+  padding: 0.8rem 2.4rem;
+}
+
+.Home-tokenomics-distribution-row:nth-child(7) {
+  background: #37AD00;
+  color: #FFFFFF;
+  height: 4.8rem;
+  padding: 0.8rem 2.4rem;
+  border-radius: 0 0 0.8rem 0.8rem;
 }
 
 .Home-cta-section {
