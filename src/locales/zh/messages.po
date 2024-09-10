@@ -3980,10 +3980,6 @@ msgstr ""
 msgid "Claim V2 Rebates from your referred Traders."
 msgstr ""
 
-#: src/pages/Home/Home.jsx
-msgid "Three tokens create our ecosystem"
-msgstr ""
-
 #: src/components/Glp/GlpSwap.jsx
 msgid "Reserved"
 msgstr "储备"

@@ -27,6 +27,7 @@ import { getServerUrl } from "config/backend";
 import { bigNumberify, formatAmount, numberWithCommas } from "lib/numbers";
 import useV2Stats from "domain/synthetics/stats/useV2Stats";
 import { SyntheticsStateContextProvider } from "context/SyntheticsStateContext/SyntheticsStateContextProvider";
+import Roadmap from "@/components/Roadmap/Roadmap";
 
 export default function Home({ showRedirectModal }) {
   const arbV2Stats = useV2Stats(ARBITRUM);
@@ -355,18 +356,8 @@ export default function Home({ showRedirectModal }) {
           </div>
         </div>
       </div>
-      <div className="Home-token-card-section">
-        <div className="Home-token-card-container default-container">
-          <div className="Home-token-card-info">
-            <div className="Home-token-card-info__title">
-              <Trans>Three tokens create our ecosystem</Trans>
-            </div>
-          </div>
-          <SyntheticsStateContextProvider pageType="home">
-            <TokenCard showRedirectModal={showRedirectModal} />
-          </SyntheticsStateContextProvider>
-        </div>
-      </div>
+
+      <Roadmap />
 
       {/* <div className="Home-video-section">
         <div className="Home-video-container default-container">
