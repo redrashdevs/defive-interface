@@ -1,5 +1,9 @@
 import React from "react";
 import Footer from "components/Footer/Footer";
+import 'swiper/css';
+import 'swiper/css/pagination'
+import 'swiper/css/effect-cards';
+
 import "./Home.css";
 
 import simpleSwapIcon from "img/ic_simpleswaps.svg";
@@ -9,6 +13,7 @@ import totaluserIcon from "img/ic_totaluser.svg";
 import statsIcon from "img/ic_stats.svg";
 import tradingIcon from "img/ic_trading.svg";
 
+import { useMedia } from "react-use";
 import useSWR from "swr";
 
 import { getTotalVolumeSum } from "lib/legacy";
@@ -29,10 +34,13 @@ import useV2Stats from "domain/synthetics/stats/useV2Stats";
 import { SyntheticsStateContextProvider } from "context/SyntheticsStateContext/SyntheticsStateContextProvider";
 import Roadmap from "@/components/Roadmap/Roadmap";
 import { TbArrowNarrowRight } from "react-icons/tb";
+import {Swiper, SwiperSlide} from "swiper/react";
+import { EffectCards, Pagination } from 'swiper/modules';
 
 export default function Home({ showRedirectModal }) {
   const arbV2Stats = useV2Stats(ARBITRUM);
   const avaxV2Stats = useV2Stats(AVALANCHE);
+  const isMobile = useMedia("(max-width: 700px)");
 
   // ARBITRUM
 
@@ -122,6 +130,15 @@ export default function Home({ showRedirectModal }) {
     );
   };
 
+  const benefitsData = [
+    { title: 'Easy', description: "Whether you're a beginner or seasoned pro, DeFive makes it easy." },
+    { title: 'Secure', description: 'Your $crypto, your control.' },
+    { title: 'Open', description: 'Get started by reading docs, or view the code on Github' },
+    { title: 'Save on Costs', description: 'Trade with minimal spread and low impact.' },
+    { title: 'Reduce Risks', description: 'Reliable price feeds trigger timely liquidations, protecting your positions.' },
+    { title: 'Rewards', description: 'Instantly Earn $D5 after each action' }
+  ];
+
   return (
     <div className="Home">
       <div className="Home-top">
@@ -153,73 +170,75 @@ export default function Home({ showRedirectModal }) {
         </div>
       </div>
       <div className="Home-benefits-section">
-      <div className="Home-benefits row1 default-container">
-          <div className="Home-benefit Home-benefit__easy">
-            <div className="Home-benefit-title">
-              <Trans>
-                Easy
-              </Trans>
-            </div>
-            <div className="Home-benefit-description">
-              <Trans>
-                Whether you're a beginner or seasoned pro, DeFive makes it easy.
-              </Trans>
-            </div>
+      {isMobile ? (
+        <Swiper
+          effect={'cards'}
+          grabCursor={true}
+          modules={[EffectCards, Pagination]}
+          pagination={{ clickable: true }}
+          className="Home-benefits-swiper"
+          // spaceBetween={100}
+          style={{
+            "--swiper-pagination-color": "#D9D9D9",
+            "--swiper-pagination-left": "auto",
+            "--swiper-pagination-right": "8px",
+            "--swiper-pagination-bottom": "-2.5rem",
+            "--swiper-pagination-fraction-color": "inherit",
+            "--swiper-pagination-progressbar-bg-color": "rgba(0,0,0,0.25)",
+            "--swiper-pagination-progressbar-size": "4px",
+            "--swiper-pagination-bullet-size": "8px",
+            "--swiper-pagination-bullet-width": "8px",
+            "--swiper-pagination-bullet-height": "4px",
+            "--swiper-pagination-bullet-border-radius": "16px",
+            "--swiper-pagination-bullet-inactive-color": "#1F1F1F",
+            "--swiper-pagination-bullet-inactive-opacity": "1",
+            "--swiper-pagination-bullet-opacity": "1",
+            "--swiper-pagination-bullet-horizontal-gap": "2px",
+            "--swiper-pagination-bullet-vertical-gap": "6px",
+          }}
+        >
+          {benefitsData.map((benefit, index) => (
+            <SwiperSlide key={index}>
+              <div className={`Home-benefit Home-benefit__${benefit.title.toLowerCase().replaceAll(' ', '-')}`}>
+                <div className="Home-benefit-title">
+                  <Trans>{benefit.title}</Trans>
+                </div>
+                <div className="Home-benefit-description">
+                  <Trans>{benefit.description}</Trans>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      ) : (
+        <div>
+          <div className="Home-benefits row1 default-container">
+            {benefitsData.slice(0, 3).map((benefit, index) => (
+              <div key={index} className={`Home-benefit Home-benefit__${benefit.title.toLowerCase().replaceAll(' ', '-')}`}>
+                <div className="Home-benefit-title">
+                  <Trans>{benefit.title}</Trans>
+                </div>
+                <div className="Home-benefit-description">
+                  <Trans>{benefit.description}</Trans>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="Home-benefit Home-benefit__secure">
-            <div className="Home-benefit-title">
-              <Trans>Secure</Trans>
-            </div>
-            <div className="Home-benefit-description">
-              <Trans>
-                Your $crypto,<br/> your control.
-              </Trans>
-            </div>
-          </div>
-          <div className="Home-benefit Home-benefit__open">
-            <div className="Home-benefit-title">
-              <Trans>Open</Trans>
-            </div>
-            <div className="Home-benefit-description">
-              <Trans>
-                Get started by reading docs, or view the code on Github
-              </Trans>
-            </div>
+          <div className="Home-benefits row2 default-container">
+            {benefitsData.slice(3).map((benefit, index) => (
+              <div key={index} className={`Home-benefit Home-benefit__${benefit.title.toLowerCase().replaceAll(' ', '-')}`}>
+                <div className="Home-benefit-title">
+                  <Trans>{benefit.title}</Trans>
+                </div>
+                <div className="Home-benefit-description">
+                  <Trans>{benefit.description}</Trans>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="Home-benefits row2 default-container">
-          <div className="Home-benefit Home-benefit__save-cost">
-            <div className="Home-benefit-title">
-              <Trans>Save on Costs</Trans>
-            </div>
-            <div className="Home-benefit-description">
-              <Trans>
-                Trade with minimal spread and low impact.
-              </Trans>
-            </div>
-          </div>
-          <div className="Home-benefit Home-benefit__reduce-risks">
-            <div className="Home-benefit-title">
-              <Trans>Reduce Risks</Trans>
-            </div>
-            <div className="Home-benefit-description">
-              <Trans>
-                Reliable price feeds trigger timely liquidations, protecting your positions.
-              </Trans>
-            </div>
-          </div>
-          <div className="Home-benefit Home-benefit__rewards">
-            <div className="Home-benefit-title">
-              <Trans>Rewards</Trans>
-            </div>
-            <div className="Home-benefit-description">
-              <Trans>
-                Instantly Earn $D5 after each action
-              </Trans>
-            </div>
-          </div>
-        </div>
-      </div>
+      )}
+    </div>
       <div className="Home-tokenomics-section">
         <div className="Home-tokenomics-container default-container">
           <h2 className="Home-tokenomics-title">

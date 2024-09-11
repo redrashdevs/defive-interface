@@ -353,10 +353,6 @@ msgstr "Реферальный код добавлен!"
 msgid "SELLABLE"
 msgstr ""
 
-#: src/pages/Home/Home.jsx
-msgid "Open"
-msgstr ""
-
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "Treasury"
 msgstr ""
@@ -711,7 +707,6 @@ msgid "Open Interest Balance"
 msgstr ""
 
 #: src/components/Referrals/ClaimAffiliatesModal/ClaimAffiliatesModal.tsx
-#: src/pages/Home/Home.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
@@ -1122,10 +1117,6 @@ msgstr ""
 #: src/components/TokenCard/TokenCard.tsx
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "GM is the liquidity provider token for GMX V2 markets. Accrues 63% of the V2 markets generated fees."
-msgstr ""
-
-#: src/pages/Home/Home.jsx
-msgid "Whether you're a beginner or seasoned pro, DeFive makes it easy."
 msgstr ""
 
 #: src/components/ToastifyDebug/ToastifyDebug.tsx
@@ -1621,10 +1612,6 @@ msgstr ""
 
 #: src/components/Exchange/PositionsList.jsx
 msgid "Use the \"Close\" button to reduce your Position Size, or to set Take-Profit / Stop-Loss Orders."
-msgstr ""
-
-#: src/pages/Home/Home.jsx
-msgid "Get started by reading docs, or view the code on Github"
 msgstr ""
 
 #: src/components/Synthetics/Claims/SettleAccruedCard.tsx
@@ -2542,6 +2529,15 @@ msgstr "Получение информации о токенах..."
 msgid "This swap is routed through several GM pools for the lowest possible fees and price impact."
 msgstr ""
 
+#: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
+msgid "{0}"
+msgstr ""
+
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/shared.ts
 msgid "Not enough Available Liquidity to fill the Order. The Order will get filled when the condition is met and there is enough Available Liquidity."
 msgstr "Недостаточно доступной ликвидности для выполнения ордера. Ордер будет выполнен, когда условие будет выполнено и будет достаточно доступной ликвидности."
@@ -3369,10 +3365,6 @@ msgstr ""
 
 #: src/components/Exchange/SwapBox.jsx
 msgid "Swap amount exceeds Available Liquidity."
-msgstr ""
-
-#: src/pages/Home/Home.jsx
-msgid "Easy"
 msgstr ""
 
 #: src/components/Synthetics/TradeBox/TradeBox.tsx
@@ -4265,10 +4257,6 @@ msgstr "Всё время"
 msgid "Select your vesting option below then click \"Claim\"."
 msgstr "Выберите свой вариант вестинга ниже и нажмите \"Утвердить\"."
 
-#: src/pages/Home/Home.jsx
-msgid "Save on Costs"
-msgstr "Сэкономь на Расходах"
-
 #: src/components/Synthetics/StatusNotification/GmStatusNotification.tsx
 msgid "Buy order cancelled"
 msgstr ""
@@ -4300,10 +4288,6 @@ msgstr ""
 
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "Leverage Trading Terminal"
-msgstr ""
-
-#: src/pages/Home/Home.jsx
-msgid "Instantly Earn $D5 after each action"
 msgstr ""
 
 #: src/components/Synthetics/TradeFeesRow/TradeFeesRow.tsx
@@ -4367,10 +4351,6 @@ msgstr "Выберите пул, содержащий {0}, чтобы испол
 #: src/lib/contracts/callContract.tsx
 msgid "Transaction completed!"
 msgstr "Транзакция завершена!"
-
-#: src/pages/Home/Home.jsx
-msgid "Reduce Risks"
-msgstr ""
 
 #: src/components/Migration/Migration.jsx
 #: src/pages/BeginAccountTransfer/BeginAccountTransfer.tsx
@@ -4799,10 +4779,6 @@ msgstr ""
 
 #: src/components/Exchange/NetValueTooltip.tsx
 msgid "Net Value: Initial Collateral + PnL - Borrow Fee - Close Fee"
-msgstr ""
-
-#: src/pages/Home/Home.jsx
-msgid "Secure"
 msgstr ""
 
 #: src/pages/Stake/StakeV2.tsx
@@ -5517,10 +5493,6 @@ msgstr "Копировать"
 msgid "Amount"
 msgstr "Сумма"
 
-#: src/pages/Home/Home.jsx
-msgid "Trade with minimal spread and low impact."
-msgstr ""
-
 #: src/components/Exchange/SwapBox.jsx
 msgid "<0>{0} is required for collateral.</0><1>Swap amount from {1} to {2} exceeds {3} Available Liquidity. Reduce the \"Pay\" size, or use {4} as the \"Pay\" token to use it for collateral.</1><2>You can buy {5} on 1inch.</2>"
 msgstr ""
@@ -5650,10 +5622,6 @@ msgstr "Максимальное кредитное плечо 100x было п�
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/shared.ts
 msgid "Not enough Available Liquidity to fill the Order."
 msgstr "Недостаточно доступной ликвидности для выполнения ордера."
-
-#: src/pages/Home/Home.jsx
-msgid "Reliable price feeds trigger timely liquidations, protecting your positions."
-msgstr ""
 
 #: src/pages/OrdersOverview/OrdersOverview.jsx
 msgid "Order size exceeds position"
@@ -7680,10 +7648,6 @@ msgstr ""
 
 #: src/components/InterviewModal/InterviewModal.tsx
 msgid "Anonymous chat with GMX"
-msgstr ""
-
-#: src/pages/Home/Home.jsx
-msgid "Your $crypto,<0/> your control."
 msgstr ""
 
 #: src/pages/Home/Home.jsx

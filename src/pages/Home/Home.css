@@ -123,6 +123,14 @@
   grid-column-gap: 1.6rem;
 }
 
+.Home-benefits-swiper {
+  padding: 0 1.6rem;
+}
+
+.swiper-pagination-bullet {
+  transition: all 0.3s ease-in-out;
+}
+
 .Home-benefits.row1 {
   grid-template-columns: 5fr 2fr 3fr;
   margin-bottom: 1.6rem;
@@ -191,11 +199,17 @@
   background-repeat: no-repeat;
 }
 
-.Home-benefit__save-cost {
+.Home-benefit__save-on-costs {
   background-image: url("@/img/home_benefit_savecost_bg.svg");
   background-size: 100%;
   background-repeat: no-repeat;
   background-origin: content-box;
+  padding: 1.4rem; 
+}
+
+.Home-benefit__save-on-costs > .Home-benefit-description, .Home-benefit__save-on-costs > .Home-benefit-title {
+  /* to align title and description with other home benefit cards */
+  padding-left: 1rem;
 }
 
 .Home-benefit__reduce-risks {

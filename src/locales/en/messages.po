@@ -353,10 +353,6 @@ msgstr "Referral code added!"
 msgid "SELLABLE"
 msgstr "SELLABLE"
 
-#: src/pages/Home/Home.jsx
-msgid "Open"
-msgstr "Open"
-
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "Treasury"
 msgstr "Treasury"
@@ -711,7 +707,6 @@ msgid "Open Interest Balance"
 msgstr "Open Interest Balance"
 
 #: src/components/Referrals/ClaimAffiliatesModal/ClaimAffiliatesModal.tsx
-#: src/pages/Home/Home.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
@@ -1123,10 +1118,6 @@ msgstr "Withdrawing {0} to Main Account"
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "GM is the liquidity provider token for GMX V2 markets. Accrues 63% of the V2 markets generated fees."
 msgstr "GM is the liquidity provider token for GMX V2 markets. Accrues 63% of the V2 markets generated fees."
-
-#: src/pages/Home/Home.jsx
-msgid "Whether you're a beginner or seasoned pro, DeFive makes it easy."
-msgstr "Whether you're a beginner or seasoned pro, DeFive makes it easy."
 
 #: src/components/ToastifyDebug/ToastifyDebug.tsx
 msgid "Hide error"
@@ -1622,10 +1613,6 @@ msgstr "{0, plural, one {Pending {symbolsText} approval} other {Pending {symbols
 #: src/components/Exchange/PositionsList.jsx
 msgid "Use the \"Close\" button to reduce your Position Size, or to set Take-Profit / Stop-Loss Orders."
 msgstr "Use the \"Close\" button to reduce your Position Size, or to set Take-Profit / Stop-Loss Orders."
-
-#: src/pages/Home/Home.jsx
-msgid "Get started by reading docs, or view the code on Github"
-msgstr "Get started by reading docs, or view the code on Github"
 
 #: src/components/Synthetics/Claims/SettleAccruedCard.tsx
 msgid "Show details"
@@ -2542,6 +2529,15 @@ msgstr "Fetching token info..."
 msgid "This swap is routed through several GM pools for the lowest possible fees and price impact."
 msgstr "This swap is routed through several GM pools for the lowest possible fees and price impact."
 
+#: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
+msgid "{0}"
+msgstr "{0}"
+
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/shared.ts
 msgid "Not enough Available Liquidity to fill the Order. The Order will get filled when the condition is met and there is enough Available Liquidity."
 msgstr "Not enough Available Liquidity to fill the Order. The Order will get filled when the condition is met and there is enough Available Liquidity."
@@ -3370,10 +3366,6 @@ msgstr "The execution price for the limit order updates in real-time on the orde
 #: src/components/Exchange/SwapBox.jsx
 msgid "Swap amount exceeds Available Liquidity."
 msgstr "Swap amount exceeds Available Liquidity."
-
-#: src/pages/Home/Home.jsx
-msgid "Easy"
-msgstr "Easy"
 
 #: src/components/Synthetics/TradeBox/TradeBox.tsx
 msgid "Decrease the leverage to match the max. allowed leverage."
@@ -4268,10 +4260,6 @@ msgstr "All time"
 msgid "Select your vesting option below then click \"Claim\"."
 msgstr "Select your vesting option below then click \"Claim\"."
 
-#: src/pages/Home/Home.jsx
-msgid "Save on Costs"
-msgstr "Save on Costs"
-
 #: src/components/Synthetics/StatusNotification/GmStatusNotification.tsx
 msgid "Buy order cancelled"
 msgstr "Buy order cancelled"
@@ -4304,10 +4292,6 @@ msgstr "esGMX OTC Market"
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "Leverage Trading Terminal"
 msgstr "Leverage Trading Terminal"
-
-#: src/pages/Home/Home.jsx
-msgid "Instantly Earn $D5 after each action"
-msgstr "Instantly Earn $D5 after each action"
 
 #: src/components/Synthetics/TradeFeesRow/TradeFeesRow.tsx
 msgid "The bonus rebate is an estimate and can be up to {0}% of the open fee. It will be airdropped as {incentivesTokenTitle} tokens on a pro-rata basis. <0><1>Read more</1>.</0>"
@@ -4370,10 +4354,6 @@ msgstr "Select a pool containing {0} to use it as collateral."
 #: src/lib/contracts/callContract.tsx
 msgid "Transaction completed!"
 msgstr "Transaction completed!"
-
-#: src/pages/Home/Home.jsx
-msgid "Reduce Risks"
-msgstr "Reduce Risks"
 
 #: src/components/Migration/Migration.jsx
 #: src/pages/BeginAccountTransfer/BeginAccountTransfer.tsx
@@ -4803,10 +4783,6 @@ msgstr "You can buy AVAX directly on <0>Avalanche</0> using these options:"
 #: src/components/Exchange/NetValueTooltip.tsx
 msgid "Net Value: Initial Collateral + PnL - Borrow Fee - Close Fee"
 msgstr "Net Value: Initial Collateral + PnL - Borrow Fee - Close Fee"
-
-#: src/pages/Home/Home.jsx
-msgid "Secure"
-msgstr "Secure"
 
 #: src/pages/Stake/StakeV2.tsx
 msgid "Claim Affiliate Vault Rewards"
@@ -5520,10 +5496,6 @@ msgstr "Copy"
 msgid "Amount"
 msgstr "Amount"
 
-#: src/pages/Home/Home.jsx
-msgid "Trade with minimal spread and low impact."
-msgstr "Trade with minimal spread and low impact."
-
 #: src/components/Exchange/SwapBox.jsx
 msgid "<0>{0} is required for collateral.</0><1>Swap amount from {1} to {2} exceeds {3} Available Liquidity. Reduce the \"Pay\" size, or use {4} as the \"Pay\" token to use it for collateral.</1><2>You can buy {5} on 1inch.</2>"
 msgstr "<0>{0} is required for collateral.</0><1>Swap amount from {1} to {2} exceeds {3} Available Liquidity. Reduce the \"Pay\" size, or use {4} as the \"Pay\" token to use it for collateral.</1><2>You can buy {5} on 1inch.</2>"
@@ -5653,10 +5625,6 @@ msgstr "Max leverage of 100x was exceeded, the remaining collateral after deduct
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/shared.ts
 msgid "Not enough Available Liquidity to fill the Order."
 msgstr "Not enough Available Liquidity to fill the Order."
-
-#: src/pages/Home/Home.jsx
-msgid "Reliable price feeds trigger timely liquidations, protecting your positions."
-msgstr "Reliable price feeds trigger timely liquidations, protecting your positions."
 
 #: src/pages/OrdersOverview/OrdersOverview.jsx
 msgid "Order size exceeds position"
@@ -7687,10 +7655,6 @@ msgstr "Consider selecting and using the \"Pair\" option to reduce the Price Imp
 #: src/components/InterviewModal/InterviewModal.tsx
 msgid "Anonymous chat with GMX"
 msgstr "Anonymous chat with GMX"
-
-#: src/pages/Home/Home.jsx
-msgid "Your $crypto,<0/> your control."
-msgstr "Your $crypto,<0/> your control."
 
 #: src/pages/Home/Home.jsx
 msgid "Yield Rewards"
