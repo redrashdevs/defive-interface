@@ -317,6 +317,7 @@ msgid "Max pool USD exceeded"
 msgstr "Max pool USD exceeded"
 
 #: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
 msgid "Provide Liquidity"
 msgstr "Provide Liquidity"
 
@@ -1338,6 +1339,7 @@ msgid "GMX Proposals Voting page"
 msgstr "GMX Proposals Voting page"
 
 #: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
 msgid "Earn Reward"
 msgstr "Earn Reward"
 
@@ -1943,6 +1945,7 @@ msgstr "Index"
 msgid "Decentralized Finance Dashboard"
 msgstr "Decentralized Finance Dashboard"
 
+#: src/pages/Home/Home.jsx
 #: src/pages/Home/Home.jsx
 msgid "Hold D5 tokens to vote on important decisions and shape the future of DeFive."
 msgstr "Hold D5 tokens to vote on important decisions and shape the future of DeFive."
@@ -4888,6 +4891,7 @@ msgid "You can get a {0} / 1h better net rate in the {1} market pool.<0><1>Switc
 msgstr "You can get a {0} / 1h better net rate in the {1} market pool.<0><1>Switch to {2} market pool</1>.</0>"
 
 #: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
 msgid "Governance"
 msgstr "Governance"
 
@@ -5355,6 +5359,7 @@ msgstr "Acknowledge epoch is ending in {minutes} minutes"
 msgid "We want your insights to help improve GMX. For security reasons, we won't contact you first. Please send the message \"I have feedback\" to any of our official accounts:"
 msgstr "We want your insights to help improve GMX. For security reasons, we won't contact you first. Please send the message \"I have feedback\" to any of our official accounts:"
 
+#: src/pages/Home/Home.jsx
 #: src/pages/Home/Home.jsx
 msgid "Stake your D5 tokens to earn more tokens and a share of trading fees."
 msgstr "Stake your D5 tokens to earn more tokens and a share of trading fees."
@@ -6745,6 +6750,7 @@ msgstr "<0>Your wallet is not connected to {0}.</0><1/><2>Switch to {1}</2>"
 msgid "Transaction was cancelled."
 msgstr "Transaction was cancelled."
 
+#: src/pages/Home/Home.jsx
 #: src/pages/Home/Home.jsx
 msgid "Support our platform by providing liquidity and earn rewards."
 msgstr "Support our platform by providing liquidity and earn rewards."

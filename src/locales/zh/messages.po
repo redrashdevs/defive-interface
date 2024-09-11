@@ -317,6 +317,7 @@ msgid "Max pool USD exceeded"
 msgstr ""
 
 #: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
 msgid "Provide Liquidity"
 msgstr ""
 
@@ -1338,6 +1339,7 @@ msgid "GMX Proposals Voting page"
 msgstr "GMX提案投票页面"
 
 #: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
 msgid "Earn Reward"
 msgstr ""
 
@@ -1943,6 +1945,7 @@ msgstr "索引"
 msgid "Decentralized Finance Dashboard"
 msgstr "去中心化金融仪表板"
 
+#: src/pages/Home/Home.jsx
 #: src/pages/Home/Home.jsx
 msgid "Hold D5 tokens to vote on important decisions and shape the future of DeFive."
 msgstr ""
@@ -4885,6 +4888,7 @@ msgid "You can get a {0} / 1h better net rate in the {1} market pool.<0><1>Switc
 msgstr ""
 
 #: src/pages/Home/Home.jsx
+#: src/pages/Home/Home.jsx
 msgid "Governance"
 msgstr ""
 
@@ -5352,6 +5356,7 @@ msgstr ""
 msgid "We want your insights to help improve GMX. For security reasons, we won't contact you first. Please send the message \"I have feedback\" to any of our official accounts:"
 msgstr ""
 
+#: src/pages/Home/Home.jsx
 #: src/pages/Home/Home.jsx
 msgid "Stake your D5 tokens to earn more tokens and a share of trading fees."
 msgstr ""
@@ -6739,6 +6744,7 @@ msgstr ""
 msgid "Transaction was cancelled."
 msgstr "交易已取消"
 
+#: src/pages/Home/Home.jsx
 #: src/pages/Home/Home.jsx
 msgid "Support our platform by providing liquidity and earn rewards."
 msgstr ""

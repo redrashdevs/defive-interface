@@ -766,7 +766,7 @@
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 600px) {
   .Home-token-card-options {
     display: grid;
     grid-template-columns: 1fr;

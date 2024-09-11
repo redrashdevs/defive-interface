@@ -40,7 +40,7 @@ import { EffectCards, Pagination } from 'swiper/modules';
 export default function Home({ showRedirectModal }) {
   const arbV2Stats = useV2Stats(ARBITRUM);
   const avaxV2Stats = useV2Stats(AVALANCHE);
-  const isMobile = useMedia("(max-width: 650px)");
+  const isMobile = useMedia("(max-width: 600px)");
 
   // ARBITRUM
 
@@ -137,6 +137,12 @@ export default function Home({ showRedirectModal }) {
     { title: 'Save on Costs', description: 'Trade with minimal spread and low impact.' },
     { title: 'Reduce Risks', description: 'Reliable price feeds trigger timely liquidations, protecting your positions.' },
     { title: 'Rewards', description: 'Instantly Earn $D5 after each action' }
+  ];
+
+  const tokenomicsCardsData = [
+    { title: 'Earn Reward', description: 'Stake your D5 tokens to earn more tokens and a share of trading fees.' },
+    { title: 'Governance', description: 'Hold D5 tokens to vote on important decisions and shape the future of DeFive.' },
+    { title: 'Provide Liquidity', description: 'Support our platform by providing liquidity and earn rewards.' },
   ];
 
   return (
@@ -240,137 +246,138 @@ export default function Home({ showRedirectModal }) {
       )}
     </div>
       <div className="Home-tokenomics-section">
-        <div className="Home-tokenomics-container default-container">
-          <h2 className="Home-tokenomics-title">
-            <Trans>
-              D5 Tokenomics
-            </Trans>
-          </h2>
-          <p className="Home-tokenomics-description">
-            <Trans>
-              D5 (DeFive) is the core token of our decentralized exchange. It lets you trade, earn, and have a say in the future of our platform.
-            </Trans>
-          </p>
-          <a href="https://gmxio.gitbook.io/gmx/" className="default-btn Home-tokenomics-doc-btn">
-            <Trans>
-              Read More in Docs
-            </Trans>
-            <TbArrowNarrowRight size={20} className="Home-tokenomics-doc-btn__icon" />
-          </a>
-          <div className="Home-tokenomics-card-container">
-            <div className="Home-tokenomics-card">
-              <div className="Home-tokenomics-card__title">
-                <Trans>
-                  Earn Reward
-                </Trans>
-              </div>
-              <div className="Home-tokenomics-card__description">
-                <Trans>
-                  Stake your D5 tokens to earn more tokens and a share of trading fees.
-                </Trans>
-              </div>
-            </div>
-            <div className="Home-tokenomics-card">
-              <div className="Home-tokenomics-card__title">
-                <Trans>
-                  Governance
-                </Trans>
-              </div>
-              <div className="Home-tokenomics-card__description">
-                <Trans>
-                  Hold D5 tokens to vote on important decisions and shape the future of DeFive.
-                </Trans>
-              </div>
-            </div>
-            <div className="Home-tokenomics-card">
-              <div className="Home-tokenomics-card__title">
-                <Trans>
-                  Provide Liquidity
-                </Trans>
-              </div>
-              <div className="Home-tokenomics-card__description">
-                <Trans>
-                  Support our platform by providing liquidity and earn rewards.
-                </Trans>
-              </div>
-            </div>
+        <div className="Home-tokenomics-container">
+          <div className="default-container">
+            <h2 className="Home-tokenomics-title">
+              <Trans>
+                D5 Tokenomics
+              </Trans>
+            </h2>
+            <p className="Home-tokenomics-description">
+              <Trans>
+                D5 (DeFive) is the core token of our decentralized exchange. It lets you trade, earn, and have a say in the future of our platform.
+              </Trans>
+            </p>
+            <a href="https://gmxio.gitbook.io/gmx/" className="default-btn Home-tokenomics-doc-btn">
+              <Trans>
+                Read More in Docs
+              </Trans>
+              <TbArrowNarrowRight size={20} className="Home-tokenomics-doc-btn__icon" />
+            </a>
           </div>
 
-          <div className="Home-tokenomics-distribution">
-            <div className="Home-tokenomics-distribution__title">
-              <Trans>
-                Distribution
-              </Trans>
-            </div>
-            <div className="Home-tokenomics-distribution-rows">
-              <div className="Home-tokenomics-distribution-row">
-                <div className="Home-tokenomics-distribution-row__title">
-                  <Trans>
-                    Yield Rewards
-                  </Trans>
+          <div className={`Home-tokenomics-card-container ${!isMobile ? 'default-container' : ''}`}>
+            {isMobile ? (
+              <Swiper
+                className="Home-tokenomics-swiper"
+                spaceBetween={16}
+                slidesOffsetBefore={16}
+                slidesOffsetAfter={16}
+                slidesPerView={'auto'}
+              >
+                {tokenomicsCardsData.map((card, index) => (
+                  <SwiperSlide key={index} className="Home-tokenomics-card">
+                    <div className="Home-tokenomics-card__title">
+                      <Trans>{card.title}</Trans>
+                    </div>
+                    <div className="Home-tokenomics-card__description">
+                      <Trans>{card.description}</Trans>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <>
+              {tokenomicsCardsData.map((card, index) => (
+                <div key={index} className="Home-tokenomics-card">
+                  <div className="Home-tokenomics-card__title">
+                    <Trans>{card.title}</Trans>
+                  </div>
+                  <div className="Home-tokenomics-card__description">
+                    <Trans>{card.description}</Trans>
+                  </div>
                 </div>
-                <div className="Home-tokenomics-distribution-row__percentage">
-                  30%
-                </div>
+              ))}
+              </>
+            )}
+          </div>
+          <div className="default-container">
+            <div className="Home-tokenomics-distribution">
+              <div className="Home-tokenomics-distribution__title">
+                <Trans>
+                  Distribution
+                </Trans>
               </div>
-              <div className="Home-tokenomics-distribution-row">
-                <div className="Home-tokenomics-distribution-row__title">
-                  <Trans>
-                    Public Sale
-                  </Trans>
+              <div className="Home-tokenomics-distribution-rows">
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Yield Rewards
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    30%
+                  </div>
                 </div>
-                <div className="Home-tokenomics-distribution-row__percentage">
-                  20%
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Public Sale
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    20%
+                  </div>
                 </div>
-              </div>
-              <div className="Home-tokenomics-distribution-row">
-                <div className="Home-tokenomics-distribution-row__title">
-                  <Trans>
-                    Vault
-                  </Trans>
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Vault
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    10%
+                  </div>
                 </div>
-                <div className="Home-tokenomics-distribution-row__percentage">
-                  10%
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Team
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    10%
+                  </div>
                 </div>
-              </div>
-              <div className="Home-tokenomics-distribution-row">
-                <div className="Home-tokenomics-distribution-row__title">
-                  <Trans>
-                    Team
-                  </Trans>
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Exchange Liquidity
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    10%
+                  </div>
                 </div>
-                <div className="Home-tokenomics-distribution-row__percentage">
-                  10%
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Development
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    10%
+                  </div>
                 </div>
-              </div>
-              <div className="Home-tokenomics-distribution-row">
-                <div className="Home-tokenomics-distribution-row__title">
-                  <Trans>
-                    Exchange Liquidity
-                  </Trans>
-                </div>
-                <div className="Home-tokenomics-distribution-row__percentage">
-                  10%
-                </div>
-              </div>
-              <div className="Home-tokenomics-distribution-row">
-                <div className="Home-tokenomics-distribution-row__title">
-                  <Trans>
-                    Development
-                  </Trans>
-                </div>
-                <div className="Home-tokenomics-distribution-row__percentage">
-                  10%
-                </div>
-              </div>
-              <div className="Home-tokenomics-distribution-row">
-                <div className="Home-tokenomics-distribution-row__title">
-                  <Trans>
-                    Pre-Sale & ISPO
-                  </Trans>
-                </div>
-                <div className="Home-tokenomics-distribution-row__percentage">
-                  10%
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Pre-Sale & ISPO
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    10%
+                  </div>
                 </div>
               </div>
             </div>
