@@ -780,6 +780,7 @@
   
   .Home-benefits-section {
     padding-bottom: 3.2rem;
+    overflow: hidden;
   }
 }
 
