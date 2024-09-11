@@ -36,7 +36,7 @@ code {
 *::after {
   box-sizing: border-box;
   font-family: "Relative", sans-serif;
-  letter-spacing: 0.05rem;
+  letter-spacing: 0;
 }
 
 input {
@@ -83,7 +83,7 @@ input {
   --error-red-hover: var(--color-red-400);
   --green: var(--color-green-500);
   --font-sm: 1.4rem;
-  --font-base: 1.5rem; // 15px
+  --font-base: 1.6rem; // 16px
   --font-md: 1.6rem;
   --font-lg: 2.4rem;
   --font-xl: 3.4rem;

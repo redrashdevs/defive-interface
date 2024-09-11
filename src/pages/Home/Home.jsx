@@ -40,7 +40,7 @@ import { EffectCards, Pagination } from 'swiper/modules';
 export default function Home({ showRedirectModal }) {
   const arbV2Stats = useV2Stats(ARBITRUM);
   const avaxV2Stats = useV2Stats(AVALANCHE);
-  const isMobile = useMedia("(max-width: 700px)");
+  const isMobile = useMedia("(max-width: 650px)");
 
   // ARBITRUM
 

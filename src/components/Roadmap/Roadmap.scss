@@ -16,3 +16,14 @@
   height: 4rem;
   margin-bottom: 5rem;
 }
+
+@media (max-width: 500px) {
+  .Roadmap-title {
+    font-size: 3.2rem;
+    line-height: 4.03rem;
+  }
+
+  .Roadmap-quarter-slider {
+    margin-bottom: 2.8rem;
+  }
+}
