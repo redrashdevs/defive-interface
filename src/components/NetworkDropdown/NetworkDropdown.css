@@ -2,8 +2,8 @@
   position: relative;
   background: var(--color-neutral-800);
   border-radius: 50%;
-  height: 3.6rem;
-  width: 3.6rem;
+  height: 4rem;
+  width: 4rem;
   display: inline-flex;
   align-items: center;
   color: var(--color-white);
@@ -40,7 +40,7 @@
 }
 
 .network-dropdown > button.transparent {
-  height: 3.6rem;
+  height: 4rem;
   border-radius: 50%;
   border: none;
   pointer-events: none;
@@ -52,8 +52,8 @@
 }
 
 .network-dropdown-icon {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
 }
 

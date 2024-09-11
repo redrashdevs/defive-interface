@@ -114,23 +114,30 @@
 }
 
 .App-header-menu-icon-block {
-  margin-right: 1.2rem;
-  margin-left: 0px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  background-color: var(--color-neutral-800);
+}
+
+.App-header-menu-icon-block.mobile-cross-menu {
+  background-color: transparent;
 }
 
 .App-header-menu-icon {
   color: var(--color-white);
-  font-size: 2rem;
+  // font-size: 2rem;
   cursor: pointer;
-  opacity: 0.7;
-  margin: 0.9rem 1rem;
+  // opacity: 0.7;
+  // margin: 0.9rem 1rem;
 }
 
-.App-header-menu-icon:hover {
-  opacity: 0.9;
-}
+// .App-header-menu-icon:hover {
+  // opacity: 0.9;
+// }
 
 .App-header a.App-header-link-main,
 .App-header .App-header-link-main {
@@ -143,7 +150,7 @@
 
 .App-header-link-main img {
   display: inline-block;
-  height: 2.15rem;
+  height: 2.4rem;
   vertical-align: middle;
 }
 
@@ -195,6 +202,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 1.6rem;
   flex: 1;
 }
 
@@ -252,11 +260,6 @@
     padding-bottom: 0;
   }
 
-  .App-header-container-right {
-    display: flex;
-    align-items: center;
-  }
-
   .App-header-link-desktop {
     display: none;
   }
@@ -266,11 +269,11 @@
   }
 
   .App-header-link-main img {
-    height: 2.1rem;
+    height: 2.4rem;
   }
 
   .App-header.small {
-    height: 10rem;
+    height: 8.8rem;
     // backdrop-filter: blur(4px);
     display: flex;
     justify-content: space-between;
@@ -311,18 +314,9 @@
     margin-right: 0.6rem;
   }
 
-  .App-header-menu-icon-block {
-    margin-left: 0;
-    margin-right: 0.4rem;
-  }
-
-  .App-header-menu-icon {
-    margin: 0.4rem 0.5rem;
-  }
-
   .App-header.small {
-    padding-left: 0.6rem;
-    padding-right: 0.6rem;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
   }
 
   .App-header .App-header-link-main {
