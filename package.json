@@ -37,6 +37,8 @@
     "@lingui/macro": "4.11.3",
     "@lingui/react": "4.10.0",
     "@rainbow-me/rainbowkit": "2.0.2",
+    "@splinetool/react-spline": "4.0.0",
+    "@splinetool/runtime": "1.9.26",
     "@tanstack/react-query": "5.25.0",
     "@taskworld.com/rereselect": "0.3.0",
     "@testing-library/jest-dom": "5.16.1",

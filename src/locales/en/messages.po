@@ -316,11 +316,6 @@ msgstr "Cancel Stop-Loss Order"
 msgid "Max pool USD exceeded"
 msgstr "Max pool USD exceeded"
 
-#: src/pages/Home/Home.jsx
-#: src/pages/Home/Home.jsx
-msgid "Provide Liquidity"
-msgstr "Provide Liquidity"
-
 #: src/pages/AccountDashboard/HistoricalLists.tsx
 #: src/pages/Exchange/Exchange.tsx
 msgid "Positions"
@@ -353,6 +348,11 @@ msgstr "Referral code added!"
 #: src/components/Synthetics/MarketTokenSelector/MarketTokenSelector.tsx
 msgid "SELLABLE"
 msgstr "SELLABLE"
+
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Open"
+msgstr "Open"
 
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "Treasury"
@@ -707,6 +707,8 @@ msgstr "Unrealized PnL"
 msgid "Open Interest Balance"
 msgstr "Open Interest Balance"
 
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
 #: src/components/Referrals/ClaimAffiliatesModal/ClaimAffiliatesModal.tsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
@@ -1120,6 +1122,11 @@ msgstr "Withdrawing {0} to Main Account"
 msgid "GM is the liquidity provider token for GMX V2 markets. Accrues 63% of the V2 markets generated fees."
 msgstr "GM is the liquidity provider token for GMX V2 markets. Accrues 63% of the V2 markets generated fees."
 
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Whether you're a beginner or seasoned pro, DeFive makes it easy."
+msgstr "Whether you're a beginner or seasoned pro, DeFive makes it easy."
+
 #: src/components/ToastifyDebug/ToastifyDebug.tsx
 msgid "Hide error"
 msgstr "Hide error"
@@ -1337,11 +1344,6 @@ msgstr "NFT Wallet"
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "GMX Proposals Voting page"
 msgstr "GMX Proposals Voting page"
-
-#: src/pages/Home/Home.jsx
-#: src/pages/Home/Home.jsx
-msgid "Earn Reward"
-msgstr "Earn Reward"
 
 #: src/components/Synthetics/GmSwap/GmFees/GmFees.tsx
 msgid "Fees and Price Impact"
@@ -1615,6 +1617,11 @@ msgstr "{0, plural, one {Pending {symbolsText} approval} other {Pending {symbols
 #: src/components/Exchange/PositionsList.jsx
 msgid "Use the \"Close\" button to reduce your Position Size, or to set Take-Profit / Stop-Loss Orders."
 msgstr "Use the \"Close\" button to reduce your Position Size, or to set Take-Profit / Stop-Loss Orders."
+
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Get started by reading docs, or view the code on Github"
+msgstr "Get started by reading docs, or view the code on Github"
 
 #: src/components/Synthetics/Claims/SettleAccruedCard.tsx
 msgid "Show details"
@@ -1944,11 +1951,6 @@ msgstr "Index"
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "Decentralized Finance Dashboard"
 msgstr "Decentralized Finance Dashboard"
-
-#: src/pages/Home/Home.jsx
-#: src/pages/Home/Home.jsx
-msgid "Hold D5 tokens to vote on important decisions and shape the future of DeFive."
-msgstr "Hold D5 tokens to vote on important decisions and shape the future of DeFive."
 
 #: src/components/Glp/GlpSwap.jsx
 msgid "GLP buy disabled, pending {0} upgrade"
@@ -2532,8 +2534,6 @@ msgstr "Fetching token info..."
 msgid "This swap is routed through several GM pools for the lowest possible fees and price impact."
 msgstr "This swap is routed through several GM pools for the lowest possible fees and price impact."
 
-#: src/pages/Home/Home.jsx
-#: src/pages/Home/Home.jsx
 #: src/pages/Home/Home.jsx
 #: src/pages/Home/Home.jsx
 #: src/pages/Home/Home.jsx
@@ -3369,6 +3369,11 @@ msgstr "The execution price for the limit order updates in real-time on the orde
 #: src/components/Exchange/SwapBox.jsx
 msgid "Swap amount exceeds Available Liquidity."
 msgstr "Swap amount exceeds Available Liquidity."
+
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Easy"
+msgstr "Easy"
 
 #: src/components/Synthetics/TradeBox/TradeBox.tsx
 msgid "Decrease the leverage to match the max. allowed leverage."
@@ -4263,6 +4268,11 @@ msgstr "All time"
 msgid "Select your vesting option below then click \"Claim\"."
 msgstr "Select your vesting option below then click \"Claim\"."
 
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Save on Costs"
+msgstr "Save on Costs"
+
 #: src/components/Synthetics/StatusNotification/GmStatusNotification.tsx
 msgid "Buy order cancelled"
 msgstr "Buy order cancelled"
@@ -4295,6 +4305,11 @@ msgstr "esGMX OTC Market"
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "Leverage Trading Terminal"
 msgstr "Leverage Trading Terminal"
+
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Instantly Earn $D5 after each action"
+msgstr "Instantly Earn $D5 after each action"
 
 #: src/components/Synthetics/TradeFeesRow/TradeFeesRow.tsx
 msgid "The bonus rebate is an estimate and can be up to {0}% of the open fee. It will be airdropped as {incentivesTokenTitle} tokens on a pro-rata basis. <0><1>Read more</1>.</0>"
@@ -4357,6 +4372,11 @@ msgstr "Select a pool containing {0} to use it as collateral."
 #: src/lib/contracts/callContract.tsx
 msgid "Transaction completed!"
 msgstr "Transaction completed!"
+
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Reduce Risks"
+msgstr "Reduce Risks"
 
 #: src/components/Migration/Migration.jsx
 #: src/pages/BeginAccountTransfer/BeginAccountTransfer.tsx
@@ -4719,6 +4739,11 @@ msgstr "TP/SL"
 msgid "Max {0} in"
 msgstr "Max {0} in"
 
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Your $crypto, your control."
+msgstr "Your $crypto, your control."
+
 #: src/domain/synthetics/orders/utils.tsx
 msgid "Stop Loss Decrease"
 msgstr "Stop Loss Decrease"
@@ -4786,6 +4811,11 @@ msgstr "You can buy AVAX directly on <0>Avalanche</0> using these options:"
 #: src/components/Exchange/NetValueTooltip.tsx
 msgid "Net Value: Initial Collateral + PnL - Borrow Fee - Close Fee"
 msgstr "Net Value: Initial Collateral + PnL - Borrow Fee - Close Fee"
+
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Secure"
+msgstr "Secure"
 
 #: src/pages/Stake/StakeV2.tsx
 msgid "Claim Affiliate Vault Rewards"
@@ -4889,11 +4919,6 @@ msgstr "Settling Positions' Fees"
 #: src/components/Synthetics/TradeboxPoolWarnings/TradeboxPoolWarnings.tsx
 msgid "You can get a {0} / 1h better net rate in the {1} market pool.<0><1>Switch to {2} market pool</1>.</0>"
 msgstr "You can get a {0} / 1h better net rate in the {1} market pool.<0><1>Switch to {2} market pool</1>.</0>"
-
-#: src/pages/Home/Home.jsx
-#: src/pages/Home/Home.jsx
-msgid "Governance"
-msgstr "Governance"
 
 #: src/components/Exchange/ConfirmationBox.jsx
 #: src/components/Exchange/ConfirmationBox.jsx
@@ -5359,11 +5384,6 @@ msgstr "Acknowledge epoch is ending in {minutes} minutes"
 msgid "We want your insights to help improve GMX. For security reasons, we won't contact you first. Please send the message \"I have feedback\" to any of our official accounts:"
 msgstr "We want your insights to help improve GMX. For security reasons, we won't contact you first. Please send the message \"I have feedback\" to any of our official accounts:"
 
-#: src/pages/Home/Home.jsx
-#: src/pages/Home/Home.jsx
-msgid "Stake your D5 tokens to earn more tokens and a share of trading fees."
-msgstr "Stake your D5 tokens to earn more tokens and a share of trading fees."
-
 #: src/pages/ClaimEsGmx/ClaimEsGmx.jsx
 msgid "Claim esGMX"
 msgstr "Claim esGMX"
@@ -5501,6 +5521,11 @@ msgstr "Copy"
 msgid "Amount"
 msgstr "Amount"
 
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Trade with minimal spread and low impact."
+msgstr "Trade with minimal spread and low impact."
+
 #: src/components/Exchange/SwapBox.jsx
 msgid "<0>{0} is required for collateral.</0><1>Swap amount from {1} to {2} exceeds {3} Available Liquidity. Reduce the \"Pay\" size, or use {4} as the \"Pay\" token to use it for collateral.</1><2>You can buy {5} on 1inch.</2>"
 msgstr "<0>{0} is required for collateral.</0><1>Swap amount from {1} to {2} exceeds {3} Available Liquidity. Reduce the \"Pay\" size, or use {4} as the \"Pay\" token to use it for collateral.</1><2>You can buy {5} on 1inch.</2>"
@@ -5630,6 +5655,11 @@ msgstr "Max leverage of 100x was exceeded, the remaining collateral after deduct
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/shared.ts
 msgid "Not enough Available Liquidity to fill the Order."
 msgstr "Not enough Available Liquidity to fill the Order."
+
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Reliable price feeds trigger timely liquidations, protecting your positions."
+msgstr "Reliable price feeds trigger timely liquidations, protecting your positions."
 
 #: src/pages/OrdersOverview/OrdersOverview.jsx
 msgid "Order size exceeds position"
@@ -6749,11 +6779,6 @@ msgstr "<0>Your wallet is not connected to {0}.</0><1/><2>Switch to {1}</2>"
 #: src/lib/contracts/transactionErrors.tsx
 msgid "Transaction was cancelled."
 msgstr "Transaction was cancelled."
-
-#: src/pages/Home/Home.jsx
-#: src/pages/Home/Home.jsx
-msgid "Support our platform by providing liquidity and earn rewards."
-msgstr "Support our platform by providing liquidity and earn rewards."
 
 #: src/components/Exchange/ConfirmationBox.jsx
 #: src/components/Synthetics/TradeBox/hooks/useTradeButtonState.tsx

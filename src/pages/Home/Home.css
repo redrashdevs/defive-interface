@@ -111,121 +111,6 @@
           mask-composite: exclude; 
 }
 
-.Home-benefits-section {
-  /* background: var(--color-slate-800); */
-  padding-top: 2.4rem;
-  padding-bottom: 6.4rem;
-}
-
-.Home-benefits {
-  display: grid;
-  width: 100%;
-  grid-column-gap: 1.6rem;
-}
-
-.Home-benefits-swiper {
-  padding: 0 1.6rem;
-}
-
-.swiper-pagination-bullet {
-  transition: all 0.3s ease-in-out;
-}
-
-.Home-benefits.row1 {
-  grid-template-columns: 5fr 2fr 3fr;
-  margin-bottom: 1.6rem;
-}
-
-.Home-benefits.row2 {
-  grid-template-columns: 3fr 5fr 2fr;
-}
-
-.Home-benefit {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-  padding: 2.4rem;
-  background: #1A1A1A;
-  border-radius: 0.8rem;
-  height: 25.6rem;
-  overflow: hidden;
-}
-
-.Home-benefit-title {
-  font-size: 1.4rem;
-  line-height: 1.8rem;
-  font-weight: 700;
-}
-
-.Home-benefit-description {
-  font-size: 1.3rem;
-  line-height: 2rem;
-  max-width: 25.6rem;
-  color: var(--color-neutral-500);
-  letter-spacing: 0;
-}
-
-.Home-benefit__easy {
-  background-image: url("@/img/home_benefit_easy_bg.svg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.Home-benefit__secure {
-  background-image: url("@/img/home_benefit_secure_bg.svg");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-origin: content-box;
-}
-
-.Home-benefit__secure:before {
-  content: '';
-  box-shadow: 0px 4px 20px 24px #1A1A1A inset;
-  position: absolute;
-  pointer-events: none;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.Home-benefit__open {
-  background-image: url("@/img/home_benefit_open_bg.svg");
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.Home-benefit__save-on-costs {
-  background-image: url("@/img/home_benefit_savecost_bg.svg");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-origin: content-box;
-  padding: 1.4rem; 
-}
-
-.Home-benefit__save-on-costs > .Home-benefit-description, .Home-benefit__save-on-costs > .Home-benefit-title {
-  /* to align title and description with other home benefit cards */
-  padding-left: 1rem;
-}
-
-.Home-benefit__reduce-risks {
-  background-image: url("@/img/home_benefit_reducerisks_bg.svg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.Home-benefit__rewards {
-  background-image: url("@/img/home_benefit_rewards_bg.svg");
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .Home-tokenomics-section {
   padding-top: 6.4rem;
   padding-bottom: 6.4rem;
@@ -776,11 +661,6 @@
   .Home-tokenomics-section {
     padding-top: 3.2rem;
     padding-bottom: 3.2rem;
-  }
-  
-  .Home-benefits-section {
-    padding-bottom: 3.2rem;
-    overflow: hidden;
   }
 }
 
