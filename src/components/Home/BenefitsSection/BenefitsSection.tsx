@@ -53,6 +53,7 @@ export function BenefitsSection() {
         >
           <SwiperSlide>
             <div className={`Home-benefit Home-benefit__easy`}>
+              <Spline className="Home-benefit-spline" scene={'/spline/easy.splinecode'}/>
               <div className="Home-benefit-title">
                 <Trans>
                   Easy
@@ -141,6 +142,7 @@ export function BenefitsSection() {
         <div>
           <div className="Home-benefits row1 default-container">
             <div className={`Home-benefit Home-benefit__easy`}>
+              <Spline className="Home-benefit-spline" scene={'/spline/easy.splinecode'}/>
               <div className="Home-benefit-title">
                 <Trans>
                   Easy
