@@ -9,18 +9,16 @@ import { useMedia } from "react-use";
 import {Swiper, SwiperSlide} from "swiper/react";
 import { EffectCards, Pagination } from 'swiper/modules';
 import Spline from '@splinetool/react-spline';
+import { TbLock, TbMenu2 } from 'react-icons/tb';
+import { useState } from 'react';
 
 export function BenefitsSection() {
   const isMobile = useMedia("(max-width: 600px)");
+  const [isSecureSwitchLocked, setIsSecureSwitchLocked] = useState(false);
 
-  const benefitsData = [
-    { title: 'Easy', description: "Whether you're a beginner or seasoned pro, DeFive makes it easy." },
-    { title: 'Secure', description: 'Your $crypto, your control.' },
-    { title: 'Open', description: 'Get started by reading docs, or view the code on Github' },
-    { title: 'Save on Costs', description: 'Trade with minimal spread and low impact.' },
-    { title: 'Reduce Risks', description: 'Reliable price feeds trigger timely liquidations, protecting your positions.' },
-    { title: 'Rewards', description: 'Instantly Earn $D5 after each action' }
-  ];
+  const onSecureSwitchClick = () => {
+    setIsSecureSwitchLocked((prev) => !prev);
+  }
 
   return (
     <div className="Home-benefits-section">
@@ -68,15 +66,29 @@ export function BenefitsSection() {
           </SwiperSlide>
           <SwiperSlide>
             <div className={`Home-benefit Home-benefit__secure`}>
+              <div className={`secure-switch ${isSecureSwitchLocked ? 'locked' : ''}`} onClick={onSecureSwitchClick}>
+                <div className='secure-switch__container'>
+                  <div className='secure-switch__handle'>
+                    <TbMenu2 size={16} color='#000' className='mix-blend-overlay' />
+                  </div>
+                  <div className='secure-switch__lock'>
+                    <TbLock size={16} color='#fff' />
+                  </div>
+                </div>
+              </div>
               <div className="Home-benefit-title">
-                <Trans>
-                  Secure
-                </Trans>
+                {isSecureSwitchLocked ? '******' : (
+                  <Trans>
+                    Secure
+                  </Trans>
+                )}
               </div>
               <div className="Home-benefit-description">
-                <Trans>
-                  Your $crypto, your control.
-                </Trans>
+                {isSecureSwitchLocked ? (<>**** ********<br/>**** ********</>) : (
+                  <Trans>
+                    Your $crypto,<br/>your control.
+                  </Trans>
+                )}
               </div>
             </div>
           </SwiperSlide>
@@ -155,15 +167,29 @@ export function BenefitsSection() {
               </div>
             </div>
             <div className={`Home-benefit Home-benefit__secure`}>
+              <div className={`secure-switch flex items-center justify-center ${isSecureSwitchLocked ? 'locked' : ''}`} onClick={onSecureSwitchClick}>
+                <div className='secure-switch__container'>
+                  <div className='secure-switch__handle'>
+                    <TbMenu2 size={16} color='#000' className='mix-blend-overlay' />
+                  </div>
+                  <div className='secure-switch__lock'>
+                    <TbLock size={16} color='#fff' />
+                  </div>
+                </div>
+              </div>
               <div className="Home-benefit-title">
-                <Trans>
-                  Secure
-                </Trans>
+                {isSecureSwitchLocked ? '******' : (
+                  <Trans>
+                    Secure
+                  </Trans>
+                )}
               </div>
               <div className="Home-benefit-description">
-                <Trans>
-                  Your $crypto, your control.
-                </Trans>
+                {isSecureSwitchLocked ? (<>**** ********<br/>**** ********</>) : (
+                  <Trans>
+                    Your $crypto,<br/>your control.
+                  </Trans>
+                )}
               </div>
             </div>
             <div className={`Home-benefit Home-benefit__open`}>
