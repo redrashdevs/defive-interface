@@ -9,7 +9,7 @@ import { useMedia } from "react-use";
 import {Swiper, SwiperSlide} from "swiper/react";
 import { EffectCards, Pagination } from 'swiper/modules';
 import Spline from '@splinetool/react-spline';
-import { TbLock, TbMenu2, TbBook2, TbBrandGithub } from 'react-icons/tb';
+import { TbLock, TbMenu2, TbBook2, TbBrandGithub, TbArrowsExchange2, TbTrendingUp, TbTrendingDown, TbBuildingBridge } from 'react-icons/tb';
 import { useState } from 'react';
 
 import OpenCode from '@/img/home-benefit_open.svg';
@@ -17,14 +17,20 @@ import OpenCode from '@/img/home-benefit_open.svg';
 export function BenefitsSection() {
   const isMobile = useMedia("(max-width: 600px)");
   const [isSecureSwitchLocked, setIsSecureSwitchLocked] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ 
+    easy_x: 0, 
+    easy_y: 0,
+    open_x: 0,
+    open_y: 0,
+   });
 
-  const handleMouseMove = (e) => {
-    const rect = e.target.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+   const handleMouseMove = (e, name: 'easy' | 'open') => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePosition(prev => ({
+      ...prev,  // Keep other coordinates intact
+      [`${name}_x`]: e.clientX - rect.left,
+      [`${name}_y`]: e.clientY - rect.top,
+    }));
   };
 
   const onSecureSwitchClick = () => {
@@ -61,8 +67,27 @@ export function BenefitsSection() {
           } as React.CSSProperties}
         >
           <SwiperSlide>
-            <div className={`Home-benefit Home-benefit__easy`}>
-              <Spline className="Home-benefit-spline" scene={'/spline/easy.splinecode'}/>
+            <div className={`Home-benefit Home-benefit__easy`} 
+              style={{
+                '--maskX': `${mousePosition.easy_x}px`,
+                '--maskY': `${mousePosition.easy_y}px`
+              } as React.CSSProperties}
+            >
+              <div className='Home-benefit__easy__mask' />
+              <div className='Home-benefit__easy__buttons__container'>
+                <div className='Home-benefit__easy__buttons__button'>
+                  <TbArrowsExchange2 size={24} />
+                </div>
+                <div className='Home-benefit__easy__buttons__button'>
+                  <TbTrendingUp size={24} />
+                </div>
+                <div className='Home-benefit__easy__buttons__button'>
+                  <TbTrendingDown size={24} />
+                </div>
+                <div className='Home-benefit__easy__buttons__button'>
+                  <TbBuildingBridge size={24} />
+                </div>
+              </div>
               <div className="Home-benefit-title">
                 <Trans>
                   Easy
@@ -107,15 +132,15 @@ export function BenefitsSection() {
             <div className={`Home-benefit Home-benefit__open`}>
               <div
                 className="flashlight-container"
-                onMouseMove={handleMouseMove}
+                onMouseMove={(e) => handleMouseMove(e, 'open')}
               >
                 <img 
                   src={OpenCode}
                   alt="Hidden" 
                   className="hidden-code" 
                   style={{
-                    '--maskX': `${mousePosition.x}px`,
-                    '--maskY': `${mousePosition.y}px`
+                    '--maskX': `${mousePosition.open_x}px`,
+                    '--maskY': `${mousePosition.open_y}px`
                   } as React.CSSProperties}
                 />
               </div>
@@ -178,8 +203,28 @@ export function BenefitsSection() {
       ) : (
         <div>
           <div className="Home-benefits row1 default-container">
-            <div className={`Home-benefit Home-benefit__easy`}>
-              <Spline className="Home-benefit-spline" scene={'/spline/easy.splinecode'}/>
+            <div className={`Home-benefit Home-benefit__easy`} 
+              onMouseMove={(e) => handleMouseMove(e, 'easy')}
+              style={{
+                '--maskX': `${mousePosition.easy_x}px`,
+                '--maskY': `${mousePosition.easy_y}px`
+              } as React.CSSProperties}
+            >
+              <div className='Home-benefit__easy__mask' />
+              <div className='Home-benefit__easy__buttons__container'>
+                <div className='Home-benefit__easy__buttons__button'>
+                  <TbArrowsExchange2 size={24} />
+                </div>
+                <div className='Home-benefit__easy__buttons__button'>
+                  <TbTrendingUp size={24} />
+                </div>
+                <div className='Home-benefit__easy__buttons__button'>
+                  <TbTrendingDown size={24} />
+                </div>
+                <div className='Home-benefit__easy__buttons__button'>
+                  <TbBuildingBridge size={24} />
+                </div>
+              </div>
               <div className="Home-benefit-title">
                 <Trans>
                   Easy
@@ -220,15 +265,15 @@ export function BenefitsSection() {
             <div className={`Home-benefit Home-benefit__open`}>
               <div
                 className="flashlight-container"
-                onMouseMove={handleMouseMove}
+                onMouseMove={(e) => handleMouseMove(e, 'open')}
               >
                 <img 
                   src={OpenCode}
                   alt="Hidden" 
                   className="hidden-code" 
                   style={{
-                    '--maskX': `${mousePosition.x}px`,
-                    '--maskY': `${mousePosition.y}px`
+                    '--maskX': `${mousePosition.open_x}px`,
+                    '--maskY': `${mousePosition.open_y}px`
                   } as React.CSSProperties}
                 />
               </div>
