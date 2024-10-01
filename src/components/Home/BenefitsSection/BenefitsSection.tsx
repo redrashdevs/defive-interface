@@ -73,7 +73,8 @@ export function BenefitsSection() {
                 '--maskY': `${mousePosition.easy_y}px`
               } as React.CSSProperties}
             >
-              <div className='Home-benefit__easy__mask' />
+              <div className='Home-benefit__easy__mask1' />
+              <div className='Home-benefit__easy__mask2' />
               <div className='Home-benefit__easy__buttons__container'>
                 <div className='Home-benefit__easy__buttons__button'>
                   <TbArrowsExchange2 size={24} />
@@ -210,7 +211,8 @@ export function BenefitsSection() {
                 '--maskY': `${mousePosition.easy_y}px`
               } as React.CSSProperties}
             >
-              <div className='Home-benefit__easy__mask' />
+              <div className='Home-benefit__easy__mask1' />
+              <div className='Home-benefit__easy__mask2' />
               <div className='Home-benefit__easy__buttons__container'>
                 <div className='Home-benefit__easy__buttons__button'>
                   <TbArrowsExchange2 size={24} />

@@ -55,21 +55,35 @@
 }
 
 .Home-benefit__easy {
-  background-image: url("@/img/home_benefit_easy_bg.png");
-  background-size: cover;
-  background-position: top;
-  background-repeat: no-repeat;
+  & * {
+    z-index: 10;
+  }
 
-  &__mask {
+  &__mask1 {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.2);
-    mask-image: radial-gradient(circle 72px at var(--maskX) var(--maskY), rgba(0, 0, 0, 0.5) 0%, transparent 100%);
-    -webkit-mask-image: radial-gradient(circle 72px at var(--maskX) var(--maskY), rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+    background: linear-gradient(rgba(26,26,26,0.95), rgba(26,26,26,0.95));
+    mask-image: radial-gradient(circle 80px at var(--maskX) var(--maskY), transparent 0%, black 100%);
+    -webkit-mask-image: radial-gradient(circle 80px at var(--maskX) var(--maskY), transparent 0%, black 100%);
     pointer-events: none; /* Allow buttons to receive mouse events */
+    z-index: 2;
+  }
+
+  &__mask2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(42, 29, 14, 0.5), rgba(42, 29, 14, 0.5)), url("@/img/home_benefit_easy_bg.png");
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    z-index: 1;
+    filter: brightness(3);
   }
 
   &__buttons {
