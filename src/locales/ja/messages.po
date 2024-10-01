@@ -1618,11 +1618,6 @@ msgstr ""
 msgid "Use the \"Close\" button to reduce your Position Size, or to set Take-Profit / Stop-Loss Orders."
 msgstr ""
 
-#: src/components/Home/BenefitsSection/BenefitsSection.tsx
-#: src/components/Home/BenefitsSection/BenefitsSection.tsx
-msgid "Get started by reading docs, or view the code on Github"
-msgstr ""
-
 #: src/components/Synthetics/Claims/SettleAccruedCard.tsx
 msgid "Show details"
 msgstr ""
@@ -3170,6 +3165,11 @@ msgstr ""
 
 #: src/pages/Actions/SyntheticsActions.tsx
 msgid "GMX V2 {networkName} actions for all accounts."
+msgstr ""
+
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Your $crypto,<0/>your control."
 msgstr ""
 
 #: src/components/Referrals/TradersStats.tsx
@@ -4736,11 +4736,6 @@ msgstr ""
 msgid "Max {0} in"
 msgstr "最大 {0} in"
 
-#: src/components/Home/BenefitsSection/BenefitsSection.tsx
-#: src/components/Home/BenefitsSection/BenefitsSection.tsx
-msgid "Your $crypto, your control."
-msgstr ""
-
 #: src/domain/synthetics/orders/utils.tsx
 msgid "Stop Loss Decrease"
 msgstr ""
@@ -4760,6 +4755,10 @@ msgstr "差異"
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "Dashboard for GMX referral stats"
 msgstr "GMXの紹介統計ダッシュボード"
+
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Get started by <0><1/> reading docs</0>, or view the code on Github"
+msgstr ""
 
 #: src/components/Synthetics/Claims/ClaimsHistory.tsx
 #: src/components/Synthetics/Claims/filters/ActionFilter.tsx
@@ -7132,6 +7131,10 @@ msgstr ""
 
 #: src/components/Synthetics/Claims/SettleAccruedCard.tsx
 msgid "Accrued"
+msgstr ""
+
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Get started by <0><1/> reading docs</0>, or view the code on <2><3/> Github</2>"
 msgstr ""
 
 #: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx

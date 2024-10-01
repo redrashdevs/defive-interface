@@ -151,6 +151,44 @@
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
+  padding: 1.4rem; 
+
+  & .Home-benefit-description > span {
+    display: inline-flex;
+    align-items: baseline;
+    & svg {
+      align-self: center;
+    }
+  }
+
+  & .Home-benefit-description, .Home-benefit-title {
+    /* to align title and description with other home benefit cards */
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  & .flashlight-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  & .hidden-code {
+    width: 100%;
+    height: 100%;
+    mask-image: radial-gradient(circle 72px at var(--maskX) var(--maskY), rgba(0, 0, 0, 1) 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 54%, transparent 54%);
+    -webkit-mask-image: radial-gradient(circle 72px at var(--maskX) var(--maskY), rgba(0, 0, 0, 1) 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 54%, transparent 54%);
+    filter: brightness(1.2); 
+  }
+}
+
+.Home-benefit-description__docs {
+  color: #23C4F7;
+}
+
+.Home-benefit-description__github {
+  color: #FFCA11;
 }
 
 .Home-benefit__save-on-costs {
@@ -164,6 +202,7 @@
 .Home-benefit__save-on-costs > .Home-benefit-description, .Home-benefit__save-on-costs > .Home-benefit-title {
   /* to align title and description with other home benefit cards */
   padding-left: 1rem;
+  padding-bottom: 1rem;
 }
 
 .Home-benefit__reduce-risks {

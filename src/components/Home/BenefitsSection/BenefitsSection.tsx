@@ -9,12 +9,23 @@ import { useMedia } from "react-use";
 import {Swiper, SwiperSlide} from "swiper/react";
 import { EffectCards, Pagination } from 'swiper/modules';
 import Spline from '@splinetool/react-spline';
-import { TbLock, TbMenu2 } from 'react-icons/tb';
+import { TbLock, TbMenu2, TbBook2, TbBrandGithub } from 'react-icons/tb';
 import { useState } from 'react';
+
+import OpenCode from '@/img/home-benefit_open.svg';
 
 export function BenefitsSection() {
   const isMobile = useMedia("(max-width: 600px)");
   const [isSecureSwitchLocked, setIsSecureSwitchLocked] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    const rect = e.target.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
 
   const onSecureSwitchClick = () => {
     setIsSecureSwitchLocked((prev) => !prev);
@@ -47,7 +58,7 @@ export function BenefitsSection() {
             "--swiper-pagination-bullet-opacity": "1",
             "--swiper-pagination-bullet-horizontal-gap": "2px",
             "--swiper-pagination-bullet-vertical-gap": "6px",
-          }}
+          } as React.CSSProperties}
         >
           <SwiperSlide>
             <div className={`Home-benefit Home-benefit__easy`}>
@@ -94,6 +105,20 @@ export function BenefitsSection() {
           </SwiperSlide>
           <SwiperSlide>
             <div className={`Home-benefit Home-benefit__open`}>
+              <div
+                className="flashlight-container"
+                onMouseMove={handleMouseMove}
+              >
+                <img 
+                  src={OpenCode}
+                  alt="Hidden" 
+                  className="hidden-code" 
+                  style={{
+                    '--maskX': `${mousePosition.x}px`,
+                    '--maskY': `${mousePosition.y}px`
+                  } as React.CSSProperties}
+                />
+              </div>
               <div className="Home-benefit-title">
                 <Trans>
                   Open
@@ -101,7 +126,7 @@ export function BenefitsSection() {
               </div>
               <div className="Home-benefit-description">
                 <Trans>
-                  Get started by reading docs, or view the code on Github
+                  Get started by <span className='Home-benefit-description__docs'><TbBook2 size={16} /> reading docs</span>, or view the code on <span className='Home-benefit-description__github'><TbBrandGithub size={16} /> Github</span>
                 </Trans>
               </div>
             </div>
@@ -193,6 +218,21 @@ export function BenefitsSection() {
               </div>
             </div>
             <div className={`Home-benefit Home-benefit__open`}>
+              <div
+                className="flashlight-container"
+                onMouseMove={handleMouseMove}
+              >
+                <img 
+                  src={OpenCode}
+                  alt="Hidden" 
+                  className="hidden-code" 
+                  style={{
+                    '--maskX': `${mousePosition.x}px`,
+                    '--maskY': `${mousePosition.y}px`
+                  } as React.CSSProperties}
+                />
+              </div>
+
               <div className="Home-benefit-title">
                 <Trans>
                   Open
@@ -200,7 +240,7 @@ export function BenefitsSection() {
               </div>
               <div className="Home-benefit-description">
                 <Trans>
-                  Get started by reading docs, or view the code on Github
+                  Get started by <span className='Home-benefit-description__docs'><TbBook2 size={16} /> reading docs</span>, or view the code on <span className='Home-benefit-description__github'><TbBrandGithub size={16} /> Github</span>
                 </Trans>
               </div>
             </div>

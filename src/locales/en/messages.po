@@ -1618,11 +1618,6 @@ msgstr "{0, plural, one {Pending {symbolsText} approval} other {Pending {symbols
 msgid "Use the \"Close\" button to reduce your Position Size, or to set Take-Profit / Stop-Loss Orders."
 msgstr "Use the \"Close\" button to reduce your Position Size, or to set Take-Profit / Stop-Loss Orders."
 
-#: src/components/Home/BenefitsSection/BenefitsSection.tsx
-#: src/components/Home/BenefitsSection/BenefitsSection.tsx
-msgid "Get started by reading docs, or view the code on Github"
-msgstr "Get started by reading docs, or view the code on Github"
-
 #: src/components/Synthetics/Claims/SettleAccruedCard.tsx
 msgid "Show details"
 msgstr "Show details"
@@ -3171,6 +3166,11 @@ msgstr "There are insufficient funds in your Subaccount for One-Click Trading. U
 #: src/pages/Actions/SyntheticsActions.tsx
 msgid "GMX V2 {networkName} actions for all accounts."
 msgstr "GMX V2 {networkName} actions for all accounts."
+
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Your $crypto,<0/>your control."
+msgstr "Your $crypto,<0/>your control."
 
 #: src/components/Referrals/TradersStats.tsx
 msgid "For trades on V1, this discount will be airdropped to your account every Wednesday. On V2, discounts are applied automatically and will reduce your fees when you make a trade."
@@ -4739,11 +4739,6 @@ msgstr "TP/SL"
 msgid "Max {0} in"
 msgstr "Max {0} in"
 
-#: src/components/Home/BenefitsSection/BenefitsSection.tsx
-#: src/components/Home/BenefitsSection/BenefitsSection.tsx
-msgid "Your $crypto, your control."
-msgstr "Your $crypto, your control."
-
 #: src/domain/synthetics/orders/utils.tsx
 msgid "Stop Loss Decrease"
 msgstr "Stop Loss Decrease"
@@ -4763,6 +4758,10 @@ msgstr "Diff"
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "Dashboard for GMX referral stats"
 msgstr "Dashboard for GMX referral stats"
+
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Get started by <0><1/> reading docs</0>, or view the code on Github"
+msgstr "Get started by <0><1/> reading docs</0>, or view the code on Github"
 
 #: src/components/Synthetics/Claims/ClaimsHistory.tsx
 #: src/components/Synthetics/Claims/filters/ActionFilter.tsx
@@ -7139,6 +7138,10 @@ msgstr "The PnL ($) compared to the capital used.<0/><1/>The capital used is cal
 #: src/components/Synthetics/Claims/SettleAccruedCard.tsx
 msgid "Accrued"
 msgstr "Accrued"
+
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
+msgid "Get started by <0><1/> reading docs</0>, or view the code on <2><3/> Github</2>"
+msgstr "Get started by <0><1/> reading docs</0>, or view the code on <2><3/> Github</2>"
 
 #: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx
 msgid "No data available"
