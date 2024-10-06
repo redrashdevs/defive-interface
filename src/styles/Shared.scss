@@ -36,7 +36,7 @@ code {
 *::after {
   box-sizing: border-box;
   font-family: "Relative", sans-serif;
-  letter-spacing: 0.05rem;
+  letter-spacing: 0;
 }
 
 input {
@@ -64,12 +64,12 @@ input {
   background: #b3b4c2;
 }
 :root {
-  --main-bg-color: var(--color-slate-900);
+  --main-bg-color: var(--color-neutral-950);
   --dark-blue: var(--color-slate-800);
   --dark-blue-bg: var(--color-slate-800);
   --dark-blue-accent: var(--color-slate-100);
   --primary-btn-bg: var(--color-blue-600);
-  --primary-btn-hover: var(--color-blue-400);
+  --primary-btn-hover: var(--color-neutral-200);
   --primary-btn-active: color-mix(in srgb, var(--color-blue-300), var(--color-blue-400) 90%);
   --dark-blue-hover: var(--color-cold-blue-900);
   --dark-blue-border: var(--color-gray-800);
@@ -83,14 +83,14 @@ input {
   --error-red-hover: var(--color-red-400);
   --green: var(--color-green-500);
   --font-sm: 1.4rem;
-  --font-base: 1.5rem; // 15px
+  --font-base: 1.6rem; // 16px
   --font-md: 1.6rem;
   --font-lg: 2.4rem;
   --font-xl: 3.4rem;
 
-  --default-container-max-width: 126.4rem;
+  --default-container-max-width: 104.8rem;
   --default-container-padding: 3.2rem;
-  --default-container-padding-mobile: 1rem;
+  --default-container-padding-mobile: 1.6rem;
 }
 
 a {
@@ -197,20 +197,19 @@ a.plain {
 }
 
 .default-btn {
-  background: var(--color-blue-600);
-  border-radius: 4px;
+  background: var(--color-neutral-200);
+  border-radius: 4rem;
   font-size: var(--font-sm);
-  line-height: 2rem;
+  line-height: 4rem;
   font-weight: normal;
   letter-spacing: 0px;
-  color: var(--color-white) !important;
+  color: var(--color-neutral-800) !important;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  /* padding: 9px 16px!important; */
   text-decoration: none;
   box-sizing: border-box;
   position: relative;
-  min-height: 3.6rem;
+  min-height: 4rem;
   display: inline-flex !important;
   align-items: center;
   text-align: center;
@@ -364,7 +363,7 @@ button.btn-link:hover .logout-icon {
 }
 
 .page-container {
-  padding-top: 6.2rem;
+  padding-top: 10rem;
 }
 
 .default-sm-container {

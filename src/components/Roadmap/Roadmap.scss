@@ -1,0 +1,29 @@
+.Roadmap-title {
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 5rem;
+  margin-bottom: 2.4rem;
+}
+
+.Roadmap-cards-container {
+  display: flex;
+  gap: 1.6rem;
+  padding-top: 0.6rem; // for checked icons
+  overflow-x: auto;
+}
+
+.Roadmap-quarter-slider {
+  height: 4rem;
+  margin-bottom: 5rem;
+}
+
+@media (max-width: 500px) {
+  .Roadmap-title {
+    font-size: 3.2rem;
+    line-height: 4.03rem;
+  }
+
+  .Roadmap-quarter-slider {
+    margin-bottom: 2.8rem;
+  }
+}

@@ -1,15 +1,19 @@
 import React from "react";
 import Footer from "components/Footer/Footer";
+import 'swiper/css';
+import 'swiper/css/pagination'
+import 'swiper/css/effect-cards';
+
 import "./Home.css";
 
 import simpleSwapIcon from "img/ic_simpleswaps.svg";
 import costIcon from "img/ic_cost.svg";
-import liquidityIcon from "img/ic_liquidity.svg";
 import totaluserIcon from "img/ic_totaluser.svg";
 
 import statsIcon from "img/ic_stats.svg";
 import tradingIcon from "img/ic_trading.svg";
 
+import { useMedia } from "react-use";
 import useSWR from "swr";
 
 import { getTotalVolumeSum } from "lib/legacy";
@@ -28,10 +32,15 @@ import { getServerUrl } from "config/backend";
 import { bigNumberify, formatAmount, numberWithCommas } from "lib/numbers";
 import useV2Stats from "domain/synthetics/stats/useV2Stats";
 import { SyntheticsStateContextProvider } from "context/SyntheticsStateContext/SyntheticsStateContextProvider";
+import Roadmap from "@/components/Roadmap/Roadmap";
+import { TbArrowNarrowRight } from "react-icons/tb";
+import {Swiper, SwiperSlide} from "swiper/react";
+import { BenefitsSection } from "@/components/Home/BenefitsSection/BenefitsSection";
 
 export default function Home({ showRedirectModal }) {
   const arbV2Stats = useV2Stats(ARBITRUM);
   const avaxV2Stats = useV2Stats(AVALANCHE);
+  const isMobile = useMedia("(max-width: 600px)");
 
   // ARBITRUM
 
@@ -121,6 +130,12 @@ export default function Home({ showRedirectModal }) {
     );
   };
 
+  const tokenomicsCardsData = [
+    { title: 'Earn Reward', description: 'Stake your D5 tokens to earn more tokens and a share of trading fees.' },
+    { title: 'Governance', description: 'Hold D5 tokens to vote on important decisions and shape the future of DeFive.' },
+    { title: 'Provide Liquidity', description: 'Support our platform by providing liquidity and earn rewards.' },
+  ];
+
   return (
     <div className="Home">
       <div className="Home-top">
@@ -128,143 +143,173 @@ export default function Home({ showRedirectModal }) {
           <div className="Home-title-section">
             <div className="Home-title">
               <Trans>
-                Decentralized
+                Your Favorite
                 <br />
-                Perpetual Exchange
+                Decentralized Perpetual Exchange
               </Trans>
             </div>
             <div className="Home-description">
               <Trans>
-                Trade BTC, ETH, AVAX and other top cryptocurrencies with up to 100x leverage directly from your wallet
+                Trade BTC, ETH, FTM and other top cryptos with up to 100x leverage directly from your wallet
               </Trans>
             </div>
-            <LaunchExchangeButton />
-          </div>
-        </div>
-        <div className="Home-latest-info-container default-container">
-          <div className="Home-latest-info-block">
-            <img src={tradingIcon} alt="Total Trading Volume Icon" className="Home-latest-info__icon" />
-            <div className="Home-latest-info-content">
-              <div className="Home-latest-info__title">
-                <Trans>Total Trading Volume</Trans>
+            {/* <LaunchExchangeButton /> */}
+            {/* an email input to stay updated! */}
+            <div className="Home-email-input-container">
+              <div className="Home-email-input">
+                <input type="email" placeholder="Email" />
+                <button>
+                  Stay Updated
+                </button>
               </div>
-              <div className="Home-latest-info__value">${formatAmount(totalVolumeSum, USD_DECIMALS, 0, true)}</div>
-            </div>
-          </div>
-          <div className="Home-latest-info-block">
-            <img src={statsIcon} alt="Open Interest Icon" className="Home-latest-info__icon" />
-            <div className="Home-latest-info-content">
-              <div className="Home-latest-info__title">
-                <Trans>Open Interest</Trans>
-              </div>
-              <div className="Home-latest-info__value">${formatAmount(openInterest, USD_DECIMALS, 0, true)}</div>
-            </div>
-          </div>
-          <div className="Home-latest-info-block">
-            <img src={totaluserIcon} alt="Total Users Icon" className="Home-latest-info__icon" />
-            <div className="Home-latest-info-content">
-              <div className="Home-latest-info__title">
-                <Trans>Total Users</Trans>
-              </div>
-              <div className="Home-latest-info__value">{numberWithCommas(totalUsers.toFixed(0))}</div>
             </div>
           </div>
         </div>
       </div>
-      <div className="Home-benefits-section">
-        <div className="Home-benefits default-container">
-          <div className="Home-benefit">
-            <div className="Home-benefit-icon">
-              <img src={liquidityIcon} alt="Reduce Liquidation Risks Icon" className="Home-benefit-icon-symbol" />
-              <div className="Home-benefit-title">
-                <Trans>Reduce Liquidation Risks</Trans>
-              </div>
-            </div>
-            <div className="Home-benefit-description">
+
+      <BenefitsSection />
+
+      <div className="Home-tokenomics-section">
+        <div className="Home-tokenomics-container">
+          <div className="default-container">
+            <h2 className="Home-tokenomics-title">
               <Trans>
-                An aggregate of high-quality price feeds determine when liquidations occur. This keeps positions safe
-                from temporary wicks.
+                D5 Tokenomics
               </Trans>
-            </div>
-          </div>
-          <div className="Home-benefit">
-            <div className="Home-benefit-icon">
-              <img src={costIcon} alt="Save on Costs Icon" className="Home-benefit-icon-symbol" />
-              <div className="Home-benefit-title">
-                <Trans>Save on Costs</Trans>
-              </div>
-            </div>
-            <div className="Home-benefit-description">
+            </h2>
+            <p className="Home-tokenomics-description">
               <Trans>
-                Enter and exit positions with minimal spread and low price impact. Get the optimal price without
-                incurring additional costs.
+                D5 (DeFive) is the core token of our decentralized exchange. It lets you trade, earn, and have a say in the future of our platform.
               </Trans>
-            </div>
-          </div>
-          <div className="Home-benefit">
-            <div className="Home-benefit-icon">
-              <img src={simpleSwapIcon} alt="Simple Swaps Icon" className="Home-benefit-icon-symbol" />
-              <div className="Home-benefit-title">
-                <Trans>Simple Swaps</Trans>
-              </div>
-            </div>
-            <div className="Home-benefit-description">
+            </p>
+            <a href="https://gmxio.gitbook.io/gmx/" className="default-btn Home-tokenomics-doc-btn">
               <Trans>
-                Open positions through a simple swap interface. Conveniently swap from any supported asset into the
-                position of your choice.
+                Read More in Docs
               </Trans>
-            </div>
+              <TbArrowNarrowRight size={20} className="Home-tokenomics-doc-btn__icon" />
+            </a>
           </div>
-        </div>
-      </div>
-      <div className="Home-cta-section">
-        <div className="Home-cta-container default-container">
-          <div className="Home-cta-info">
-            <div className="Home-cta-info__title">
-              <Trans>Available on your preferred network</Trans>
-            </div>
-            <div className="Home-cta-info__description">
-              <Trans>GMX is currently live on Arbitrum and Avalanche.</Trans>
-            </div>
+
+          <div className={`Home-tokenomics-card-container ${!isMobile ? 'default-container' : ''}`}>
+            {isMobile ? (
+              <Swiper
+                className="Home-tokenomics-swiper"
+                spaceBetween={16}
+                slidesOffsetBefore={16}
+                slidesOffsetAfter={16}
+                slidesPerView={'auto'}
+              >
+                {tokenomicsCardsData.map((card, index) => (
+                  <SwiperSlide key={index} className="Home-tokenomics-card">
+                    <div className="Home-tokenomics-card__title">
+                      <Trans>{card.title}</Trans>
+                    </div>
+                    <div className="Home-tokenomics-card__description">
+                      <Trans>{card.description}</Trans>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <>
+              {tokenomicsCardsData.map((card, index) => (
+                <div key={index} className="Home-tokenomics-card">
+                  <div className="Home-tokenomics-card__title">
+                    <Trans>{card.title}</Trans>
+                  </div>
+                  <div className="Home-tokenomics-card__description">
+                    <Trans>{card.description}</Trans>
+                  </div>
+                </div>
+              ))}
+              </>
+            )}
           </div>
-          <div className="Home-cta-options">
-            <div className="Home-cta-option Home-cta-option-arbitrum">
-              <div className="Home-cta-option-icon">
-                <img src={arbitrumIcon} width="96" alt="Arbitrum Icon" />
+          <div className="default-container">
+            <div className="Home-tokenomics-distribution">
+              <div className="Home-tokenomics-distribution__title">
+                <Trans>
+                  Distribution
+                </Trans>
               </div>
-              <div className="Home-cta-option-info">
-                <div className="Home-cta-option-title">Arbitrum</div>
-                <div className="Home-cta-option-action">
-                  <LaunchExchangeButton />
+              <div className="Home-tokenomics-distribution-rows">
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Yield Rewards
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    30%
+                  </div>
+                </div>
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Public Sale
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    20%
+                  </div>
+                </div>
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Vault
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    10%
+                  </div>
+                </div>
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Team
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    10%
+                  </div>
+                </div>
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Exchange Liquidity
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    10%
+                  </div>
+                </div>
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Development
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    10%
+                  </div>
+                </div>
+                <div className="Home-tokenomics-distribution-row">
+                  <div className="Home-tokenomics-distribution-row__title">
+                    <Trans>
+                      Pre-Sale & ISPO
+                    </Trans>
+                  </div>
+                  <div className="Home-tokenomics-distribution-row__percentage">
+                    10%
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="Home-cta-option Home-cta-option-ava">
-              <div className="Home-cta-option-icon">
-                <img src={avaxIcon} width="96" alt="Avalanche Icon" />
-              </div>
-              <div className="Home-cta-option-info">
-                <div className="Home-cta-option-title">Avalanche</div>
-                <div className="Home-cta-option-action">
-                  <LaunchExchangeButton />
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
-      <div className="Home-token-card-section">
-        <div className="Home-token-card-container default-container">
-          <div className="Home-token-card-info">
-            <div className="Home-token-card-info__title">
-              <Trans>Three tokens create our ecosystem</Trans>
-            </div>
-          </div>
-          <SyntheticsStateContextProvider pageType="home">
-            <TokenCard showRedirectModal={showRedirectModal} />
-          </SyntheticsStateContextProvider>
-        </div>
-      </div>
+
+      <Roadmap />
 
       {/* <div className="Home-video-section">
         <div className="Home-video-container default-container">
@@ -306,7 +351,7 @@ export default function Home({ showRedirectModal }) {
           </div>
         </div>
       </div> */}
-      <Footer showRedirectModal={showRedirectModal} />
+      {/* <Footer showRedirectModal={showRedirectModal} /> */}
     </div>
   );
 }

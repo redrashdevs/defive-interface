@@ -4,8 +4,8 @@ import cx from "classnames";
 import { AppHeaderUser } from "./AppHeaderUser";
 import { AppHeaderLinks } from "./AppHeaderLinks";
 
-import logoImg from "img/logo_GMX.svg";
-import logoSmallImg from "img/logo_GMX_small.svg";
+import logoImg from "img/logo_DeFive.svg";
+import logoSmallImg from "img/logo_DeFive_small.svg";
 import { RiMenuLine } from "react-icons/ri";
 import { FaTimes } from "react-icons/fa";
 import { AnimatePresence as FramerAnimatePresence, motion } from "framer-motion";
@@ -18,6 +18,7 @@ import { Trans } from "@lingui/macro";
 import { HeaderPromoBanner } from "components/HeaderPromoBanner/HeaderPromoBanner";
 import { useMedia } from "react-use";
 import { HeaderLink } from "./HeaderLink";
+import { TbMenu } from "react-icons/tb";
 
 // Fix framer-motion old React FC type (solved in react 18)
 const AnimatePresence = (props: React.ComponentProps<typeof FramerAnimatePresence> & { children: ReactNode }) => (
@@ -98,9 +99,11 @@ export function Header({ disconnectAccountAndCloseSettings, openSettings, showRe
           <div className="App-header large">
             <div className="App-header-container-left">
               <Link className="App-header-link-main" to="/">
-                <img src={logoImg} className="big" alt="GMX Logo" />
-                <img src={logoSmallImg} className="small" alt="GMX Logo" />
+                <img src={logoImg} className="big" alt="DeFive Logo" />
+                <img src={logoSmallImg} className="small" alt="DeFive Logo" />
               </Link>
+            </div>
+            <div className="App-header-container-center">
               {isHomeSite() ? (
                 <HomeHeaderLinks showRedirectModal={showRedirectModal} />
               ) : (
@@ -124,13 +127,9 @@ export function Header({ disconnectAccountAndCloseSettings, openSettings, showRe
               })}
             >
               <div className="App-header-container-left">
-                <div className="App-header-menu-icon-block" onClick={() => setIsDrawerVisible(!isDrawerVisible)}>
-                  {!isDrawerVisible && <RiMenuLine className="App-header-menu-icon" />}
-                  {isDrawerVisible && <FaTimes className="App-header-menu-icon" />}
-                </div>
                 <div className="App-header-link-main clickable" onClick={() => setIsDrawerVisible(!isDrawerVisible)}>
-                  <img src={logoImg} className="big" alt="GMX Logo" />
-                  <img src={logoSmallImg} className="small" alt="GMX Logo" />
+                  <img src={logoImg} className="big" alt="DeFive Logo" />
+                  <img src={logoImg} className="small" alt="DeFive Logo" />
                 </div>
               </div>
               <div className="App-header-container-right">
@@ -140,6 +139,10 @@ export function Header({ disconnectAccountAndCloseSettings, openSettings, showRe
                   small
                   showRedirectModal={showRedirectModal}
                 />
+                <div className="App-header-menu-icon-block" onClick={() => setIsDrawerVisible(!isDrawerVisible)}>
+                  {!isDrawerVisible && <TbMenu className="App-header-menu-icon" size={24} />}
+                  {isDrawerVisible && <FaTimes className="App-header-menu-icon" />}
+                </div>
               </div>
             </div>
           </div>

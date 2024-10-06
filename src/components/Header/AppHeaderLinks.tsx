@@ -8,7 +8,7 @@ import { HeaderLink } from "./HeaderLink";
 import "./Header.scss";
 import { isHomeSite } from "lib/legacy";
 import ExternalLink from "components/ExternalLink/ExternalLink";
-import logoImg from "img/logo_GMX.svg";
+import logoImg from "img/logo_DeFive.svg";
 
 type Props = {
   small?: boolean;
@@ -29,7 +29,7 @@ export function AppHeaderLinks({ small, openSettings, clickCloseIcon, showRedire
       {small && (
         <div className="App-header-links-header">
           <Link className="App-header-link-main" to="/">
-            <img src={logoImg} alt="GMX Logo" />
+            <img src={logoImg} alt="DeFive Logo" />
           </Link>
           <div
             className="App-header-menu-icon-block mobile-cross-menu"
