@@ -16,7 +16,7 @@ import { useMarketTokensData } from "domain/synthetics/markets/useMarketTokensDa
 import { useGmTokensFavorites } from "domain/synthetics/tokens/useGmTokensFavorites";
 import useSortedPoolsWithIndexToken from "domain/synthetics/trade/useSortedPoolsWithIndexToken";
 import { bigMath } from "lib/bigmath";
-import { formatAmountFree, formatTokenAmount, formatUsd } from "lib/numbers";
+import { formatAmountFree, formatDeltaUsd, formatTokenAmount, formatUsd } from "lib/numbers";
 import { getByKey } from "lib/objects";
 import { Mode, Operation } from "../types";
 
@@ -37,6 +37,7 @@ import { GmConfirmationBox } from "../../GmConfirmationBox/GmConfirmationBox";
 import { GmFees } from "../../GmFees/GmFees";
 import { HighPriceImpactRow } from "../HighPriceImpactRow";
 import { Swap } from "../Swap";
+import cx from "classnames";
 
 export function GmShiftBox({
   selectedMarketAddress,
@@ -50,6 +51,7 @@ export function GmShiftBox({
   onSetMode: (mode: Mode) => void;
   onSetOperation: (operation: Operation) => void;
 }) {
+  const [expandFees, setExpandFees] = useState(false);
   const [toMarketAddress, setToMarketAddress] = useState<string | undefined>(undefined);
   const [selectedMarketText, setSelectedMarketText] = useState("");
   const [toMarketText, setToMarketText] = useState("");
@@ -222,7 +224,7 @@ export function GmShiftBox({
             {...gmTokenFavoritesContext}
           />
         </BuyInputSection>
-        <Swap />
+        {/* <Swap /> */}
         <BuyInputSection
           topLeftLabel={t`Receive`}
           topLeftValue={toTokenShowDollarAmount}
@@ -248,7 +250,7 @@ export function GmShiftBox({
           />
         </BuyInputSection>
         <ExchangeInfo className={isHighPriceImpact ? undefined : "mb-10"} dividerClassName="App-card-divider">
-          <ExchangeInfo.Group>
+          {/* <ExchangeInfo.Group>
             <GmFees
               isDeposit={true}
               totalFees={fees?.totalFees}
@@ -257,7 +259,62 @@ export function GmShiftBox({
               shiftFee={fees?.shiftFee}
             />
             <NetworkFeeRow executionFee={executionFee} />
-          </ExchangeInfo.Group>
+          </ExchangeInfo.Group> */}
+          <div className="pointer flex items-center justify-between" onClick={() => setExpandFees(!expandFees)}>
+            <p className="fee-title">TOTAL FEES</p>
+            <div className="flex items-center">
+              <p className="negative fee-content">{formatDeltaUsd(fees?.totalFees?.deltaUsd)}</p>
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                className={cx("rotate-0 transition duration-300 ease-in-out", { "rotate-180": expandFees })}
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path>
+              </svg>
+            </div>
+          </div>
+          {!expandFees ? null : (
+            <>
+              <div className="mt-8 flex items-center justify-between">
+                <p className="fee-title">NETWORK FEE</p>
+                <div className="flex items-center">
+                  <p className="negative fee-content">{formatDeltaUsd(-executionFee?.feeUsd!)}</p>
+                </div>
+              </div>
+              {bigMath.abs(fees?.swapPriceImpact?.deltaUsd ?? 0n) > 0 ? (
+                <div className="flex items-center justify-between">
+                  <p className="fee-title">{t`PRICE IMPACT`}</p>
+                  <div className="flex items-center">
+                    <p className="negative fee-content">
+                      {formatDeltaUsd(fees?.swapPriceImpact?.deltaUsd, fees?.swapPriceImpact?.bps)!}
+                    </p>
+                  </div>
+                </div>
+              ) : null}
+              {fees?.shiftFee ? (
+                <div className="flex items-center justify-between">
+                  <p className="fee-title">{t`SHIFT FEE`}</p>
+                  <div className="flex items-center">
+                    <p className="negative fee-content">{formatDeltaUsd(fees.shiftFee.deltaUsd, fees.shiftFee.bps!)!}</p>
+                  </div>
+                </div>
+              ) : null}
+
+              {bigMath.abs(fees?.uiFee?.deltaUsd ?? 0n) > 0 ? (
+                <div className="flex items-center justify-between">
+                  <p className="fee-title">{t`UI FEE`}</p>
+                  <div className="flex items-center">
+                    <p className="negative fee-content">{formatDeltaUsd(fees?.uiFee?.deltaUsd, fees?.uiFee?.bps)!}</p>
+                  </div>
+                </div>
+              ) : null}
+            </>
+          )}
           {isHighPriceImpact && (
             <HighPriceImpactRow
               isHighPriceImpactAccepted={isHighPriceImpactAccepted}

@@ -18,6 +18,7 @@ type Props = {
 export default function Tab(props: Props) {
   const { options, option, setOption, onChange, type = "block", className, optionLabels, icons, qa } = props;
   const onClick = (opt) => {
+    console.log(opt)
     if (setOption) {
       setOption(opt);
     }

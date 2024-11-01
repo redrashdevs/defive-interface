@@ -29,12 +29,22 @@ import { LeaderboardNavigation } from "./LeaderboardNavigation";
 import { LeaderboardPositionsTable } from "./LeaderboardPositionsTable";
 import { useSelector } from "context/SyntheticsStateContext/utils";
 import { selectLeaderboardIsLoading } from "context/SyntheticsStateContext/selectors/leaderboardSelectors";
+import PageTitle from "@/components/PageTitle/PageTitle";
+import csx from "classnames";
+import SearchInput from "@/components/SearchInput/SearchInput";
+import { Menu } from "@headlessui/react";
 
 const competitionsTabs = [0, 1];
 const leaderboardTimeframeTabs = [0, 1, 2];
 const leaderboardDataTypeTabs = [0, 1];
 
 export function LeaderboardContainer() {
+  const [activeDataType, setActiveDataType] = useState<"Top Positions" | "Top Addresses">("Top Addresses");
+
+  const [search, setSearch] = useState("");
+  const setValue = useCallback((e) => setSearch(e.target.value), []);
+  const handleKeyDown = useCallback(() => null, []);
+
   const isCompetition = useLeaderboardIsCompetition();
 
   const [activeLeaderboardTimeframeIndex, setActiveLeaderboardTimeframeIndex] = useState(0);
@@ -52,7 +62,7 @@ export function LeaderboardContainer() {
   const [leaderboardDataType, setLeaderboardDataType] = useLeaderboardDataTypeState();
 
   const competitionLabels = useMemo(() => [t`Top PnL ($)`, t`Top PnL (%)`], []);
-  const leaderboardTimeframeLabels = useMemo(() => [t`Total`, t`Last 30 days`, t`Last 7 days`], []);
+  const leaderboardTimeframeLabels = useMemo(() => [t`All Time`, t`30D`, t`7D`], []);
   const leaderboardDataTypeLabels = useMemo(() => [t`Top Addresses`, t`Top Positions`], []);
 
   const activeCompetition: CompetitionType | undefined = isCompetition
@@ -170,16 +180,76 @@ export function LeaderboardContainer() {
 
   return (
     <div className="GlobalLeaderboards">
-      <LeaderboardNavigation />
-      <div className="Leaderboard-Title default-container">
+      {/* <LeaderboardNavigation /> */}
+      {/* <div className="Leaderboard-Title default-container">
         <div>
           <h1 className="text-34 font-bold" data-qa="leaderboard-page">
             {title} <img alt={t`Chain Icon`} src={getIcon(page.isCompetition ? page.chainId : chainId, "network")} />
           </h1>
           <div className="Leaderboard-Title__description">{description}</div>
         </div>
+      </div> */}
+      <PageTitle showNetworkIcon={false} isTop title={t`Leadboard`} qa="leaderboard-page" />
+
+      <div className="buy-tabs-wrappper">
+        <button
+          onClick={() => {
+            setActiveDataType("Top Addresses");
+            handleLeaderboardDataTypeTabChange(0);
+          }}
+          className={csx("tab-btn", { active: activeDataType === "Top Addresses" })}
+        >
+          <Trans>Top Addresses</Trans>
+        </button>
+        <button
+          onClick={() => {
+            setActiveDataType("Top Positions");
+            handleLeaderboardDataTypeTabChange(1);
+          }}
+          className={csx("tab-btn ml-2", { active: activeDataType === "Top Positions" })}
+        >
+          <Trans>Top Positions</Trans>
+        </button>
       </div>
-      {!isCompetition && (
+      <div className="relative flex items-center">
+        <SearchInput
+          placeholder={t`Search`}
+          className="LeaderboardSearch"
+          value={search}
+          setValue={setValue}
+          onKeyDown={handleKeyDown}
+          size="s"
+        />
+        <div className="relative">
+          <Menu>
+            <Menu.Button as="div" className="leaderboard-calendar pointer ml-4" data-qa="leaderboard-calendar-handle">
+              <img width={20} src={"/images/calendar-stats.svg"} alt={"Calendar"} />
+              <p className="mx-2">{leaderboardTimeframeLabels[activeLeaderboardTimeframeIndex]}</p>
+              <img src="/images/chevron-down.png" />
+            </Menu.Button>
+            <Menu.Items as="div" className="menu-items leaderboard-calendar-items" data-qa="leaderboard-calendar">
+              <div>
+                <Menu.Item key={123}>
+                  <div onClick={() => handleLeaderboardTimeframeTabChange(2)} className="calendar-menu-item">
+                    7D
+                  </div>
+                </Menu.Item>
+                <Menu.Item key={123}>
+                  <div onClick={() => handleLeaderboardTimeframeTabChange(1)} className="calendar-menu-item">
+                    30D
+                  </div>
+                </Menu.Item>
+                <Menu.Item key={123}>
+                  <div onClick={() => handleLeaderboardTimeframeTabChange(0)} className="calendar-menu-item">
+                    All Time
+                  </div>
+                </Menu.Item>
+              </div>
+            </Menu.Items>
+          </Menu>
+        </div>
+      </div>
+      {/* {!isCompetition && (
         <>
           <div className="LeaderboardContainer__competition-tabs default-container">
             <Tab
@@ -190,8 +260,8 @@ export function LeaderboardContainer() {
             />
           </div>
         </>
-      )}
-      {!isCompetition && (
+      )} */}
+      {/* {!isCompetition && (
         <Tab
           option={activeLeaderboardTimeframeIndex}
           onChange={handleLeaderboardTimeframeTabChange}
@@ -202,9 +272,9 @@ export function LeaderboardContainer() {
             "LeaderboardContainer__leaderboard-tabs_positions": leaderboardDataType === "positions",
           })}
         />
-      )}
+      )} */}
 
-      {isCompetition && (
+      {/* {isCompetition && (
         <>
           <div className="LeaderboardContainer__competition-tabs default-container">
             <Tab
@@ -218,17 +288,17 @@ export function LeaderboardContainer() {
           <br />
           <br />
         </>
-      )}
-      {isCompetition && activeCompetition && (
+      )} */}
+      {/* {isCompetition && activeCompetition && (
         <CompetitionPrizes leaderboardPageKey={leaderboardPageKey} competitionType={activeCompetition} />
-      )}
+      )} */}
 
-      <Table activeCompetition={activeCompetition} />
+      <Table search={search} activeCompetition={activeCompetition} />
     </div>
   );
 }
 
-function Table({ activeCompetition }: { activeCompetition: CompetitionType | undefined }) {
+function Table({ activeCompetition, search }: { activeCompetition: CompetitionType | undefined; search?: string }) {
   const { isStartInFuture } = useLeaderboardTiming();
   const leaderboardPageKey = useLeaderboardPageKey();
   const leaderboardDataType = useLeaderboardDataTypeState()[0];
@@ -236,15 +306,21 @@ function Table({ activeCompetition }: { activeCompetition: CompetitionType | und
 
   const table =
     leaderboardPageKey === "leaderboard" && leaderboardDataType === "positions" ? (
-      <PositionsTable />
+      <PositionsTable search={search} />
     ) : (
-      <AccountsTable activeCompetition={activeCompetition} />
+      <AccountsTable search={search} activeCompetition={activeCompetition} />
     );
 
-  return <div className="default-container !pr-0">{table}</div>;
+  return <div className="mt-16 !pr-0">{table}</div>;
 }
 
-function AccountsTable({ activeCompetition }: { activeCompetition: CompetitionType | undefined }) {
+function AccountsTable({
+  activeCompetition,
+  search,
+}: {
+  activeCompetition: CompetitionType | undefined;
+  search?: string;
+}) {
   const accounts = useLeaderboardRankedAccounts();
   const isLoading = useSelector(selectLeaderboardIsLoading);
   const accountsStruct = useMemo(
@@ -257,10 +333,10 @@ function AccountsTable({ activeCompetition }: { activeCompetition: CompetitionTy
     [accounts, isLoading]
   );
 
-  return <LeaderboardAccountsTable activeCompetition={activeCompetition} accounts={accountsStruct} />;
+  return <LeaderboardAccountsTable search={search} activeCompetition={activeCompetition} accounts={accountsStruct} />;
 }
 
-function PositionsTable() {
+function PositionsTable({ search }: { search?: string }) {
   const positions = useLeaderboardPositions();
   const isLoading = useSelector(selectLeaderboardIsLoading);
   const positionsStruct = useMemo(
@@ -272,5 +348,5 @@ function PositionsTable() {
     }),
     [positions, isLoading]
   );
-  return <LeaderboardPositionsTable positions={positionsStruct} />;
+  return <LeaderboardPositionsTable search={search} positions={positionsStruct} />;
 }

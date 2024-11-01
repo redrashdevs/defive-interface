@@ -22,6 +22,7 @@ import Modal from "../Modal/Modal";
 import TooltipWithPortal from "../Tooltip/TooltipWithPortal";
 
 import "./MarketSelector.scss";
+import { Menu } from "@headlessui/react";
 
 type Props = {
   label?: string;
@@ -177,7 +178,7 @@ export function MarketSelector({
           ))}
         </div>
       </Modal>
-      {selectedMarketLabel ? (
+      {/* {selectedMarketLabel ? (
         <div className="TokenSelector-box" onClick={() => setIsModalVisible(true)} data-qa="market-selector">
           {selectedMarketLabel}
           <BiChevronDown className="TokenSelector-caret" />
@@ -187,7 +188,86 @@ export function MarketSelector({
           {marketInfo ? getMarketIndexName(marketInfo) : "..."}
           <BiChevronDown className="TokenSelector-caret" />
         </div>
-      )}
+      )} */}
+      <Menu>
+        <Menu.Button as="div">
+          {selectedMarketLabel ? (
+            <div className="TokenSelector-box" data-qa="market-selector">
+              {selectedMarketLabel}
+              <BiChevronDown className="TokenSelector-caret" />
+            </div>
+          ) : (
+            <div className="TokenSelector-box" data-qa="market-selector">
+              {marketInfo ? getMarketIndexName(marketInfo) : "..."}
+              <BiChevronDown className="TokenSelector-caret" />
+            </div>
+          )}
+        </Menu.Button>
+        <Menu.Items as="div" className="menu-items wallet-dd h-[200px] !w-[160px] !px-4">
+          <div className=" h-full overflow-y-auto pb-8">
+            {filteredOptions.map((option, marketIndex) => {
+              const assetImage = importImage(
+                `ic_${option.marketInfo.isSpotOnly ? "swap" : option.marketInfo.indexToken.symbol.toLowerCase()}_40.svg`
+              );
+              return (
+                <Menu.Item key={option.indexName + marketIndex}>
+                  <div
+                    className={cx(
+                      "flex h-[32px] items-center justify-between rounded-[6px] px-4 hover:bg-[#D9D9D9]",
+                      {}
+                    )}
+                    onClick={() => onSelectOption(option)}
+                  >
+                    {/* {tokenState.disabled && tokenState.message && (
+                <TooltipWithPortal
+                  className="TokenSelector-tooltip"
+                  handle={<div className="TokenSelector-tooltip-backing" />}
+                  position={tokenIndex < filteredTokens.length / 2 ? "bottom" : "top"}
+                  disableHandleStyle
+                  closeOnDoubleClick
+                  fitHandleWidth
+                  renderContent={() => tokenState.message}
+                />
+              )} */}
+                    <div className="Token-info">
+                      {/* <TokenIcon symbol={mar} className="token-logo" displaySize={40} importSize={40} /> */}
+
+                      <img src={assetImage} alt={option.indexName} className="token-logo" />
+                      <div className="Token-symbol">
+                        <div className="Token-t text-left text-[14px] font-[500] text-[#121214]">
+                          {option.indexName}
+                        </div>
+                        {/* <span className="text-accent">{token.name}</span> */}
+                      </div>
+                    </div>
+                    <div className="Token-balance  !text-right text-[12px] !text-[#000] !opacity-60">
+                      {showBalances &&
+                        option.balance !== undefined &&
+                        (option.balance > 0
+                          ? formatTokenAmount(
+                              option.balance,
+                              getByKey(marketTokensData, option.marketInfo.marketTokenAddress)?.decimals,
+                              "",
+                              {
+                                useCommas: true,
+                              }
+                            )
+                          : "-")}
+                      {/* <span className="text-accent">
+                    {mintAmount && <div>Mintable: {formatAmount(mintAmount, token.decimals, 2, true)} USDG</div>}
+                    {showMintingCap && !mintAmount && <div>-</div>}
+                    {!showMintingCap && showBalances && balanceUsd !== undefined && balanceUsd > 0 && (
+                      <div>${formatAmount(balanceUsd, 30, 2, true)}</div>
+                    )}
+                  </span> */}
+                    </div>
+                  </div>
+                </Menu.Item>
+              );
+            })}
+          </div>
+        </Menu.Items>
+      </Menu>
     </div>
   );
 }

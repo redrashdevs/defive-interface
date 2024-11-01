@@ -52,7 +52,7 @@ export function SwapCard(p: Props) {
   );
 
   return (
-    <div className="Exchange-swap-market-box App-box App-box-border">
+    <div className="Exchange-swap-market-box !bg-[#121214] !rounded-[12px] App-box App-box-border">
       <div className="App-card-title">
         <Trans>Swap</Trans>
       </div>

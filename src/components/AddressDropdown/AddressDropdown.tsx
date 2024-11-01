@@ -1,8 +1,6 @@
-import Davatar from "@davatar/react";
 import { Menu } from "@headlessui/react";
 import { Trans, t } from "@lingui/macro";
 import { useCallback } from "react";
-import { FaChevronDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { createBreakpoint, useCopyToClipboard } from "react-use";
 import type { Address } from "viem";
@@ -24,6 +22,7 @@ import oneClickTradingIcon from "img/one_click_trading_20.svg";
 import PnlAnalysisIcon from "img/ic_pnl_analysis_20.svg?react";
 
 import "./AddressDropdown.scss";
+import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
 
 type Props = {
   account: string;
@@ -48,61 +47,50 @@ function AddressDropdown({ account, accountUrl, disconnectAccountAndCloseSetting
     <Menu>
       <Menu.Button as="div">
         <button className="App-cta small transparent address-btn">
-          <div className="user-avatar">
-            {ethereumProvider && <Davatar size={20} address={account} provider={ethereumProvider} />}
+          <div className="address-img">
+            <Jazzicon diameter={30} seed={jsNumberForAddress(account)} />
           </div>
-          <span className="user-address">{shortenAddressOrEns(ensName || account, displayAddressLength)}</span>
-          <FaChevronDown />
+          <p className="ml-[18px]">{shortenAddressOrEns(account, 9)}</p>
         </button>
       </Menu.Button>
       <div>
-        <Menu.Items as="div" className="menu-items">
-          <Menu.Item>
-            <div
-              className="menu-item"
-              onClick={() => {
-                copyToClipboard(account);
-                helperToast.success(t`Address copied to your clipboard`);
-              }}
-            >
-              <img width={20} className="size-20" src={copy} alt="Copy user address" />
-              <p>
-                <Trans>Copy Address</Trans>
-              </p>
+        <Menu.Items as="div" className="menu-items wallet-dd">
+          <div className="w-full">
+            <p className="mb-4 ml-[16px] mt-[16px] text-left text-[10px] text-black opacity-40">{t`BALANCE`}</p>
+            <div className="flex w-full items-center justify-between px-[16px] pb-[10px]">
+              <p className="text-left text-[24px] font-[600] text-black">10 FTM</p>
+              <p></p>
             </div>
-          </Menu.Item>
-          <Menu.Item>
-            <Link className="menu-item" to={buildAccountDashboardUrl(account as Address, undefined, 2)}>
-              <PnlAnalysisIcon width={20} className="size-20" />
-              <p>
-                <Trans>PnL Analysis</Trans>
-              </p>
-            </Link>
-          </Menu.Item>
-          <Menu.Item>
-            <ExternalLink href={accountUrl} className="menu-item">
-              <img width={20} className="size-20" src={externalLink} alt="Open address in explorer" />
-              <p>
-                <Trans>View in Explorer</Trans>
-              </p>
-            </ExternalLink>
-          </Menu.Item>
-          <Menu.Item>
-            <div className="menu-item" onClick={handleSubaccountClick}>
-              <img width={20} className="size-20" src={oneClickTradingIcon} alt="Open One-click Trading settings" />
-              <p>
-                <Trans>One-Click Trading</Trans>
-              </p>
-            </div>
-          </Menu.Item>
-          <Menu.Item>
-            <div className="menu-item" onClick={disconnectAccountAndCloseSettings}>
-              <img width={20} className="size-20" src={disconnect} alt="Disconnect the wallet" />
-              <p>
-                <Trans>Disconnect</Trans>
-              </p>
-            </div>
-          </Menu.Item>
+            <Menu.Item>
+              <div
+                onClick={() => copyToClipboard(account)}
+                className="flex h-[40px] items-center rounded-[8px] bg-[#FAFAFA] px-[16px]"
+              >
+                <img width={20} src="/images/clipboard.png" />
+                <p className="ml-8 text-right text-[14px] font-[500] text-[#354052]">{t`Copy Wallet Address`}</p>
+              </div>
+            </Menu.Item>
+            <Menu.Item>
+              <Link className="w-full" to={buildAccountDashboardUrl(account as Address, undefined, 2)}>
+                <div className="mt-6 flex h-[40px] w-full items-center rounded-[8px] bg-[#FAFAFA] px-[16px]">
+                  <img width={20} src="/images/receipt-tax.png" />
+                  <p className="ml-8 text-right text-[14px] font-[500] text-[#354052]">{t`Transactions`}</p>
+                </div>
+              </Link>
+            </Menu.Item>
+            <Menu.Item>
+              <div
+                onClick={() => {
+                  // setIsModalVisible(false);
+                  disconnectAccountAndCloseSettings();
+                }}
+                className="mt-6 flex h-[40px] items-center rounded-[8px] bg-[#FAFAFA] px-[16px]"
+              >
+                <img width={20} src="/images/wallet-off.png" />
+                <p className="ml-8 text-right text-[14px] font-[500] text-[#FF303E]">{t`Disconnect Wallet`}</p>
+              </div>
+            </Menu.Item>
+          </div>
         </Menu.Items>
       </div>
     </Menu>

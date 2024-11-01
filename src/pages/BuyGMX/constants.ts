@@ -1,4 +1,4 @@
-import { ARBITRUM, ARBITRUM_GOERLI, AVALANCHE, AVALANCHE_FUJI } from "config/chains";
+ import { ARBITRUM, ARBITRUM_GOERLI, AVALANCHE, AVALANCHE_FUJI } from "config/chains";
 import { getContract } from "config/contracts";
 
 const ARBITRUM_GMX = getContract(ARBITRUM, "GMX").toLowerCase();

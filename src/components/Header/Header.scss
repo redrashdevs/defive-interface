@@ -6,7 +6,30 @@
   left: 0;
   right: 0;
 }
-
+.wallet-dd {
+  background-color: #fff !important;
+  padding: 8px !important;
+}
+.header-menu-modal {
+  align-items: flex-end;
+  right: unset !important;
+  height: auto !important;
+  .Modal-content {
+    max-height: 95vh; 
+    border-radius: 16px 16px 0px 0px;
+    width: 100vw;
+  }
+  .Modal-header-wrapper {
+    display: none;
+  }
+  .divider {
+    display: none;
+  }
+  .Modal-body {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
 .App-header.large {
   height: 10rem;
   // backdrop-filter: blur(4px);

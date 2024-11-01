@@ -28,6 +28,7 @@ import {
   AccountPositionsV1,
   usePositionsV1,
 } from "pages/Actions/ActionsV1/ActionsV1";
+import cs from "classnames";
 
 enum TabKey {
   Positions = "Positions",
@@ -146,9 +147,23 @@ export function HistoricalLists({ chainId, account }: Props) {
 
   return (
     <div>
-      <div className="py-10">
-        <Tab options={tabOptions} optionLabels={tabLabels} option={tabKey} onChange={setTabKey} type="inline" />
+      <div className="historical-tabs-wrappper mb-14">
+        <button onClick={() => setTabKey(TabKey.Positions)} className={cs("tab-btn", { active: tabKey === "Positions" })}>
+          <Trans>Positions</Trans>
+        </button>
+        <button onClick={() => setTabKey(TabKey.Orders)} className={cs("tab-btn ml-2", { active: tabKey === "Orders" })}>
+          <Trans>Orders</Trans>
+        </button>
+        <button onClick={() => setTabKey(TabKey.Trades)} className={cs("tab-btn ml-2", { active: tabKey === "Trades" })}>
+          <Trans>Trades</Trans>
+        </button>
+        <button onClick={() => setTabKey(TabKey.Claims)} className={cs("tab-btn ml-2", { active: tabKey === "Claims" })}>
+          <Trans>Claims</Trans>
+        </button>
       </div>
+      {/* <div className="py-10">
+        <Tab options={tabOptions} optionLabels={tabLabels} option={tabKey} onChange={setTabKey} type="inline" />
+      </div> */}
 
       {tabKey === TabKey.Positions && (
         <PositionList

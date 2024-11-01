@@ -1,0 +1,18 @@
+.Position-list {
+    th {
+        color: rgba(255, 255, 255, 0.24);
+        font-size: 14px;
+    }
+    td {
+        vertical-align: top;
+    }
+}
+table.Exchange-list tr:hover {
+    background: unset !important;
+}
+.Exchange-list {
+    &.small {
+        background: rgba(18, 18, 20, 1);
+        border-radius: 12px;
+    }
+}

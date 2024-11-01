@@ -7,7 +7,7 @@ import { useDebounce } from "lib/useDebounce";
 import { ReactNode, memo, useCallback, useEffect, useMemo, useState } from "react";
 
 import SearchInput from "components/SearchInput/SearchInput";
-import { TopPositionsSkeleton } from "components/Skeleton/Skeleton";
+import { TopAccountsMobileSkeleton, TopPositionsSkeleton } from "components/Skeleton/Skeleton";
 import TokenIcon from "components/TokenIcon/TokenIcon";
 import { TooltipPosition } from "components/Tooltip/Tooltip";
 import TooltipWithPortal from "components/Tooltip/TooltipWithPortal";
@@ -28,6 +28,12 @@ import { bigMath } from "lib/bigmath";
 import { USD_DECIMALS } from "config/factors";
 import { useLocalStorageSerializeKey } from "lib/localStorage";
 import { formatAmount, formatTokenAmountWithUsd, formatUsd } from "lib/numbers";
+import { useMedia } from "react-use";
+import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
+import { shortenAddress } from "@/lib/legacy";
+import { buildAccountDashboardUrl } from "@/pages/AccountDashboard/AccountDashboard";
+import { Address } from "viem";
+import { Link } from "react-router-dom";
 
 function getWinnerRankClassname(rank: number | null) {
   if (rank === null) return undefined;
@@ -38,7 +44,13 @@ function getWinnerRankClassname(rank: number | null) {
 
 type LeaderboardPositionField = keyof LeaderboardPosition;
 
-export function LeaderboardPositionsTable({ positions }: { positions: RemoteData<LeaderboardPosition> }) {
+export function LeaderboardPositionsTable({
+  positions,
+  search,
+}: {
+  positions: RemoteData<LeaderboardPosition>;
+  search?: string;
+}) {
   const perPage = 20;
   const { isLoading, data } = positions;
   const [page, setPage] = useState(1);
@@ -56,13 +68,15 @@ export function LeaderboardPositionsTable({ positions }: { positions: RemoteData
     [orderBy]
   );
 
-  const [search, setSearch] = useState("");
-  const setValue = useCallback((e) => setSearch(e.target.value), []);
-  const handleKeyDown = useCallback(() => null, []);
+  // const [search, setSearch] = useState("");
+  // const setValue = useCallback((e) => setSearch(e.target.value), []);
+  // const handleKeyDown = useCallback(() => null, []);
+  const isMobile = useMedia("(max-width: 400px)");
   const term = useDebounce(search, 300);
 
   useEffect(() => {
     setPage(1);
+    console.log("HEREE", search);
   }, [term]);
 
   const sorted = useMemo(() => {
@@ -117,9 +131,23 @@ export function LeaderboardPositionsTable({ positions }: { positions: RemoteData
     </>
   );
 
+  const contentMobile = isLoading ? (
+    <TopAccountsMobileSkeleton count={perPage} />
+  ) : rowsData.length ? (
+    rowsData.map(({ position: position, index, rank }) => {
+      return <TableRowMobile key={position.key} position={position} index={index} rank={rank} />;
+    })
+  ) : (
+    <div className="flex h-[300px] w-full items-center justify-center">
+      <p>
+        <Trans>No results found</Trans>
+      </p>
+    </div>
+  );
+
   return (
     <div>
-      <div className="TableBox__head">
+      {/* <div className="TableBox__head">
         <SearchInput
           placeholder={t`Search Address`}
           className="LeaderboardSearch"
@@ -128,63 +156,68 @@ export function LeaderboardPositionsTable({ positions }: { positions: RemoteData
           onKeyDown={handleKeyDown}
           size="s"
         />
-      </div>
-      <div className="TableBox">
-        <table className={cx("Exchange-list", "App-box", "Table")}>
-          <tbody>
-            <tr className="Exchange-list-header">
-              <TableHeaderCell
-                title={t`Rank`}
-                width={6}
-                tooltip={t`Only positions with over ${formatUsd(MIN_COLLATERAL_USD_IN_LEADERBOARD, {
-                  displayDecimals: 0,
-                })} in "Capital Used" are ranked.`}
-                tooltipPosition="bottom-start"
-                columnName="rank"
-              />
-              <TableHeaderCell title={t`Address`} width={16} tooltipPosition="bottom-end" columnName="account" />
-              <TableHeaderCell
-                title={t`PnL ($)`}
-                width={12}
-                tooltip={t`The total realized and unrealized profit and loss for the period, considering price impact and fees but excluding swap fees.`}
-                tooltipPosition="bottom-end"
-                onClick={handleColumnClick}
-                columnName="qualifyingPnl"
-                className={getSortableClass("qualifyingPnl")}
-              />
-              <TableHeaderCell title={t`Position`} width={10} tooltipPosition="bottom-end" columnName="key" />
-              <TableHeaderCell
-                title={t`Entry Price`}
-                width={10}
-                onClick={handleColumnClick}
-                columnName="entryPrice"
-                className={getSortableClass("entryPrice")}
-              />
-              <TableHeaderCell
-                title={t`Size`}
-                width={12}
-                onClick={handleColumnClick}
-                columnName="sizeInUsd"
-                className={getSortableClass("sizeInUsd")}
-              />
-              <TableHeaderCell
-                title={t`Lev.`}
-                width={1}
-                onClick={handleColumnClick}
-                columnName="leverage"
-                className={getSortableClass("leverage")}
-              />
-              <TableHeaderCell
-                title={t`Liq. Price`}
-                width={10}
-                columnName="liquidationPrice"
-                className={cx("text-right")}
-              />
-            </tr>
-            {content}
-          </tbody>
-        </table>
-      </div>
+      </div> */}
+      {!isMobile ? (
+        <div className="TableBox">
+          <table className={cx("Exchange-list", "App-box", "Table")} style={{ background: "#000" }}>
+            <tbody>
+              <tr className="Exchange-list-header">
+                <TableHeaderCell
+                  title={t`Rank`}
+                  width={6}
+                  tooltip={t`Only positions with over ${formatUsd(MIN_COLLATERAL_USD_IN_LEADERBOARD, {
+                    displayDecimals: 0,
+                  })} in "Capital Used" are ranked.`}
+                  tooltipPosition="bottom-start"
+                  columnName="rank"
+                />
+                <TableHeaderCell title={t`Address`} width={16} tooltipPosition="bottom-end" columnName="account" />
+                <TableHeaderCell
+                  title={t`PnL ($)`}
+                  width={12}
+                  tooltip={t`The total realized and unrealized profit and loss for the period, considering price impact and fees but excluding swap fees.`}
+                  tooltipPosition="bottom-end"
+                  onClick={handleColumnClick}
+                  columnName="qualifyingPnl"
+                  className={getSortableClass("qualifyingPnl")}
+                />
+                <TableHeaderCell title={t`Position`} width={10} tooltipPosition="bottom-end" columnName="key" />
+                <TableHeaderCell
+                  title={t`Entry Price`}
+                  width={10}
+                  onClick={handleColumnClick}
+                  columnName="entryPrice"
+                  className={getSortableClass("entryPrice")}
+                />
+                <TableHeaderCell
+                  title={t`Size`}
+                  width={12}
+                  onClick={handleColumnClick}
+                  columnName="sizeInUsd"
+                  className={getSortableClass("sizeInUsd")}
+                />
+                <TableHeaderCell
+                  title={t`Lev.`}
+                  width={1}
+                  onClick={handleColumnClick}
+                  columnName="leverage"
+                  className={getSortableClass("leverage")}
+                />
+                <TableHeaderCell
+                  title={t`Liq. Price`}
+                  width={10}
+                  columnName="liquidationPrice"
+                  className={cx("text-right")}
+                  isRight
+                />
+              </tr>
+              {content}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div style={{ marginInline: -16 }}>{contentMobile}</div>
+      )}
       <div className="TableBox__footer">
         <Pagination page={page} pageCount={pageCount} onPageChange={setPage} />
       </div>
@@ -202,6 +235,7 @@ const TableHeaderCell = memo(
     tooltip,
     tooltipPosition,
     width,
+    isRight,
   }: {
     title: string;
     className?: string;
@@ -211,6 +245,7 @@ const TableHeaderCell = memo(
     columnName: LeaderboardPositionField | "liquidationPrice";
     width?: number | ((breakpoint?: string) => number);
     breakpoint?: string;
+    isRight?: boolean;
   }) => {
     const style =
       width !== undefined
@@ -225,7 +260,7 @@ const TableHeaderCell = memo(
 
     return (
       <th onClick={handleClick} className={cx("TableHeader", className)} style={style}>
-        {tooltip ? (
+        {/* {tooltip ? (
           <TooltipWithPortal
             handle={<span className="TableHeaderTitle">{title}</span>}
             position={tooltipPosition || "bottom"}
@@ -234,7 +269,11 @@ const TableHeaderCell = memo(
           />
         ) : (
           <span className="TableHeaderTitle">{title}</span>
-        )}
+        )} */}
+        <div className={cx("flex w-full items-center  whitespace-nowrap", { "justify-end": isRight })}>
+          <span className="TableHeaderMainTitle">{title}</span>
+          <span className="TableHeaderTitle"></span>
+        </div>
       </th>
     );
   }
@@ -348,16 +387,16 @@ const TableRow = memo(
 
     return (
       <tr className="Table_tr" key={position.key}>
-        <TableCell>
+        <TableCell className="rank">
           <span className={getWinnerRankClassname(rank)}>
             <RankInfo rank={rank} hasSomeCapital />
           </span>
         </TableCell>
         <TableCell>
-          <AddressView size={20} address={position.account} breakpoint="XL" />
+          <AddressView size={20} address={position.account} breakpoint="M" />
         </TableCell>
         <TableCell>
-          <TooltipWithPortal
+          {/* <TooltipWithPortal
             handle={
               <span className={getSignedValueClassName(position.qualifyingPnl)}>
                 {formatDelta(position.qualifyingPnl, { signed: true, prefix: "$" })}
@@ -366,10 +405,23 @@ const TableRow = memo(
             position={index > 9 ? "top" : "bottom"}
             className="nowrap"
             renderContent={renderPnlTooltipContent}
-          />
+          /> */}
+          <span className={getSignedValueClassName(position.qualifyingPnl)}>
+            ${formatDelta(position.qualifyingPnl, { signed: true }).split(".")[0]}.
+            <span
+              style={{
+                color:
+                  getSignedValueClassName(position.qualifyingPnl) === "positive"
+                    ? "rgba(51, 172, 66, 0.24)"
+                    : "rgba(255, 48, 62, .24)",
+              }}
+            >
+              {formatDelta(position.qualifyingPnl, { signed: true }).split(".")[1]}
+            </span>
+          </span>
         </TableCell>
         <TableCell>
-          <TooltipWithPortal
+          {/* <TooltipWithPortal
             handle={
               <span className="">
                 {indexToken ? (
@@ -389,24 +441,57 @@ const TableRow = memo(
             position={index > 9 ? "top" : "bottom"}
             className="nowrap"
             renderContent={renderPositionTooltip}
-          />
+          /> */}
+          <span className="whitespace-nowrap">
+            {indexToken ? (
+              <TokenIcon
+                className="PositionList-token-icon"
+                symbol={indexToken.symbol}
+                displaySize={20}
+                importSize={24}
+              />
+            ) : null}
+            <span className="">{marketInfo?.indexToken.symbol}</span>
+            <span className={cx("TopPositionsDirection", position.isLong ? "positive" : "negative")}>
+              {position.isLong ? t`Long` : t`Short`}
+            </span>
+          </span>
         </TableCell>
         <TableCell>
-          {formatUsd(position.entryPrice, {
+          {/* {formatUsd(position.entryPrice, {
             displayDecimals: marketDecimals,
-          })}
+          })} */}
+          <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+            {
+              formatUsd(position.entryPrice, {
+                displayDecimals: marketDecimals,
+              })?.split(".")[0]
+            }
+            .
+          </span>
+          <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+            {
+              formatUsd(position.entryPrice, {
+                displayDecimals: marketDecimals,
+              })?.split(".")[1]
+            }
+          </span>
         </TableCell>
         <TableCell>
-          <TooltipWithPortal
+          {/* <TooltipWithPortal
             handle={formatUsd(position.sizeInUsd)}
             position={index > 9 ? "top-end" : "bottom-end"}
             renderContent={renderSizeTooltip}
             tooltipClassName="Table-SizeTooltip"
-          />
+          /> */}
+          <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>{formatUsd(position.sizeInUsd)?.split(".")[0]}.</span>
+          <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>{formatUsd(position.sizeInUsd)?.split(".")[1]}</span>
         </TableCell>
-        <TableCell>{`${formatAmount(position.leverage, 4, 2)}x`}</TableCell>
+        <TableCell>
+          <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>{formatAmount(position.leverage, 4, 2)}x</span>
+        </TableCell>
         <TableCell className="text-right">
-          {liquidationPrice ? (
+          {/* {liquidationPrice ? (
             <TooltipWithPortal
               position={index > 9 ? "top-end" : "bottom-end"}
               renderContent={renderLiquidationTooltip}
@@ -418,9 +503,190 @@ const TableRow = memo(
               renderContent={renderNaLiquidationTooltip}
               handle={t`NA`}
             />
+          )} */}
+          {liquidationPrice ? (
+            <span>
+              <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+                {
+                  formatUsd(liquidationPrice, { maxThreshold: "1000000", displayDecimals: marketDecimals })?.split(
+                    "."
+                  )[0]
+                }
+                .
+              </span>
+              <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+                {
+                  formatUsd(liquidationPrice, { maxThreshold: "1000000", displayDecimals: marketDecimals })?.split(
+                    "."
+                  )[1]
+                }
+              </span>
+            </span>
+          ) : (
+            <Trans>NA</Trans>
           )}
         </TableCell>
       </tr>
+    );
+  }
+);
+
+const TableRowMobile = memo(
+  ({ position, rank, index }: { position: LeaderboardPosition; index: number; rank: number | null }) => {
+    const renderPnlTooltipContent = useCallback(() => <LeaderboardPnlTooltipContent position={position} />, [position]);
+    const { minCollateralUsd } = useSelector(selectPositionConstants);
+    const userReferralInfo = useSelector(selectUserReferralInfo);
+
+    const collateralToken = useTokenInfo(position.collateralToken);
+    const marketInfo = useMarketInfo(position.market);
+    const indexToken = marketInfo?.indexToken;
+
+    const liquidationPrice = useMemo(() => {
+      if (!collateralToken || !marketInfo || minCollateralUsd === undefined) return undefined;
+
+      return getLiquidationPrice({
+        marketInfo,
+        collateralToken,
+        sizeInUsd: position.sizeInUsd,
+        sizeInTokens: position.sizeInTokens,
+        collateralUsd: position.collateralUsd,
+        collateralAmount: position.collateralAmount,
+        minCollateralUsd,
+        pendingBorrowingFeesUsd: position.unrealizedFees - position.closingFeeUsd,
+        pendingFundingFeesUsd: 0n,
+        isLong: position.isLong,
+        userReferralInfo,
+      });
+    }, [
+      collateralToken,
+      marketInfo,
+      minCollateralUsd,
+      position.closingFeeUsd,
+      position.collateralAmount,
+      position.collateralUsd,
+      position.isLong,
+      position.sizeInTokens,
+      position.sizeInUsd,
+      position.unrealizedFees,
+      userReferralInfo,
+    ]);
+
+    const marketDecimals = useSelector(makeSelectMarketPriceDecimals(marketInfo?.indexTokenAddress));
+
+    const indexName = marketInfo ? getMarketIndexName(marketInfo) : "";
+    const poolName = marketInfo ? getMarketPoolName(marketInfo) : "";
+
+    const renderPositionTooltip = useCallback(() => {
+      return (
+        <>
+          <div className="mr-5 inline-flex items-start leading-1">
+            <span>{indexName}</span>
+            <span className="subtext">[{poolName}]</span>
+          </div>
+          <span className={cx(position.isLong ? "positive" : "negative")}>{position.isLong ? t`Long` : t`Short`}</span>
+        </>
+      );
+    }, [indexName, poolName, position.isLong]);
+
+    const renderSizeTooltip = useCallback(() => {
+      return (
+        <>
+          <StatsTooltipRow
+            label={t`Collateral`}
+            showDollar={false}
+            value={formatTokenAmountWithUsd(
+              BigInt(position.collateralAmount),
+              BigInt(position.collateralUsd),
+              collateralToken?.symbol,
+              collateralToken?.decimals
+            )}
+          />
+        </>
+      );
+    }, [collateralToken?.decimals, collateralToken?.symbol, position.collateralAmount, position.collateralUsd]);
+
+    const renderLiquidationTooltip = useCallback(() => {
+      const markPrice = indexToken?.prices.maxPrice;
+      const shouldRenderPriceChangeToLiq = markPrice !== undefined && liquidationPrice !== undefined;
+      return (
+        <>
+          <StatsTooltipRow
+            label={t`Mark Price`}
+            value={formatUsd(markPrice, {
+              displayDecimals: indexToken?.priceDecimals,
+            })}
+            showDollar={false}
+          />
+          {shouldRenderPriceChangeToLiq && (
+            <StatsTooltipRow
+              label={t`Price change to Liq.`}
+              value={formatUsd(liquidationPrice - markPrice, {
+                maxThreshold: "1000000",
+                displayDecimals: indexToken?.priceDecimals,
+              })}
+              showDollar={false}
+            />
+          )}
+        </>
+      );
+    }, [indexToken?.priceDecimals, indexToken?.prices.maxPrice, liquidationPrice]);
+
+    return (
+      <Link
+        target="_blank"
+        className="Leaderboard-mobile-row"
+        to={buildAccountDashboardUrl(position.account as Address, undefined, 2)}
+      >
+        <div className="left-column">
+          <div className="flex items-center">
+            <p className="rank">{rank}</p>
+            <div className="relative">
+              <Jazzicon diameter={40} seed={jsNumberForAddress(position.account)} />
+              {rank === 1 ? <img className="absolute -bottom-6 -right-6" src="/images/rank1.png" /> : null}
+              {rank === 2 ? <img className="absolute -bottom-6 -right-6" src="/images/rank2.png" /> : null}
+              {rank === 3 ? <img className="absolute -bottom-6 -right-6" src="/images/rank3.png" /> : null}
+            </div>
+          </div>
+          <p className="address">{shortenAddress(position.account.replace(/^0x/, ""), 10, 0)}</p>
+        </div>
+        <div className="right-column h-full">
+          <div>
+            <span className="whitespace-nowrap">
+              {indexToken ? (
+                <TokenIcon
+                  className="PositionList-token-icon"
+                  symbol={indexToken.symbol}
+                  displaySize={20}
+                  importSize={24}
+                />
+              ) : null}
+              <span className="">{marketInfo?.indexToken.symbol}</span>
+              <span className={cx("TopPositionsDirection", position.isLong ? "positive" : "negative")}>
+                {position.isLong ? t`Long` : t`Short`}
+              </span>
+            </span>
+            <br />
+            <span className={getSignedValueClassName(position.qualifyingPnl)}>
+              ${formatDelta(position.qualifyingPnl, { signed: true }).split(".")[0]}.
+              <span
+                style={{
+                  color:
+                    getSignedValueClassName(position.qualifyingPnl) === "positive"
+                      ? "rgba(51, 172, 66, 0.24)"
+                      : "rgba(255, 48, 62, .24)",
+                }}
+              >
+                {formatDelta(position.qualifyingPnl, { signed: true }).split(".")[1]}
+              </span>
+            </span>
+          </div>
+
+          <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+            <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>LVG.</span>
+            {formatAmount(position.leverage, 4, 2)}x
+          </span>
+        </div>
+      </Link>
     );
   }
 );

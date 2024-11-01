@@ -74,13 +74,14 @@ export default function NetworkDropdown(props) {
 
   return (
     <>
-      {props.small ? (
-        <div className="App-header-network" onClick={() => setActiveModal(NETWORK_MODAL_KEY)}>
-          <div className="network-dropdown">
-            <NavIcons selectorLabel={props.selectorLabel} />
-          </div>
-        </div>
-      ) : (
+      {props.small ? null : (
+        // <div className="App-header-network" onClick={() => setActiveModal(NETWORK_MODAL_KEY)}>
+        //   <div className="network-dropdown">
+        //     <img width={20} src={props.networkOptions[0].icon} alt={props.networkOptions[0].label} />
+        //     <p className="mx-2">{props.selectorLabel}</p>
+        //     <img src="/src/img/chevron-down.png" />
+        //   </div>
+        // </div>
         <DesktopDropdown
           currentLanguage={currentLanguage}
           activeModal={activeModal}
@@ -110,20 +111,23 @@ function NavIcons({ selectorLabel }) {
 }
 
 function DesktopDropdown({ setActiveModal, selectorLabel, networkOptions, openSettings }) {
+  let activeNetwork = networkOptions.find((item) => item.label === selectorLabel);
   return (
     <div className="App-header-network">
       <Menu>
         <Menu.Button as="div" className="network-dropdown" data-qa="networks-dropdown-handle">
-          <NavIcons selectorLabel={selectorLabel} />
+          <img width={20} src={activeNetwork.icon} alt={activeNetwork.label} />
+          <p className="mx-2">{selectorLabel}</p>
+          <img src="/images/chevron-down.png" />
         </Menu.Button>
-        <Menu.Items as="div" className="menu-items network-dropdown-items" data-qa="networks-dropdown">
-          <div className="dropdown-label">
+        <Menu.Items as="div" className="nmi menu-items network-dropdown-items" data-qa="networks-dropdown">
+          {/* <div className="dropdown-label">
             <Trans>Networks</Trans>
-          </div>
+          </div> */}
           <div className="network-dropdown-list">
             <NetworkMenuItems networkOptions={networkOptions} selectorLabel={selectorLabel} />
           </div>
-          <div className="network-dropdown-divider" />
+          {/* <div className="network-dropdown-divider" />
           <Menu.Item>
             <div
               className="network-dropdown-menu-item menu-item"
@@ -154,7 +158,7 @@ function DesktopDropdown({ setActiveModal, selectorLabel, networkOptions, openSe
                 </span>
               </div>
             </div>
-          </Menu.Item>
+          </Menu.Item> */}
         </Menu.Items>
       </Menu>
     </div>
@@ -191,10 +195,6 @@ function NetworkModalContent({ networkOptions, selectorLabel, setActiveModal, op
   return (
     <div className="network-dropdown-items">
       <div className="network-dropdown-list">
-        <span className="network-dropdown-label">
-          <Trans>Networks</Trans>
-        </span>
-
         {networkOptions.map((network) => {
           return (
             <div className="network-option" onClick={() => switchNetwork(network.value, active)} key={network.value}>
@@ -206,7 +206,7 @@ function NetworkModalContent({ networkOptions, selectorLabel, setActiveModal, op
             </div>
           );
         })}
-        <span className="network-dropdown-label more-options">
+        {/* <span className="network-dropdown-label more-options">
           <Trans>More Options</Trans>
         </span>
         <div
@@ -233,7 +233,7 @@ function NetworkModalContent({ networkOptions, selectorLabel, setActiveModal, op
               <Trans>Settings</Trans>
             </span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

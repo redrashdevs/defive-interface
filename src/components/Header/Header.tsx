@@ -14,11 +14,45 @@ import "./Header.scss";
 import { Link } from "react-router-dom";
 import { isHomeSite } from "lib/legacy";
 import { HomeHeaderLinks } from "./HomeHeaderLinks";
-import { Trans } from "@lingui/macro";
+import { t, Trans } from "@lingui/macro";
 import { HeaderPromoBanner } from "components/HeaderPromoBanner/HeaderPromoBanner";
 import { useMedia } from "react-use";
 import { HeaderLink } from "./HeaderLink";
 import { TbMenu } from "react-icons/tb";
+import ModalWithPortal from "../Modal/ModalWithPortal";
+import { ARBITRUM, ARBITRUM_GOERLI, AVALANCHE, AVALANCHE_FUJI, getChainName } from "@/config/chains";
+import { getIcon } from "@/config/icons";
+import { isDevelopment } from "@/config/env";
+
+const NETWORK_OPTIONS = [
+  {
+    label: getChainName(ARBITRUM),
+    value: ARBITRUM,
+    icon: getIcon(ARBITRUM, "network"),
+    color: "#264f79",
+  },
+  {
+    label: getChainName(AVALANCHE),
+    value: AVALANCHE,
+    icon: getIcon(AVALANCHE, "network"),
+    color: "#E841424D",
+  },
+];
+
+if (isDevelopment()) {
+  NETWORK_OPTIONS.push({
+    label: getChainName(ARBITRUM_GOERLI),
+    value: ARBITRUM_GOERLI,
+    icon: getIcon(ARBITRUM_GOERLI, "network"),
+    color: "#264f79",
+  });
+  NETWORK_OPTIONS.push({
+    label: getChainName(AVALANCHE_FUJI),
+    value: AVALANCHE_FUJI,
+    icon: getIcon(AVALANCHE_FUJI, "network"),
+    color: "#E841424D",
+  });
+}
 
 // Fix framer-motion old React FC type (solved in react 18)
 const AnimatePresence = (props: React.ComponentProps<typeof FramerAnimatePresence> & { children: ReactNode }) => (
@@ -64,7 +98,7 @@ export function Header({ disconnectAccountAndCloseSettings, openSettings, showRe
 
   return (
     <>
-      {isDrawerVisible && (
+      {/* {isDrawerVisible && (
         <AnimatePresence>
           {isDrawerVisible && (
             <motion.div
@@ -78,7 +112,7 @@ export function Header({ disconnectAccountAndCloseSettings, openSettings, showRe
             ></motion.div>
           )}
         </AnimatePresence>
-      )}
+      )} */}
       {isNativeSelectorModalVisible && (
         <AnimatePresence>
           {isNativeSelectorModalVisible && (
@@ -102,13 +136,11 @@ export function Header({ disconnectAccountAndCloseSettings, openSettings, showRe
                 <img src={logoImg} className="big" alt="DeFive Logo" />
                 <img src={logoSmallImg} className="small" alt="DeFive Logo" />
               </Link>
+
+              <AppHeaderLinks showRedirectModal={showRedirectModal} />
             </div>
             <div className="App-header-container-center">
-              {isHomeSite() ? (
-                <HomeHeaderLinks showRedirectModal={showRedirectModal} />
-              ) : (
-                <AppHeaderLinks showRedirectModal={showRedirectModal} />
-              )}
+              {isHomeSite() ? <HomeHeaderLinks showRedirectModal={showRedirectModal} /> : null}
             </div>
             <div className="App-header-container-right">
               <AppHeaderUser
@@ -139,15 +171,11 @@ export function Header({ disconnectAccountAndCloseSettings, openSettings, showRe
                   small
                   showRedirectModal={showRedirectModal}
                 />
-                <div className="App-header-menu-icon-block" onClick={() => setIsDrawerVisible(!isDrawerVisible)}>
-                  {!isDrawerVisible && <TbMenu className="App-header-menu-icon" size={24} />}
-                  {isDrawerVisible && <FaTimes className="App-header-menu-icon" />}
-                </div>
               </div>
             </div>
           </div>
         )}
-        {isTradingIncentivesActive && (
+        {/* {isTradingIncentivesActive && (
           <HeaderPromoBanner>
             <Trans>
               Trade&nbsp;on GMX&nbsp;V2 in&nbsp;Arbitrum and win&nbsp;280,000&nbsp;ARB ({">"} $500k) in prizes in{" "}
@@ -161,9 +189,9 @@ export function Header({ disconnectAccountAndCloseSettings, openSettings, showRe
               competitions. Live&nbsp;from&nbsp;March 13th to 27th.
             </Trans>
           </HeaderPromoBanner>
-        )}
+        )} */}
       </header>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {isDrawerVisible && (
           <motion.div
             onClick={() => setIsDrawerVisible(false)}
@@ -190,7 +218,7 @@ export function Header({ disconnectAccountAndCloseSettings, openSettings, showRe
             )}
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </>
   );
 }

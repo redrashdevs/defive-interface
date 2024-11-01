@@ -9,7 +9,7 @@
   }
 
   &.Exchange-swap-section {
-    min-height: 9.2rem;
+    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -51,6 +51,7 @@
     }
 
     .PositionEditor-token-symbol {
+      padding-inline: 8px;
       display: flex;
       align-items: center;
       margin-left: 1rem;

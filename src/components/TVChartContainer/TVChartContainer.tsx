@@ -96,7 +96,7 @@ export default function TVChartContainer({
           .setQuantity("")
           .setLineStyle(1)
           .setLineLength(1)
-          .setBodyFont(`normal 12pt "Relative", sans-serif`)
+          .setBodyFont(`normal 12pt "Plus Jakarta Sans", sans-serif;`)
           .setBodyTextColor("#fff")
           .setLineColor("#3a3e5e")
           .setBodyBackgroundColor("#3a3e5e")
@@ -167,7 +167,7 @@ export default function TVChartContainer({
     tvWidgetRef.current!.onChartReady(function () {
       setChartReady(true);
       tvWidgetRef.current!.applyOverrides({
-        "paneProperties.background": "#16182e",
+        "paneProperties.background": "#121214",
         "paneProperties.backgroundType": "solid",
       });
       tvWidgetRef.current
@@ -207,7 +207,7 @@ export default function TVChartContainer({
   return (
     <div className="ExchangeChart-error">
       {chartDataLoading && <Loader />}
-      <div style={style} ref={chartContainerRef} className="TVChartContainer ExchangeChart-bottom-content" />
+      <div style={style} ref={chartContainerRef} className="TVChartContainer ExchangeChart-bottom-content pr-[8px] pl-[8px]" />
     </div>
   );
 }

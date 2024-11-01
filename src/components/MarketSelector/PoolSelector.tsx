@@ -23,6 +23,7 @@ import Modal from "../Modal/Modal";
 import TooltipWithPortal from "../Tooltip/TooltipWithPortal";
 
 import "./MarketSelector.scss";
+import { Menu } from "@headlessui/react";
 
 type Props = {
   label?: string;
@@ -169,7 +170,7 @@ export function PoolSelector({
 
     if (marketsOptions?.length > 1) {
       return (
-        <div className="TokenSelector-box" onClick={() => setIsModalVisible(true)}>
+        <div className="TokenSelector-box">
           {name ? name : "..."}
           <BiChevronDown className="TokenSelector-caret" />
         </div>
@@ -180,65 +181,99 @@ export function PoolSelector({
   }
 
   return (
-    <div className={cx("TokenSelector", "MarketSelector", { "side-menu": isSideMenu }, className)}>
-      <Modal
-        isVisible={isModalVisible}
-        setIsVisible={setIsModalVisible}
-        label={label}
-        headerContent={
-          <SearchInput
-            className="mt-15"
-            value={searchKeyword}
-            setValue={handleSearch}
-            placeholder={t`Search Pool`}
-            onKeyDown={_handleKeyDown}
-          />
-        }
-      >
-        <Tab
-          className="mb-10"
-          options={gmTokensFavoritesTabOptions}
-          optionLabels={localizedTabOptionLabels}
-          type="inline"
-          option={tab}
-          setOption={setTab}
-        />
-
-        <div className="TokenSelector-tokens">
-          {filteredOptions.map((option, marketIndex) => (
-            <PoolListItem
-              key={option.marketInfo.marketTokenAddress}
-              {...option}
-              marketToken={getByKey(marketTokensData, option.marketInfo.marketTokenAddress)}
-              isFavorite={favoriteTokens?.includes(option.marketInfo.marketTokenAddress)}
-              isInFirstHalf={marketIndex < filteredOptions.length / 2}
-              showAllPools={showAllPools}
-              showBalances={showBalances}
-              onFavoriteClick={handleFavoriteClick}
-              onSelectOption={onSelectOption}
-            />
-          ))}
-        </div>
-      </Modal>
-
-      {marketInfo && (
-        <div className="inline-flex items-center">
-          {showIndexIcon && (
-            <TokenIcon
-              className="mr-5"
-              symbol={
-                marketInfo.isSpotOnly
-                  ? getNormalizedTokenSymbol(marketInfo.longToken.symbol) +
-                    getNormalizedTokenSymbol(marketInfo.shortToken.symbol)
-                  : marketInfo?.indexToken.symbol
-              }
-              importSize={40}
-              displaySize={20}
-            />
+    <div className={cx("TokenSelector relative", "MarketSelector", { "side-menu": isSideMenu }, className)}>
+      <Menu>
+        <Menu.Button as="div">
+          {marketInfo && (
+            <div className="inline-flex items-center">
+              {showIndexIcon && (
+                <TokenIcon
+                  className="mr-5"
+                  symbol={
+                    marketInfo.isSpotOnly
+                      ? getNormalizedTokenSymbol(marketInfo.longToken.symbol) +
+                        getNormalizedTokenSymbol(marketInfo.shortToken.symbol)
+                      : marketInfo?.indexToken.symbol
+                  }
+                  importSize={40}
+                  displaySize={20}
+                />
+              )}
+              {displayPoolLabel(marketInfo)}
+            </div>
           )}
-          {displayPoolLabel(marketInfo)}
-        </div>
-      )}
+        </Menu.Button>
+        <Menu.Items as="div" className="menu-items wallet-dd h-[200px] !w-[160px] !px-4">
+          <div className=" h-full overflow-y-auto pb-8">
+            {filteredOptions.map((option, marketIndex) => {
+              const { longToken, shortToken, indexToken } = option.marketInfo;
+
+              const indexTokenImage = option.marketInfo.isSpotOnly
+                ? getNormalizedTokenSymbol(longToken.symbol) + getNormalizedTokenSymbol(shortToken.symbol)
+                : getNormalizedTokenSymbol(indexToken.symbol);
+              return (
+                <Menu.Item key={option.name}>
+                  <div
+                    className={cx(
+                      "flex h-[32px] items-center justify-between rounded-[6px] px-4 hover:bg-[#D9D9D9]",
+                      {}
+                    )}
+                    onClick={() => onSelectOption(option)}
+                  >
+                    {/* {tokenState.disabled && tokenState.message && (
+                <TooltipWithPortal
+                  className="TokenSelector-tooltip"
+                  handle={<div className="TokenSelector-tooltip-backing" />}
+                  position={tokenIndex < filteredTokens.length / 2 ? "bottom" : "top"}
+                  disableHandleStyle
+                  closeOnDoubleClick
+                  fitHandleWidth
+                  renderContent={() => tokenState.message}
+                />
+              )} */}
+                    <div className="Token-info">
+                      {/* <TokenIcon symbol={mar} className="token-logo" displaySize={40} importSize={40} /> */}
+                      {showAllPools ? (
+                        <TokenIcon symbol={indexTokenImage} displaySize={40} importSize={40} />
+                      ) : (
+                        <>
+                          <TokenIcon
+                            symbol={longToken.symbol}
+                            displaySize={40}
+                            importSize={40}
+                            className="collateral-logo collateral-logo-first"
+                          />
+                          {shortToken && (
+                            <TokenIcon
+                              symbol={shortToken.symbol}
+                              displaySize={40}
+                              importSize={40}
+                              className="collateral-logo collateral-logo-second"
+                            />
+                          )}
+                        </>
+                      )}
+                      <div className="Token-symbol">
+                        <div className="Token-t text-left text-[14px] font-[500] text-[#121214]">{option.poolName}</div>
+                        {/* <span className="text-accent">{token.name}</span> */}
+                      </div>
+                    </div>
+                    <div className="Token-balance  !text-right text-[12px] !text-[#000] !opacity-60">
+                      {/* <span className="text-accent">
+                    {mintAmount && <div>Mintable: {formatAmount(mintAmount, token.decimals, 2, true)} USDG</div>}
+                    {showMintingCap && !mintAmount && <div>-</div>}
+                    {!showMintingCap && showBalances && balanceUsd !== undefined && balanceUsd > 0 && (
+                      <div>${formatAmount(balanceUsd, 30, 2, true)}</div>
+                    )}
+                  </span> */}
+                    </div>
+                  </div>
+                </Menu.Item>
+              );
+            })}
+          </div>
+        </Menu.Items>
+      </Menu>
     </div>
   );
 }

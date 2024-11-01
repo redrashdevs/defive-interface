@@ -27,12 +27,12 @@ export function RedirectPopupModal({
       setIsVisible={setRedirectModalVisible}
       label={t`Launch App`}
     >
-      <Trans>You are leaving GMX.io and will be redirected to a third party, independent website.</Trans>
+      <Trans>You are leaving DeFive and will be redirected to a third party, independent website.</Trans>
       <br />
       <br />
       <Trans>
         The website is a community deployed and maintained instance of the open source{" "}
-        <ExternalLink href="https://github.com/gmx-io/gmx-interface">GMX front end</ExternalLink>, hosted and served on
+        <ExternalLink href="https://github.com/gmx-io/gmx-interface">DeFive front end</ExternalLink>, hosted and served on
         the distributed, peer-to-peer <ExternalLink href="https://ipfs.io/">IPFS network</ExternalLink>.
       </Trans>
       <br />

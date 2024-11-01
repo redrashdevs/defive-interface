@@ -122,13 +122,24 @@ export function AprInfo({
 
     if (incentiveApr !== undefined && incentiveApr > 0) {
       return (
-        <div className="inline-flex flex-nowrap">
+        <div
+          className="positive inline-flex flex-nowrap rounded-[20px] px-8 text-[14px]"
+          style={{ background: "rgba(51, 172, 66, 0.16)" }}
+        >
           {node}
-          <img className="relative -top-3 h-10" src={sparkleIcon} alt="sparkle" />
+          {/* <img className="relative -top-3 h-10" src={sparkleIcon} alt="sparkle" /> */}
         </div>
       );
     } else {
-      return node;
+      return (
+        <div
+          className="positive inline-flex flex-nowrap rounded-[20px] px-8 text-[14px]"
+          style={{ background: "rgba(51, 172, 66, 0.16)" }}
+        >
+          {node}
+          {/* <img className="relative -top-3 h-10" src={sparkleIcon} alt="sparkle" /> */}
+        </div>
+      );
     }
   }, [apy, incentiveApr, totalApr]);
 

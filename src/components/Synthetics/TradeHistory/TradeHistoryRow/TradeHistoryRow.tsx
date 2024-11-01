@@ -27,6 +27,7 @@ import TooltipWithPortal from "components/Tooltip/TooltipWithPortal";
 import NewLink20ReactComponent from "img/ic_new_link_20.svg?react";
 
 import "./TradeHistoryRow.scss";
+import { useMedia } from "react-use";
 
 type Props = {
   tradeAction: TradeAction;
@@ -109,6 +110,7 @@ const PRICE_TOOLTIP_WIDTH = 400;
 
 export function TradeHistoryRow({ minCollateralUsd, tradeAction, shouldDisplayAccount, showDebugValues }: Props) {
   const chainId = useSelector(selectChainId);
+  const isMobile = useMedia(`(max-width: 700px)`);
   const marketsInfoData = useMarketsInfoData();
 
   const msg = useMemo(() => {
@@ -164,11 +166,10 @@ export function TradeHistoryRow({ minCollateralUsd, tradeAction, shouldDisplayAc
   const marketTooltipHandle = useMemo(
     () =>
       msg.swapFromTokenSymbol ? (
-        <SwapMarketLabel bordered fromSymbol={msg.swapFromTokenSymbol!} toSymbol={msg.swapToTokenSymbol!} />
+        <SwapMarketLabel fromSymbol={msg.swapFromTokenSymbol!} toSymbol={msg.swapToTokenSymbol!} />
       ) : (
         <div className="cursor-help">
           <MarketWithDirectionLabel
-            bordered
             indexName={msg.indexName!}
             isLong={msg.isLong!}
             tokenSymbol={msg.indexTokenSymbol!}
@@ -178,16 +179,33 @@ export function TradeHistoryRow({ minCollateralUsd, tradeAction, shouldDisplayAc
     [msg.indexName, msg.indexTokenSymbol, msg.isLong, msg.swapFromTokenSymbol, msg.swapToTokenSymbol]
   );
 
-  return (
-    <>
-      <tr
-        className={cx("TradeHistoryRow", {
-          debug: showDebugValues,
-        })}
-      >
-        <td>
-          <div className="flex">
-            {msg.actionComment ? (
+  return isMobile ? (
+    <div
+      style={{ borderColor: "#36363D" }}
+      className="border-b-[1px] border-dotted p-[16px] last-of-type:border-b-[0]"
+      data-qa="position-item"
+    >
+      <div className="flex flex-grow flex-col">
+        <div className="flex-grow">
+          <div className="flex items-center">
+            {msg.swapFromTokenSymbol ? (
+              msg.action.includes("Request") ? (
+                <img src="/images/short-requested.png" width={40} />
+              ) : (
+                <img src="/images/swap-executed.png" width={40} />
+              )
+            ) : msg.isLong ? (
+              msg.action.includes("Request") ? (
+                <img src="/images/long-requested.png" width={40} />
+              ) : (
+                <img src="/images/long-executed.png" width={40} />
+              )
+            ) : msg.action.includes("Request") ? (
+              <img src="/images/short-requested.png" width={40} />
+            ) : (
+              <img src="/images/short-executed.png" width={40} />
+            )}
+            {/* {msg.actionComment ? (
               <TooltipWithPortal
                 className={cx("TradeHistoryRow-action-handle")}
                 handleClassName={cx("TradeHistoryRow-action-handle", {
@@ -196,23 +214,151 @@ export function TradeHistoryRow({ minCollateralUsd, tradeAction, shouldDisplayAc
                 handle={msg.action}
                 renderContent={renderActionTooltipContent}
               />
-            ) : (
-              <span
-                className={cx("TradeHistoryRow-action-handle", {
-                  "text-red-500": msg.isActionError,
-                })}
-              >
-                {msg.action}
-              </span>
-            )}
-            <ExternalLink
+            ) : ( */}
+            <div className="ml-[8px] flex flex-col justify-center">
+              <div className="mb-[4px] flex items-center whitespace-nowrap">
+                <span
+                  className={cx(" TradeHistoryRow-action-handle whitespace-nowrap text-[14px] font-[500]", {
+                    negative: msg.isActionError,
+                  })}
+                >
+                  {msg.swapFromTokenSymbol ? t`Swap` : msg.isLong ? t`Long` : t`Short`}
+                </span>
+                <span className=" ml-[8px] whitespace-nowrap rounded-[12px] bg-[#242429] px-[12px] py-[4px] text-[12px] text-[#D3D3D4]">
+                  {msg.action.includes("Request") ? "Request" : "Executed"}
+                </span>
+              </div>
+              <span className="text-left text-[12px] font-[500] text-white opacity-40">{msg.timestamp}</span>
+            </div>
+            {/* )} */}
+            {/* <ExternalLink
               className="TradeHistoryRow-external-link ml-5"
               href={`${getExplorerUrl(chainId)}tx/${tradeAction.transaction.hash}`}
             >
               <NewLink20ReactComponent />
-            </ExternalLink>
+            </ExternalLink> */}
           </div>
-          <TooltipWithPortal
+
+          <div className="-gap-2 mt-[16px] grid grid-cols-2">
+            <div className={cx({ "col-span-2": !!msg.swapFromTokenSymbol })}>
+              <p
+                className="mb-[4px] text-left text-[10px]"
+                style={{ color: "rgba(255, 255, 255, 0.24)" }}
+              >{t`MARKET`}</p>
+              {marketTooltipHandle}
+            </div>
+            <div className={cx({ "col-span-2 pt-[16px]": !!msg.swapFromTokenSymbol })}>
+              <p className="mb-[4px] text-left text-[10px]" style={{ color: "rgba(255, 255, 255, 0.24)" }}>{t`SIZE`}</p>
+              {msg.swapFromTokenSymbol ? (
+                <div className="flex items-center">
+                  <Trans>
+                    <TokenIcon className="mr-4" symbol={msg.swapFromTokenSymbol!} displaySize={18} importSize={24} />
+                    <span className="whitespace-nowrap text-[12px] font-[500] text-white opacity-60">
+                      {msg.swapFromTokenAmount} {msg.swapFromTokenSymbol!}
+                    </span>
+                    <img src="/images/arrow-narrow-right.svg" />
+                    <TokenIcon className="mr-4" symbol={msg.swapToTokenSymbol!} displaySize={18} importSize={24} />
+                    <span className="whitespace-nowrap text-[12px] font-[500] text-white opacity-60">
+                      {msg.swapToTokenAmount} {msg.swapToTokenSymbol}
+                    </span>
+                  </Trans>
+                </div>
+              ) : (
+                <span className="text-[12px] font-[500] text-white opacity-60">{msg.size}</span>
+              )}
+            </div>
+            <div className="pt-[16px]">
+              <p
+                className="mb-[4px] text-left text-[10px]"
+                style={{ color: "rgba(255, 255, 255, 0.24)" }}
+              >{t`NET VAL`}</p>
+              <span className="text-[12px]" style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+                {msg.price}
+              </span>
+            </div>
+
+            <div className="pt-[16px]">
+              <p
+                className="mb-[4px] text-left text-[10px]"
+                style={{ color: "rgba(255, 255, 255, 0.24)" }}
+              >{t`LIQ. PRICE `}</p>
+              {!msg.pnl ? (
+                <span className="text-left text-[12px] text-gray-300">-</span>
+              ) : (
+                <span
+                  className={cx(" text-left text-[12px]", {
+                    negative: msg.pnlState === "error",
+                    positive: msg.pnlState === "success",
+                  })}
+                >
+                  {msg.pnl}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <>
+      <tr
+        className={cx("TradeHistoryRow", {
+          debug: showDebugValues,
+        })}
+      >
+        <td>
+          <div className="flex items-center">
+            {msg.swapFromTokenSymbol ? (
+              msg.action.includes("Request") ? (
+                <img src="/images/short-requested.png" width={40} />
+              ) : (
+                <img src="/images/swap-executed.png" width={40} />
+              )
+            ) : msg.isLong ? (
+              msg.action.includes("Request") ? (
+                <img src="/images/long-requested.png" width={40} />
+              ) : (
+                <img src="/images/long-executed.png" width={40} />
+              )
+            ) : msg.action.includes("Request") ? (
+              <img src="/images/short-requested.png" width={40} />
+            ) : (
+              <img src="/images/short-executed.png" width={40} />
+            )}
+            {/* {msg.actionComment ? (
+              <TooltipWithPortal
+                className={cx("TradeHistoryRow-action-handle")}
+                handleClassName={cx("TradeHistoryRow-action-handle", {
+                  "text-red-500 !decoration-red-500/50": msg.isActionError,
+                })}
+                handle={msg.action}
+                renderContent={renderActionTooltipContent}
+              />
+            ) : ( */}
+            <div className="ml-[8px] flex flex-col justify-center">
+              <div className="mb-[4px] flex items-center">
+                <span
+                  className={cx("TradeHistoryRow-action-handle text-[14px] font-[500]", {
+                    negative: msg.isActionError,
+                  })}
+                >
+                  {msg.swapFromTokenSymbol ? t`Swap` : msg.isLong ? t`Long` : t`Short`}
+                </span>
+                <span className="ml-[8px] rounded-[12px] bg-[#242429] px-[12px] py-[4px] text-[12px] text-[#D3D3D4]">
+                  {msg.action.includes("Request") ? "Request" : "Executed"}
+                </span>
+              </div>
+              <span className="text-left text-[12px] font-[500] text-white opacity-40">{msg.timestamp}</span>
+            </div>
+            {/* )} */}
+            {/* <ExternalLink
+              className="TradeHistoryRow-external-link ml-5"
+              href={`${getExplorerUrl(chainId)}tx/${tradeAction.transaction.hash}`}
+            >
+              <NewLink20ReactComponent />
+            </ExternalLink> */}
+          </div>
+          {/* <TooltipWithPortal
             disableHandleStyle
             handle={<span className="TradeHistoryRow-time muted cursor-help">{msg.timestamp}</span>}
             tooltipClassName="TradeHistoryRow-tooltip-portal cursor-help *:cursor-auto"
@@ -225,42 +371,52 @@ export function TradeHistoryRow({ minCollateralUsd, tradeAction, shouldDisplayAc
             >
               {tradeAction.account}
             </Link>
-          )}
+          )} */}
         </td>
         <td>
-          <TooltipWithPortal
+          {/* <TooltipWithPortal
             disableHandleStyle
             tooltipClassName="cursor-help *:cursor-auto"
             handle={marketTooltipHandle}
             renderContent={renderMarketContent}
-          />
+          /> */}
+          {marketTooltipHandle}
         </td>
-        <td>
+        <td className="whitesppace-nowrap text-[12px] font-[500] text-white">
           {msg.swapFromTokenSymbol ? (
-            <Trans>
-              {msg.swapFromTokenAmount} <TokenIcon symbol={msg.swapFromTokenSymbol!} displaySize={18} importSize={24} />
-              <span> to </span>
-              {msg.swapToTokenAmount} <TokenIcon symbol={msg.swapToTokenSymbol!} displaySize={18} importSize={24} />
-            </Trans>
+            <div className="flex items-center">
+              <Trans>
+                <TokenIcon className="mr-4" symbol={msg.swapFromTokenSymbol!} displaySize={18} importSize={24} />
+                <span className="text-[12px] font-[500] text-white opacity-60">
+                  {msg.swapFromTokenAmount} {msg.swapFromTokenSymbol!}
+                </span>
+                <img src="/images/arrow-narrow-right.svg" />
+                <TokenIcon className="mr-4" symbol={msg.swapToTokenSymbol!} displaySize={18} importSize={24} />
+                <span className="text-[12px] font-[500] text-white opacity-60">
+                  {msg.swapToTokenAmount} {msg.swapToTokenSymbol}
+                </span>
+              </Trans>
+            </div>
           ) : (
-            msg.size
+            <span className="text-[12px] font-[500] text-white opacity-60">{msg.size}</span>
           )}
         </td>
-        <td>
-          <TooltipWithPortal
+        <td className="text-[12px] font-[500] text-white opacity-60">
+          {/* <TooltipWithPortal
             tooltipClassName="TradeHistoryRow-price-tooltip-portal"
             handle={msg.price}
             position="bottom-end"
             renderContent={renderPriceContent}
             maxAllowedWidth={PRICE_TOOLTIP_WIDTH}
-          />
+          /> */}
+          {msg.price}
         </td>
-        <td className="TradeHistoryRow-pnl-fees">
+        <td className="TradeHistoryRow-pnl-fees text-left">
           {!msg.pnl ? (
-            <span className="text-gray-300">-</span>
+            <span className="text-left text-gray-300">-</span>
           ) : (
             <span
-              className={cx({
+              className={cx(" text-left", {
                 "text-red-500": msg.pnlState === "error",
                 "text-green-500": msg.pnlState === "success",
               })}

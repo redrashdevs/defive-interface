@@ -25,9 +25,9 @@ export type GmSwapBoxProps = {
 };
 
 const OPERATION_LABELS = {
-  [Operation.Deposit]: msg`Buy GM`,
-  [Operation.Withdrawal]: msg`Sell GM`,
-  [Operation.Shift]: msg`Shift GM`,
+  [Operation.Deposit]: msg`Buy`,
+  [Operation.Withdrawal]: msg`Sell`,
+  [Operation.Shift]: msg`Shift`,
 };
 
 const MODE_LABELS = {

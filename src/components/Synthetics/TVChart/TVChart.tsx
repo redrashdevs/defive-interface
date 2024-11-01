@@ -175,7 +175,7 @@ export function TVChart() {
   return (
     <div className="ExchangeChart tv">
       <TVChartHeader isMobile={isMobile} />
-      <div className="ExchangeChart-bottom App-box App-box-border">
+      <div className="ExchangeChart-bottom bg-[#121214] rounded-[12px] ">
         {chartToken && (
           <TVChartContainer
             chartLines={chartLines}

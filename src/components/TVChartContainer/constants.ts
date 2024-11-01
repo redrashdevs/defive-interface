@@ -72,7 +72,7 @@ export const defaultChartProps = {
   enabled_features: enabledFeatures,
   disabled_features: disabledFeatures,
   custom_css_url: "/tradingview-chart.css",
-  loading_screen: { backgroundColor: "#16182e", foregroundColor: "#2962ff" },
+  loading_screen: { backgroundColor: "#121214", foregroundColor: "#f" },
   favorites: {},
   custom_formatters: {
     timeFormatter: {

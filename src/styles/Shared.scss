@@ -35,27 +35,29 @@ code {
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: "Relative", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   letter-spacing: 0;
 }
 
 input {
-  font-family: "RelativeNumber";
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 ::-webkit-scrollbar {
+  margin-right: 10px;
   width: 0.6rem;
   height: 0.6rem;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(--color-slate-800);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 1.5rem;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--color-slate-100);
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 1.5rem;
 }
 
@@ -79,6 +81,8 @@ input {
   --avax-red: #e84143;
   --arbitrum-blue: #28a0f0;
   --border-radius-sm: 0.4rem; // 4px
+  --border-radius-md: 0.6rem; // 6px
+  --border-radius-lg: 0.8rem; // 8px
   --error-red: var(--color-red-500);
   --error-red-hover: var(--color-red-400);
   --green: var(--color-green-500);
@@ -91,6 +95,8 @@ input {
   --default-container-max-width: 104.8rem;
   --default-container-padding: 3.2rem;
   --default-container-padding-mobile: 1.6rem;
+
+  --height-10: 2.5rem;
 }
 
 a {

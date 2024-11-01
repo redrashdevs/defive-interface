@@ -1,5 +1,5 @@
 .BuyGMXGLP {
-  background: var(--color-slate-900);
+  background: #000 !important;
   justify-content: space-between;
 }
 
@@ -10,4 +10,45 @@
 
 .BuyGMXGLP-container .section-title-content {
   justify-content: flex-start;
+}
+
+.buy-tabs-wrappper {
+  margin-top: -16px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.tab-btn {
+  height: 32px;
+  padding: 6px 12px;
+  background: transparent;
+  color: #67677A;
+  border-radius: 16px;
+  font-size: 14px;
+}
+
+.tab-btn.active {
+  background: #36363D;
+  color: #FFFFFF;
+}
+
+.section-header {
+  font-size: 14;
+  font-weight: 700;
+  color: #fff;
+}
+.external-links-wrapper {
+  flex-wrap: wrap;
+  flex: 0 0 0.33333%;
+}
+
+.external-link {
+  background: #121214;
+  border-radius: 12px;
+  display: flex;
+  padding: 16px;
+}
+.external-link > p {
 }

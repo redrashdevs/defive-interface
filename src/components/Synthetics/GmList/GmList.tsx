@@ -27,7 +27,7 @@ import {
 import { useDaysConsideredInMarketsApr } from "domain/synthetics/markets/useDaysConsideredInMarketsApr";
 import { useUserEarnings } from "domain/synthetics/markets/useUserEarnings";
 import { TokenData, TokensData, convertToUsd, getTokenData } from "domain/synthetics/tokens";
-import { formatTokenAmount, formatTokenAmountWithUsd, formatUsd, formatUsdPrice } from "lib/numbers";
+import { formatAmount, formatTokenAmount, formatTokenAmountWithUsd, formatUsd, formatUsdPrice } from "lib/numbers";
 import { getByKey } from "lib/objects";
 import { sortGmTokensByField } from "./sortGmTokensByField";
 import { sortGmTokensDefault } from "./sortGmTokensDefault";
@@ -45,6 +45,8 @@ import TokenIcon from "components/TokenIcon/TokenIcon";
 import TooltipWithPortal from "components/Tooltip/TooltipWithPortal";
 import GmAssetDropdown from "../GmAssetDropdown/GmAssetDropdown";
 import { ExchangeTd, ExchangeTh, ExchangeTheadTr, ExchangeTr } from "../OrderList/ExchangeTable";
+import { SELECTOR_BASE_MOBILE_THRESHOLD } from "../SelectorBase/SelectorBase";
+import { useMedia } from "react-use";
 
 type Props = {
   marketsTokensApyData: MarketTokensAPRData | undefined;
@@ -80,6 +82,8 @@ export function GmList({
     [shiftAvailableMarkets]
   );
 
+  const isMobile = useMedia(`(max-width: ${SELECTOR_BASE_MOBILE_THRESHOLD}px)`);
+
   const isLoading = !marketsInfoData || !marketTokensData;
 
   const filteredGmTokens = useFilterSortGmPools({
@@ -110,86 +114,122 @@ export function GmList({
   }, []);
 
   return (
-    <div
-      className="rounded-4 bg-slate-800
-                   max-[1164px]:!-mr-[--default-container-padding] max-[1164px]:!rounded-r-0
-                   max-[600px]:!-mr-[--default-container-padding-mobile]"
-    >
-      <div className="flex items-center px-14 py-10">
-        <span className="text-16">
-          <Trans>GM Pools</Trans>
-        </span>
-        <img src={currentIcons.network} width="16" className="ml-5 mr-10" alt="Network Icon" />
+    <div>
+      <div className="flex">
         <SearchInput
           size="s"
           value={searchText}
           setValue={handleSearch}
-          className="*:!text-16"
+          className="*:!text-16  md:w-[400px]"
           placeholder="Search Market"
           onKeyDown={noop}
           autoFocus={false}
         />
       </div>
-      <div className="h-1 bg-slate-700"></div>
-      <div className="overflow-x-auto">
-        <table className="w-[max(100%,1100px)]">
-          <thead>
-            <ExchangeTheadTr bordered={false}>
-              <ExchangeTh>
-                <Trans>MARKET</Trans>
-              </ExchangeTh>
-              <ExchangeTh>
-                <Sorter {...getSorterProps("price")}>
-                  <Trans>PRICE</Trans>
-                </Sorter>
-              </ExchangeTh>
-              <ExchangeTh>
-                <Sorter {...getSorterProps("totalSupply")}>
-                  <Trans>TOTAL SUPPLY</Trans>
-                </Sorter>
-              </ExchangeTh>
-              <ExchangeTh>
-                <Sorter {...getSorterProps("buyable")}>
-                  <TooltipWithPortal
-                    handle={<Trans>BUYABLE</Trans>}
-                    className="normal-case"
-                    position="bottom-end"
-                    renderContent={() => (
-                      <p className="text-white">
-                        <Trans>Available amount to deposit into the specific GM pool.</Trans>
-                      </p>
-                    )}
-                  />
-                </Sorter>
-              </ExchangeTh>
-              <ExchangeTh>
-                <Sorter {...getSorterProps("wallet")}>
-                  <GmTokensTotalBalanceInfo
-                    balance={userTotalGmInfo?.balance}
-                    balanceUsd={userTotalGmInfo?.balanceUsd}
-                    userEarnings={userEarnings}
-                    label={t`WALLET`}
-                  />
-                </Sorter>
-              </ExchangeTh>
-              <ExchangeTh>
-                <Sorter {...getSorterProps("apy")}>
-                  <TooltipWithPortal
-                    handle={t`APY`}
-                    className="normal-case"
-                    position="bottom-end"
-                    renderContent={ApyTooltipContent}
-                  />
-                </Sorter>
-              </ExchangeTh>
+      <div
+        className="rounded-4 bg-black
+                    max-[1164px]:!-mr-[--default-container-padding] max-[1164px]:!rounded-r-0
+                    max-[600px]:!-mr-[--default-container-padding-mobile]"
+      >
+        {!isMobile ? (
+          <div className="overflow-x-auto">
+            <table className="w-[max(100%,1100px)]">
+              <thead>
+                <ExchangeTheadTr bordered={false}>
+                  <ExchangeTh>
+                    <Trans>POOL</Trans>
+                  </ExchangeTh>
+                  <ExchangeTh>
+                    <Sorter {...getSorterProps("price")}>
+                      <Trans>PRICE</Trans>
+                    </Sorter>
+                  </ExchangeTh>
+                  <ExchangeTh>
+                    <Sorter {...getSorterProps("totalSupply")}>
+                      <Trans>TOTAL SUPPLY</Trans>
+                    </Sorter>
+                  </ExchangeTh>
+                  <ExchangeTh>
+                    <Sorter {...getSorterProps("buyable")}>
+                      <TooltipWithPortal
+                        handle={<Trans>TRADING VOLUME</Trans>}
+                        className="normal-case"
+                        position="bottom-end"
+                        renderContent={() => (
+                          <p className="text-white">
+                            <Trans>Available amount to deposit into the specific GM pool.</Trans>
+                          </p>
+                        )}
+                      />
+                    </Sorter>
+                  </ExchangeTh>
+                  {/* <ExchangeTh>
+                    <Sorter {...getSorterProps("wallet")}>
+                      <GmTokensTotalBalanceInfo
+                        balance={userTotalGmInfo?.balance}
+                        balanceUsd={userTotalGmInfo?.balanceUsd}
+                        userEarnings={userEarnings}
+                        label={t`WALLET`}
+                      />
+                    </Sorter>
+                  </ExchangeTh> */}
+                  <ExchangeTh>
+                    <Sorter {...getSorterProps("apy")}>
+                      <TooltipWithPortal
+                        handle={t`APR`}
+                        className="normal-case"
+                        position="bottom-end"
+                        renderContent={ApyTooltipContent}
+                      />
+                    </Sorter>
+                  </ExchangeTh>
+                  <ExchangeTh style={{ textAlign: "left", color: "rgba(255, 255, 255, 0.24)" }}>
+                    {/* <Sorter {...getSorterProps("apy")}> */}
+                    {/* <TooltipWithPortal
+                        handle={t`APR`}
+                        className="normal-case"
+                        position="bottom-end"
+                        renderContent={ApyTooltipContent}
+                      /> */}
+                    <Trans>ROI</Trans>
+                    {/* </Sorter> */}
+                  </ExchangeTh>
 
-              <ExchangeTh />
-            </ExchangeTheadTr>
-          </thead>
-          <tbody>
+                  {/* <ExchangeTh /> */}
+                </ExchangeTheadTr>
+              </thead>
+              <tbody>
+                {currentData.length > 0 &&
+                  currentData.map((token) => (
+                    <GmListItem
+                      key={token.address}
+                      token={token}
+                      marketsTokensApyData={marketsTokensApyData}
+                      marketsTokensIncentiveAprData={marketsTokensIncentiveAprData}
+                      marketsTokensLidoAprData={marketsTokensLidoAprData}
+                      shouldScrollToTop={shouldScrollToTop}
+                      isShiftAvailable={shiftAvailableMarketAddressSet.has(token.address)}
+                    />
+                  ))}
+                {/* {!currentData.length && !isLoading && (
+                  <ExchangeTr hoverable={false} bordered={false}>
+                    <ExchangeTd colSpan={7}>
+                      <div className="text-center text-gray-400">
+                        <Trans>No GM pools found.</Trans>
+                      </div>
+                    </ExchangeTd>
+                  </ExchangeTr>
+                )} */}
+                {isLoading && <GMListSkeleton />}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div>
             {currentData.length > 0 &&
               currentData.map((token) => (
                 <GmListItem
+                  isMobile
                   key={token.address}
                   token={token}
                   marketsTokensApyData={marketsTokensApyData}
@@ -199,27 +239,17 @@ export function GmList({
                   isShiftAvailable={shiftAvailableMarketAddressSet.has(token.address)}
                 />
               ))}
-            {!currentData.length && !isLoading && (
-              <ExchangeTr hoverable={false} bordered={false}>
-                <ExchangeTd colSpan={7}>
-                  <div className="text-center text-gray-400">
-                    <Trans>No GM pools found.</Trans>
-                  </div>
-                </ExchangeTd>
-              </ExchangeTr>
-            )}
-            {isLoading && <GMListSkeleton />}
-          </tbody>
-        </table>
-      </div>
-      {pageCount > 1 && (
-        <>
-          <div className="h-1 bg-slate-700"></div>
-          <div className="py-10">
-            <Pagination topMargin={false} page={currentPage} pageCount={pageCount} onPageChange={setCurrentPage} />
           </div>
-        </>
-      )}
+        )}
+        {pageCount > 1 && (
+          <>
+            <div className="h-1 bg-slate-700"></div>
+            <div className="py-10">
+              <Pagination topMargin={false} page={currentPage} pageCount={pageCount} onPageChange={setCurrentPage} />
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
@@ -329,6 +359,7 @@ function useFilterSortGmPools({
 }
 
 function GmListItem({
+  isMobile,
   token,
   marketsTokensApyData,
   marketsTokensIncentiveAprData,
@@ -342,6 +373,7 @@ function GmListItem({
   marketsTokensLidoAprData: MarketTokensAPRData | undefined;
   shouldScrollToTop: boolean | undefined;
   isShiftAvailable: boolean;
+  isMobile?: boolean;
 }) {
   const chainId = useSelector(selectChainId);
   const marketsInfoData = useMarketsInfoData();
@@ -371,9 +403,79 @@ function GmListItem({
   const tokenIconName = market.isSpotOnly
     ? getNormalizedTokenSymbol(longToken.symbol) + getNormalizedTokenSymbol(shortToken.symbol)
     : getNormalizedTokenSymbol(indexToken.symbol);
-
+  console.log(market);
+  const getTotalApr = () => {
+    let totalApr = (incentiveApr ?? 0n) + (lidoApr ?? 0n);
+    totalApr += apy ?? 0n;
+    return totalApr;
+  };
+  if (isMobile)
+    return (
+      <div
+        className="flex h-[128px] items-center justify-between py-18 pr-18"
+        style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.12)" }}
+      >
+        <div className="h-full flex flex-col justify-between">
+          <TokenIcon symbol={tokenIconName} displaySize={40} importSize={40} className="min-h-40 min-w-40" />
+          <div>
+            <div className="flex text-16">
+              {getMarketIndexName({ indexToken, isSpotOnly: market?.isSpotOnly }).split("/")[0]}
+              <span className="mx-3">/</span>
+              <span style={{ color: "rgba(255, 255, 255, 0.32)" }}>
+                {getMarketIndexName({ indexToken, isSpotOnly: market?.isSpotOnly }).split("/")[1]}
+              </span>
+            </div>
+            <div className="mt-2 text-12 tracking-normal text-[#9696A3]">
+              Pay with{" "}
+              <div className="item-center relative inline-flex w-[26px]">
+                <TokenIcon
+                  symbol={getNormalizedTokenSymbol(longToken.symbol)}
+                  displaySize={15}
+                  importSize={40}
+                  className="absolute -top-12 left-2 min-h-[15px] min-w-[15px]"
+                />
+                <TokenIcon
+                  symbol={getNormalizedTokenSymbol(shortToken.symbol)}
+                  displaySize={15}
+                  importSize={40}
+                  className="absolute -top-12 left-9 min-h-[15px] min-w-[15px]"
+                />
+              </div>
+              <span className="text-white">{getMarketPoolName({ longToken, shortToken })}</span>
+            </div>
+          </div>
+        </div>
+        <div className="flex h-full flex-col justify-between text-right">
+          <p className="mt-[14px]" style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 18, fontWeight: 700 }}>
+            {formatUsdPrice(token.prices?.minPrice)}
+          </p>
+          <div className="text-[14x]">
+            <AprInfo
+              showTooltip={false}
+              apy={apy}
+              incentiveApr={incentiveApr}
+              lidoApr={lidoApr}
+              tokenAddress={token.address}
+            />
+            <p style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 14 }}>
+              <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>TVL </span>
+              {formatUsd(totalSupplyUsd)}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
   return (
-    <ExchangeTr key={token.address} hoverable={false} bordered={false}>
+    <ExchangeTr
+      onClick={() =>
+        // @ts-ignore
+        (window.location = `#/pools/?market=${market.marketTokenAddress}&operation=buy&scroll=${shouldScrollToTop ? "1" : "0"}/pools/?market=${market.marketTokenAddress}&operation=buy&scroll=${shouldScrollToTop ? "1" : "0"}`)
+      }
+      className="pointer"
+      key={token.address}
+      hoverable
+      bordered={false}
+    >
       <ExchangeTd>
         <div className="flex">
           <div className="mr-8 flex shrink-0 items-center">
@@ -381,29 +483,45 @@ function GmListItem({
           </div>
           <div>
             <div className="flex text-16">
-              {getMarketIndexName({ indexToken, isSpotOnly: market?.isSpotOnly })}
-
-              <div className="inline-block">
+              {getMarketIndexName({ indexToken, isSpotOnly: market?.isSpotOnly }).split("/")[0]}
+              <span className="mx-3">/</span>
+              <span style={{ color: "rgba(255, 255, 255, 0.32)" }}>
+                {getMarketIndexName({ indexToken, isSpotOnly: market?.isSpotOnly }).split("/")[1]}
+              </span>
+              {/* <div className="inline-block">
                 <GmAssetDropdown token={token} marketsInfoData={marketsInfoData} tokensData={tokensData} />
-              </div>
+              </div> */}
             </div>
-            <div className="text-12 tracking-normal text-gray-400">
-              [{getMarketPoolName({ longToken, shortToken })}]
+            <div className="mt-4 text-12 tracking-normal text-[#9696A3]">
+              Pay with{" "}
+              <div className="item-center relative inline-flex w-[26px]">
+                <TokenIcon
+                  symbol={getNormalizedTokenSymbol(longToken.symbol)}
+                  displaySize={15}
+                  importSize={40}
+                  className="absolute -top-12 left-2 min-h-[15px] min-w-[15px]"
+                />
+                <TokenIcon
+                  symbol={getNormalizedTokenSymbol(shortToken.symbol)}
+                  displaySize={15}
+                  importSize={40}
+                  className="absolute -top-12 left-9 min-h-[15px] min-w-[15px]"
+                />
+              </div>
+              <span className="text-white">{getMarketPoolName({ longToken, shortToken })}</span>
             </div>
           </div>
         </div>
-        {showDebugValues && <span style={tokenAddressStyle}>{market.marketTokenAddress}</span>}
+        {/* {showDebugValues && <span style={tokenAddressStyle}>{market.marketTokenAddress}</span>} */}
       </ExchangeTd>
-      <ExchangeTd>{formatUsdPrice(token.prices?.minPrice)}</ExchangeTd>
+      <ExchangeTd style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 14 }}>
+        {formatUsdPrice(token.prices?.minPrice)}
+      </ExchangeTd>
 
-      <ExchangeTd>
-        {formatTokenAmount(totalSupply, token.decimals, "GM", {
-          useCommas: true,
-          displayDecimals: 2,
-        })}
-        <br />({formatUsd(totalSupplyUsd)})
+      <ExchangeTd style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 14 }}>
+        {/*  <br /> */}({formatUsd(totalSupplyUsd)})
       </ExchangeTd>
-      <ExchangeTd>
+      <ExchangeTd style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 14 }}>
         <MintableAmount
           mintableInfo={mintableInfo}
           market={market}
@@ -413,7 +531,7 @@ function GmListItem({
         />
       </ExchangeTd>
 
-      <ExchangeTd>
+      {/* <ExchangeTd>
         <GmTokensBalanceInfo
           token={token}
           daysConsidered={daysConsidered}
@@ -421,30 +539,36 @@ function GmListItem({
           earnedRecently={marketEarnings?.recent}
           earnedTotal={marketEarnings?.total}
         />
+      </ExchangeTd> */}
+
+      <ExchangeTd>
+        <AprInfo
+          showTooltip={false}
+          apy={apy}
+          incentiveApr={incentiveApr}
+          lidoApr={lidoApr}
+          tokenAddress={token.address}
+        />
       </ExchangeTd>
 
       <ExchangeTd>
-        <AprInfo apy={apy} incentiveApr={incentiveApr} lidoApr={lidoApr} tokenAddress={token.address} />
-      </ExchangeTd>
-
-      <ExchangeTd className="w-[350px]">
         <div className="grid grid-cols-3 gap-10">
-          <Button
+          {/* <Button
             className="flex-grow"
             variant="secondary"
             to={`/pools/?market=${market.marketTokenAddress}&operation=buy&scroll=${shouldScrollToTop ? "1" : "0"}`}
           >
             <Trans>Buy</Trans>
-          </Button>
-          <Button
+          </Button> */}
+          {/* <Button
             className="flex-grow"
             variant="secondary"
             to={`/pools/?market=${market.marketTokenAddress}&operation=sell&scroll=${shouldScrollToTop ? "1" : "0"}`}
           >
             <Trans>Sell</Trans>
-          </Button>
+          </Button> */}
 
-          <TooltipWithPortal
+          {/* <TooltipWithPortal
             disabled={isShiftAvailable}
             content={t`Shift is only applicable to GM pools when there are other pools with the same backing tokens, allowing liquidity to be moved without incurring buy or sell fees.`}
             disableHandleStyle
@@ -461,7 +585,17 @@ function GmListItem({
             >
               <Trans>Shift</Trans>
             </Button>
-          </TooltipWithPortal>
+          </TooltipWithPortal> */}
+        </div>
+        <div className="flex-start flex items-center">
+          <p style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 14 }}>$1,000</p>
+          <img src="/images/chevrons-right.svg" />
+          <div
+            className="positive inline-flex flex-nowrap rounded-[20px] px-8 text-[14px]"
+            style={{ background: "rgba(51, 172, 66, 0.16)" }}
+          >
+            {apy !== undefined ? `+$${(1000 * Number(formatAmount(getTotalApr(), 28, 2))) / 100}/Y` : "..."}
+          </div>
         </div>
       </ExchangeTd>
     </ExchangeTr>
@@ -520,41 +654,46 @@ function MintableAmount({
   );
 
   return (
-    <TooltipWithPortal
-      maxAllowedWidth={350}
-      handle={
-        <>
-          {formatTokenAmount(mintableInfo?.mintableAmount, token.decimals, "GM", {
-            useCommas: true,
-            displayDecimals: 0,
-          })}
-          <br />(
-          {formatUsd(mintableInfo?.mintableUsd, {
-            displayDecimals: 0,
-          })}
-          )
-        </>
-      }
-      className="normal-case"
-      position="bottom-end"
-      renderContent={() => (
-        <>
-          <p className="text-white">
-            {market?.isSameCollaterals ? (
-              <Trans>{longToken.symbol} can be used to buy GM for this market up to the specified buying caps.</Trans>
-            ) : (
-              <Trans>
-                {longToken.symbol} and {shortToken.symbol} can be used to buy GM for this market up to the specified
-                buying caps.
-              </Trans>
-            )}
-          </p>
-          <br />
-          <StatsTooltipRow label={`Max ${longToken.symbol}`} value={longTokenMaxValue} />
-          <StatsTooltipRow label={`Max ${shortToken.symbol}`} value={shortTokenMaxValue} />
-        </>
-      )}
-    />
+    // <TooltipWithPortal
+    //   maxAllowedWidth={350}
+    //   handle={
+    //     <>
+    //       {formatTokenAmount(mintableInfo?.mintableAmount, token.decimals, "GM", {
+    //         useCommas: true,
+    //         displayDecimals: 0,
+    //       })}
+    //       <br />(
+    //       {formatUsd(mintableInfo?.mintableUsd, {
+    //         displayDecimals: 0,
+    //       })}
+    //       )
+    //     </>
+    //   }
+    //   className="normal-case"
+    //   position="bottom-end"
+    //   renderContent={() => (
+    //     <>
+    //       <p className="text-white">
+    //         {market?.isSameCollaterals ? (
+    //           <Trans>{longToken.symbol} can be used to buy GM for this market up to the specified buying caps.</Trans>
+    //         ) : (
+    //           <Trans>
+    //             {longToken.symbol} and {shortToken.symbol} can be used to buy GM for this market up to the specified
+    //             buying caps.
+    //           </Trans>
+    //         )}
+    //       </p>
+    //       <br />
+    //       <StatsTooltipRow label={`Max ${longToken.symbol}`} value={longTokenMaxValue} />
+    //       <StatsTooltipRow label={`Max ${shortToken.symbol}`} value={shortTokenMaxValue} />
+    //     </>
+    //   )}
+    // />
+    <span>
+      {formatUsd(mintableInfo?.mintableUsd, {
+        displayDecimals: 0,
+      })}
+    </span>
   );
 }
 

@@ -16,10 +16,10 @@ export function NotifyModal() {
   const { notifyModalOpen, setNotifyModalOpen } = useNotifyModalState();
 
   return (
-    <Modal isVisible={notifyModalOpen} setIsVisible={setNotifyModalOpen} label={t`GMX Alerts`}>
+    <Modal isVisible={notifyModalOpen} setIsVisible={setNotifyModalOpen} label={t`DeFive Alerts`}>
       <div className="NotifyModal">
         <Trans>
-          Get alerts and announcements from GMX to stay on top of your trades, liquidation risk, and&nbsp;more.
+          Get alerts and announcements from DeFive to stay on top of your trades, liquidation risk, and&nbsp;more.
         </Trans>
         <NotifyBulletList />
         <Button
@@ -29,7 +29,7 @@ export function NotifyModal() {
           className="NotifyModal-button w-full"
           type="submit"
         >
-          <Trans>Discover GMX Alerts</Trans>
+          <Trans>Discover DeFive Alerts</Trans>
           <ExternalLinkIcon />
         </Button>
         <div className="NotifyModal-terms">

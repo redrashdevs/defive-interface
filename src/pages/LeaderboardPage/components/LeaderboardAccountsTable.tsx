@@ -8,7 +8,7 @@ import { useDebounce } from "lib/useDebounce";
 import { ReactNode, memo, useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
 
 import SearchInput from "components/SearchInput/SearchInput";
-import { TopAccountsSkeleton } from "components/Skeleton/Skeleton";
+import { TopAccountsMobileSkeleton, TopAccountsSkeleton } from "components/Skeleton/Skeleton";
 import { TooltipPosition } from "components/Tooltip/Tooltip";
 import TooltipWithPortal from "components/Tooltip/TooltipWithPortal";
 import {
@@ -22,6 +22,12 @@ import { MIN_COLLATERAL_USD_IN_LEADERBOARD } from "domain/synthetics/leaderboard
 import { USD_DECIMALS } from "config/factors";
 import { useLocalStorageSerializeKey } from "lib/localStorage";
 import { bigMath } from "lib/bigmath";
+import { useMedia } from "react-use";
+import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
+import { Link } from "react-router-dom";
+import { buildAccountDashboardUrl } from "@/pages/AccountDashboard/AccountDashboard";
+import { Address } from "viem";
+import { shortenAddress } from "@/lib/legacy";
 
 function getRowClassname(rank: number | null, competition: CompetitionType | undefined, pinned: boolean) {
   if (pinned) return cx("LeaderboardRankRow-Pinned", "Table_tr");
@@ -40,6 +46,7 @@ function getWinnerRankClassname(rank: number | null, competition: CompetitionTyp
 type LeaderboardAccountField = keyof LeaderboardAccount;
 
 export function LeaderboardAccountsTable({
+  search,
   accounts,
   activeCompetition,
   sortingEnabled = true,
@@ -47,6 +54,7 @@ export function LeaderboardAccountsTable({
   accounts: RemoteData<LeaderboardAccount>;
   activeCompetition: CompetitionType | undefined;
   sortingEnabled?: boolean;
+  search?: string;
 }) {
   const currentAccount = useLeaderboardCurrentAccount();
   const perPage = 20;
@@ -69,6 +77,7 @@ export function LeaderboardAccountsTable({
     [orderBy]
   );
   const isCompetitions = Boolean(activeCompetition);
+  const isMobile = useMedia("(max-width: 400px)");
 
   useLayoutEffect(() => {
     if (!isCompetitions) return;
@@ -83,9 +92,9 @@ export function LeaderboardAccountsTable({
     }
   }, [activeCompetition, isCompetitions]);
 
-  const [search, setSearch] = useState("");
-  const setValue = useCallback((e) => setSearch(e.target.value), []);
-  const handleKeyDown = useCallback(() => null, []);
+  // const [search, setSearch] = useState("");
+  // const setValue = useCallback((e) => setSearch(e.target.value), []);
+  // const handleKeyDown = useCallback(() => null, []);
   const ranks = useLeaderboardAccountsRanks();
   const term = useDebounce(search, 300);
 
@@ -182,9 +191,89 @@ export function LeaderboardAccountsTable({
     </>
   );
 
+  const contentMobile = isLoading ? <TopAccountsMobileSkeleton  count={perPage} /> : rowsData.length ? (
+    rowsData.map(({ account, index, rank }) => {
+      return (
+        <Link
+          target="_blank"
+          className="Leaderboard-mobile-row"
+          to={buildAccountDashboardUrl(account.account as Address, undefined, 2)}
+        >
+          <div className="left-column">
+            <div className="flex items-center">
+              <p className="rank">{rank}</p>
+              <div className="relative">
+                <Jazzicon diameter={40} seed={jsNumberForAddress(account.account)} />
+                {rank === 1 ? <img className="absolute -bottom-6 -right-6" src="/images/rank1.png" /> : null}
+                {rank === 2 ? <img className="absolute -bottom-6 -right-6" src="/images/rank2.png" /> : null}
+                {rank === 3 ? <img className="absolute -bottom-6 -right-6" src="/images/rank3.png" /> : null}
+              </div>
+            </div>
+            <p className="address">{shortenAddress(account.account.replace(/^0x/, ""), 10, 0)}</p>
+          </div>
+          <div className="right-column h-full">
+            <div>
+              <p
+                className={
+                  getSignedValueClassName(account.totalQualifyingPnl) === "neutral"
+                    ? ""
+                    : getSignedValueClassName(account.totalQualifyingPnl)
+                }
+                style={{
+                  color: account.totalQualifyingPnl === 0n ? "rgba(255, 255, 255, 0.64)" : undefined,
+                }}
+              >
+                ${formatDelta(account.totalQualifyingPnl, { signed: true }).split(".")[0]}.
+                <span
+                  style={{
+                    color:
+                      account.totalQualifyingPnl === 0n
+                        ? "rgba(255, 255, 255, 0.24)"
+                        : account.totalQualifyingPnl < 0
+                          ? "rgba(255, 48, 62, .24)"
+                          : "rgba(51, 172, 66, 0.24)",
+                  }}
+                >
+                  {formatDelta(account.totalQualifyingPnl, { signed: true }).split(".")[1]}
+                </span>
+              </p>
+              <span
+                className={getSignedValueClassName(account.pnlPercentage) + " px-6 py-1"}
+                style={{
+                  background:
+                    account.pnlPercentage === 0n
+                      ? "transparent"
+                      : account.totalQualifyingPnl < 0
+                        ? "rgba(255, 48, 62, .24)"
+                        : "rgba(51, 172, 66, 0.24)",
+                  color: account.pnlPercentage === 0n ? "rgba(255, 255, 255, 0.24)" : undefined,
+                  borderRadius: 10,
+                }}
+              >
+                {formatDelta(account.pnlPercentage, { signed: true, postfix: "%", decimals: 2 })}
+              </span>
+            </div>
+            <p className="text-14" style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+              AVG.LVG.
+              <span
+                style={{ color: "rgba(255, 255, 255, 0.64)" }}
+              >{`${formatAmount(account.averageLeverage ?? 0n, 4, 2)}x`}</span>
+            </p>
+          </div>
+        </Link>
+      );
+    })
+  ) : (
+    <div className="flex h-[300px] w-full items-center justify-center">
+      <p>
+        <Trans>No results found</Trans>
+      </p>
+    </div>
+  );
+
   return (
     <div>
-      <div className="TableBox__head">
+      {/* <div className="TableBox__head">
         <SearchInput
           placeholder={t`Search Address`}
           className="LeaderboardSearch"
@@ -193,79 +282,84 @@ export function LeaderboardAccountsTable({
           onKeyDown={handleKeyDown}
           size="s"
         />
-      </div>
-      <div className="TableBox">
-        <table className={cx("Exchange-list", "App-box", "Table")}>
-          <tbody>
-            <tr className="Exchange-list-header">
-              <TableHeaderCell
-                title={t`Rank`}
-                width={6}
-                tooltip={t`Only addresses with over ${formatUsd(MIN_COLLATERAL_USD_IN_LEADERBOARD, {
-                  displayDecimals: 0,
-                })} in "Capital Used" are ranked.`}
-                tooltipPosition="bottom-start"
-                columnName="rank"
-              />
-              <TableHeaderCell title={t`Address`} width={16} tooltipPosition="bottom-end" columnName="account" />
-              <TableHeaderCell
-                title={t`PnL ($)`}
-                width={12}
-                tooltip={t`The total realized and unrealized profit and loss for the period, including fees and price impact.`}
-                tooltipPosition="bottom-end"
-                onClick={handleColumnClick}
-                columnName="totalQualifyingPnl"
-                className={getSortableClass("totalQualifyingPnl")}
-              />
-              <TableHeaderCell
-                title={t`PnL (%)`}
-                width={10}
-                tooltip={
-                  <Trans>
-                    The PnL ($) compared to the capital used.
-                    <br />
-                    <br />
-                    The capital used is calculated as the highest value of [
-                    <i>sum of collateral of open positions - realized PnL + period start pending PnL</i>].
-                  </Trans>
-                }
-                tooltipPosition="bottom-end"
-                onClick={handleColumnClick}
-                columnName="pnlPercentage"
-                className={getSortableClass("pnlPercentage")}
-              />
-              <TableHeaderCell
-                title={t`Avg. Size`}
-                width={12}
-                tooltip={t`Average position size.`}
-                tooltipPosition="bottom-end"
-                onClick={handleColumnClick}
-                columnName="averageSize"
-                className={getSortableClass("averageSize")}
-              />
-              <TableHeaderCell
-                title={t`Avg. Lev.`}
-                width={1}
-                tooltip={t`Average leverage used.`}
-                tooltipPosition="bottom-end"
-                onClick={handleColumnClick}
-                columnName="averageLeverage"
-                className={getSortableClass("averageLeverage")}
-              />
-              <TableHeaderCell
-                title={t`Win/Loss`}
-                width={10}
-                tooltip={t`Wins and losses for fully closed positions.`}
-                tooltipPosition="bottom-end"
-                onClick={handleColumnClick}
-                columnName="wins"
-                className={cx("text-right", getSortableClass("wins"))}
-              />
-            </tr>
-            {content}
-          </tbody>
-        </table>
-      </div>
+      </div> */}
+      {!isMobile ? (
+        <div className="TableBox">
+          <table className={cx("Exchange-list", "App-box", "Table", "bg-black")} style={{ background: "#000" }}>
+            <tbody>
+              <tr className="Exchange-list-header">
+                <TableHeaderCell
+                  title={"RANK"}
+                  width={6}
+                  // tooltip={t`Only addresses with over ${formatUsd(MIN_COLLATERAL_USD_IN_LEADERBOARD, {
+                  //   displayDecimals: 0,
+                  // })} in "Capital Used" are ranked.`}
+                  // tooltipPosition="bottom-start"
+                  columnName="rank"
+                />
+                <TableHeaderCell title={t`Address`} width={16} tooltipPosition="bottom-end" columnName="account" />
+                <TableHeaderCell
+                  title={t`PnL ($)`}
+                  width={12}
+                  tooltip={t`The total realized and unrealized profit and loss for the period, including fees and price impact.`}
+                  tooltipPosition="bottom-end"
+                  onClick={handleColumnClick}
+                  columnName="totalQualifyingPnl"
+                  className={getSortableClass("totalQualifyingPnl")}
+                />
+                <TableHeaderCell
+                  title={t`PnL (%)`}
+                  width={10}
+                  tooltip={
+                    <Trans>
+                      The PnL ($) compared to the capital used.
+                      <br />
+                      <br />
+                      The capital used is calculated as the highest value of [
+                      <i>sum of collateral of open positions - realized PnL + period start pending PnL</i>].
+                    </Trans>
+                  }
+                  tooltipPosition="bottom-end"
+                  onClick={handleColumnClick}
+                  columnName="pnlPercentage"
+                  className={getSortableClass("pnlPercentage")}
+                />
+                <TableHeaderCell
+                  title={t`Avg. Size`}
+                  width={12}
+                  tooltip={t`Average position size.`}
+                  tooltipPosition="bottom-end"
+                  onClick={handleColumnClick}
+                  columnName="averageSize"
+                  className={getSortableClass("averageSize")}
+                />
+                <TableHeaderCell
+                  title={t`Avg. Lev.`}
+                  width={1}
+                  tooltip={t`Average leverage used.`}
+                  tooltipPosition="bottom-end"
+                  onClick={handleColumnClick}
+                  columnName="averageLeverage"
+                  className={getSortableClass("averageLeverage")}
+                />
+                <TableHeaderCell
+                  title={t`Win/Loss`}
+                  width={10}
+                  tooltip={t`Wins and losses for fully closed positions.`}
+                  tooltipPosition="bottom-end"
+                  onClick={handleColumnClick}
+                  columnName="wins"
+                  isRight
+                  className={cx("text-right", getSortableClass("wins"))}
+                />
+              </tr>
+              {content}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div style={{ marginLeft: -16, marginRight: -16 }}>{contentMobile}</div>
+      )}
       <div className="TableBox__footer">
         <Pagination page={page} pageCount={pageCount} onPageChange={setPage} />
       </div>
@@ -283,6 +377,7 @@ const TableHeaderCell = memo(
     tooltip,
     tooltipPosition,
     width,
+    isRight,
   }: {
     title: string;
     className?: string;
@@ -292,6 +387,7 @@ const TableHeaderCell = memo(
     columnName: string;
     width?: number | ((breakpoint?: string) => number);
     breakpoint?: string;
+    isRight?: boolean;
   }) => {
     const style =
       width !== undefined
@@ -306,16 +402,19 @@ const TableHeaderCell = memo(
 
     return (
       <th onClick={handleClick} className={cx("TableHeader", className)} style={style}>
-        {tooltip ? (
+        {/* {tooltip ? (
           <TooltipWithPortal
             handle={<span className="TableHeaderTitle">{title}</span>}
             position={tooltipPosition || "bottom"}
             className="TableHeaderTooltip"
             renderContent={renderContent}
           />
-        ) : (
-          <span className="TableHeaderTitle">{title}</span>
-        )}
+        ) : ( */}
+        <div className={cx("flex w-full items-center  whitespace-nowrap", { "justify-end": isRight })}>
+          <span className="TableHeaderMainTitle">{title}</span>
+          <span className="TableHeaderTitle"></span>
+        </div>
+        {/* )} */}
       </th>
     );
   }
@@ -351,7 +450,7 @@ const TableRow = memo(
 
     return (
       <tr className={getRowClassname(rank, activeCompetition, pinned)} key={account.account}>
-        <TableCell>
+        <TableCell className="rank">
           <span className={getWinnerRankClassname(rank, activeCompetition)}>
             <RankInfo rank={rank} hasSomeCapital={account.totalQualifyingPnl !== 0n} />
           </span>
@@ -360,7 +459,7 @@ const TableRow = memo(
           <AddressView size={20} address={account.account} breakpoint="XL" />
         </TableCell>
         <TableCell>
-          <TooltipWithPortal
+          {/* <TooltipWithPortal
             handle={
               <span className={getSignedValueClassName(account.totalQualifyingPnl)}>
                 {formatDelta(account.totalQualifyingPnl, { signed: true, prefix: "$" })}
@@ -369,10 +468,34 @@ const TableRow = memo(
             position={index > 7 ? "top" : "bottom"}
             className="whitespace-nowrap"
             renderContent={renderPnlTooltipContent}
-          />
+          /> */}
+          <span
+            className={
+              getSignedValueClassName(account.totalQualifyingPnl) === "neutral"
+                ? ""
+                : getSignedValueClassName(account.totalQualifyingPnl)
+            }
+            style={{
+              color: account.totalQualifyingPnl === 0n ? "rgba(255, 255, 255, 0.64)" : undefined,
+            }}
+          >
+            ${formatDelta(account.totalQualifyingPnl, { signed: true }).split(".")[0]}.
+            <span
+              style={{
+                color:
+                  account.totalQualifyingPnl === 0n
+                    ? "rgba(255, 255, 255, 0.24)"
+                    : account.totalQualifyingPnl < 0
+                      ? "rgba(255, 48, 62, .24)"
+                      : "rgba(51, 172, 66, 0.24)",
+              }}
+            >
+              {formatDelta(account.totalQualifyingPnl, { signed: true }).split(".")[1]}
+            </span>
+          </span>
         </TableCell>
         <TableCell>
-          <TooltipWithPortal
+          {/* <TooltipWithPortal
             handle={
               <span className={getSignedValueClassName(account.pnlPercentage)}>
                 {formatDelta(account.pnlPercentage, { signed: true, postfix: "%", decimals: 2 })}
@@ -387,15 +510,42 @@ const TableRow = memo(
                 value={<span>{formatUsd(account.maxCapital)}</span>}
               />
             )}
-          />
+          /> */}
+          <span
+            className={getSignedValueClassName(account.pnlPercentage) + " px-6 py-1"}
+            style={{
+              background:
+                account.pnlPercentage === 0n
+                  ? "transparent"
+                  : account.totalQualifyingPnl < 0
+                    ? "rgba(255, 48, 62, .24)"
+                    : "rgba(51, 172, 66, 0.24)",
+              color: account.pnlPercentage === 0n ? "rgba(255, 255, 255, 0.24)" : undefined,
+              borderRadius: 10,
+            }}
+          >
+            {formatDelta(account.pnlPercentage, { signed: true, postfix: "%", decimals: 2 })}
+          </span>
         </TableCell>
-        <TableCell>{account.averageSize ? formatUsd(account.averageSize) : "$0.00"}</TableCell>
-        <TableCell>{`${formatAmount(account.averageLeverage ?? 0n, 4, 2)}x`}</TableCell>
+        <TableCell>
+          <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+            {account.averageSize ? formatUsd(account.averageSize)?.split(".")[0] : "$0"}.
+          </span>
+          <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+            {account.averageSize ? formatUsd(account.averageSize)?.split(".")[1] : "00"}
+          </span>
+        </TableCell>
+        <TableCell>
+          <span
+            style={{ color: "rgba(255, 255, 255, 0.64)" }}
+          >{`${formatAmount(account.averageLeverage ?? 0n, 4, 2)}x`}</span>
+        </TableCell>
         <TableCell className="text-right">
-          <TooltipWithPortal
+          {/* <TooltipWithPortal
             handle={`${account.wins}/${account.losses}`}
             renderContent={renderWinsLossesTooltipContent}
-          />
+          /> */}
+          <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>{`${account.wins}/${account.losses}`}</span>
         </TableCell>
       </tr>
     );
@@ -432,8 +582,7 @@ const RankInfo = memo(({ rank, hasSomeCapital }: { rank: number | null; hasSomeC
   }, [hasSomeCapital, isCompetition, rank]);
   const tooltipContent = useCallback(() => message, [message]);
 
-  if (rank === null)
-    return <TooltipWithPortal handleClassName="text-red-500" handle={t`NA`} renderContent={tooltipContent} />;
+  if (rank === null) return <p>{t`NA`}</p>;
 
   return <span>{rank}</span>;
 });
@@ -564,5 +713,5 @@ function formatDelta(
 }
 
 function getSignedValueClassName(num: bigint) {
-  return num === 0n ? "" : num < 0 ? "negative" : "positive";
+  return num === 0n ? "neutral" : num < 0 ? "negative" : "positive";
 }

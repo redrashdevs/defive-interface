@@ -163,8 +163,8 @@ const tradeTypeLabels = {
 export function TradeBox(p: Props) {
   const localizedTradeModeLabels = useLocalizedMap(tradeModeLabels);
   const localizedTradeTypeLabels = useLocalizedMap(tradeTypeLabels);
-
   const avaialbleTokenOptions = useSelector(selectTradeboxAvailableTokensOptions);
+  console.log(avaialbleTokenOptions, "here");
   const formRef = useRef<HTMLFormElement>(null);
   const isCursorInside = useCursorInside(formRef);
 
@@ -881,7 +881,7 @@ export function TradeBox(p: Props) {
               ? formatUsd(isIncrease ? increaseAmounts?.initialCollateralUsd : fromUsd)
               : ""
           }
-          topRightLabel={t`Balance`}
+          topRightLabel={<img src="/images/wallet-lightgray.svg" width={20} />}
           topRightValue={formatTokenAmount(fromToken?.balance, fromToken?.decimals, "", {
             useCommas: true,
           })}
@@ -909,7 +909,7 @@ export function TradeBox(p: Props) {
           )}
         </BuyInputSection>
 
-        <div className="Exchange-swap-ball-container">
+        {/* <div className="Exchange-swap-ball-container">
           <button
             type="button"
             disabled={!isSwitchTokensAllowed}
@@ -919,19 +919,18 @@ export function TradeBox(p: Props) {
           >
             <IoMdSwap className="Exchange-swap-ball-icon" />
           </button>
-        </div>
+        </div> */}
 
         {isSwap && (
           <BuyInputSection
             topLeftLabel={t`Receive`}
             topLeftValue={swapAmounts?.usdOut && swapAmounts.usdOut > 0 ? formatUsd(swapAmounts?.usdOut) : ""}
-            topRightLabel={t`Balance`}
+            // topRightLabel={t`Balance`}
             topRightValue={formatTokenAmount(toToken?.balance, toToken?.decimals, "", {
               useCommas: true,
             })}
             inputValue={toTokenInputValue}
             onInputValueChange={handleToInputTokenChange}
-            showMaxButton={false}
             preventFocusOnLabelClick="right"
             qa="swap-receive"
           >
@@ -1060,7 +1059,7 @@ export function TradeBox(p: Props) {
       <>
         {isIncrease && (
           <>
-            <ToggleSwitch
+            {/* <ToggleSwitch
               className="Exchange-leverage-slider-settings"
               isChecked={isLeverageEnabled ?? false}
               setIsChecked={setIsLeverageEnabled}
@@ -1068,7 +1067,11 @@ export function TradeBox(p: Props) {
               <span className="muted">
                 <Trans>Leverage slider</Trans>
               </span>
-            </ToggleSwitch>
+            </ToggleSwitch> */}
+
+            <span className="muted text-[14px] font-[500] text-[#67677A]">
+              <Trans>Leverage slider</Trans>
+            </span>
 
             {isLeverageEnabled && (
               <LeverageSlider
@@ -1097,7 +1100,7 @@ export function TradeBox(p: Props) {
           />
         )}
 
-        <MarketPoolSelectorRow
+        {/* <MarketPoolSelectorRow
           selectedMarket={marketInfo}
           indexToken={toToken}
           isOutPositionLiquidity={isOutPositionLiquidity}
@@ -1109,7 +1112,7 @@ export function TradeBox(p: Props) {
           selectedMarketAddress={marketInfo?.marketTokenAddress}
           onSelectCollateralAddress={onSelectCollateralAddress}
           isMarket={isMarket}
-        />
+        /> */}
       </>
     );
   }
@@ -1222,7 +1225,7 @@ export function TradeBox(p: Props) {
     <Button
       qa="confirm-trade-button"
       variant="primary-action"
-      className="mt-4 w-full"
+      className="mt-4 w-full  !rounded-[8px] !bg-white font-[500] !text-[#000] text-[#3E3E3E]"
       onClick={onSubmit}
       disabled={submitButtonState.disabled && !shouldDisableValidationForTesting}
     >
@@ -1245,22 +1248,22 @@ export function TradeBox(p: Props) {
   return (
     <>
       <div>
-        <div data-qa="tradebox" className={`App-box SwapBox`}>
+        <div data-qa="tradebox" className={`SwapBox !h-full !rounded-[12px] bg-[#121214] !p-[12px]`}>
           <Tab
             icons={tradeTypeIcons}
             options={Object.values(TradeType)}
             optionLabels={localizedTradeTypeLabels}
             option={tradeType}
             onChange={onTradeTypeChange}
-            className="SwapBox-option-tabs"
+            className="SwapBox-option-tabs main"
             qa="trade-direction"
           />
 
           <Tab
             options={availableTradeModes}
             optionLabels={localizedTradeModeLabels}
-            className="SwapBox-asset-options-tabs"
-            type="inline"
+            className="SwapBox-option-tabs secondary"
+            // type="inline"
             option={tradeMode}
             onChange={onSelectTradeMode}
             qa="trade-mode"
@@ -1285,29 +1288,29 @@ export function TradeBox(p: Props) {
               )}
 
               <ExchangeInfo.Group>{isPosition && renderPositionControls()}</ExchangeInfo.Group>
-              <ExchangeInfo.Group>
+              {/* <ExchangeInfo.Group>
                 <TradeBoxOneClickTrading />
               </ExchangeInfo.Group>
               <ExchangeInfo.Group>
                 <LimitAndTPSLGroup />
-              </ExchangeInfo.Group>
+              </ExchangeInfo.Group> */}
 
-              <ExchangeInfo.Group>
+              {/* <ExchangeInfo.Group>
                 <LimitPriceRow />
                 {isIncrease && renderIncreaseOrderInfo()}
                 {isTrigger && renderTriggerOrderInfo()}
-              </ExchangeInfo.Group>
+              </ExchangeInfo.Group> */}
 
-              <ExchangeInfo.Group>
+              {/* <ExchangeInfo.Group>
                 <TradeBoxAdvancedGroups />
-              </ExchangeInfo.Group>
+              </ExchangeInfo.Group> */}
 
               <ExchangeInfo.Group>
                 <TradeFeesRow {...fees} feesType={feesType} />
                 <NetworkFeeRow executionFee={executionFee} />
               </ExchangeInfo.Group>
 
-              {isTrigger && selectedPosition && decreaseAmounts?.receiveUsd !== undefined && (
+              {/* {isTrigger && selectedPosition && decreaseAmounts?.receiveUsd !== undefined && (
                 <ExchangeInfo.Group>
                   <ExchangeInfoRow
                     label={t`Receive`}
@@ -1319,13 +1322,13 @@ export function TradeBox(p: Props) {
                     )}
                   />
                 </ExchangeInfo.Group>
-              )}
+              )} */}
 
-              {isSwap && (
+              {/* {isSwap && (
                 <ExchangeInfo.Group>
                   <MinReceiveRow allowedSlippage={allowedSlippage} />
                 </ExchangeInfo.Group>
-              )}
+              )} */}
 
               {tradeboxWarningRows && <ExchangeInfo.Group>{tradeboxWarningRows}</ExchangeInfo.Group>}
               {triggerConsentRows && <ExchangeInfo.Group>{triggerConsentRows}</ExchangeInfo.Group>}

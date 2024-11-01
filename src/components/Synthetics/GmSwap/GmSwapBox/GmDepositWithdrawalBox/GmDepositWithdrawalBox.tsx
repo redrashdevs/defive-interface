@@ -352,7 +352,7 @@ export function GmSwapBoxDepositWithdrawal(p: GmSwapBoxProps) {
     }
 
     return {
-      text: isDeposit ? t`Buy GM` : t`Sell GM`,
+      text: isDeposit ? t`Buy D5` : t`Sell D5`,
       onSubmit,
     };
   }, [
@@ -629,12 +629,23 @@ export function GmSwapBoxDepositWithdrawal(p: GmSwapBoxProps) {
       <form onSubmit={handleFormSubmit}>
         <div className={cx("GmSwapBox-form-layout", { reverse: isWithdrawal })}>
           <BuyInputSection
-            topLeftLabel={isDeposit ? t`Pay` : t`Receive`}
-            topLeftValue={formatUsd(firstTokenUsd)}
-            topRightLabel={t`Balance`}
-            topRightValue={formatTokenAmount(firstToken?.balance, firstToken?.decimals, "", {
-              useCommas: true,
-            })}
+            topLeftLabel={
+              <span style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 12 }}>
+                {isDeposit ? t`Pay` : t`Receive`}
+              </span>
+            }
+            // topLeftValue={formatUsd(firstTokenUsd)}
+            // topRightLabel={t`Balance`}
+            topRightValue={
+              <div className="inline-flex items-center">
+                <img src="/images/wallet-lightgray.svg" width={20} />
+                <span style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 12 }}>
+                  {formatTokenAmount(firstToken?.balance, firstToken?.decimals, "", {
+                    useCommas: true,
+                  }) + ` ${firstToken?.symbol}`}
+                </span>
+              </div>
+            }
             preventFocusOnLabelClick="right"
             onClickTopRightLabel={isDeposit ? onMaxClickFirstToken : undefined}
             showMaxButton={firstTokenShowMaxButton}
@@ -663,12 +674,22 @@ export function GmSwapBoxDepositWithdrawal(p: GmSwapBoxProps) {
 
           {isPair && secondTokenAddress && (
             <BuyInputSection
-              topLeftLabel={isDeposit ? t`Pay` : t`Receive`}
-              topLeftValue={formatUsd(secondTokenUsd)}
-              topRightLabel={t`Balance`}
-              topRightValue={formatTokenAmount(secondToken?.balance, secondToken?.decimals, "", {
-                useCommas: true,
-              })}
+              topLeftLabel={
+                <span style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 12 }}>
+                  {isDeposit ? t`Pay` : t`Receive`}
+                </span>
+              }
+              // topLeftValue={formatUsd(secondTokenUsd)}
+              topRightValue={
+                <div className="inline-flex items-center">
+                  <img src="/images/wallet-lightgray.svg" width={20} />
+                  <span style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 12 }}>
+                    {formatTokenAmount(secondToken?.balance, secondToken?.decimals, "", {
+                      useCommas: true,
+                    }) + ` ${secondToken?.symbol}`}
+                  </span>
+                </div>
+              }
               preventFocusOnLabelClick="right"
               inputValue={secondTokenInputValue}
               showMaxButton={secondTokenShowMaxButton}
@@ -682,15 +703,14 @@ export function GmSwapBoxDepositWithdrawal(p: GmSwapBoxProps) {
             </BuyInputSection>
           )}
 
-          <Swap />
+          {/* <Swap /> */}
 
           <BuyInputSection
-            topLeftLabel={isWithdrawal ? t`Pay` : t`Receive`}
-            topLeftValue={marketTokenUsd ? formatUsd(marketTokenUsd) : ""}
-            topRightLabel={t`Balance`}
-            topRightValue={formatTokenAmount(marketToken?.balance, marketToken?.decimals, "", {
-              useCommas: true,
-            })}
+            topLeftLabel={<span style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 12 }}>{t`Receive`}</span>}
+            // topRightLabel={t` `}
+            // topRightValue={formatTokenAmount(marketToken?.balance, marketToken?.decimals, "", {
+            //   useCommas: true,
+            // })}
             preventFocusOnLabelClick="right"
             showMaxButton={marketTokenInputShowMaxButton}
             inputValue={marketTokenInputValue}

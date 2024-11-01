@@ -15,6 +15,8 @@ import PositionShare from "components/Exchange/PositionShare";
 import { OrderEditorContainer } from "components/OrderEditorContainer/OrderEditorContainer";
 import { PositionItem } from "components/Synthetics/PositionItem/PositionItem";
 
+import './PositionList.scss'
+
 type Props = {
   onSelectPositionClick: (key: string, tradeMode?: TradeMode) => void;
   onClosePositionClick: (key: string) => void;
@@ -43,7 +45,7 @@ export function PositionList(p: Props) {
   return (
     <div>
       {positions.length === 0 && (
-        <div className="Exchange-empty-positions-list-note App-card small">
+        <div className="Exchange-list small text-[12px] p-[16px]">
           {isLoading ? t`Loading...` : t`No open positions`}
         </div>
       )}
@@ -66,7 +68,10 @@ export function PositionList(p: Props) {
           ))}
       </div>
 
-      <table className="Exchange-list Position-list large App-box">
+      <table
+        className="Exchange-list Position-list large App-box"
+        style={{ background: "rgba(18, 18, 20, 1)", borderRadius: 12 }}
+      >
         <tbody>
           <tr className="Exchange-list-header">
             <th>
@@ -116,9 +121,41 @@ export function PositionList(p: Props) {
                 onCancelOrder={onCancelOrder}
               />
             ))}
+            {!isLoading &&
+            positions.map((position) => (
+              <PositionItemWrapper
+                key={position.key}
+                position={position}
+                onEditCollateralClick={setEditingPositionKey}
+                onClosePositionClick={onClosePositionClick}
+                onOrdersClick={onOrdersClick}
+                onSelectPositionClick={onSelectPositionClick}
+                isLarge
+                onShareClick={handleSharePositionClick}
+                openSettings={openSettings}
+                hideActions={hideActions}
+                onCancelOrder={onCancelOrder}
+              />
+            ))}
+            {!isLoading &&
+            positions.map((position) => (
+              <PositionItemWrapper
+                key={position.key}
+                position={position}
+                onEditCollateralClick={setEditingPositionKey}
+                onClosePositionClick={onClosePositionClick}
+                onOrdersClick={onOrdersClick}
+                onSelectPositionClick={onSelectPositionClick}
+                isLarge
+                onShareClick={handleSharePositionClick}
+                openSettings={openSettings}
+                hideActions={hideActions}
+                onCancelOrder={onCancelOrder}
+              />
+            ))}
         </tbody>
       </table>
-      {positionToShare && (
+      {/* {positionToShare && (
         <PositionShare
           key={positionToShare.key}
           setIsPositionShareModalOpen={setIsPositionShareModalOpen}
@@ -133,7 +170,7 @@ export function PositionList(p: Props) {
           account={account}
         />
       )}
-      <OrderEditorContainer />
+      <OrderEditorContainer /> */}
     </div>
   );
 }

@@ -22,6 +22,10 @@ msgstr ""
 msgid "Wallet not connected"
 msgstr "钱包未连接"
 
+#: src/components/Synthetics/GmList/GmList.tsx
+msgid "ROI"
+msgstr ""
+
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "Decentralized Trading Protocol"
 msgstr "去中心化交易协议"
@@ -29,10 +33,6 @@ msgstr "去中心化交易协议"
 #: src/pages/ClaimEsGmx/ClaimEsGmx.jsx
 msgid "Claim submitted!"
 msgstr "送出领取"
-
-#: src/components/AddressDropdown/AddressDropdown.tsx
-msgid "Disconnect"
-msgstr "连线中断"
 
 #: src/components/Glp/GlpSwap.jsx
 msgid "Buy GM tokens before the epoch resets in {0} to be eligible for the Bonus Rebate. Alternatively, wait for the epoch to reset to redeem GLP and buy GM within the same epoch."
@@ -184,21 +184,12 @@ msgstr "启用杠杆发送"
 msgid "Show error"
 msgstr ""
 
-#: src/components/Synthetics/GmList/GmList.tsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-msgid "{0} can be used to buy GM for this market up to the specified buying caps."
-msgstr ""
-
 #: src/components/Synthetics/TradeHistory/keys.ts
 msgid "Execute Market Swap"
 msgstr "执行市场交换"
 
 #: src/pages/Stake/StakeV2.tsx
 msgid "Deposit submitted!"
-msgstr ""
-
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
-msgid "Volume"
 msgstr ""
 
 #: src/components/Synthetics/TradeHistory/keys.ts
@@ -235,14 +226,6 @@ msgstr "费用"
 #: src/lib/contracts/callContract.tsx
 msgid "View status."
 msgstr "查看状况"
-
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-msgid "Buyable"
-msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "<0>Delegate your undelegated {0} GMX DAO</0><1> voting power.</1>"
-msgstr ""
 
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "<0>Total value of tokens in GLP pool ({chainName}).</0><1>This value may be higher on other websites due to the collateral of positions being included in the calculation.</1>"
@@ -317,7 +300,10 @@ msgid "Max pool USD exceeded"
 msgstr ""
 
 #: src/pages/AccountDashboard/HistoricalLists.tsx
+#: src/pages/AccountDashboard/HistoricalLists.tsx
 #: src/pages/Exchange/Exchange.tsx
+#: src/pages/SyntheticsPage/SyntheticsPage.tsx
+#: src/pages/SyntheticsPage/SyntheticsPage.tsx
 msgid "Positions"
 msgstr "仓位"
 
@@ -345,6 +331,10 @@ msgstr ""
 msgid "Referral code added!"
 msgstr "添加了推荐代码"
 
+#: src/components/NotifyModal/NotifyModal.tsx
+msgid "DeFive Alerts"
+msgstr ""
+
 #: src/components/Synthetics/MarketTokenSelector/MarketTokenSelector.tsx
 msgid "SELLABLE"
 msgstr ""
@@ -367,11 +357,13 @@ msgid "Swap {0} to {1} on 1inch"
 msgstr "交易{0} 成 {1}在1inch"
 
 #: src/components/Exchange/PositionsList.jsx
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
+#: src/pages/AccountDashboard/HistoricalLists.tsx
 #: src/pages/AccountDashboard/HistoricalLists.tsx
 #: src/pages/AccountDashboard/HistoricalLists.tsx
 #: src/pages/AccountDashboard/HistoricalLists.tsx
 #: src/pages/Exchange/Exchange.tsx
+#: src/pages/SyntheticsPage/SyntheticsPage.tsx
+#: src/pages/SyntheticsPage/SyntheticsPage.tsx
 #: src/pages/SyntheticsPage/SyntheticsPage.tsx
 #: src/pages/SyntheticsPage/SyntheticsPage.tsx
 msgid "Orders"
@@ -408,10 +400,13 @@ msgid "Open Fees"
 msgstr "开启费用"
 
 #: src/pages/AccountDashboard/dailyAndCumulativePnLDebug.tsx
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "Realized PnL"
+msgstr ""
+
+#: src/pages/Stake/StakeV2.tsx
+msgid "All Pools"
 msgstr ""
 
 #: src/components/InterviewModal/InterviewModal.tsx
@@ -469,10 +464,6 @@ msgstr "转移价格"
 
 #: src/pages/Stake/StakeV2.tsx
 msgid "<0>Delegate your undelegated {0} GMX DAO</0><1> voting power before staking.</1>"
-msgstr ""
-
-#: src/pages/MarketPoolsPage/MarketPoolsPage.tsx
-msgid "Shift GM Tokens between eligible pools without paying buy/sell fees."
 msgstr ""
 
 #: src/components/Synthetics/SubaccountModal/SubaccountModal.tsx
@@ -540,7 +531,6 @@ msgstr ""
 
 #: src/components/Exchange/PositionDropdown.tsx
 #: src/components/Exchange/PositionsList.jsx
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
 msgid "Edit Collateral"
 msgstr "编辑抵押品"
 
@@ -577,17 +567,6 @@ msgstr "搜索代币"
 msgid "Buy GMX using Decentralized Exchange Aggregators:"
 msgstr ""
 
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-msgid "GM token pricing is affected by the backing tokens, fees and price impact amounts collected, the pending PnL of open positions, and borrowing fees. It excludes funding fees, which are exchanged between traders.<0/><1/><2>Read more about GM token pricing</2>."
-msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-msgid "{0} tokens have been converted to GMX from the {1} esGMX deposited for vesting."
-msgstr ""
-
-#: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "Rank"
 msgstr ""
@@ -598,10 +577,6 @@ msgstr ""
 
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Average position size."
-msgstr ""
-
-#: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
-msgid "{0} <0/><1> to </1>{1} <2/>"
 msgstr ""
 
 #: src/pages/Home/Home.jsx
@@ -615,8 +590,12 @@ msgstr ""
 #: src/components/Synthetics/AccruedPositionPriceImpactRebateModal/AccruedPositionPriceImpactRebateModal.tsx
 #: src/components/Synthetics/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
 #: src/components/Synthetics/ClaimModal/ClaimModal.tsx
-#: src/components/Synthetics/GmList/GmList.tsx
+#: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimCollateralHistoryRow.tsx
+#: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimFundingFeesHistoryRow.tsx
+#: src/components/Synthetics/Claims/ClaimsHistory.tsx
 #: src/components/Synthetics/MarketTokenSelector/MarketTokenSelector.tsx
+#: src/components/Synthetics/TradeHistory/TradeHistory.tsx
+#: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
 msgid "MARKET"
 msgstr "市场"
 
@@ -680,6 +659,11 @@ msgstr "{0}价格"
 msgid "Max {0} buyable amount exceeded"
 msgstr ""
 
+#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/InfoRows.tsx
+#: src/components/Synthetics/GmSwap/GmSwapBox/GmShiftBox/GmShiftBox.tsx
+msgid "UI FEE"
+msgstr ""
+
 #: src/components/Glp/GlpSwap.jsx
 msgid "Sell submitted!"
 msgstr "出售提交"
@@ -697,7 +681,6 @@ msgid "Slippage should be less than -5%"
 msgstr ""
 
 #: src/pages/AccountDashboard/dailyAndCumulativePnLDebug.tsx
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "Unrealized PnL"
@@ -716,7 +699,6 @@ msgstr ""
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Rewards"
 msgstr "奖励"
 
@@ -733,7 +715,6 @@ msgstr ""
 #: src/components/Synthetics/GmSwap/GmConfirmationBox/GmConfirmationBox.tsx
 #: src/components/Synthetics/GmSwap/GmConfirmationBox/GmConfirmationBox.tsx
 #: src/components/Synthetics/GmSwap/GmConfirmationBox/GmConfirmationBox.tsx
-#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
 #: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
 #: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
 #: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
@@ -764,6 +745,11 @@ msgstr ""
 
 #: src/pages/AccountDashboard/HistoricalLists.tsx
 msgid "Positions ({positionsCount})"
+msgstr ""
+
+#: src/components/AddressDropdown/AddressDropdown.tsx
+#: src/components/Header/AppHeaderUser.tsx
+msgid "Transactions"
 msgstr ""
 
 #: src/components/Synthetics/OrderEditor/OrderEditor.tsx
@@ -829,11 +815,6 @@ msgstr ""
 msgid "Average leverage used."
 msgstr ""
 
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-msgid "Escrowed GMX"
-msgstr ""
-
 #: src/components/Exchange/PositionSeller.jsx
 #: src/components/Exchange/PositionSeller.jsx
 #: src/components/Exchange/SwapBox.jsx
@@ -857,7 +838,7 @@ msgstr ""
 msgid "Alternative links can be found in the <0>docs</0>.<1/><2/>By clicking Agree you accept the <3>T&Cs</3> and <4>Referral T&Cs</4>.<5/><6/>"
 msgstr "其他选项链接可在<0>docs</0>.<1/><2/>点选同意接受<3>相关条款</3> 以及 <4>以及推荐条款</4>.<5/><6/>后获得"
 
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
+#: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
 msgid "All Time"
 msgstr ""
 
@@ -884,11 +865,6 @@ msgstr "推荐代码"
 
 #: src/components/Footer/constants.ts
 msgid "Charts by TradingView"
-msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-msgid "Staked Tokens"
 msgstr ""
 
 #: src/pages/Stake/StakeV2.tsx
@@ -936,10 +912,9 @@ msgstr ""
 #: src/components/Exchange/OrdersList.jsx
 #: src/components/Exchange/PositionsList.jsx
 #: src/components/Exchange/PositionsList.jsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
 #: src/components/Synthetics/OrderItem/OrderItem.tsx
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionList/PositionList.tsx
+#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "Collateral"
 msgstr "抵押品"
@@ -957,7 +932,6 @@ msgstr "警告：该仓位在扣除借款费用后，抵押品数量较少，请
 #: src/components/Glp/GlpSwap.jsx
 #: src/components/Glp/GlpSwap.jsx
 #: src/components/Glp/GlpSwap.jsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Sell GLP"
 msgstr "出售GLP"
 
@@ -981,10 +955,6 @@ msgstr "代币"
 #: src/components/Synthetics/TradeHistory/keys.ts
 msgid "Request Withdraw"
 msgstr "要求提款"
-
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
-msgid "Click on the Position to select its market, then use the trade box to increase your Position Size, or to set Take-Profit / Stop-Loss Orders."
-msgstr ""
 
 #: src/components/ToastifyDebug/ToastifyDebug.tsx
 msgid "Copied"
@@ -1024,10 +994,6 @@ msgstr ""
 msgid "Volume on V2"
 msgstr ""
 
-#: src/pages/Stake/StakeV2.tsx
-msgid "Vest"
-msgstr ""
-
 #: src/components/Synthetics/StatusNotification/SubaccountNotification.tsx
 msgid "Generating and activating Subaccount"
 msgstr ""
@@ -1041,13 +1007,11 @@ msgid "WEIGHT"
 msgstr "重量"
 
 #: src/components/Glp/GlpSwap.jsx
+#: src/components/Synthetics/GmList/GmList.tsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "APR"
 msgstr "年利率"
 
@@ -1060,8 +1024,6 @@ msgstr "转移中..."
 #: src/components/Referrals/AffiliatesStats.tsx
 #: src/components/Referrals/TradersStats.tsx
 #: src/components/Referrals/TradersStats.tsx
-#: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Total"
 msgstr "总计"
 
@@ -1214,11 +1176,6 @@ msgstr "如果你有一个现有的头寸，它将在{0}美元被关闭。<0/><1
 msgid "Transfer Submitted"
 msgstr "送出转移"
 
-#: src/components/Synthetics/GmSwap/GmSwapBox/GmShiftBox/useShiftSubmitState.tsx
-#: src/components/Synthetics/GmSwap/GmSwapBox/GmSwapBox.tsx
-msgid "Shift GM"
-msgstr ""
-
 #: src/domain/synthetics/sidecarOrders/utils.ts
 msgid "Price below Liq. Price."
 msgstr ""
@@ -1231,6 +1188,11 @@ msgstr ""
 msgid "Could not increase {tokenSymbol} {longOrShortText} within the allowed slippage, you can adjust the allowed slippage in the settings on the top right of the page."
 msgstr "无法增加 {tokenSymbol} {longOrShortText} 在可接受的滑点内, 您可在页面右上方的设定中调整可接受滑点"
 
+#: src/components/AddressDropdown/AddressDropdown.tsx
+#: src/components/Header/AppHeaderUser.tsx
+msgid "Disconnect Wallet"
+msgstr ""
+
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
 #: src/domain/synthetics/orders/createWrapOrUnwrapTxn.ts
 msgid "Swapped {0} for {1}"
@@ -1240,12 +1202,7 @@ msgstr ""
 msgid "Tier {0} ({currentRebatePercentage}% rebate)"
 msgstr ""
 
-#: src/components/NotifyModal/NotifyModal.tsx
-msgid "Discover GMX Alerts"
-msgstr ""
-
 #: src/pages/Dashboard/DashboardV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Price on Avalanche"
 msgstr "Avalanche上的价格"
 
@@ -1382,7 +1339,6 @@ msgstr "标记订单价格。"
 
 #: src/components/Exchange/PositionsList.jsx
 #: src/components/Exchange/PositionsList.jsx
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionList/PositionList.tsx
 msgid "Net Value"
 msgstr "净值"
@@ -1414,6 +1370,10 @@ msgstr "交易ID"
 #: src/components/Exchange/PositionsList.jsx
 msgid "Borrow Fee / Day"
 msgstr "借款费用/天"
+
+#: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
+msgid "Search"
+msgstr ""
 
 #: src/components/Exchange/OrderEditor.jsx
 msgid "Price is below Mark Price"
@@ -1451,13 +1411,6 @@ msgstr ""
 #: src/components/Synthetics/MarketsList/MarketsList.tsx
 msgid "MARKETS"
 msgstr "市场"
-
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-msgid "Max {0}"
-msgstr ""
 
 #: src/domain/synthetics/sidecarOrders/utils.ts
 #: src/domain/synthetics/sidecarOrders/utils.ts
@@ -1539,6 +1492,8 @@ msgid "Global Leaderboard"
 msgstr ""
 
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
+#: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
+#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "No results found"
 msgstr ""
@@ -1575,6 +1530,11 @@ msgstr ""
 msgid "Update order executed"
 msgstr "更新指令已执行"
 
+#: src/components/Synthetics/PositionItem/PositionItem.tsx
+#: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
+msgid "LIQ. PRICE"
+msgstr ""
+
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "not staked"
 msgstr "未质押的"
@@ -1593,9 +1553,8 @@ msgstr ""
 msgid "Forfeit profit not checked"
 msgstr "未检查没收利润"
 
-#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
-#: src/components/Synthetics/GmSwap/GmSwapBox/GmSwapBox.tsx
-msgid "Buy GM"
+#: src/pages/Buy/Buy.tsx
+msgid "On Avalanche"
 msgstr ""
 
 #: src/components/Exchange/TradeHistory.jsx
@@ -1605,10 +1564,6 @@ msgstr "增加 {0} {longOrShortText}, +{1} USD, {2} 价格: {3} USD"
 #: src/pages/ClaimEsGmx/ClaimEsGmx.jsx
 msgid "The address of the esGMX (IOU) token is {esGmxIouAddress}."
 msgstr "esGMX（IOU）代币的地址是{esGmxIouAddress}"
-
-#: src/components/NotifyModal/NotifyModal.tsx
-msgid "GMX Alerts"
-msgstr ""
 
 #: src/components/Synthetics/GmSwap/GmConfirmationBox/GmConfirmationBox.tsx
 msgid "{0, plural, one {Pending {symbolsText} approval} other {Pending {symbolsText} approvals}}"
@@ -1644,10 +1599,6 @@ msgstr ""
 msgid "Total Fees"
 msgstr "费用总额"
 
-#: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx
-msgid "Cumulative PnL"
-msgstr ""
-
 #: src/components/TokenCard/TokenCard.tsx
 msgid "Arbitrum Max. APY:"
 msgstr ""
@@ -1658,6 +1609,7 @@ msgstr ""
 
 #: src/components/Synthetics/OrderList/OrderList.tsx
 #: src/pages/Exchange/Exchange.tsx
+#: src/pages/SyntheticsPage/SyntheticsPage.tsx
 #: src/pages/SyntheticsPage/SyntheticsPage.tsx
 msgid "{0, plural, one {Cancel order} other {Cancel # orders}}"
 msgstr ""
@@ -1690,10 +1642,6 @@ msgstr "借款费用"
 msgid "Buy submitted."
 msgstr "送出购买"
 
-#: src/pages/Stake/StakeV2.tsx
-msgid "Incentives & Prizes"
-msgstr ""
-
 #: src/components/Glp/GlpSwap.jsx
 msgid "Fees may vary depending on which asset you sell GLP for. <0/>Enter the amount of GLP you want to redeem in the order form, then check here to compare fees."
 msgstr "费用决于你出售GLP的资产可能有所不同。<0/>在订单中输入你要取回的GLP数量，然后在此查看以比较费用。"
@@ -1717,7 +1665,6 @@ msgstr ""
 msgid "Checking code..."
 msgstr "检查代码..."
 
-#: src/components/Synthetics/GmList/GmList.tsx
 #: src/components/Synthetics/MarketsList/MarketsList.tsx
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "GM Pools"
@@ -1733,10 +1680,6 @@ msgstr ""
 
 #: src/components/Synthetics/SubaccountModal/SubaccountModal.tsx
 msgid "Max allowed actions"
-msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "Convert esGMX tokens to GMX tokens.<0/>Please read the <1>vesting details</1> before using the vaults."
 msgstr ""
 
 #: src/lib/legacy.ts
@@ -1766,7 +1709,6 @@ msgstr ""
 #: src/components/Synthetics/OrderItem/OrderItem.tsx
 #: src/components/Synthetics/OrderList/OrderList.tsx
 #: src/components/Synthetics/PositionEditor/PositionEditorAdvancedRows.tsx
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionList/PositionList.tsx
 #: src/components/Synthetics/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
 #: src/components/Synthetics/TradeBox/TradeBoxRows/AdvancedDisplayRows.tsx
@@ -1783,6 +1725,7 @@ msgstr ""
 #: src/components/Exchange/SwapBox.jsx
 #: src/components/Glp/GlpSwap.jsx
 #: src/components/Header/AppHeaderUser.tsx
+#: src/components/Header/AppHeaderUser.tsx
 #: src/components/Migration/Migration.jsx
 #: src/components/Referrals/AddAffiliateCode.jsx
 #: src/components/Referrals/JoinReferralCode.jsx
@@ -1795,11 +1738,6 @@ msgstr ""
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Connect Wallet"
 msgstr "连接钱包"
 
@@ -1926,13 +1864,14 @@ msgstr ""
 msgid "Liquidity data not loaded"
 msgstr "未加载流动资金数据"
 
+#: src/components/AddressDropdown/AddressDropdown.tsx
+#: src/components/Header/AppHeaderUser.tsx
+msgid "BALANCE"
+msgstr ""
+
 #: src/components/Exchange/ConfirmationBox.jsx
 #: src/components/Synthetics/TradeBox/TradeBoxRows/CollateralSpreadRow.tsx
 msgid "Collateral Spread"
-msgstr ""
-
-#: src/components/Header/Header.tsx
-msgid "Trade on GMX V2 in Arbitrum and win 280,000 ARB (> $500k) in prizes in <0>two weekly</0> competitions. Live from March 13th to 27th."
 msgstr ""
 
 #: src/components/Synthetics/TradeFeesRow/TradeFeesRow.tsx
@@ -2034,11 +1973,6 @@ msgstr ""
 #: src/components/Referrals/AffiliatesStats.tsx
 #: src/components/Referrals/TradersStats.tsx
 msgid "Trading Volume"
-msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-msgid "Reserved for Vesting"
 msgstr ""
 
 #: src/components/Exchange/TradeHistory.jsx
@@ -2183,6 +2117,10 @@ msgstr ""
 msgid "{actionDisplay} Order"
 msgstr "{actionDisplay} 指令"
 
+#: src/components/InterviewModal/InterviewModal.tsx
+msgid "Anonymous chat with DeFive"
+msgstr ""
+
 #: src/components/Exchange/SwapBox.jsx
 msgid "There are more longs than shorts, borrow fees for shorting is currently zero"
 msgstr "多头比空头多，做空的借贷费用目前为零"
@@ -2221,7 +2159,6 @@ msgid "You have an existing position with {0} as collateral."
 msgstr "您有一个现有仓位，抵押品为{0}"
 
 #: src/pages/BeginAccountTransfer/BeginAccountTransfer.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Transfer Account"
 msgstr "转移账户"
 
@@ -2276,6 +2213,10 @@ msgstr ""
 msgid "{fromText} to {toMinText}"
 msgstr "{fromText} 到 {toMinText}"
 
+#: src/pages/Stake/StakeV2.tsx
+msgid "My Positions"
+msgstr ""
+
 #: src/components/Exchange/OrderEditor.jsx
 #: src/components/Exchange/PositionSeller.jsx
 #: src/components/Synthetics/OrderEditor/OrderEditor.tsx
@@ -2314,10 +2255,6 @@ msgstr "订单已取消"
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/shared.ts
 msgid "Not enough Available Swap Liquidity to fill the Order."
 msgstr "没有足够的可用交换流动性来填补订单。"
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "Earn prizes by participating in GMX Trading Competitions."
-msgstr "通过参加GMX交易竞赛赢取奖品"
 
 #: src/domain/synthetics/trade/utils/validation.ts
 msgid "Couldn't find a swap route with enough liquidity"
@@ -2448,10 +2385,6 @@ msgstr ""
 msgid "Generate and activate a Subaccount for <0>One-Click Trading</0> to reduce signing popups."
 msgstr ""
 
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
-msgid "Use the \"Close\" button to reduce your Position Size."
-msgstr ""
-
 #: src/components/Exchange/PositionDropdown.tsx
 msgid "Increase Size (Limit)"
 msgstr ""
@@ -2551,6 +2484,8 @@ msgstr "启用订单"
 msgid "Max pool capacity reached for {0}. Please mint GLP using another token"
 msgstr "已达到{0}池的最大容量。请使用另一个代币挖GLP"
 
+#: src/components/Header/AppHeaderLinks.tsx
+#: src/components/Header/AppHeaderUser.tsx
 #: src/components/Header/AppHeaderUser.tsx
 msgid "Trade"
 msgstr "交易"
@@ -2585,7 +2520,6 @@ msgstr ""
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
-#: src/pages/Stake/StakeV2.tsx
 #: src/pages/Stake/StakeV2.tsx
 #: src/pages/Stake/StakeV2.tsx
 #: src/pages/Stake/StakeV2.tsx
@@ -2649,10 +2583,6 @@ msgstr "盈利"
 msgid "Order creation failed."
 msgstr ""
 
-#: src/pages/Stake/StakeV2.tsx
-msgid "Delegated to"
-msgstr ""
-
 #: src/components/Exchange/TradeHistory.jsx
 msgid "Execute Order: Swap {fromAmountDisplay} {0} for {toAmountDisplay} {1}"
 msgstr "执行指令: 交换 {fromAmountDisplay} {0} 为 {toAmountDisplay} {1}"
@@ -2661,7 +2591,6 @@ msgstr "执行指令: 交换 {fromAmountDisplay} {0} 为 {toAmountDisplay} {1}"
 msgid "Buy {swapTokenSymbol} on 1inch"
 msgstr "在1inch {swapTokenSymbol}上购买 "
 
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "PnL (%)"
 msgstr ""
@@ -2697,9 +2626,6 @@ msgstr "启用指令失败"
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Total Staked"
 msgstr "质押总额"
 
@@ -2731,6 +2657,10 @@ msgstr "杠杆"
 msgid "Enable orders sent."
 msgstr "启用指令发送"
 
+#: src/components/Synthetics/GmSwap/GmSwapBox/GmShiftBox/GmShiftBox.tsx
+msgid "SHIFT FEE"
+msgstr ""
+
 #: src/components/Synthetics/SubaccountModal/SubaccountModal.tsx
 msgid "The subaccount has no funds."
 msgstr ""
@@ -2751,10 +2681,7 @@ msgstr ""
 #: src/components/Synthetics/ChartTokenSelector/ChartTokenSelector.tsx
 #: src/components/Synthetics/Claims/ClaimsHistory.tsx
 #: src/components/Synthetics/MarketCard/MarketCard.tsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
 #: src/components/Synthetics/OrderItem/OrderItem.tsx
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionSeller/PositionSeller.tsx
 #: src/components/Synthetics/TableMarketFilter/MarketFilterBase.tsx
 #: src/components/Synthetics/TableMarketFilter/MarketFilterLongShort.tsx
@@ -2768,10 +2695,6 @@ msgstr "市场"
 
 #: src/components/Exchange/PositionSeller.jsx
 msgid "Swap amount from {0} to {1} exceeds {2} acceptable amount. Can only receive {3}."
-msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "Earn {incentivesToken} token incentives by purchasing GM tokens or trading in GMX V2."
 msgstr ""
 
 #: src/components/Exchange/PositionEditor.jsx
@@ -2890,10 +2813,6 @@ msgstr "创建止盈订单"
 msgid "Direction"
 msgstr ""
 
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-msgid "GM can be sold for {0} and {1} for this market up to the specified selling caps. The remaining tokens in the pool are reserved for currently open positions."
-msgstr ""
-
 #: src/components/Synthetics/ExecutionPriceRow.tsx
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/position.ts
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/position.ts
@@ -2942,11 +2861,6 @@ msgstr ""
 msgid "Your esGMX (IOU) balance will decrease by your claim amount after claiming, this is expected behaviour."
 msgstr "你的esGMX（IOU）余额在提领后将减少您的领回金额，这是可预期的"
 
-#: src/components/SettingsModal/SettingsModal.tsx
-msgid "The Max Network Fee is set to a higher value to handle potential increases in gas price during order execution. Any excess network fee will be refunded to your account when the order is executed. Only applicable to GMX V2."
-msgstr ""
-
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 #: src/pages/AccountDashboard/generalPerformanceDetailsDebug.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Start Unrealized PnL"
@@ -3013,10 +2927,6 @@ msgstr ""
 msgid "You are earning rewards with {0} tokens.<0/>Tokens: {amountStr}."
 msgstr ""
 
-#: src/components/ModalViews/RedirectModal.tsx
-msgid "The website is a community deployed and maintained instance of the open source <0>GMX front end</0>, hosted and served on the distributed, peer-to-peer <1>IPFS network</1>."
-msgstr "该网站是一个社区部署和维护的开放资源<0>GMX前端的实例</0>，在分布式、对等的<1>IPFS网络</1>上托管和服务"
-
 #: src/components/Exchange/PositionEditor.jsx
 msgid "Deposit failed."
 msgstr ""
@@ -3031,6 +2941,10 @@ msgstr ""
 
 #: src/components/Synthetics/AcceptablePriceImpactInputRow/AcceptablePriceImpactInputRow.tsx
 msgid "<0>Set Recommended Impact: {0}</0>."
+msgstr ""
+
+#: src/components/InterviewModal/InterviewModal.tsx
+msgid "We want your insights to help improve DeFive. For security reasons, we won't contact you first. Please send the message \"I have feedback\" to any of our official accounts:"
 msgstr ""
 
 #: src/pages/Exchange/Exchange.tsx
@@ -3150,17 +3064,15 @@ msgstr "{0}GLP以{1}{2}买入!"
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV2.tsx
 #: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Unstake"
 msgstr "解除质押"
 
-#: src/components/NetworkDropdown/NetworkDropdown.tsx
-msgid "More Options"
-msgstr "更多选项"
-
 #: src/components/Synthetics/SubaccountModal/SubaccountStatus.tsx
 msgid "There are insufficient funds in your Subaccount for One-Click Trading. Use the \"<0>Top-up</0>\" field to increase the Subaccount Balance."
+msgstr ""
+
+#: src/components/ModalViews/RedirectModal.tsx
+msgid "You are leaving DeFive and will be redirected to a third party, independent website."
 msgstr ""
 
 #: src/pages/Actions/SyntheticsActions.tsx
@@ -3191,12 +3103,10 @@ msgstr "交易送出"
 #: src/components/Exchange/PositionsList.jsx
 #: src/components/Exchange/TradeHistory.jsx
 #: src/components/Synthetics/PositionItem/PositionItem.tsx
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
 #: src/components/Synthetics/PositionSeller/PositionSellerAdvancedDisplayRows.tsx
 #: src/components/Synthetics/TradeBox/TradeBoxRows/AdvancedDisplayRows.tsx
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/position.ts
-#: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx
 #: src/pages/Actions/ActionsV1/ActionsV1.tsx
 msgid "PnL"
 msgstr "PnL"
@@ -3221,9 +3131,6 @@ msgstr ""
 #: src/components/Synthetics/PositionEditor/types.ts
 #: src/components/Synthetics/SubaccountModal/SubaccountModal.tsx
 #: src/components/Synthetics/TradeHistory/keys.ts
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Withdraw"
 msgstr "提领"
 
@@ -3237,10 +3144,6 @@ msgstr ""
 msgid "View on Avalanche"
 msgstr ""
 
-#: src/components/AddressDropdown/AddressDropdown.tsx
-msgid "View in Explorer"
-msgstr "在浏览器中查看"
-
 #: src/components/AprInfo/AprInfo.tsx
 msgid "Bonus APR"
 msgstr ""
@@ -3252,10 +3155,6 @@ msgstr ""
 #: src/pages/Jobs/Jobs.jsx
 msgid "GMX is not actively looking for new hires at the moment. However, if you think you can contribute to the project, please email <0>jobs@gmx.io</0>."
 msgstr "GMX目前没有积极寻找新员工。但是，如果你认为你能为项目做出贡献，请发电子邮件到<0>jobs@gmx.io</0>"
-
-#: src/pages/AccountDashboard/AccountDashboard.tsx
-msgid "GMX V2 Account"
-msgstr ""
 
 #: src/components/Exchange/ConfirmationBox.jsx
 msgid "You have multiple existing Increase {longOrShortText} {0} limit orders"
@@ -3273,12 +3172,13 @@ msgstr ""
 msgid "Unsupported network"
 msgstr ""
 
-#: src/components/Synthetics/GmList/GmList.tsx
 #: src/components/Synthetics/GmSwap/GmConfirmationBox/GmConfirmationBox.tsx
+#: src/components/Synthetics/GmSwap/GmSwapBox/GmSwapBox.tsx
 msgid "Shift"
 msgstr ""
 
 #: src/components/Exchange/PositionsList.jsx
+#: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionItem/PositionItem.tsx
 msgid "Opening..."
@@ -3292,6 +3192,10 @@ msgstr ""
 msgid "Trigger order disabled, pending {0} upgrade"
 msgstr ""
 
+#: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimCollateralHistoryRow.tsx
+#: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimCollateralHistoryRow.tsx
+#: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimFundingFeesHistoryRow.tsx
+#: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimFundingFeesHistoryRow.tsx
 #: src/components/Synthetics/Claims/filters/ActionFilter.tsx
 msgid "Funding Fees"
 msgstr "资金费用"
@@ -3331,7 +3235,6 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
-#: src/components/Synthetics/GmList/GmList.tsx
 #: src/components/Synthetics/MarketTokenSelector/MarketTokenSelector.tsx
 msgid "BUYABLE"
 msgstr ""
@@ -3418,7 +3321,8 @@ msgid "Request increase {0} {longOrShortText}, +{1} USD, Acceptable Price: {2} {
 msgstr "要求增加 {0} {longOrShortText}, +{1} USD, 可接受的价格: {2} {3} USD"
 
 #: src/components/Header/AppHeaderLinks.tsx
-#: src/pages/Stake/StakeV2.tsx
+#: src/components/Header/AppHeaderUser.tsx
+#: src/components/Header/AppHeaderUser.tsx
 #: src/pages/Stake/StakeV2.tsx
 msgid "Earn"
 msgstr "赚取"
@@ -3435,10 +3339,6 @@ msgstr "抵押品进入"
 
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "GM Markets"
-msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "Stake <0>GMX</0> and buy <1>GM</1> or <2>GLP</2> to earn rewards."
 msgstr ""
 
 #: src/components/Exchange/UsefulLinks.tsx
@@ -3459,9 +3359,6 @@ msgstr "该账户作为交易商所赚取的回扣"
 
 #: src/components/Exchange/SwapBox.jsx
 #: src/components/Synthetics/ExecutionPriceRow.tsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
 #: src/components/Synthetics/NetworkFeeRow/NetworkFeeRow.tsx
 #: src/components/TokenCard/TokenCard.tsx
 #: src/components/TokenCard/TokenCard.tsx
@@ -3470,22 +3367,12 @@ msgstr "该账户作为交易商所赚取的回扣"
 msgid "Read more"
 msgstr "了解更多"
 
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
-msgid "This Year"
-msgstr ""
-
 #: src/components/Exchange/TradeHistory.jsx
 msgid ""
 "{actionDisplay} {0} {longOrShortText},\n"
 "-{1} USD,\n"
 "{2} Price: {3} USD"
 msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-msgid "Vesting Status"
-msgstr "<<<<<<< HEAD"
 
 #: src/components/Synthetics/GmSwap/GmConfirmationBox/GmConfirmationBox.tsx
 msgid "Error submitting deposit"
@@ -3580,8 +3467,8 @@ msgstr "订单的触发价格"
 #: src/components/Exchange/TradeHistory.jsx
 #: src/components/Exchange/TradeHistory.jsx
 #: src/components/Exchange/TradeHistory.jsx
-#: src/components/MarketWithDirectionLabel/MarketWithDirectionLabel.tsx
 #: src/components/Synthetics/ChartTokenSelector/ChartTokenSelector.tsx
+#: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimFundingFeesHistoryRow.tsx
 #: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimFundingFeesHistoryRow.tsx
 #: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimFundingFeesHistoryRow.tsx
 #: src/components/Synthetics/Claims/ClaimsHistory.tsx
@@ -3596,6 +3483,8 @@ msgstr "订单的触发价格"
 #: src/components/Synthetics/StatusNotification/OrderStatusNotification.tsx
 #: src/components/Synthetics/TableMarketFilter/MarketFilterLongShort.tsx
 #: src/components/Synthetics/TradeBox/TradeBox.tsx
+#: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
+#: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/position.ts
 #: src/components/Synthetics/TVChart/components/AvailableLiquidityTooltip.tsx
 #: src/components/Synthetics/TVChart/TVChart.tsx
@@ -3611,12 +3500,13 @@ msgstr "订单的触发价格"
 #: src/pages/Exchange/Exchange.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
+#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
+#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 #: src/pages/OrdersOverview/OrdersOverview.jsx
 msgid "Short"
 msgstr "做空"
 
 #: src/components/Synthetics/TradeHistory/useDownloadAsCsv.tsx
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "PnL ($)"
@@ -3626,7 +3516,6 @@ msgstr ""
 msgid "GMX Market Tokens"
 msgstr ""
 
-#: src/pages/Stake/StakeV2.tsx
 #: src/pages/Stake/StakeV2.tsx
 msgid "Affiliate Vault"
 msgstr ""
@@ -3660,7 +3549,6 @@ msgstr ""
 #: src/components/Exchange/SwapBox.jsx
 #: src/components/Synthetics/OrderEditor/OrderEditor.tsx
 #: src/components/Synthetics/PositionEditor/PositionEditor.tsx
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionList/PositionList.tsx
 #: src/components/Synthetics/PositionSeller/PositionSeller.tsx
 #: src/components/Synthetics/TradeBox/TradeBox.tsx
@@ -3681,10 +3569,6 @@ msgstr "<0>{0}</0> <1><2>{indexName}</2><3>[{poolName}]</3></1> <4>市场已选�
 msgid "You will receive at least {0} {1} if this order is executed. The exact execution price may vary depending on fees at the time the order is executed."
 msgstr "如果该订单被执行，您将至少收到{0} {1} 确切的执行价格可能会根据订单执行时的费用而变化"
 
-#: src/components/Common/SEO.tsx
-msgid "GMX | Decentralized Perpetual Exchange"
-msgstr ""
-
 #: src/pages/OrdersOverview/OrdersOverview.jsx
 msgid "No position"
 msgstr "没有头寸"
@@ -3692,7 +3576,6 @@ msgstr "没有头寸"
 #: src/components/Glp/GlpSwap.jsx
 #: src/components/Glp/GlpSwap.jsx
 #: src/components/Glp/GlpSwap.jsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Buy GLP"
 msgstr "购买GLP"
 
@@ -3720,20 +3603,11 @@ msgstr ""
 msgid "Funding fees"
 msgstr "资金费用"
 
-#: src/components/Exchange/ExchangeBanner.jsx
-msgid "Trade on GMX and win <0>$250.000</0> in prizes! Live until November 30th, <1>click here</1> to learn more."
-msgstr "在GMX上进行交易，赢取<0>$250.000</0> 美元的奖金! 活动至11月30h, <1>点击这里</1> 了解更多"
-
-#: src/components/ModalViews/RedirectModal.tsx
-msgid "You are leaving GMX.io and will be redirected to a third party, independent website."
-msgstr "您正要离开GMX.io，并且将被重新导向到第三方独立网站"
-
 #: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionItem/PositionItem.tsx
 msgid "Accrued Borrow Fee"
 msgstr ""
 
-#: src/components/AddressDropdown/AddressDropdown.tsx
 #: src/components/Synthetics/TradeHistory/TradeHistory.tsx
 msgid "PnL Analysis"
 msgstr ""
@@ -3776,11 +3650,6 @@ msgstr ""
 
 #: src/components/Synthetics/TradeboxPoolWarnings/TradeboxPoolWarnings.tsx
 msgid "You have an existing position in the {0} market pool.<0><1>Switch to {1} market pool</1>.</0>"
-msgstr ""
-
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
-#: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
-msgid "Capital Used"
 msgstr ""
 
 #: src/components/Synthetics/Claims/filters/ActionFilter.tsx
@@ -3838,9 +3707,6 @@ msgid "Log in to your Binance app and tap [Wallets]. Go to [Web3]."
 msgstr "登录到您的币安应用程序并点击[钱包]。转到[Web3]。"
 
 #: src/components/Synthetics/Claims/ClaimableCard.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Claimable"
 msgstr "可领取"
 
@@ -3849,6 +3715,8 @@ msgid "Additionally, trigger orders are market orders and are not guaranteed to 
 msgstr "此外，触发订单為市场订单，不保证以触发价格结算"
 
 #: src/components/Header/AppHeaderLinks.tsx
+#: src/components/Header/AppHeaderUser.tsx
+#: src/components/Header/AppHeaderUser.tsx
 msgid "Docs"
 msgstr ""
 
@@ -3873,7 +3741,6 @@ msgstr "工作"
 msgid "Decentralized Options Strategies"
 msgstr "去中心化选策略"
 
-#: src/components/AddressDropdown/AddressDropdown.tsx
 #: src/components/Synthetics/SubaccountModal/SubaccountModal.tsx
 msgid "Address copied to your clipboard"
 msgstr ""
@@ -3883,19 +3750,17 @@ msgid "Documentation"
 msgstr ""
 
 #: src/components/Header/AppHeaderLinks.tsx
-#: src/components/NetworkDropdown/NetworkDropdown.tsx
-#: src/components/NetworkDropdown/NetworkDropdown.tsx
 #: src/components/SettingsModal/SettingsModal.tsx
 msgid "Settings"
 msgstr "设置"
 
+#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/InfoRows.tsx
+msgid "SELL FEE"
+msgstr ""
+
 #: src/components/Referrals/AffiliatesStats.tsx
 msgid "Amount of traders you referred."
 msgstr "你所介绍的交易者数量"
-
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-msgid "Long Collateral"
-msgstr ""
 
 #: src/components/Exchange/PositionSeller.jsx
 msgid "Close submitted!"
@@ -3961,7 +3826,6 @@ msgid "Stake failed"
 msgstr "质押失败"
 
 #: src/components/Glp/GlpSwap.jsx
-#: src/components/Synthetics/GmList/GmList.tsx
 msgid "WALLET"
 msgstr "钱包"
 
@@ -3988,16 +3852,16 @@ msgstr "储备"
 msgid "Available amount to deposit into the specific GM pool."
 msgstr ""
 
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-msgid "Short Collateral"
-msgstr ""
-
 #: src/components/Exchange/OrderEditor.jsx
 #: src/components/Exchange/PositionSeller.jsx
 #: src/components/Synthetics/OrderEditor/OrderEditor.tsx
 #: src/domain/synthetics/trade/utils/validation.ts
 msgid "Price below Liq. Price"
 msgstr "价格低于流动资金价格"
+
+#: src/components/ModalViews/RedirectModal.tsx
+msgid "The website is a community deployed and maintained instance of the open source <0>DeFive front end</0>, hosted and served on the distributed, peer-to-peer <1>IPFS network</1>."
+msgstr ""
 
 #: src/domain/tokens/approveTokens.tsx
 msgid "There is not enough {0} in your account on {networkName} to send this transaction.<0/><1/><2>Buy or Transfer {1} to {networkName}</2>"
@@ -4023,10 +3887,6 @@ msgstr ""
 msgid "Shorts Net Rate / 1h"
 msgstr "做空净率 / 1h"
 
-#: src/pages/MarketPoolsPage/MarketPoolsPage.tsx
-msgid "Purchase <0>GM Tokens</0> to earn fees from swaps and leverage trading."
-msgstr ""
-
 #: src/components/GmTokensBalanceInfo/GmTokensBalanceInfo.tsx
 msgid "Expected 365d Fees are projected based on past {daysConsidered}d base APY."
 msgstr ""
@@ -4034,6 +3894,10 @@ msgstr ""
 #: src/pages/Exchange/Exchange.tsx
 msgid "Withdrew {0} USD from {tokenSymbol} {longOrShortText}."
 msgstr "从{tokenSymbol}{longOrShortText}提取了{0}美元"
+
+#: src/components/Synthetics/ChartTokenSelector/ChartTokenSelector.tsx
+msgid "Perpetuals"
+msgstr ""
 
 #: src/components/Synthetics/SettleAccruedFundingFeeModal/SettleAccruedFundingFeeModal.tsx
 msgid "Accrued Funding Fee."
@@ -4052,13 +3916,14 @@ msgstr ""
 msgid "No markets found."
 msgstr ""
 
+#: src/components/Synthetics/PositionItem/PositionItem.tsx
+#: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
+msgid "NET VAL"
+msgstr ""
+
 #: src/components/Referrals/TradersStats.tsx
 msgid "Edit Referral Code"
 msgstr "编辑推荐代码"
-
-#: src/pages/AccountDashboard/AccountDashboard.tsx
-msgid "Switch to:"
-msgstr ""
 
 #: src/components/Synthetics/StatusNotification/OrderStatusNotification.tsx
 msgid "{txnTypeText} limit order for"
@@ -4072,15 +3937,11 @@ msgstr ""
 msgid "Create Referral Code"
 msgstr "创建推荐代码"
 
-#: src/components/NetworkDropdown/NetworkDropdown.tsx
-#: src/components/NetworkDropdown/NetworkDropdown.tsx
-msgid "Networks"
-msgstr "网络"
-
 #: src/components/Exchange/TradeHistory.jsx
 msgid "{0}: {1}, Price: {priceDisplay}"
 msgstr ""
 
+#: src/components/Synthetics/GmList/GmList.tsx
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "POOL"
 msgstr "池子"
@@ -4159,10 +4020,10 @@ msgstr ""
 
 #: src/components/Synthetics/TVChart/TVChartHeader.tsx
 #: src/components/Synthetics/TVChart/TVChartHeader.tsx
+#: src/components/Synthetics/TVChart/TVChartHeader.tsx
 msgid "24h Low"
 msgstr ""
 
-#: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardNavigation.tsx
 msgid "Chain Icon"
 msgstr ""
@@ -4172,17 +4033,12 @@ msgid "Settle request for {0, plural, one {# position} other {# positions}} sent
 msgstr ""
 
 #: src/pages/Dashboard/DashboardV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Price on Arbitrum"
 msgstr "Arbitrum上的价格"
 
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "Fees generated by GMX"
 msgstr "费用由GMX所产生"
-
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-msgid "GM can be sold for {0} for this market up to the specified selling caps. The remaining tokens in the pool are reserved for currently open positions."
-msgstr ""
 
 #: src/components/Synthetics/AccruedPositionPriceImpactRebateModal/AccruedPositionPriceImpactRebateModal.tsx
 #: src/components/Synthetics/ClaimablePositionPriceImpactRebateModal/ClaimablePositionPriceImpactRebateModal.tsx
@@ -4197,7 +4053,6 @@ msgstr "GMX的产量模拟器"
 msgid "There may not be sufficient liquidity to execute your order when the Min. Receive are met."
 msgstr ""
 
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Total Trades"
 msgstr ""
@@ -4270,6 +4125,10 @@ msgstr "在下面选择你的归属选项，然后点击 \"Claim\""
 msgid "Save on Costs"
 msgstr ""
 
+#: src/pages/Stake/StakeV2.tsx
+msgid "Vesting"
+msgstr ""
+
 #: src/components/Synthetics/StatusNotification/GmStatusNotification.tsx
 msgid "Buy order cancelled"
 msgstr ""
@@ -4281,10 +4140,6 @@ msgstr ""
 
 #: src/components/Synthetics/StatusNotification/OrderStatusNotification.tsx
 msgid "Cancel newly created orders"
-msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "Delegate"
 msgstr ""
 
 #: src/pages/NftWallet/NftWallet.jsx
@@ -4393,7 +4248,10 @@ msgstr "使用方法"
 msgid "GMX Announcements"
 msgstr ""
 
-#: src/components/Header/AppHeaderLinks.tsx
+#: src/components/Glp/GlpSwap.jsx
+msgid "Escrowed DeFive APR"
+msgstr ""
+
 #: src/pages/Referrals/Referrals.tsx
 #: src/pages/Referrals/Referrals.tsx
 msgid "Referrals"
@@ -4489,7 +4347,10 @@ msgstr "执行"
 
 #: src/pages/AccountDashboard/HistoricalLists.tsx
 #: src/pages/AccountDashboard/HistoricalLists.tsx
+#: src/pages/AccountDashboard/HistoricalLists.tsx
 #: src/pages/Exchange/Exchange.tsx
+#: src/pages/SyntheticsPage/SyntheticsPage.tsx
+#: src/pages/SyntheticsPage/SyntheticsPage.tsx
 #: src/pages/SyntheticsPage/SyntheticsPage.tsx
 msgid "Trades"
 msgstr "交易"
@@ -4505,10 +4366,6 @@ msgstr ""
 
 #: src/pages/LeaderboardPage/components/LeaderboardNavigation.tsx
 msgid "CONCLUDED"
-msgstr ""
-
-#: src/components/Synthetics/TradeHistory/TradeHistory.tsx
-msgid "Realized PnL after fees and price impact."
 msgstr ""
 
 #: src/components/Exchange/ChartTokenSelector.tsx
@@ -4568,7 +4425,6 @@ msgstr "推荐代码更新失败"
 #: src/components/Exchange/SwapBox.jsx
 #: src/components/Glp/GlpSwap.jsx
 #: src/components/Glp/GlpSwap.jsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
 #: src/components/Synthetics/OrderEditor/OrderEditor.tsx
 #: src/components/Synthetics/OrderEditor/OrderEditor.tsx
 #: src/components/Synthetics/PositionSeller/PositionSeller.tsx
@@ -4580,9 +4436,6 @@ msgstr "推荐代码更新失败"
 #: src/pages/Dashboard/DashboardV2.tsx
 #: src/pages/Dashboard/DashboardV2.tsx
 #: src/pages/OrdersOverview/OrdersOverview.jsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Price"
 msgstr "价钱"
 
@@ -4607,10 +4460,6 @@ msgstr "账户错误"
 msgid "Min residual collateral: 10 USD"
 msgstr ""
 
-#: src/pages/Stake/StakeV2.tsx
-msgid "GMX & Voting Power"
-msgstr ""
-
 #: src/components/TokenCard/TokenCard.tsx
 #: src/pages/Dashboard/DashboardV2.tsx
 #: src/pages/Dashboard/DashboardV2.tsx
@@ -4620,11 +4469,6 @@ msgstr ""
 #: src/pages/BeginAccountTransfer/BeginAccountTransfer.tsx
 msgid "Transferring"
 msgstr "转移中"
-
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-msgid "{0} GMX tokens can be claimed, use the options under the Total Rewards section to claim them."
-msgstr ""
 
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "GLP autocompounding vaults"
@@ -4673,6 +4517,10 @@ msgstr "警告：高额费用"
 msgid "<0>Delegate your undelegated {0} GMX DAO</0><1> voting power before compounding.</1>"
 msgstr ""
 
+#: src/components/Synthetics/GmSwap/GmSwapBox/GmShiftBox/useShiftSubmitState.tsx
+msgid "Shift D5"
+msgstr ""
+
 #: src/components/AprInfo/AprInfo.tsx
 msgid "You will earn a 20x Ethena sats multiplier per dollar of GM value. Check your earned sats on the<0>Ethena dashboard</0>."
 msgstr ""
@@ -4680,6 +4528,10 @@ msgstr ""
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/shared.ts
 msgid "Not enough Available Swap Liquidity to fill the Order. The Order will get filled when the condition is met and there is enough Available Swap Liquidity."
 msgstr "没有足够的可用交换流动性来填补订单。当条件满足并且有足够的可用交换流动性时，订单将被填充。"
+
+#: src/components/Exchange/ExchangeBanner.jsx
+msgid "Trade on DeFive and win <0>$250.000</0> in prizes! Live until November 30th, <1>click here</1> to learn more."
+msgstr ""
 
 #: src/components/Referrals/AffiliatesStats.tsx
 #: src/components/Referrals/TradersStats.tsx
@@ -4699,6 +4551,10 @@ msgstr "无效的流动资金价格"
 
 #: src/pages/AccountDashboard/dailyAndCumulativePnLDebug.tsx
 msgid "Start unrealized pnl"
+msgstr ""
+
+#: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
+msgid "7D"
 msgstr ""
 
 #: src/domain/tokens/approveTokens.tsx
@@ -4725,7 +4581,6 @@ msgstr ""
 msgid "Deposited!"
 msgstr ""
 
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionSeller/PositionSeller.tsx
 #: src/components/Synthetics/TradeBox/TradeBox.tsx
 msgid "TP/SL"
@@ -4748,6 +4603,10 @@ msgstr ""
 msgid "Compound Rewards"
 msgstr ""
 
+#: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx
+msgid "Cumulative PnL: {0}"
+msgstr ""
+
 #: src/pages/OrdersOverview/OrdersOverview.jsx
 msgid "Diff"
 msgstr "差异"
@@ -4755,10 +4614,6 @@ msgstr "差异"
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "Dashboard for GMX referral stats"
 msgstr "GMX推荐统计数据仪表板"
-
-#: src/components/Home/BenefitsSection/BenefitsSection.tsx
-msgid "Get started by <0><1/> reading docs</0>, or view the code on Github"
-msgstr ""
 
 #: src/components/Synthetics/Claims/ClaimsHistory.tsx
 #: src/components/Synthetics/Claims/filters/ActionFilter.tsx
@@ -4841,17 +4696,9 @@ msgstr ""
 msgid "There is no liquidation price, as the position's collateral value will increase to cover any negative PnL."
 msgstr ""
 
-#: src/pages/MarketPoolsPage/MarketPoolsPage.tsx
-msgid "Select a Market"
-msgstr ""
-
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "Min. required Collateral"
 msgstr "最低要求抵押品"
-
-#: src/components/MarketSelector/PoolSelector.tsx
-msgid "Search Pool"
-msgstr ""
 
 #: src/components/Header/HomeHeaderLinks.tsx
 msgid "Community"
@@ -4874,10 +4721,6 @@ msgstr ""
 #: src/components/Glp/GlpSwap.jsx
 msgid "Available"
 msgstr "可用的"
-
-#: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
-msgid "Last 7 days"
-msgstr ""
 
 #: src/pages/BeginAccountTransfer/BeginAccountTransfer.tsx
 msgid "Begin Transfer"
@@ -4946,12 +4789,20 @@ msgstr "赎回时间尚未到达"
 msgid "Insufficient liquidity"
 msgstr "流动资金不足"
 
+#: src/components/Common/SEO.tsx
+msgid "DeFive | Decentralized Perpetual Exchange"
+msgstr ""
+
 #: src/domain/legacy.ts
 msgid "Order cancelled."
 msgstr "订单已取消"
 
 #: src/pages/BuyGMX/BuyGMX.tsx
 msgid "Buy or Transfer AVAX to Avalanche"
+msgstr ""
+
+#: src/components/Synthetics/PositionItem/PositionItem.tsx
+msgid "ENTRY PRICE"
 msgstr ""
 
 #: src/pages/Ecosystem/Ecosystem.jsx
@@ -4967,7 +4818,6 @@ msgstr "检查下方的 \"节省费用 \"，以获得最低的费用百分比"
 msgid "Display PnL after fees"
 msgstr "收费后显示PnL"
 
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "The total realized and unrealized profit and loss for the period, including fees and price impact."
 msgstr ""
@@ -5053,10 +4903,6 @@ msgstr "編輯"
 msgid "No available leverage found"
 msgstr ""
 
-#: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
-msgid "Only addresses with over {0} in \"Capital Used\" are ranked."
-msgstr ""
-
 #: src/components/Exchange/ConfirmationBox.jsx
 msgid "Shorting..."
 msgstr "做空中..."
@@ -5069,17 +4915,9 @@ msgstr "你有一个<0>正在进行的转移</0>到{pendingReceiver}"
 msgid "{0} {1} not supported"
 msgstr ""
 
-#: src/pages/Buy/Buy.tsx
-msgid "Protocol Tokens"
-msgstr ""
-
 #: src/pages/ClaimEsGmx/ClaimEsGmx.jsx
 msgid "After claiming you will be able to vest a maximum of {0} esGMX at a ratio of {1} {stakingToken} to 1 esGMX."
 msgstr "申领后，您将能够以{1}{stakingToken}比1 esGMX的比例获得最多的{0}esGMX."
-
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
-msgid "Today"
-msgstr ""
 
 #: src/pages/Home/Home.jsx
 msgid "Development"
@@ -5090,12 +4928,11 @@ msgstr ""
 msgid "Receiver Address"
 msgstr "收取地址"
 
-#: src/pages/AccountDashboard/AccountDashboard.tsx
-msgid "GMX {versionName} {networkName} information for account:"
-msgstr ""
-
-#: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx
-msgid "From"
+#: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimCollateralHistoryRow.tsx
+#: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimFundingFeesHistoryRow.tsx
+#: src/components/Synthetics/PositionItem/PositionItem.tsx
+#: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
+msgid "SIZE"
 msgstr ""
 
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/position.ts
@@ -5125,6 +4962,10 @@ msgstr ""
 
 #: src/domain/synthetics/orders/utils.tsx
 msgid "Limit Increase"
+msgstr ""
+
+#: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
+msgid "Leadboard"
 msgstr ""
 
 #: src/pages/BuyGMX/BuyGMX.tsx
@@ -5171,17 +5012,9 @@ msgstr ""
 msgid "Alternatively, you can select a different \"Collateral In\" token."
 msgstr "或者,您可选择\"Collateral In\" 代币"
 
-#: src/components/NotifyModal/NotifyModal.tsx
-msgid "Get alerts and announcements from GMX to stay on top of your trades, liquidation risk, and more."
-msgstr ""
-
 #: src/components/Exchange/SwapBox.jsx
 #: src/components/Exchange/SwapBox.jsx
 msgid "<0>{0} is required for collateral.</0><1>Swap amount from {1} to {2} exceeds {3} acceptable amount. Reduce the \"Pay\" size, or use {4} as the \"Pay\" token to use it for collateral.</1><2>You can buy {5} on 1inch.</2>"
-msgstr ""
-
-#: src/components/Synthetics/GmList/GmList.tsx
-msgid "No GM pools found."
 msgstr ""
 
 #: src/pages/PageNotFound/PageNotFound.jsx
@@ -5280,13 +5113,8 @@ msgstr "{formattedNetRate} / 1 小时"
 #: src/components/Glp/GlpSwap.jsx
 #: src/components/Glp/GlpSwap.jsx
 #: src/components/Glp/GlpSwap.jsx
-#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
-#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
-#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
 #: src/components/Synthetics/GmSwap/GmSwapBox/GmShiftBox/GmShiftBox.tsx
 #: src/components/Synthetics/GmSwap/GmSwapBox/GmShiftBox/GmShiftBox.tsx
-#: src/components/Synthetics/TradeBox/TradeBox.tsx
-#: src/components/Synthetics/TradeBox/TradeBox.tsx
 msgid "Balance"
 msgstr "余额"
 
@@ -5339,10 +5167,6 @@ msgstr ""
 msgid "Same as current active code"
 msgstr "与当前的有效代码相同"
 
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
-msgid "Win / Loss"
-msgstr ""
-
 #: src/components/Referrals/TradersStats.tsx
 #: src/components/Referrals/TradersStats.tsx
 msgid "V1 rebates are airdropped weekly. V2 rebates are automatically applied as fee discounts on each trade and do not show on this table."
@@ -5350,10 +5174,6 @@ msgstr ""
 
 #: src/pages/Stake/StakeV2.tsx
 msgid "<0>This will claim {0} GMX.<1/><2/>After claiming, you can stake these GMX tokens by using the \"Stake\" button in the GMX section of this Earn page.<3/><4/></0>"
-msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "No delegate found"
 msgstr ""
 
 #: src/pages/Stake/StakeV2.tsx
@@ -5376,10 +5196,6 @@ msgstr ""
 msgid "Acknowledge epoch is ending in {minutes} minutes"
 msgstr ""
 
-#: src/components/InterviewModal/InterviewModal.tsx
-msgid "We want your insights to help improve GMX. For security reasons, we won't contact you first. Please send the message \"I have feedback\" to any of our official accounts:"
-msgstr ""
-
 #: src/pages/ClaimEsGmx/ClaimEsGmx.jsx
 msgid "Claim esGMX"
 msgstr "领取esGMX"
@@ -5396,9 +5212,6 @@ msgstr ""
 msgid "Expected execution price for the order, including the current price impact, once the limit order executes."
 msgstr ""
 
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
 #: src/pages/Dashboard/DashboardV2.tsx
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "Pool Amount"
@@ -5433,6 +5246,11 @@ msgstr ""
 msgid "Create {0} Order"
 msgstr "创建 {0} 订单"
 
+#: src/components/AddressDropdown/AddressDropdown.tsx
+#: src/components/Header/AppHeaderUser.tsx
+msgid "Copy Wallet Address"
+msgstr ""
+
 #: src/components/Synthetics/TradeBox/TradeBox.tsx
 msgid "Create Limit order"
 msgstr ""
@@ -5461,10 +5279,6 @@ msgstr "要求提款从 {0} {longOrShortText}"
 msgid "Select an option"
 msgstr "选择一个方案"
 
-#: src/components/Header/AppHeaderLinks.tsx
-msgid "Ecosystem"
-msgstr "生态系统"
-
 #: src/components/Exchange/SwapBox.jsx
 msgid "High USDG Slippage, Long Anyway"
 msgstr "高 USDG 滑点，继续做多"
@@ -5487,6 +5301,10 @@ msgstr ""
 msgid "Next"
 msgstr "下一步"
 
+#: src/pages/Buy/Buy.tsx
+msgid "On Arbitrum"
+msgstr ""
+
 #: src/components/Exchange/TradeHistory.jsx
 #: src/components/Referrals/AddAffiliateCode.jsx
 #: src/components/Referrals/AffiliatesStats.tsx
@@ -5503,7 +5321,6 @@ msgid "Limit order submitted!"
 msgstr "限价订单送出"
 
 #: src/components/Synthetics/DateRangeSelect/DateRangeSelect.tsx
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 msgid "Last 7d"
 msgstr ""
 
@@ -5547,14 +5364,8 @@ msgstr ""
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV2.tsx
 #: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Claim"
 msgstr "领取"
-
-#: src/pages/AccountDashboard/AccountDashboard.tsx
-msgid "GMX {versionName} Account"
-msgstr ""
 
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/position.ts
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/position.ts
@@ -5661,6 +5472,10 @@ msgstr ""
 msgid "Order size exceeds position"
 msgstr "订单规模超过位置"
 
+#: src/components/SettingsModal/SettingsModal.tsx
+msgid "The Max Network Fee is set to a higher value to handle potential increases in gas price during order execution. Any excess network fee will be refunded to your account when the order is executed. Only applicable to DeFive V2."
+msgstr ""
+
 #: src/components/Exchange/OrderEditor.jsx
 msgid "Order update submitted!"
 msgstr "指令更新已提交!"
@@ -5717,8 +5532,12 @@ msgid "To Receive"
 msgstr "收取"
 
 #: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "GMX Vault"
+msgstr ""
+
+#: src/components/Header/AppHeaderUser.tsx
+#: src/components/Header/AppHeaderUser.tsx
+msgid "Leaderboards"
 msgstr ""
 
 #: src/components/Exchange/TradeHistory.jsx
@@ -5732,6 +5551,10 @@ msgstr "GLP余额不足"
 #: src/pages/AccountDashboard/generalPerformanceDetailsDebug.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Start Unrealized Fees"
+msgstr ""
+
+#: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
+msgid "30D"
 msgstr ""
 
 #: src/components/Exchange/ConfirmationBox.jsx
@@ -5777,7 +5600,6 @@ msgstr ""
 msgid "{0} is below its target weight.<0/><1/>Get lower fees to <2>buy GLP</2> with {1}, and to <3>swap</3> {2} for other tokens."
 msgstr "{0}低于其目标重量。<0/><1/>获取较低的费用，以<2>用{1}购买GLP</2>，并<3>用{2}交换</3>其他代币"
 
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "Win Rate"
 msgstr ""
@@ -5800,11 +5622,6 @@ msgstr "购买/出售GLP"
 
 #: src/pages/Dashboard/AssetDropdown.tsx
 msgid "Open {0} in Explorer"
-msgstr ""
-
-#: src/components/Synthetics/GmList/GmList.tsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-msgid "{0} and {1} can be used to buy GM for this market up to the specified buying caps."
 msgstr ""
 
 #: src/components/Synthetics/TradeBox/TradeBoxRows/OneClickTrading.tsx
@@ -5901,10 +5718,6 @@ msgstr ""
 msgid "Migration submitted! <0>View status.</0>"
 msgstr "转移已送出! <0>查看状态</0>"
 
-#: src/pages/Stake/StakeV2.tsx
-msgid "APRs are updated weekly on Wednesday and will depend on the fees collected for the week. <0/><1/>Historical GLP APRs can be checked in this <2>community dashboard</2>."
-msgstr ""
-
 #: src/components/Exchange/TradeHistory.jsx
 msgid "Could not execute deposit into {0} {longOrShortText}"
 msgstr "无法执行存入 {0} {longOrShortText}"
@@ -5915,9 +5728,6 @@ msgstr "无法执行存入 {0} {longOrShortText}"
 #: src/components/Synthetics/PositionEditor/PositionEditor.tsx
 #: src/components/Synthetics/PositionEditor/types.ts
 #: src/components/Synthetics/TradeHistory/keys.ts
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 #: src/pages/Stake/StakeV2.tsx
 #: src/pages/Stake/StakeV2.tsx
 msgid "Deposit"
@@ -5990,7 +5800,6 @@ msgstr ""
 #: src/components/Synthetics/PositionSeller/PositionSeller.tsx
 #: src/components/Synthetics/TradeBox/TradeBox.tsx
 #: src/components/Synthetics/TradeBox/TradeBox.tsx
-#: src/components/Synthetics/TradeBox/TradeBox.tsx
 msgid "Receive"
 msgstr "收取"
 
@@ -6013,6 +5822,7 @@ msgstr ""
 msgid "GMX Perpetuals Data"
 msgstr "GMX永续产品数据"
 
+#: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
 msgid "Top Positions"
 msgstr ""
@@ -6063,19 +5873,6 @@ msgstr ""
 
 #: src/components/Exchange/ChartTokenSelector.tsx
 msgid "Max In"
-msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "Myself"
-msgstr ""
-
-#: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
-#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
-msgid "Search Address"
-msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "Buy GMX"
 msgstr ""
 
 #: src/pages/Dashboard/DashboardV2.tsx
@@ -6165,6 +5962,9 @@ msgid "Edit order"
 msgstr "编辑订单"
 
 #: src/pages/AccountDashboard/HistoricalLists.tsx
+#: src/pages/AccountDashboard/HistoricalLists.tsx
+#: src/pages/SyntheticsPage/SyntheticsPage.tsx
+#: src/pages/SyntheticsPage/SyntheticsPage.tsx
 #: src/pages/SyntheticsPage/SyntheticsPage.tsx
 msgid "Claims"
 msgstr ""
@@ -6174,8 +5974,6 @@ msgstr ""
 #: src/components/Synthetics/Claims/ClaimsHistory.tsx
 #: src/components/Synthetics/TradeHistory/useDownloadAsCsv.tsx
 #: src/components/Synthetics/UserIncentiveDistributionList/UserIncentiveDistributionList.tsx
-#: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 msgid "Date"
 msgstr "日期"
 
@@ -6223,10 +6021,6 @@ msgstr "价格高于标价"
 #: src/components/Synthetics/TradeHistory/useDownloadAsCsv.tsx
 msgid "Trigger Price"
 msgstr "触发价格"
-
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
-msgid "Sellable"
-msgstr ""
 
 #: src/components/Exchange/PositionSeller.jsx
 msgid "Initial Collateral (Collateral excluding Borrow Fee)."
@@ -6496,11 +6290,6 @@ msgstr ""
 msgid "GMX community discussion"
 msgstr "GMX社区讨论"
 
-#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
-#: src/components/Synthetics/GmSwap/GmSwapBox/GmSwapBox.tsx
-msgid "Sell GM"
-msgstr ""
-
 #: src/components/TokenCard/TokenCard.tsx
 #: src/components/TokenCard/TokenCard.tsx
 #: src/components/TokenCard/TokenCard.tsx
@@ -6532,8 +6321,8 @@ msgstr ""
 #: src/components/Exchange/TradeHistory.jsx
 #: src/components/Exchange/TradeHistory.jsx
 #: src/components/Exchange/TradeHistory.jsx
-#: src/components/MarketWithDirectionLabel/MarketWithDirectionLabel.tsx
 #: src/components/Synthetics/ChartTokenSelector/ChartTokenSelector.tsx
+#: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimFundingFeesHistoryRow.tsx
 #: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimFundingFeesHistoryRow.tsx
 #: src/components/Synthetics/Claims/ClaimHistoryRow/ClaimFundingFeesHistoryRow.tsx
 #: src/components/Synthetics/Claims/ClaimsHistory.tsx
@@ -6548,6 +6337,8 @@ msgstr ""
 #: src/components/Synthetics/StatusNotification/OrderStatusNotification.tsx
 #: src/components/Synthetics/TableMarketFilter/MarketFilterLongShort.tsx
 #: src/components/Synthetics/TradeBox/TradeBox.tsx
+#: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
+#: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/position.ts
 #: src/components/Synthetics/TVChart/components/AvailableLiquidityTooltip.tsx
 #: src/components/Synthetics/TVChart/TVChart.tsx
@@ -6563,13 +6354,13 @@ msgstr ""
 #: src/pages/Exchange/Exchange.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
+#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
+#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 #: src/pages/OrdersOverview/OrdersOverview.jsx
 msgid "Long"
 msgstr "做多"
 
 #: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
-#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/InfoRows.tsx
-#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/InfoRows.tsx
 #: src/components/Synthetics/MarketsList/NetFeeTooltip.tsx
 #: src/components/Synthetics/PoolSelector2/PoolSelector2.tsx
 #: src/components/Synthetics/TradeBox/MarketPoolSelectorRow.tsx
@@ -6603,10 +6394,6 @@ msgstr ""
 msgid "Bonus Rebate"
 msgstr ""
 
-#: src/pages/Stake/StakeV2.tsx
-msgid "Purchase Insurance"
-msgstr ""
-
 #: src/pages/Stake/StakeV1.jsx
 msgid "Unstake submitted! <0>View status.</0>"
 msgstr "解除质押送出!<0>查看状况</0>"
@@ -6633,8 +6420,17 @@ msgstr ""
 msgid "Avg. Lev."
 msgstr ""
 
+#: src/components/Header/AppHeaderUser.tsx
+#: src/components/Header/AppHeaderUser.tsx
+msgid "NETWORk"
+msgstr ""
+
 #: src/domain/synthetics/common/incentivesAirdropMessages.ts
 msgid "Avalanche LP incentives"
+msgstr ""
+
+#: src/components/NotifyModal/NotifyModal.tsx
+msgid "Get alerts and announcements from DeFive to stay on top of your trades, liquidation risk, and more."
 msgstr ""
 
 #: src/components/Stake/GMXAprTooltip.tsx
@@ -6652,10 +6448,6 @@ msgstr ""
 
 #: src/pages/Stake/StakeV2.tsx
 msgid "<0>This will withdraw all esGMX tokens as well as pause vesting.<1/><2/>esGMX tokens that have been converted to GMX will be claimed and remain as GMX tokens.<3/><4/>To claim GMX tokens without withdrawing, use the \"Claim\" button.<5/><6/></0>"
-msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "Voting Power"
 msgstr ""
 
 #: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
@@ -6696,6 +6488,16 @@ msgstr "限价单失败"
 msgid "{increaseOrDecreaseText} {tokenText} by {sizeText}"
 msgstr ""
 
+#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/InfoRows.tsx
+#: src/components/Synthetics/GmSwap/GmSwapBox/GmShiftBox/GmShiftBox.tsx
+msgid "PRICE IMPACT"
+msgstr ""
+
+#: src/components/Synthetics/Claims/ClaimsHistory.tsx
+#: src/components/Synthetics/TradeHistory/TradeHistory.tsx
+msgid "ACTION"
+msgstr ""
+
 #: src/components/Exchange/ConfirmationBox.jsx
 #: src/components/Exchange/ConfirmationBox.jsx
 #: src/components/Exchange/OrdersList.jsx
@@ -6712,12 +6514,8 @@ msgid "Claim {wrappedTokenSymbol} Rewards"
 msgstr ""
 
 #: src/components/Glp/GlpSwap.jsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Total Supply"
 msgstr "总供应量"
 
@@ -6735,11 +6533,12 @@ msgstr "关闭订单验证"
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Staked"
 msgstr "质押完成"
+
+#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
+msgid "Sell D5"
+msgstr ""
 
 #: src/pages/Referrals/Referrals.tsx
 msgid "Traders"
@@ -6782,6 +6581,10 @@ msgstr "接受并确认触发订单"
 msgid "Choose to buy from decentralized or centralized exchanges."
 msgstr ""
 
+#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/InfoRows.tsx
+msgid "BUY FEE"
+msgstr ""
+
 #: src/components/Exchange/TradeHistory.jsx
 msgid "Min required collateral"
 msgstr "所需的最低抵押品"
@@ -6804,17 +6607,15 @@ msgid "Order size is bigger than position, will only be executable if position i
 msgstr "订单规模大于头寸，只有在头寸增加的情况下才会执行"
 
 #: src/components/Header/AppHeaderLinks.tsx
-#: src/components/Synthetics/GmList/GmList.tsx
+#: src/components/Header/AppHeaderUser.tsx
+#: src/components/Header/AppHeaderUser.tsx
 #: src/components/Synthetics/GmSwap/GmConfirmationBox/GmConfirmationBox.tsx
+#: src/components/Synthetics/GmSwap/GmSwapBox/GmSwapBox.tsx
 msgid "Buy"
 msgstr "购买"
 
 #: src/config/events.tsx
 msgid "Incentives are live for <0>Arbitrum</0> and <1>Avalanche</1> GM pools and V2 trading."
-msgstr ""
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "Total Rewards"
 msgstr ""
 
 #: src/pages/NftWallet/NftWallet.jsx
@@ -6841,7 +6642,6 @@ msgstr ""
 msgid "Fees will be shown once you have entered an amount in the order form."
 msgstr "在订单中输入金额，费用就会显示出来"
 
-#: src/pages/Stake/StakeV2.tsx
 #: src/pages/Stake/StakeV2.tsx
 msgid "GLP Vault"
 msgstr ""
@@ -6892,8 +6692,6 @@ msgstr ""
 msgid "Referral code submitted!"
 msgstr ""
 
-#: src/components/Synthetics/GmList/GmList.tsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
 #: src/components/Synthetics/MarketTokenSelector/MarketTokenSelector.tsx
 msgid "APY"
 msgstr ""
@@ -7003,7 +6801,6 @@ msgstr ""
 msgid "Projects integrated with GMX."
 msgstr "与GMX整合的项目"
 
-#: src/components/Glp/GlpSwap.jsx
 #: src/components/Stake/GMXAprTooltip.tsx
 msgid "Escrowed GMX APR"
 msgstr "托管的GMX年利率"
@@ -7033,15 +6830,11 @@ msgstr ""
 #: src/components/Glp/GlpSwap.jsx
 #: src/components/Glp/GlpSwap.jsx
 #: src/components/Migration/Migration.jsx
-#: src/components/Synthetics/MarketStats/MarketStats.tsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
 #: src/pages/Stake/StakeV1.jsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 #: src/pages/Stake/StakeV2.tsx
 msgid "Wallet"
 msgstr "钱包"
@@ -7065,13 +6858,13 @@ msgstr "归属的GLP未被撤回"
 #: src/components/Exchange/PositionsList.jsx
 #: src/components/Exchange/SwapBox.jsx
 #: src/components/Exchange/SwapBox.jsx
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionList/PositionList.tsx
 #: src/components/Synthetics/TradeBox/TradeBoxRows/EntryPriceRow.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "Entry Price"
 msgstr "入场价格"
 
+#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 msgid "Price change to Liq."
 msgstr ""
@@ -7088,14 +6881,9 @@ msgstr ""
 msgid "Limit Decrease"
 msgstr ""
 
-#: src/components/AddressDropdown/AddressDropdown.tsx
 #: src/components/Synthetics/SubaccountModal/SubaccountModal.tsx
 #: src/components/Synthetics/TradeBox/TradeBoxRows/OneClickTrading.tsx
 msgid "One-Click Trading"
-msgstr ""
-
-#: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx
-msgid "Cumulative PnL: <0>{0}</0>"
 msgstr ""
 
 #: src/components/Synthetics/PoolSelector2/PoolSelector2.tsx
@@ -7124,7 +6912,6 @@ msgstr ""
 msgid "Leaderboard"
 msgstr "排行榜"
 
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardAccountsTable.tsx
 msgid "The PnL ($) compared to the capital used.<0/><1/>The capital used is calculated as the highest value of [<2>sum of collateral of open positions - realized PnL + period start pending PnL</2>]."
 msgstr ""
@@ -7133,6 +6920,7 @@ msgstr ""
 msgid "Accrued"
 msgstr ""
 
+#: src/components/Home/BenefitsSection/BenefitsSection.tsx
 #: src/components/Home/BenefitsSection/BenefitsSection.tsx
 msgid "Get started by <0><1/> reading docs</0>, or view the code on <2><3/> Github</2>"
 msgstr ""
@@ -7200,6 +6988,10 @@ msgstr "奖励代币"
 msgid "Transaction failed"
 msgstr "交易失败"
 
+#: src/components/Synthetics/PositionItem/PositionItem.tsx
+msgid "COLLATERAL"
+msgstr ""
+
 #: src/components/Exchange/PositionEditor.jsx
 #: src/pages/Stake/StakeV2.tsx
 msgid "Depositing..."
@@ -7221,16 +7013,17 @@ msgstr "净率"
 msgid "2nd Place"
 msgstr ""
 
+#: src/components/Synthetics/GmSwap/GmSwapBox/GmDepositWithdrawalBox/GmDepositWithdrawalBox.tsx
+#: src/pages/Buy/Buy.tsx
+msgid "Buy D5"
+msgstr ""
+
 #: src/components/Synthetics/TradeBox/TradeBoxRows/OneClickTrading.tsx
 msgid "Top-Up"
 msgstr ""
 
 #: src/components/Synthetics/MarketCard/MarketCard.tsx
 msgid "Ask Price (Exit)"
-msgstr ""
-
-#: src/components/Synthetics/GmList/GmList.tsx
-msgid "Shift is only applicable to GM pools when there are other pools with the same backing tokens, allowing liquidity to be moved without incurring buy or sell fees."
 msgstr ""
 
 #: src/components/Synthetics/SubaccountModal/SubaccountStatus.tsx
@@ -7245,16 +7038,16 @@ msgstr ""
 msgid "You will be long {indexSymbol} from your long position, as well as from your {collateralSymbol} collateral. The liquidation price is higher compared to using a stablecoin as collateral since the worth of the collateral will change with its price."
 msgstr ""
 
+#: src/components/Synthetics/PositionItem/PositionItem.tsx
+msgid "MARK PRICE"
+msgstr ""
+
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "GMX explorer for stats and traders"
 msgstr "用于统计和交易的GMX探索器"
 
 #: src/components/Synthetics/StatusNotification/GmStatusNotification.tsx
 msgid "Sell order cancelled"
-msgstr ""
-
-#: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
-msgid "Last 30 days"
 msgstr ""
 
 #: src/components/Synthetics/ExecutionPriceRow.tsx
@@ -7269,6 +7062,10 @@ msgstr ""
 #: src/components/Exchange/OrdersList.jsx
 msgid "The price that the order can be executed at may differ slightly from the chart price as market orders can change the price while limit / trigger orders cannot."
 msgstr "订单可以执行的价格可能与图表价格略有不同，因为市价订单可以改变价格，而限定/触发订单不能"
+
+#: src/components/Synthetics/GmList/GmList.tsx
+msgid "TRADING VOLUME"
+msgstr ""
 
 #: src/components/Synthetics/Claims/ClaimsHistory.tsx
 msgid "Claims History"
@@ -7310,6 +7107,8 @@ msgstr ""
 #: src/components/Synthetics/StatusNotification/OrderStatusNotification.tsx
 #: src/components/Synthetics/SwapCard/SwapCard.tsx
 #: src/components/Synthetics/TradeBox/TradeBox.tsx
+#: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
+#: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
 #: src/pages/OrdersOverview/OrdersOverview.jsx
 msgid "Swap"
 msgstr "交易"
@@ -7318,6 +7117,7 @@ msgstr "交易"
 msgid "long"
 msgstr ""
 
+#: src/components/Synthetics/TVChart/TVChartHeader.tsx
 #: src/components/Synthetics/TVChart/TVChartHeader.tsx
 #: src/components/Synthetics/TVChart/TVChartHeader.tsx
 msgid "24h High"
@@ -7339,10 +7139,6 @@ msgstr ""
 #: src/domain/synthetics/sidecarOrders/utils.ts
 msgid "A Size percentage is required."
 msgstr ""
-
-#: src/components/NetworkDropdown/NetworkDropdown.tsx
-msgid "Language"
-msgstr "语言"
 
 #: src/pages/CompleteAccountTransfer/CompleteAccountTransfer.jsx
 msgid "Complete Transfer"
@@ -7410,7 +7206,6 @@ msgid "You do not have any eligible trade during the competition window."
 msgstr ""
 
 #: src/components/Synthetics/DateRangeSelect/DateRangeSelect.tsx
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
 msgid "Last 30d"
 msgstr ""
 
@@ -7471,9 +7266,9 @@ msgstr ""
 #: src/components/Exchange/PositionsList.jsx
 #: src/components/Synthetics/OrderItem/OrderItem.tsx
 #: src/components/Synthetics/OrderList/OrderList.tsx
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionList/PositionList.tsx
 #: src/components/Synthetics/TradeHistory/useDownloadAsCsv.tsx
+#: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 #: src/pages/LeaderboardPage/components/LeaderboardPositionsTable.tsx
 #: src/pages/OrdersOverview/OrdersOverview.jsx
 msgid "Mark Price"
@@ -7526,7 +7321,6 @@ msgid "Limit Swap"
 msgstr ""
 
 #: src/pages/Stake/StakeV2.tsx
-#: src/pages/Stake/StakeV2.tsx
 msgid "Compound"
 msgstr ""
 
@@ -7544,6 +7338,7 @@ msgid "You will receive a {currentTierDiscount}% discount on opening and closing
 msgstr ""
 
 #: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
+#: src/pages/LeaderboardPage/components/LeaderboardContainer.tsx
 msgid "Top Addresses"
 msgstr ""
 
@@ -7556,16 +7351,12 @@ msgstr "更新止损指令"
 msgid "Continue"
 msgstr "继续"
 
-#: src/pages/AccountDashboard/DailyAndCumulativePnL.tsx
-msgid "Daily and Cumulative PnL"
-msgstr ""
-
 #: src/components/Exchange/PositionEditor.jsx
 msgid "Edit {longOrShortText} {0}"
 msgstr ""
 
-#: src/components/Synthetics/GmList/GmList.tsx
 #: src/components/Synthetics/GmSwap/GmConfirmationBox/GmConfirmationBox.tsx
+#: src/components/Synthetics/GmSwap/GmSwapBox/GmSwapBox.tsx
 msgid "Sell"
 msgstr ""
 
@@ -7644,10 +7435,6 @@ msgstr "净率结合了资金费用和借款费用，但不包括开放、交换
 msgid "Accrued Price Impact Rebates"
 msgstr ""
 
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
-msgid "Yesterday"
-msgstr ""
-
 #: src/components/Synthetics/TradeHistory/keys.ts
 msgid "Request Deposit"
 msgstr "要求押金"
@@ -7678,10 +7465,6 @@ msgstr ""
 
 #: src/components/Synthetics/GmSwap/GmSwapBox/HighPriceImpactRow.tsx
 msgid "Consider selecting and using the \"Pair\" option to reduce the Price Impact."
-msgstr ""
-
-#: src/components/InterviewModal/InterviewModal.tsx
-msgid "Anonymous chat with GMX"
 msgstr ""
 
 #: src/pages/Home/Home.jsx
@@ -7722,6 +7505,11 @@ msgstr "执行订单的流动性不足</0><1>作为交易所价格总和的标�
 msgid "Your position's collateral after deducting fees:"
 msgstr "扣除费用后，你的头寸的抵押品"
 
+#: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
+#: src/components/Synthetics/TradeHistory/TradeHistoryRow/TradeHistoryRow.tsx
+msgid "<0/><1>{0} {1}</1><2/><3/><4>{2} {3}</4>"
+msgstr ""
+
 #: src/components/Glp/GlpSwap.jsx
 msgid "Selling..."
 msgstr "出售中..."
@@ -7735,8 +7523,6 @@ msgstr ""
 #: src/components/Exchange/PositionsList.jsx
 #: src/components/Exchange/PositionsList.jsx
 #: src/components/Synthetics/OrderEditor/OrderEditor.tsx
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
-#: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionSeller/PositionSeller.tsx
 #: src/components/Synthetics/PositionSeller/PositionSeller.tsx
 #: src/components/Synthetics/TradeBox/TradeBox.tsx
@@ -7762,6 +7548,10 @@ msgstr ""
 
 #: src/components/Synthetics/NetworkFeeRow/NetworkFeeRow.tsx
 msgid "Max Network Fee"
+msgstr ""
+
+#: src/components/NotifyModal/NotifyModal.tsx
+msgid "Discover DeFive Alerts"
 msgstr ""
 
 #: src/pages/Dashboard/DashboardV2.tsx
@@ -7815,10 +7605,6 @@ msgstr "完成账户转移"
 msgid "Claim Rewards"
 msgstr ""
 
-#: src/components/AddressDropdown/AddressDropdown.tsx
-msgid "Copy Address"
-msgstr "复制地址"
-
 #: src/pages/BeginAccountTransfer/BeginAccountTransfer.tsx
 msgid "Pending Transfer Approval"
 msgstr ""
@@ -7835,10 +7621,6 @@ msgstr ""
 msgid "Proof of Reserves"
 msgstr "储备证明"
 
-#: src/pages/AccountDashboard/GeneralPerformanceDetails.tsx
-msgid "General Performance Details"
-msgstr ""
-
 #: src/pages/Stake/StakeV2.tsx
 msgid "<0>This will withdraw and unreserve all tokens as well as pause vesting.<1/><2/>esGMX tokens that have been converted to GMX will be claimed and remain as GMX tokens.<3/><4/>To claim GMX tokens without withdrawing, use the \"Claim\" button under the Total Rewards section.<5/><6/></0>"
 msgstr ""
@@ -7849,6 +7631,10 @@ msgstr "符合价格条件"
 
 #: src/pages/Stake/StakeV2.tsx
 msgid "Unstake GMX"
+msgstr ""
+
+#: src/pages/Buy/Buy.tsx
+msgid "On Fantom"
 msgstr ""
 
 #: src/pages/Stake/StakeV2.tsx

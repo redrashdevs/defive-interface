@@ -6,10 +6,10 @@ import { INPUT_LABEL_SEPARATOR, PERCENTAGE_SUGGESTIONS } from "config/ui";
 import NumberInput from "components/NumberInput/NumberInput";
 
 type Props = {
-  topLeftLabel: string;
-  topLeftValue?: string;
-  topRightLabel?: string;
-  topRightValue?: string;
+  topLeftLabel: string | React.ReactNode;
+  topLeftValue?: string | React.ReactNode;
+  topRightLabel?: string | React.ReactNode;
+  topRightValue?: string | React.ReactNode;
   onClickTopRightLabel?: () => void;
   inputValue?: number | string;
   onInputValueChange?: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -118,8 +118,8 @@ export default function BuyInputSection(props: Props) {
             )}
             {staticInput && <div className="InputSection-static-input">{inputValue}</div>}
             {showMaxButton && (
-              <button type="button" className="Exchange-swap-max" onClick={onClickMax} data-qa="input-max">
-                <Trans>MAX</Trans>
+              <button type="button" className="bg-[#36363D]  px-8 py-2 rounded-[12px]" onClick={onClickMax} data-qa="input-max">
+                <p className="text-white text-[12px] text-center font-[500] opacity-80"><Trans>MAX</Trans></p>
               </button>
             )}
           </div>

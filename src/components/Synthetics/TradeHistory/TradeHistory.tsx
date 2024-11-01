@@ -15,7 +15,7 @@ import { useDateRange, useNormalizeDateRange } from "lib/dates";
 import Button from "components/Button/Button";
 import Pagination from "components/Pagination/Pagination";
 import usePagination from "components/Referrals/usePagination";
-import { TradesHistorySkeleton } from "components/Skeleton/Skeleton";
+import { TradesHistoryMobileSkeleton, TradesHistorySkeleton } from "components/Skeleton/Skeleton";
 import TooltipWithPortal from "components/Tooltip/TooltipWithPortal";
 
 import { DateRangeSelect } from "../DateRangeSelect/DateRangeSelect";
@@ -30,6 +30,7 @@ import downloadIcon from "img/ic_download_simple.svg";
 import PnlAnalysisIcon from "img/ic_pnl_analysis_20.svg?react";
 
 import "./TradeHistorySynthetics.scss";
+import { useMedia } from "react-use";
 
 const TRADE_HISTORY_PREFETCH_SIZE = 100;
 const ENTITIES_PER_PAGE = TRADE_HISTORY_PER_PAGE;
@@ -76,6 +77,7 @@ export function TradeHistory(p: Props) {
     orderEventCombinations: actionFilter,
   });
 
+  const isMobile = useMedia(`(max-width: 700px)`);
   const isConnected = Boolean(account);
   const isLoading = (forAllAccounts || isConnected) && (minCollateralUsd === undefined || isHistoryLoading);
 
@@ -126,77 +128,100 @@ export function TradeHistory(p: Props) {
 
   return (
     <div className="TradeHistorySynthetics">
-      <div className="App-box max-[962px]:!-mr-[--default-container-padding] max-[962px]:!rounded-r-0 max-[800px]:!-mr-[--default-container-padding-mobile]">
-        <div className="flex flex-wrap items-center justify-between gap-y-8 border-b border-b-slate-700 px-10 py-16">
-          <div>
+      <div className="trader-wrapper w-full max-[962px]:!-mr-[--default-container-padding] max-[800px]:!-mr-[--default-container-padding-mobile]">
+        <div
+          className="flex flex-wrap items-center justify-between gap-y-8 border-b-[1px] border-dotted px-[16px] py-[8px]"
+          style={{ borderColor: "rgba(54, 54, 61, 1)" }}
+        >
+          <div className="text-[12px]" style={{ color: "rgba(255, 255, 255, 0.24)" }}>
             <Trans>Trade History</Trans>
           </div>
           <div className="TradeHistorySynthetics-controls-right">
             {pnlAnalysisButton}
             <div className="TradeHistorySynthetics-filters">
-              <DateRangeSelect startDate={startDate} endDate={endDate} onChange={setDateRange} />
+              <DateRangeSelect
+                handleClassName="no-underline"
+                startDate={startDate}
+                endDate={endDate}
+                onChange={setDateRange}
+              />
             </div>
-            <Button
-              variant="secondary"
-              slim
-              disabled={isCsvDownloading}
-              imgSrc={downloadIcon}
-              onClick={handleCsvDownload}
-            >
-              CSV
-            </Button>
+            <button disabled={isCsvDownloading} onClick={handleCsvDownload} className="px-12">
+              <div className="flex items-center">
+                <img src="/images/download.png" />
+                <p className="ml-4 text-[12px] font-[500] text-white opacity-60">CSV</p>
+              </div>
+            </button>
           </div>
         </div>
         <div className="TradeHistorySynthetics-horizontal-scroll-container">
-          <table className="Exchange-list TradeHistorySynthetics-table">
-            <colgroup>
-              <col className="TradeHistorySynthetics-action-column" />
-              <col className="TradeHistorySynthetics-market-column" />
-              <col className="TradeHistorySynthetics-size-column" />
-              <col className="TradeHistorySynthetics-price-column" />
-              <col className="TradeHistorySynthetics-pnl-fees-column" />
-            </colgroup>
-            <thead className="TradeHistorySynthetics-header">
-              <tr>
-                <th>
-                  <ActionFilter value={actionFilter} onChange={setActionFilter} />
-                </th>
-                <th>
-                  <MarketFilterLongShort
+          {isMobile ? (
+            isLoading ? (
+              <TradesHistoryMobileSkeleton withTimestamp={forAllAccounts} />
+            ) : (
+              currentPageData.map((tradeAction) => (
+                <TradeHistoryRow
+                  key={tradeAction.id}
+                  tradeAction={tradeAction}
+                  minCollateralUsd={minCollateralUsd!}
+                  showDebugValues={showDebugValues}
+                  shouldDisplayAccount={forAllAccounts}
+                />
+              ))
+            )
+          ) : (
+            <table className="Exchange-list TradeHistorySynthetics-table">
+              <colgroup>
+                <col className="TradeHistorySynthetics-action-column" />
+                <col className="TradeHistorySynthetics-market-column" />
+                <col className="TradeHistorySynthetics-size-column" />
+                <col className="TradeHistorySynthetics-price-column" />
+                <col className="TradeHistorySynthetics-pnl-fees-column" />
+              </colgroup>
+              <thead className="TradeHistorySynthetics-header">
+                <tr>
+                  <th>
+                    {/* <ActionFilter value={actionFilter} onChange={setActionFilter} /> */}
+                    <Trans>ACTION</Trans>
+                  </th>
+                  <th>
+                    {/* <MarketFilterLongShort
                     withPositions="all"
                     value={marketsDirectionsFilter}
                     onChange={setMarketsDirectionsFilter}
-                  />
-                </th>
-                <th>
-                  <Trans>Size</Trans>
-                </th>
-                <th>
-                  <Trans>Price</Trans>
-                </th>
-                <th className="TradeHistorySynthetics-pnl-fees-header">
-                  <TooltipWithPortal content={<Trans>Realized PnL after fees and price impact.</Trans>}>
+                  /> */}
+                    <Trans>MARKET</Trans>
+                  </th>
+                  <th>
+                    <Trans>Size</Trans>
+                  </th>
+                  <th>
+                    <Trans>Price</Trans>
+                  </th>
+                  <th className="text-start">
+                    {/* <TooltipWithPortal content={<Trans>Realized PnL after fees and price impact.</Trans>}> */}
                     <Trans>RPnL ($)</Trans>
-                  </TooltipWithPortal>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {isLoading ? (
-                <TradesHistorySkeleton withTimestamp={forAllAccounts} />
-              ) : (
-                currentPageData.map((tradeAction) => (
-                  <TradeHistoryRow
-                    key={tradeAction.id}
-                    tradeAction={tradeAction}
-                    minCollateralUsd={minCollateralUsd!}
-                    showDebugValues={showDebugValues}
-                    shouldDisplayAccount={forAllAccounts}
-                  />
-                ))
-              )}
-            </tbody>
-          </table>
+                    {/* </TooltipWithPortal> */}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {isLoading ? (
+                  <TradesHistorySkeleton withTimestamp={forAllAccounts} />
+                ) : (
+                  currentPageData.map((tradeAction) => (
+                    <TradeHistoryRow
+                      key={tradeAction.id}
+                      tradeAction={tradeAction}
+                      minCollateralUsd={minCollateralUsd!}
+                      showDebugValues={showDebugValues}
+                      shouldDisplayAccount={forAllAccounts}
+                    />
+                  ))
+                )}
+              </tbody>
+            </table>
+          )}
         </div>
         {isEmpty && hasFilters && (
           <div className="TradeHistorySynthetics-padded-cell">

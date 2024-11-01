@@ -139,7 +139,7 @@ $tabs-threshold: 990px;
   position: absolute;
   left: 0;
   top: 0;
-  background-color: var(--color-cold-blue-500);
+  // background-color: var(--color-cold-blue-500);
 }
 
 .LeaderboardRank-1::after,
@@ -165,19 +165,23 @@ $tabs-threshold: 990px;
 }
 
 .LeaderboardRank-1::after {
-  background-image: url(../../img/rank1.svg);
+  margin-top: 16px;
+  background-image: url(../../img/rank1.png);
 }
 
 .LeaderboardRank-2::after {
-  background-image: url(../../img/rank2.svg);
+  margin-top: 16px;
+  background-image: url(../../img/rank2.png);
 }
 
 .LeaderboardRank-3::after {
-  background-image: url(../../img/rank3.svg);
+  margin-top: 16px;
+  background-image: url(../../img/rank3.png);
 }
 
 .LeaderboardRank-4::after {
-  background-image: url(../../img/rank4.svg);
+  margin-top: 16px;
+  // background-image: url(../../img/rank4.svg);
 }
 
 .CompetitionPrizes {
@@ -457,7 +461,7 @@ $tabs-threshold: 990px;
 .TableBox {
   width: 100%;
   overflow: visible;
-  background-color: var(--color-slate-800);
+  background-color: #000 !important;
   padding-bottom: 10px;
 
   .text-right {
@@ -475,17 +479,17 @@ $tabs-threshold: 990px;
 }
 
 .TableBox__head {
-  background-color: var(--color-slate-800);
+  background-color: 000;
   padding: 1rem 1.6rem;
   border-radius: 0.4rem 0.4rem 0 0;
-  border-bottom: 1px solid var(--color-gray-900);
+  // border-bottom: 1px solid var(--color-gray-900);
 }
 
 .TableBox__footer {
-  background-color: var(--color-slate-800);
+  background-color: #000;
   padding: 1rem 1.6rem;
   border-radius: 0 0 0.4rem 0.4rem;
-  border-top: 1px solid var(--color-gray-900);
+  border-top: 1px solid #000;
   height: 5.8rem;
 
   & .pagination {
@@ -495,11 +499,13 @@ $tabs-threshold: 990px;
 
 .TableBox table.Exchange-list tr {
   border: none;
+  background-color: #000;
 }
 
 .TableBox table.Exchange-list tr:hover {
   cursor: default;
   box-shadow: none;
+  background-color: #000;
 }
 
 @media screen and (max-width: 1200px) {
@@ -516,14 +522,25 @@ $tabs-threshold: 990px;
 table.Table.Exchange-list th {
   opacity: unset;
 }
-
+.TableHeader {
+  vertical-align: middle;
+}
 .TableHeader .TableHeaderTitle {
   opacity: 0.7;
-  display: flex;
-  height: 100%;
+  display: inline-flex;
+  // align-items: center;
+  width: 16px;
+  height: 20px;
+  // height: 20px;
+}
+.TableHeaderMainTitle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   white-space: nowrap;
   text-transform: uppercase;
-  font-size: var(--font-base);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.24);
 }
 .TableHeader.text-right .TableHeaderTitle {
   justify-content: flex-end;
@@ -565,6 +582,27 @@ table.Table.Exchange-list th {
 
 .Table_tr {
   position: relative;
+  height: 72px;
+  td {
+    &:first-child {
+      border-radius: 12px 0  0 12px;
+    }
+    &:last-child {
+      border-radius: 0 12px  12px  0;
+    }
+  }
+  &:hover {
+    td {
+      background: rgba(36, 36, 41, 1) !important;
+    }
+
+  }
+  .rank {
+    vertical-align: middle;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.14);
+  }
+
 }
 
 .Table_tr td {
@@ -575,4 +613,90 @@ table.Table.Exchange-list th {
 .Table-SizeTooltip .Tooltip-popup {
   min-width: 38rem !important;
   max-width: 38rem !important;
+}
+
+.leaderboard-calendar {
+  background: rgba(36, 36, 41, 1);
+  font-size: 14px;
+  color: rgba(214, 214, 214, 1);
+  padding-inline: 16px;
+  white-space: nowrap;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 140px;
+  height: 40px;
+  border-radius: 40px;
+}
+
+.leaderboard-calendar-items {
+  min-width: 17rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem !important;
+  background-color: #fff;
+  width: 200px;
+  top: 52px;
+  border-radius: 20px;
+  color: rgba(53, 64, 82, 1);
+
+  // position: absolute;
+  // left: 0;
+  // top: 4.3rem;
+  padding-block: 16px;
+  padding-inline: 0 !important;
+  transform-origin: top right;
+  border-radius: 12px;
+  overflow: hidden;
+  border: none;
+  list-style: none;
+  cursor: pointer;
+  outline: none;
+  z-index: 1000;
+
+  .calendar-menu-item {
+    font-size: 14px;
+    width: 100%;
+    padding-inline: 16px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    &:hover {
+      background: rgba(128, 138, 255, 0.0784313725) !important;
+    }
+  }
+}
+
+.Leaderboard-mobile-row {
+  padding: 12px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  .right-column {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .left-column {
+    height: 73px;
+    .rank {
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
+      color: rgba(255, 255, 255, 0.14);
+      width: 24px;
+    }
+    .address {
+      font-size: 16px;
+      font-weight: 500;
+      text-align: left;
+      margin-left: 24px;
+      margin-top: 8px;
+      color: #fff;
+    }
+  }
 }

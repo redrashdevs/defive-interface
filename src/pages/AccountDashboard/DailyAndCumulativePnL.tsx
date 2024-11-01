@@ -47,113 +47,151 @@ import "./DailyAndCumulativePnL.css";
 
 const CHART_TOOLTIP_WRAPPER_STYLE: React.CSSProperties = { zIndex: 10000 };
 
-const getInitialDate = () => undefined;
-
 const CHART_TICK_PROPS: React.SVGProps<SVGTextElement> = { fill: "var(--color-gray-400)" };
 
-export function DailyAndCumulativePnL({ chainId, account }: { chainId: number; account: Address }) {
-  const [fromDate, setFromDate] = useState<Date | undefined>(getInitialDate);
+export function DailyAndCumulativePnL({
+  chainId,
+  account,
+  fromDate,
+}: {
+  chainId: number;
+  account: Address;
+  fromDate: Date | undefined;
+}) {
   const fromTimestamp = useMemo(() => fromDate && toUtcDayStart(fromDate), [fromDate]);
-
   const { data: clusteredPnlData, error, loading } = usePnlHistoricalData(chainId, account, fromTimestamp);
 
   const { cardRef, handleImageDownload } = useImageDownload();
 
   return (
-    <div className="flex flex-col rounded-4 bg-slate-800" ref={cardRef}>
-      <div className="flex items-center justify-between border-b border-b-gray-950 px-16">
-        <div className="py-16">
-          <Trans>Daily and Cumulative PnL</Trans>
-        </div>
-        <div className="flex flex-wrap items-stretch justify-end gap-8 py-10">
-          <Button
-            variant="secondary"
-            data-exclude
-            className="!px-10 !py-6"
-            imgSrc={downloadIcon}
-            onClick={handleImageDownload}
-          >
-            PNG
-          </Button>
-          <DateSelect
-            date={fromDate}
-            onChange={setFromDate}
-            handleClassName="!px-10 !py-6"
-            buttonTextPrefix={t`From`}
-          />
-        </div>
-      </div>
+    <div className="cumilative-pnl-wrapper mt-24">
+      {!loading && !error ? (
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
+          <div className="flex items-center justify-start">
+            <div className="indicator">
+              <div className="inline-block size-10 rounded-full bg-green-500" /> <Trans>Daily Profit</Trans>
+            </div>
+            <div className="indicator ml-8">
+              <div className="inline-block size-10 rounded-full bg-[#FF303E]" /> <Trans>Daily Loss</Trans>
+            </div>
+          </div>
 
-      <div className="flex flex-wrap gap-24 px-16 pt-16 text-gray-300">
-        <div>
-          <div className="inline-block size-10 rounded-full bg-green-500" /> <Trans>Daily Profit</Trans>
+          <div className="indicator">
+            <div className="inline-block size-10 rounded-full bg-[#0B9BD8]" />{" "}
+            <Trans>
+              Cumulative PnL:{" "}
+              {clusteredPnlData.length ? (
+                <span className={getPositiveOrNegativeClass(clusteredPnlData.at(-1)?.cumulativePnl)}>
+                  {formatUsd(clusteredPnlData.at(-1)?.cumulativePnl)!.split(".")[0]}.
+                  <span
+                    style={{
+                      color:
+                        getPositiveOrNegativeClass(clusteredPnlData.at(-1)?.cumulativePnl) !== "positive"
+                          ? "rgba(51, 172, 66, 0.24)"
+                          : "rgba(255, 48, 62, 0.24)",
+                    }}
+                  >
+                    {formatUsd(clusteredPnlData.at(-1)?.cumulativePnl)!.split(".")[1]}
+                  </span>
+                </span>
+              ) : "-"}
+            </Trans>
+          </div>
         </div>
-        <div>
-          <div className="inline-block size-10 rounded-full bg-red-500" /> <Trans>Daily Loss</Trans>
-        </div>
-        <div>
-          <div className="inline-block size-10 rounded-full bg-[#468AE3]" />{" "}
-          <Trans>
-            Cumulative PnL:{" "}
-            <span className={getPositiveOrNegativeClass(clusteredPnlData.at(-1)?.cumulativePnl)}>
-              {formatUsd(clusteredPnlData.at(-1)?.cumulativePnl)}
-            </span>
-          </Trans>
-        </div>
-        <DebugLegend lastPoint={clusteredPnlData.at(-1)} />
-      </div>
+      ) : null}
 
-      <div className="relative min-h-[250px] grow">
-        <div className="DailyAndCumulativePnL-hide-last-tick absolute size-full">
-          <ResponsiveContainer debounce={500}>
-            <ComposedChart width={500} height={300} data={clusteredPnlData} barGap={0}>
-              <RechartsTooltip content={ChartTooltip} wrapperStyle={CHART_TOOLTIP_WRAPPER_STYLE} />
-              <Bar dataKey="pnlFloat" minPointSize={1}>
-                {clusteredPnlData.map(renderPnlBar)}
-              </Bar>
-              <Line type="monotone" dataKey="cumulativePnlFloat" stroke="#468AE3" strokeWidth={2} dot={false} />
-              <XAxis
-                dataKey="dateCompact"
-                axisLine={false}
-                tickLine={false}
-                angle={-90}
-                fontSize={12}
-                tickMargin={25}
-                height={50}
-                dx={-4}
-                minTickGap={10}
-                tick={CHART_TICK_PROPS}
-              />
-              <YAxis
-                mirror
-                type="number"
-                allowDecimals={false}
-                markerWidth={0}
-                tickMargin={-6}
-                axisLine={false}
-                tickLine={false}
-                tickFormatter={yAxisTickFormatter}
-                tick={CHART_TICK_PROPS}
-              />
-              {DebugLines()}
-            </ComposedChart>
-          </ResponsiveContainer>
+      <div className="flex flex-col rounded-4" ref={cardRef}>
+        {/* <div className="flex items-center justify-between border-b border-b-gray-950 px-16">
+          <div className="flex flex-wrap items-stretch justify-end gap-8 py-10">
+            <DateSelect
+              date={fromDate}
+              onChange={setFromDate}
+              handleClassName="!px-10 !py-6"
+              buttonTextPrefix={t`From`}
+            />
+          </div>
+        </div> */}
+
+        {/* <div className="flex flex-wrap gap-24 px-16 pt-16 text-gray-300">
+          <DebugLegend lastPoint={clusteredPnlData.at(-1)} />
+        </div> */}
+        <div className="relative min-h-[250px] grow rounded-[12px] bg-[#121214]">
+          <div className="DailyAndCumulativePnL-hide-last-tick absolute size-full">
+            <ResponsiveContainer debounce={500}>
+              <ComposedChart width={500} height={300} data={clusteredPnlData} barGap={0}>
+                <RechartsTooltip content={ChartTooltip} wrapperStyle={CHART_TOOLTIP_WRAPPER_STYLE} />
+                <Bar dataKey="pnlFloat" minPointSize={1}>
+                  {clusteredPnlData.map(renderPnlBar)}
+                </Bar>
+                <Line type="monotone" dataKey="cumulativePnlFloat" stroke="#0B9BD8" strokeWidth={2} dot={false} />
+                {/* <XAxis
+                  dataKey="dateCompact"
+                  axisLine={false}
+                  tickLine={false}
+                  angle={-90}
+                  fontSize={12}
+                  tickMargin={25}
+                  height={50}
+                  dx={-4}
+                  minTickGap={10}
+                  tick={CHART_TICK_PROPS}
+                /> */}
+                {/* <YAxis
+                  mirror
+                  type="number"
+                  allowDecimals={false}
+                  markerWidth={0}
+                  tickMargin={-6}
+                  axisLine={false}
+                  tickLine={false}
+                  tickFormatter={yAxisTickFormatter}
+                  tick={CHART_TICK_PROPS}
+                />
+                {DebugLines()} */}
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+          {error && (
+            <div className="absolute grid size-full max-h-full place-items-center overflow-auto">
+              <div className="whitespace-pre-wrap font-mono text-red-500">{JSON.stringify(error, null, 2)}</div>
+            </div>
+          )}
+          {loading && (
+            <div className="absolute grid size-full place-items-center">
+              <Loader />
+            </div>
+          )}
+          {!loading && !error && clusteredPnlData.length === 0 && (
+            <div className="absolute grid size-full place-items-center text-gray-300">
+              <Trans>No data available</Trans>
+            </div>
+          )}
         </div>
-        {error && (
-          <div className="absolute grid size-full max-h-full place-items-center overflow-auto">
-            <div className="whitespace-pre-wrap font-mono text-red-500">{JSON.stringify(error, null, 2)}</div>
+        <div className="relative min-h-[50px] grow">
+          <div className="DailyAndCumulativePnL-hide-last-tick absolute size-full">
+            <ResponsiveContainer debounce={500}>
+              <ComposedChart width={500} height={50} data={clusteredPnlData} barGap={0}>
+                {/* <RechartsTooltip content={ChartTooltip} wrapperStyle={CHART_TOOLTIP_WRAPPER_STYLE} />
+                <Bar dataKey="pnlFloat" minPointSize={1}>
+                  {clusteredPnlData.map(renderPnlBar)}
+                </Bar>
+                <Line type="monotone" dataKey="cumulativePnlFloat" stroke="#0B9BD8" strokeWidth={2} dot={false} /> */}
+                <XAxis
+                  dataKey="dateCompact"
+                  axisLine={false}
+                  tickLine={false}
+                  angle={-90}
+                  fontSize={12}
+                  tickMargin={25}
+                  height={50}
+                  dx={-4}
+                  minTickGap={10}
+                  tick={CHART_TICK_PROPS}
+                />
+              </ComposedChart>
+            </ResponsiveContainer>
           </div>
-        )}
-        {loading && (
-          <div className="absolute grid size-full place-items-center">
-            <Loader />
-          </div>
-        )}
-        {!loading && !error && clusteredPnlData.length === 0 && (
-          <div className="absolute grid size-full place-items-center text-gray-300">
-            <Trans>No data available</Trans>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
@@ -171,11 +209,11 @@ function renderPnlBar(entry: AccountPnlHistoryPoint) {
   return <Cell key={entry.date} fill={fill} />;
 }
 
-function yAxisTickFormatter(value: number) {
-  if (value === 0 || !isFinite(value)) return "";
+// function yAxisTickFormatter(value: number) {
+//   if (value === 0 || !isFinite(value)) return "";
 
-  return formatUsd(BigInt(value as number) * 10n ** 30n, { displayDecimals: 0 })!;
-}
+//   return formatUsd(BigInt(value as number) * 10n ** 30n, { displayDecimals: 0 })!;
+// }
 
 function ChartTooltip({ active, payload }: TooltipProps<number | string, "pnl" | "cumulativePnl" | "date">) {
   if (!active || !payload || !payload.length) {
@@ -185,20 +223,23 @@ function ChartTooltip({ active, payload }: TooltipProps<number | string, "pnl" |
   const stats = payload[0].payload as PnlHistoricalData[number];
 
   return (
-    <div className="z-50 rounded-4 border border-gray-950 bg-slate-800 p-8 text-14">
-      <StatsTooltipRow label={t`Date`} value={stats.date} showDollar={false} />
-      <StatsTooltipRow
-        label={t`PnL`}
-        value={formatUsd(stats.pnl)}
-        showDollar={false}
-        textClassName={getPositiveOrNegativeClass(stats.pnl)}
-      />
-      <StatsTooltipRow
-        label={t`Cumulative PnL`}
-        value={formatUsd(stats.cumulativePnl)}
-        showDollar={false}
-        textClassName={getPositiveOrNegativeClass(stats.cumulativePnl)}
-      />
+    <div className="z-50 w-[200px] rounded-[8px] bg-white p-8 text-left text-14">
+      <p className="mt-4 text-left text-[12px] text-black">{stats.date}</p>
+      <div className="mt-4 flex  items-center justify-between">
+        <p className={getPositiveOrNegativeClass(stats.pnl) + " text-left text-[12px]"}>{formatUsd(stats.pnl)}</p>
+        <p className="ml-16 text-right text-[12px]" style={{ color: "rgba(0, 0, 0, 0.4)" }}>
+          PNL
+        </p>
+      </div>
+      <div className="mt-4 flex items-center justify-between">
+        <p className={getPositiveOrNegativeClass(stats.cumulativePnl) + " text-left text-[12px]"}>
+          {formatUsd(stats.cumulativePnl)}
+        </p>
+        <p className="ml-16 text-right text-[12px]" style={{ color: "rgba(0, 0, 0, 0.4)" }}>
+          CML. PNL
+        </p>
+      </div>
+
       <DebugTooltip stats={stats} />
     </div>
   );

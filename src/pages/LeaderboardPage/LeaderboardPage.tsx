@@ -9,7 +9,7 @@ import { LeaderboardContainer } from "./components/LeaderboardContainer";
 
 export function LeaderboardPage() {
   return (
-    <div className="page-layout">
+    <div className="page-layout container px-[16px] md:px-[100px]">
       <LeaderboardContainer />
       <Footer />
     </div>

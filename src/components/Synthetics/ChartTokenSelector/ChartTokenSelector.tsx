@@ -69,26 +69,27 @@ export default function ChartTokenSelector(props: Props) {
               "items-center": oneRowLabels,
             })}
           >
-            <TokenIcon className="mr-8 mt-4" symbol={selectedToken.symbol} displaySize={20} importSize={24} />
-            <span
-              className={cx("flex justify-start", {
+            <TokenIcon className="mr-8 mt-4" symbol={selectedToken.symbol} displaySize={40} importSize={24} />
+            <div
+              className={cx("flex justify-start h-full mt-4", {
                 "flex-col": !oneRowLabels,
                 "flex-row items-center": oneRowLabels,
               })}
             >
-              <span>
-                {selectedToken.symbol} {"/ USD"}
+              <span className="text-[16px] font-[600] text-white">
+                {selectedToken.symbol} <span className="text-[#FFFFFF] opacity-30" >{"- USD"}</span>
               </span>
               {poolName && (
                 <span
-                  className={cx("text-12 font-normal text-gray-300", {
+                  className={cx("text-[14px] font-normal text-[#FFFFFF] opacity-30", {
                     "ml-8": oneRowLabels,
                   })}
                 >
-                  [{poolName}]
+                  {/* [{poolName}] */}
+                  {t`Perpetuals`}
                 </span>
               )}
-            </span>
+            </div>
           </span>
         ) : (
           "..."

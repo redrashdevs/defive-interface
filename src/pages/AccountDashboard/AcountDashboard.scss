@@ -1,0 +1,85 @@
+.account-header {
+    .AddressView-trader-id {
+        font-size: 32px !important;
+        color: rgba(255, 255, 255, 1);
+        margin-left: 24px;
+        font-weight: 700;
+    }
+}
+
+.performance-details-tab-wrapper {
+    display: flex;
+    height: 40px;
+    width: 328px !important;
+    padding-block: 4px;
+    background: rgba(9, 9, 10, 1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    button {
+        width: 72px;
+        height: 100%;
+        font-size: 14px;
+        border-radius: 4px;
+        margin-inline: 4px;
+        &.active {
+            background: rgba(36, 36, 41, 1);
+            color: #fff;
+        }
+    }
+}
+
+.general-performance-holder {
+    background: rgba(18, 18, 20, 1);
+    border-radius: 12px;
+    // align-items: center;
+    // justify-content: space-between;
+  
+    .title {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 12px;
+    }
+    .subtitle {
+        font-size: 16px;
+    }
+}
+
+.cumilative-pnl-wrapper {
+    .indicator {
+        padding-bottom: 8px;
+        white-space: nowrap;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 12px;
+        font-weight: 500;
+        text-align: left;
+        span {
+            font-size: 16px;
+        }
+        div {
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            margin-right: 8px;
+
+        }
+    }
+}
+
+.historical-tabs-wrappper {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .tab-btn {
+        height: 32px;
+        padding: 6px 12px;
+        background: transparent;
+        color: #67677A;
+        border-radius: 16px;
+        font-size: 14px;
+        &.active {
+            background: #36363D;
+            color: #FFFFFF;
+          }
+      }
+}

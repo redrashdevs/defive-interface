@@ -3,6 +3,7 @@
 }
 
 .address-btn {
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -13,8 +14,22 @@
   margin-left: 1rem;
   margin-right: 1rem;
 }
-
+.address-img {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
 .App-header-user-address {
+  height: 40px !important;
+  background: rgba(36, 36, 41, 1) !important;
+  font-size: 14px !important;
+  color: rgba(214, 214, 214, 1) !important;
+  padding-inline: 16px !important;
+  white-space: nowrap;
+  border: none !important;
+  border-radius: 40px !important;
+  position: relative;
+
   &:hover {
     background: #808aff14;
   }
@@ -28,13 +43,14 @@
   position: absolute;
   right: 0;
   top: 4.3rem;
+  padding: 16px;
   min-width: 17rem;
-  width: 100%;
+  width: 300px;
   transform-origin: top right;
-  border-radius: 0.4rem;
+  border-radius: 12px;
   overflow: hidden;
   background: var(--color-slate-800);
-  border: 1px solid var(--color-gray-800);
+  border: none;
   list-style: none;
   cursor: pointer;
   outline: none;

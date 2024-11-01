@@ -30,6 +30,7 @@ import { claimFundingFeeEventTitles } from "./ClaimHistoryRow/ClaimFundingFeesHi
 import downloadIcon from "img/ic_download_simple.svg";
 
 import "./ClaimsHistory.scss";
+import { useMedia } from "react-use";
 
 const CLAIMS_HISTORY_PREFETCH_SIZE = 100;
 
@@ -58,6 +59,7 @@ export function ClaimsHistory({ shouldShowPaginationButtons }: { shouldShowPagin
   const isConnected = Boolean(account);
   const isLoading = isConnected && isHistoryLoading;
 
+  const isMobile = useMedia("(max-width: 600px)");
   const { currentPage, setCurrentPage, getCurrentData, pageCount } = usePagination(
     String(account),
     claimActions || EMPTY_ARRAY,
@@ -83,48 +85,66 @@ export function ClaimsHistory({ shouldShowPaginationButtons }: { shouldShowPagin
 
   return (
     <>
-      <div className="App-box">
-        <div className="ClaimsHistory-controls">
-          <div>
+      <div className="ClaimHistory-Wrapper">
+        <div
+          className="flex flex-wrap items-center justify-between gap-y-8 border-b-[1px] border-dotted px-[16px] py-[8px]"
+          style={{ borderColor: "rgba(54, 54, 61, 1)" }}
+        >
+          <div className="text-[12px]" style={{ color: "rgba(255, 255, 255, 0.24)" }}>
             <Trans>Claims History</Trans>
           </div>
           <div className="ClaimsHistory-controls-right">
             <div className="ClaimsHistory-filters">
               <DateRangeSelect startDate={startDate} endDate={endDate} onChange={setDateRange} />
             </div>
-            <Button variant="secondary" imgSrc={downloadIcon} onClick={handleCsvDownload}>
-              CSV
-            </Button>
+            <button onClick={handleCsvDownload} className="px-12">
+              <div className="flex items-center">
+                <img src="/images/download.png" />
+                <p className="ml-4 text-[12px] font-[500] text-white opacity-60">CSV</p>
+              </div>
+            </button>
           </div>
         </div>
         <div className="ClaimsHistory-horizontal-scroll-container">
-          <table className="Exchange-list ClaimsHistory-table">
-            <colgroup>
-              <col className="ClaimsHistory-action-column" />
-              <col className="ClaimsHistory-market-column" />
-              <col className="ClaimsHistory-size-column" />
-            </colgroup>
-            <thead className="ClaimsHistory-header">
-              <tr>
-                <th>
-                  <ActionFilter value={eventNameFilter} onChange={setEventNameFilter} />
-                </th>
-                <th>
-                  <MarketFilter excludeSpotOnly value={marketAddressesFilter} onChange={setMarketAddressesFilter} />
-                </th>
-                <th className="ClaimsHistory-price-header">
-                  <Trans>Size</Trans>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {isLoading ? (
-                <ClaimsHistorySkeleton />
-              ) : (
-                currentPageData.map((claimAction) => <ClaimHistoryRow key={claimAction.id} claimAction={claimAction} />)
-              )}
-            </tbody>
-          </table>
+          {isMobile ? (
+            isLoading ? (
+              <ClaimsHistorySkeleton />
+            ) : (
+              currentPageData.map((claimAction) => <ClaimHistoryRow key={claimAction.id} claimAction={claimAction} />)
+            )
+          ) : (
+            <table className="Exchange-list ClaimsHistory-table">
+              <colgroup>
+                <col className="ClaimsHistory-action-column" />
+                <col className="ClaimsHistory-market-column" />
+                <col className="ClaimsHistory-size-column" />
+              </colgroup>
+              <thead className="ClaimsHistory-header">
+                <tr>
+                  <th>
+                    {/* <ActionFilter value={eventNameFilter} onChange={setEventNameFilter} /> */}
+                    <Trans>ACTION</Trans>
+                  </th>
+                  <th>
+                    {/* <MarketFilter excludeSpotOnly value={marketAddressesFilter} onChange={setMarketAddressesFilter} /> */}
+                    <Trans>MARKET</Trans>
+                  </th>
+                  <th className="ClaimsHistory-price-header">
+                    <Trans>Size</Trans>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {isLoading ? (
+                  <ClaimsHistorySkeleton />
+                ) : (
+                  currentPageData.map((claimAction) => (
+                    <ClaimHistoryRow key={claimAction.id} claimAction={claimAction} />
+                  ))
+                )}
+              </tbody>
+            </table>
+          )}
         </div>
 
         {isEmpty && !hasFilters && (

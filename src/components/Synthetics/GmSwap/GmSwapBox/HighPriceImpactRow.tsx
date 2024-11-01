@@ -16,7 +16,7 @@ export function HighPriceImpactRow({
   return (
     <ExchangeInfo.Group>
       <Checkbox
-        className="GmSwapBox-warning"
+        className="GmSwapBox-warning mt-16"
         asRow
         isChecked={isHighPriceImpactAccepted}
         setIsChecked={setIsHighPriceImpactAccepted}

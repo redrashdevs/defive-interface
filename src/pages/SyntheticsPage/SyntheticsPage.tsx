@@ -33,6 +33,7 @@ import { EMPTY_ARRAY, getByKey } from "lib/objects";
 import { usePendingTxns } from "lib/usePendingTxns";
 import { useEthersSigner } from "lib/wallets/useEthersSigner";
 import useWallet from "lib/wallets/useWallet";
+import cs from "classnames";
 
 import Checkbox from "components/Checkbox/Checkbox";
 import Footer from "components/Footer/Footer";
@@ -225,7 +226,7 @@ export function SyntheticsPage(p: Props) {
   );
 
   return (
-    <div className="Exchange page-layout">
+    <div className="Exchange pt-[0px] px-8">
       <Helmet>
         <style type="text/css">
           {`
@@ -235,21 +236,39 @@ export function SyntheticsPage(p: Props) {
          `}
         </style>
       </Helmet>
-      <div className="Exchange-content">
-        <div className="Exchange-left">
+      <div id="exchange-top" className="pb-18" />
+      <div className="Exchange-content !px-0">
+        <div className="Exchange-left min-h-full">
           <TVChart />
           {!isMobile && (
-            <div className="Exchange-lists large" data-qa="trade-table-large">
+            <div className="Exchange-lists large mt-8 rounded-[12px] bg-[#121214] pt-2" data-qa="trade-table-large">
               <div className="Exchange-list-tab-container">
-                <Tab
-                  options={tabOptions}
-                  optionLabels={tabLabels}
-                  option={listSection}
-                  onChange={handleTabChange}
-                  type="inline"
-                  className="Exchange-list-tabs"
-                  qa="exchange-list-tabs"
-                />
+                <div className="historical-tabs-wrappper !mt-0 mb-0 pt-0">
+                  <button
+                    onClick={() => handleTabChange(ListSection.Positions)}
+                    className={cs("tab-btn", { active: listSection === ListSection.Positions })}
+                  >
+                    <Trans>Positions</Trans>
+                  </button>
+                  <button
+                    onClick={() => handleTabChange(ListSection.Orders)}
+                    className={cs("tab-btn", { active: listSection === ListSection.Orders })}
+                  >
+                    <Trans>Orders</Trans>
+                  </button>
+                  <button
+                    onClick={() => handleTabChange(ListSection.Trades)}
+                    className={cs("tab-btn", { active: listSection === ListSection.Trades })}
+                  >
+                    <Trans>Trades</Trans>
+                  </button>
+                  <button
+                    onClick={() => handleTabChange(ListSection.Claims)}
+                    className={cs("tab-btn", { active: listSection === ListSection.Claims })}
+                  >
+                    <Trans>Claims</Trans>
+                  </button>
+                </div>
                 <div className="align-right Exchange-should-show-position-lines">
                   {listSection === ListSection.Orders && selectedOrderKeys.length > 0 && (
                     <button
@@ -309,16 +328,46 @@ export function SyntheticsPage(p: Props) {
         </div>
 
         {isMobile && (
-          <div className="Exchange-lists small min-w-0" data-qa="trade-table-small">
+          <div className="Exchange-lists small min-w-0 rounded-[12px] bg-[#121214]" data-qa="trade-table-small">
             <div className="Exchange-list-tab-container">
-              <Tab
-                options={tabOptions}
-                optionLabels={tabLabels}
-                option={listSection}
-                onChange={handleTabChange}
-                type="inline"
-                className="Exchange-list-tabs"
-              />
+              <div className="historical-tabs-wrappper !mt-0 mb-0 pt-0">
+                <button
+                  onClick={() => handleTabChange(ListSection.Positions)}
+                  className={cs("tab-btn", { active: listSection === ListSection.Positions })}
+                >
+                  <Trans>Positions</Trans>
+                </button>
+                <button
+                  onClick={() => handleTabChange(ListSection.Orders)}
+                  className={cs("tab-btn", { active: listSection === ListSection.Orders })}
+                >
+                  <Trans>Orders</Trans>
+                </button>
+                <button
+                  onClick={() => handleTabChange(ListSection.Trades)}
+                  className={cs("tab-btn", { active: listSection === ListSection.Trades })}
+                >
+                  <Trans>Trades</Trans>
+                </button>
+                <button
+                  onClick={() => handleTabChange(ListSection.Claims)}
+                  className={cs("tab-btn", { active: listSection === ListSection.Claims })}
+                >
+                  <Trans>Claims</Trans>
+                </button>
+              </div>
+              <div className="align-right Exchange-should-show-position-lines">
+                {listSection === ListSection.Orders && selectedOrderKeys.length > 0 && (
+                  <button
+                    className="muted cancel-order-btn text-15"
+                    disabled={isCancelOrdersProcessing}
+                    type="button"
+                    onClick={onCancelSelectedOrders}
+                  >
+                    <Plural value={selectedOrderKeys.length} one="Cancel order" other="Cancel # orders" />
+                  </button>
+                )}
+              </div>
             </div>
             {listSection === ListSection.Positions && (
               <PositionList
@@ -348,14 +397,14 @@ export function SyntheticsPage(p: Props) {
           </div>
         )}
       </div>
-
+      {/* 
       <PositionSeller setPendingTxns={setPendingTxns} />
 
       <PositionEditor allowedSlippage={savedAllowedSlippage} setPendingTxns={setPendingTxns} />
 
-      <InterviewModal isVisible={isInterviewModalVisible} setIsVisible={setIsInterviewModalVisible} />
+      <InterviewModal isVisible={isInterviewModalVisible} setIsVisible={setIsInterviewModalVisible} /> */}
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

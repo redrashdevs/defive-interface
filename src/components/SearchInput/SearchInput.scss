@@ -1,10 +1,11 @@
 .Search-input {
   padding: 0;
   cursor: pointer;
-  border: 1px solid var(--color-gray-800);
+  border: none;
   position: relative;
-  background: transparent;
-  border-radius: var(--border-radius-sm);
+  background: rgba(27, 27, 31, 1);
+  border-radius: 8px;
+  height: 40px;
 
   .Tokenselector-search-input {
     font-size: 1.6rem;
@@ -16,7 +17,7 @@
     width: 100%;
   }
   .Tokenselector-search-input::placeholder {
-    color: var(--dark-blue-accent);
+    color: rgba(69, 69, 82, 1);
   }
 
   &_size_s .Tokenselector-search-input {

@@ -4,10 +4,13 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import AccountPnlSummarySkeletonStructure from "./AccountPnlSummarySkeletonStructure";
 import ClaimsHistorySkeletonStructure from "./ClaimsHistorySkeletonStructure";
 import GMListSkeletonStructure from "./GMListSkeletonStructure";
-import { LeaderboardTopAccountsStructure } from "./LeaderboardTopAccountsStructure";
+import {
+  LeaderboardTopAccountsMobileStructure,
+  LeaderboardTopAccountsStructure,
+} from "./LeaderboardTopAccountsStructure";
 import { LeaderboardTopPositionsStructure } from "./LeaderboardTopPositionsStructure";
 import MarketListSkeletonStructure from "./MarketListSkeletonStructure";
-import TradesHistorySkeletonStructure from "./TradesHistorySkeletonStructure";
+import TradesHistorySkeletonStructure, { TradesHistoryMobileSkeletonStructure } from "./TradesHistorySkeletonStructure";
 
 import "react-loading-skeleton/dist/skeleton.css";
 import "./Skeleton.scss";
@@ -43,12 +46,20 @@ export function TopAccountsSkeleton(props) {
   return <TableListSkeleton {...props} Structure={LeaderboardTopAccountsStructure} />;
 }
 
+export function TopAccountsMobileSkeleton(props) {
+  return <TableListSkeleton {...props} Structure={LeaderboardTopAccountsMobileStructure} />;
+}
+
 export function TopPositionsSkeleton(props) {
   return <TableListSkeleton {...props} Structure={LeaderboardTopPositionsStructure} />;
 }
 
 export function TradesHistorySkeleton(props: SkeletonProps<typeof TradesHistorySkeletonStructure>) {
   return <TableListSkeleton {...props} Structure={TradesHistorySkeletonStructure} />;
+}
+
+export function TradesHistoryMobileSkeleton(props: SkeletonProps<typeof TradesHistorySkeletonStructure>) {
+  return <TableListSkeleton {...props} Structure={TradesHistoryMobileSkeletonStructure} />;
 }
 
 export function ClaimsHistorySkeleton(props: SkeletonProps<typeof ClaimsHistorySkeletonStructure>) {

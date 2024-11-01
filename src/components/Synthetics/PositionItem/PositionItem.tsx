@@ -31,7 +31,7 @@ import {
 } from "domain/synthetics/positions";
 import { TradeMode, TradeType, getTriggerThresholdType } from "domain/synthetics/trade";
 import { CHART_PERIODS } from "lib/legacy";
-import { formatDeltaUsd, formatTokenAmount, formatUsd } from "lib/numbers";
+import { formatDeltaUsd, formatPercentage, formatTokenAmount, formatUsd } from "lib/numbers";
 import { getPositiveOrNegativeClass } from "lib/utils";
 
 import Button from "components/Button/Button";
@@ -42,6 +42,7 @@ import Tooltip from "components/Tooltip/Tooltip";
 
 import { makeSelectMarketPriceDecimals } from "context/SyntheticsStateContext/selectors/statsSelectors";
 import "./PositionItem.scss";
+import { getNormalizedTokenSymbol } from "@/config/tokens";
 
 export type Props = {
   position: PositionInfo;
@@ -311,28 +312,40 @@ export function PositionItem(p: Props) {
       </>
     );
 
-    if (liqPriceWarning || estimatedLiquidationHours) {
-      return (
-        <Tooltip
-          handle={
-            formatLiquidationPrice(p.position.liquidationPrice, {
-              displayDecimals: marketDecimals,
-            }) || "..."
-          }
-          position="bottom-end"
-          handleClassName={cx({
-            "LiqPrice-soft-warning": estimatedLiquidationHours && estimatedLiquidationHours < 24 * 7,
-            "LiqPrice-hard-warning": estimatedLiquidationHours && estimatedLiquidationHours < 24,
-          })}
-          renderContent={getLiqPriceTooltipContent}
-        />
-      );
-    }
+    // if (liqPriceWarning || estimatedLiquidationHours) {
+    //   return (
+    //     <Tooltip
+    //       handle={
+    //         formatLiquidationPrice(p.position.liquidationPrice, {
+    //           displayDecimals: marketDecimals,
+    //         }) || "..."
+    //       }
+    //       position="bottom-end"
+    //       handleClassName={cx({
+    //         "LiqPrice-soft-warning": estimatedLiquidationHours && estimatedLiquidationHours < 24 * 7,
+    //         "LiqPrice-hard-warning": estimatedLiquidationHours && estimatedLiquidationHours < 24,
+    //       })}
+    //       renderContent={getLiqPriceTooltipContent}
+    //     />
+    //   );
+    // }
 
     return (
-      formatLiquidationPrice(p.position.liquidationPrice, {
-        displayDecimals: marketDecimals,
-      }) || "..."
+      <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+        {p.position.liquidationPrice
+          ? formatLiquidationPrice(p.position.liquidationPrice, {
+              displayDecimals: marketDecimals,
+            })?.split(".")[0]
+          : "$0"}
+        .
+        <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+          {p.position.liquidationPrice
+            ? formatLiquidationPrice(p.position.liquidationPrice, {
+                displayDecimals: marketDecimals,
+              })?.split(".")[1]
+            : "00"}
+        </span>
+      </span>
     );
   }
 
@@ -351,7 +364,7 @@ export function PositionItem(p: Props) {
       >
         <td className="clickable" data-qa="position-handle" onClick={() => p.onSelectPositionClick?.()}>
           {/* title */}
-          <div className="Exchange-list-title">
+          {/* <div className="Exchange-list-title">
             <Tooltip
               handle={
                 <>
@@ -403,16 +416,28 @@ export function PositionItem(p: Props) {
                 </div>
               )}
             />
-            {p.position.pendingUpdate && (
-              <ImSpinner2 data-qa="position-loading" className="spin position-loading-icon" />
-            )}
-          </div>
-          <div className="Exchange-list-info-label">
-            <span className="muted Position-leverage">{formatLeverage(p.position.leverage) || "..."}&nbsp;</span>
-            <span className={cx({ positive: p.position.isLong, negative: !p.position.isLong })}>
+            
+          </div> */}
+
+          <div className="flex h-full items-start">
+            <p className="text-white">{p.position.marketInfo.indexToken.symbol}</p>{" "}
+            <span
+              style={{ background: p.position.isLong ? "rgba(51, 172, 66, 0.16)" : "rgba(255, 48, 62, 0.16)" }}
+              className={cx("mx-12 rounded-12 px-8 py-2", {
+                positive: p.position.isLong,
+                negative: !p.position.isLong,
+              })}
+            >
               {p.position.isLong ? t`Long` : t`Short`}
             </span>
+            <span
+              className="muted Position-leverage rounded-[24px] px-8 py-2"
+              style={{ color: "rgba(211, 211, 212, 1)", background: "rgba(36, 36, 41, 1)" }}
+            >
+              {formatLeverage(p.position.leverage) || "..."}&nbsp;
+            </span>
           </div>
+          {p.position.pendingUpdate && <ImSpinner2 data-qa="position-loading" className="spin position-loading-icon" />}
         </td>
         <td>
           {/* netValue */}
@@ -420,43 +445,106 @@ export function PositionItem(p: Props) {
             t`Opening...`
           ) : (
             <>
-              {renderNetValue()}
+              {/* {renderNetValue()} */}
+
+              <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+                {p.position.netValue ? formatUsd(p.position.netValue, { maxThreshold: null })?.split(".")[0] : "$0"}.
+                <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+                  {p.position.netValue ? formatUsd(p.position.netValue, { maxThreshold: null })?.split(".")[1] : "00"}
+                </span>
+              </span>
               {displayedPnl !== undefined && (
                 <div
                   onClick={p.openSettings}
+                  style={{ fontSize: 12 }}
                   className={cx("Exchange-list-info-label Position-pnl cursor-pointer", {
                     positive: displayedPnl > 0,
                     negative: displayedPnl < 0,
                     muted: displayedPnl == 0n,
                   })}
                 >
-                  {formatDeltaUsd(displayedPnl, displayedPnlPercentage)}
+                  ({formatPercentage(displayedPnlPercentage)})
                 </div>
               )}
             </>
           )}
         </td>
         <td>
-          {formatUsd(p.position.sizeInUsd)}
-          <PositionItemOrdersLarge positionKey={p.position.key} onOrdersClick={p.onOrdersClick} />
+          <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+            {p.position.sizeInUsd ? formatUsd(p.position.sizeInUsd, { maxThreshold: null })?.split(".")[0] : "$0"}.
+            <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+              {p.position.sizeInUsd ? formatUsd(p.position.sizeInUsd, { maxThreshold: null })?.split(".")[1] : "00"}
+            </span>
+          </span>
+          {/* <PositionItemOrdersLarge positionKey={p.position.key} onOrdersClick={p.onOrdersClick} /> */}
         </td>
         <td>
           {/* collateral */}
-          <div>{renderCollateral()}</div>
+          <div>
+            {/* {renderCollateral()} */}
+            <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+              {p.position.remainingCollateralUsd
+                ? formatUsd(p.position.remainingCollateralUsd, { maxThreshold: null })?.split(".")[0]
+                : "$0"}
+              .
+              <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+                {p.position.remainingCollateralUsd
+                  ? formatUsd(p.position.remainingCollateralUsd, { maxThreshold: null })?.split(".")[1]
+                  : "00"}
+              </span>
+            </span>
+            <br />
+            <span className="mt-4" style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+              {`(${formatTokenAmount(
+                p.position.remainingCollateralAmount,
+                p.position.collateralToken?.decimals,
+                p.position.collateralToken?.symbol,
+                {
+                  useCommas: true,
+                }
+              )})`}
+            </span>
+          </div>
         </td>
         <td>
           {/* entryPrice */}
-          {p.position.isOpening
-            ? t`Opening...`
-            : formatUsd(p.position.entryPrice, {
-                displayDecimals: marketDecimals,
-              })}
+          {p.position.isOpening ? (
+            t`Opening...`
+          ) : (
+            <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+              {p.position.entryPrice
+                ? formatUsd(p.position.entryPrice, {
+                    displayDecimals: marketDecimals,
+                  })?.split(".")[0]
+                : "$0"}
+              .
+              <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+                {p.position.entryPrice
+                  ? formatUsd(p.position.entryPrice, {
+                      displayDecimals: marketDecimals,
+                    })?.split(".")[1]
+                  : "00"}
+              </span>
+            </span>
+          )}
         </td>
         <td>
           {/* markPrice */}
-          {formatUsd(p.position.markPrice, {
-            displayDecimals: marketDecimals,
-          })}
+          <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+            {p.position.markPrice
+              ? formatUsd(p.position.markPrice, {
+                  displayDecimals: marketDecimals,
+                })?.split(".")[0]
+              : "$0"}
+            .
+            <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+              {p.position.markPrice
+                ? formatUsd(p.position.markPrice, {
+                    displayDecimals: marketDecimals,
+                  })?.split(".")[1]
+                : "00"}
+            </span>
+          </span>
         </td>
         <td>
           {/* liqPrice */}
@@ -464,7 +552,7 @@ export function PositionItem(p: Props) {
         </td>
         <td>
           {/* Close */}
-          {!p.position.isOpening && !p.hideActions && (
+          {/* {!p.position.isOpening && !p.hideActions && (
             <button
               className="Exchange-list-action"
               onClick={p.onClosePositionClick}
@@ -473,9 +561,9 @@ export function PositionItem(p: Props) {
             >
               <Trans>Close</Trans>
             </button>
-          )}
+          )} */}
         </td>
-        <td>
+        {/* <td>
           {!p.position.isOpening && !p.hideActions && (
             <PositionDropdown
               handleEditCollateral={p.onEditCollateralClick}
@@ -486,7 +574,7 @@ export function PositionItem(p: Props) {
               handleTriggerClose={() => p.onSelectPositionClick?.(TradeMode.Trigger)}
             />
           )}
-        </td>
+        </td> */}
       </tr>
     );
   }
@@ -495,37 +583,145 @@ export function PositionItem(p: Props) {
     const indexName = getMarketIndexName(p.position.marketInfo);
     const poolName = getMarketPoolName(p.position.marketInfo);
     return (
-      <div className="App-card" data-qa="position-item">
+      <div
+        style={{ borderColor: "#36363D" }}
+        className="border-b-[1px] border-dotted p-[16px] last-of-type:border-b-[0]"
+        data-qa="position-item"
+      >
         <div className="flex flex-grow flex-col">
           <div className="flex-grow">
-            <div
-              className={cx("App-card-title Position-card-title", { "Position-active-card": isCurrentMarket })}
-              onClick={() => p.onSelectPositionClick?.()}
-            >
-              <span className="Exchange-list-title inline-flex">
-                <TokenIcon
-                  className="PositionList-token-icon"
-                  symbol={p.position.marketInfo.indexToken?.symbol}
-                  displaySize={20}
-                  importSize={24}
-                />
-                {p.position.marketInfo.indexToken?.symbol}
+            <div className="flex items-center">
+              <TokenIcon displaySize={16} symbol={getNormalizedTokenSymbol(p.position.marketInfo.indexToken.symbol)} />
+              <p className="ml-4 text-[16px] text-white">{p.position.marketInfo.indexToken.symbol}</p>{" "}
+              <span
+                style={{ background: p.position.isLong ? "rgba(51, 172, 66, 0.16)" : "rgba(255, 48, 62, 0.16)" }}
+                className={cx("mx-12 rounded-12 px-8 py-2 text-[14px]", {
+                  positive: p.position.isLong,
+                  negative: !p.position.isLong,
+                })}
+              >
+                {p.position.isLong ? t`Long` : t`Short`}
               </span>
-              <div>
-                <span className="Position-leverage">{formatLeverage(p.position.leverage)}&nbsp;</span>
-                <span
-                  className={cx("Exchange-list-side", {
-                    positive: p.position.isLong,
-                    negative: !p.position.isLong,
-                  })}
-                >
-                  {p.position.isLong ? t`Long` : t`Short`}
-                </span>
-              </div>
-              {p.position.pendingUpdate && <ImSpinner2 className="spin position-loading-icon" />}
+              <span
+                className="muted Position-leverage rounded-[24px] px-8 py-2 text-[14px]"
+                style={{ color: "rgba(211, 211, 212, 1)", background: "rgba(36, 36, 41, 1)" }}
+              >
+                {formatLeverage(p.position.leverage) || "..."}&nbsp;
+              </span>
             </div>
 
-            <div className="App-card-divider" />
+            <div className="-gap-2 mt-[16px] grid grid-cols-3">
+              <div className="">
+                <p
+                  className="mb-[4px] text-left text-[10px]"
+                  style={{ color: "rgba(255, 255, 255, 0.24)" }}
+                >{t`SIZE`}</p>
+                <span className="text-[12px]" style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+                  {p.position.sizeInUsd ? formatUsd(p.position.sizeInUsd, { maxThreshold: null })?.split(".")[0] : "$0"}
+                  .
+                  <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+                    {p.position.sizeInUsd
+                      ? formatUsd(p.position.sizeInUsd, { maxThreshold: null })?.split(".")[1]
+                      : "00"}
+                  </span>
+                </span>
+              </div>
+              <div className="">
+                <p
+                  className="mb-[4px] text-left text-[10px]"
+                  style={{ color: "rgba(255, 255, 255, 0.24)" }}
+                >{t`COLLATERAL`}</p>
+                <span className="text-[12px]" style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+                  {p.position.remainingCollateralUsd
+                    ? formatUsd(p.position.remainingCollateralUsd, { maxThreshold: null })?.split(".")[0]
+                    : "$0"}
+                  .
+                  <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+                    {p.position.remainingCollateralUsd
+                      ? formatUsd(p.position.remainingCollateralUsd, { maxThreshold: null })?.split(".")[1]
+                      : "00"}
+                  </span>
+                </span>
+                <br />
+                <span className="mt-4 text-[12px]" style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+                  {`(${formatTokenAmount(
+                    p.position.remainingCollateralAmount,
+                    p.position.collateralToken?.decimals,
+                    p.position.collateralToken?.symbol,
+                    {
+                      useCommas: true,
+                    }
+                  )})`}
+                </span>
+              </div>
+              <div className="">
+                <p
+                  className="mb-[4px] text-left text-[10px]"
+                  style={{ color: "rgba(255, 255, 255, 0.24)" }}
+                >{t`NET VAL`}</p>
+                <span className="text-[12px]" style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+                  {p.position.netValue ? formatUsd(p.position.netValue, { displayDecimals: 2 })?.split(".")[0] : "$0"}.
+                  <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+                    {p.position.netValue ? formatUsd(p.position.netValue, { displayDecimals: 2 })?.split(".")[1] : "00"}
+                  </span>
+                </span>
+              </div>
+              <div className="pt-[16px]">
+                <p
+                  className="mb-[4px] text-left text-[10px]"
+                  style={{ color: "rgba(255, 255, 255, 0.24)" }}
+                >{t`ENTRY PRICE`}</p>
+                {p.position.isOpening ? (
+                  <span className="text-[12px]" style={{ color: "rgba(255, 255, 255, 0.64)" }}>{t`Opening...`}</span>
+                ) : (
+                  <span className="text-[12px]" style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+                    {p.position.entryPrice
+                      ? formatUsd(p.position.entryPrice, {
+                          displayDecimals: marketDecimals,
+                        })?.split(".")[0]
+                      : "$0"}
+                    .
+                    <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+                      {p.position.entryPrice
+                        ? formatUsd(p.position.entryPrice, {
+                            displayDecimals: marketDecimals,
+                          })?.split(".")[1]
+                        : "00"}
+                    </span>
+                  </span>
+                )}
+              </div>
+              <div className="pt-[16px]">
+                <p
+                  className="mb-[4px] text-left text-[10px]"
+                  style={{ color: "rgba(255, 255, 255, 0.24)" }}
+                >{t`MARK PRICE`}</p>
+                <span className="text-[12px]" style={{ color: "rgba(255, 255, 255, 0.64)" }}>
+                  {p.position.markPrice
+                    ? formatUsd(p.position.markPrice, {
+                        displayDecimals: marketDecimals,
+                      })?.split(".")[0]
+                    : "$0"}
+                  .
+                  <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
+                    {p.position.markPrice
+                      ? formatUsd(p.position.markPrice, {
+                          displayDecimals: marketDecimals,
+                        })?.split(".")[1]
+                      : "00"}
+                  </span>
+                </span>
+              </div>
+              <div className="pt-[16px]">
+                <p
+                  className="mb-[4px] text-left text-[10px]"
+                  style={{ color: "rgba(255, 255, 255, 0.24)" }}
+                >{t`LIQ. PRICE `}</p>
+                <span className="text-[12px]">{renderLiquidationPrice()}</span>
+              </div>
+            </div>
+
+            {/* <div className="App-card-divider" />
             <div className="App-card-content">
               {showDebugValues && (
                 <div className="App-card-row">
@@ -617,9 +813,9 @@ export function PositionItem(p: Props) {
               <div className="flex-grow">
                 <PositionItemOrdersSmall positionKey={p.position.key} onOrdersClick={p.onOrdersClick} />
               </div>
-            </div>
+            </div> */}
           </div>
-          {!p.hideActions && (
+          {/* {!p.hideActions && (
             <footer>
               <div className="App-card-divider" />
               <div className="Position-item-action">
@@ -654,7 +850,7 @@ export function PositionItem(p: Props) {
                 </div>
               </div>
             </footer>
-          )}
+          )} */}
         </div>
       </div>
     );

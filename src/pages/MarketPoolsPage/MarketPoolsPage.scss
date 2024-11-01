@@ -1,4 +1,5 @@
 .MarketPoolsPage-content {
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
@@ -8,11 +9,13 @@
   width: 100%;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1280px) {
   .MarketPoolsPage-content {
     flex-wrap: wrap;
   }
-
+  .MarketPoolsPage-swap-box {
+    margin-block: 32px;
+  }
   .MarketPoolsPage-content .MarketPoolsPage-swap-box {
     max-width: none;
     width: 100%;

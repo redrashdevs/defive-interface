@@ -15,6 +15,7 @@ import { convertToUsd } from "domain/synthetics/tokens";
 import SearchInput from "components/SearchInput/SearchInput";
 import TokenIcon from "components/TokenIcon/TokenIcon";
 import { bigMath } from "lib/bigmath";
+import { Menu } from "@headlessui/react";
 
 type TokenState = {
   disabled?: boolean;
@@ -167,105 +168,102 @@ export default function TokenSelector(props: Props) {
   }
 
   return (
-    <div className={cx("TokenSelector", { disabled }, props.className)} onClick={(event) => event.stopPropagation()}>
-      <Modal
-        qa={qa + "-modal"}
-        isVisible={isModalVisible}
-        setIsVisible={setIsModalVisible}
-        label={props.label}
-        headerContent={
-          <SearchInput
-            className="mt-15"
-            value={searchKeyword}
-            setValue={onSearchKeywordChange}
-            onKeyDown={_handleKeyDown}
-          />
-        }
-      >
-        <div className="TokenSelector-tokens">
-          {sortedFilteredTokens.map((token, tokenIndex) => {
-            let info = infoTokens?.[token.address] || ({} as TokenInfo);
-
-            let mintAmount;
-            let balance = info.balance;
-            if (showMintingCap && mintingCap !== undefined && info.usdgAmount !== undefined) {
-              mintAmount = mintingCap - info.usdgAmount;
-            }
-            if (mintAmount && mintAmount < 0) {
-              mintAmount = 0n;
-            }
-            let balanceUsd: bigint | undefined = undefined;
-            if (balance !== undefined && info.maxPrice !== undefined) {
-              balanceUsd = bigMath.mulDiv(balance, info.maxPrice, expandDecimals(1, token.decimals));
-            }
-
-            const tokenState = getTokenState(info) || {};
-
-            return (
-              <div
-                key={token.address}
-                data-qa={`${qa}-token-${token.symbol}`}
-                className={cx("TokenSelector-token-row", { disabled: tokenState.disabled })}
-                onClick={() => !tokenState.disabled && onSelectToken(token)}
-              >
-                {tokenState.disabled && tokenState.message && (
-                  <TooltipWithPortal
-                    className="TokenSelector-tooltip"
-                    handle={<div className="TokenSelector-tooltip-backing" />}
-                    position={tokenIndex < filteredTokens.length / 2 ? "bottom" : "top"}
-                    disableHandleStyle
-                    closeOnDoubleClick
-                    fitHandleWidth
-                    renderContent={() => tokenState.message}
-                  />
+    <div
+      className={cx("TokenSelector relative", { disabled }, props.className)}
+      onClick={(event) => event.stopPropagation()}
+    >
+      <Menu>
+        <Menu.Button as="div">
+          {selectedTokenLabel ? (
+            <div data-qa={qa} className="TokenSelector-box">
+              {selectedTokenLabel}
+              {!showNewCaret && <BiChevronDown className="TokenSelector-caret" />}
+            </div>
+          ) : (
+            <div data-qa={qa} className="TokenSelector-box">
+              <span className="inline-flex items-center">
+                {showSymbolImage && (
+                  <TokenIcon className="mr-5" symbol={tokenInfo.symbol} importSize={24} displaySize={20} />
                 )}
-                <div className="Token-info">
-                  {showTokenImgInDropdown && (
-                    <TokenIcon symbol={token.symbol} className="token-logo" displaySize={40} importSize={40} />
-                  )}
-                  <div className="Token-symbol">
-                    <div className="Token-text">{token.symbol}</div>
-                    <span className="text-accent">{token.name}</span>
-                  </div>
-                </div>
-                <div className="Token-balance">
-                  {(showBalances && balance !== undefined && (
-                    <div className="Token-text">
-                      {balance > 0 && formatAmount(balance, token.decimals, 4, true)}
-                      {balance == 0n && "-"}
+                <span className="Token-symbol-text">{tokenInfo.symbol}</span>
+              </span>
+              {showNewCaret && <img src={dropDownIcon} alt="Dropdown Icon" className="TokenSelector-box-caret" />}
+              {!showNewCaret && <BiChevronDown className="TokenSelector-caret" />}
+            </div>
+          )}
+        </Menu.Button>
+        <Menu.Items as="div" className="menu-items !px-4 wallet-dd h-[200px] !w-[160px]">
+          <div className=" overflow-y-auto h-full pb-8">
+            {sortedFilteredTokens.map((token, tokenIndex) => {
+              let info = infoTokens?.[token.address] || ({} as TokenInfo);
+
+              let mintAmount;
+              let balance = info.balance;
+              if (showMintingCap && mintingCap !== undefined && info.usdgAmount !== undefined) {
+                mintAmount = mintingCap - info.usdgAmount;
+              }
+              if (mintAmount && mintAmount < 0) {
+                mintAmount = 0n;
+              }
+              let balanceUsd: bigint | undefined = undefined;
+              if (balance !== undefined && info.maxPrice !== undefined) {
+                balanceUsd = bigMath.mulDiv(balance, info.maxPrice, expandDecimals(1, token.decimals));
+              }
+
+              const tokenState = getTokenState(info) || {};
+
+              return (
+                <Menu.Item key={token.address}>
+                  <div
+                    data-qa={`${qa}-token-${token.symbol}`}
+                    className={cx("flex h-[32px] items-center justify-between rounded-[6px] px-4 hover:bg-[#D9D9D9]", {
+                      disabled: tokenState.disabled,
+                    })}
+                    onClick={() => !tokenState.disabled && onSelectToken(token)}
+                  >
+                    {/* {tokenState.disabled && tokenState.message && (
+                    <TooltipWithPortal
+                      className="TokenSelector-tooltip"
+                      handle={<div className="TokenSelector-tooltip-backing" />}
+                      position={tokenIndex < filteredTokens.length / 2 ? "bottom" : "top"}
+                      disableHandleStyle
+                      closeOnDoubleClick
+                      fitHandleWidth
+                      renderContent={() => tokenState.message}
+                    />
+                  )} */}
+                    <div className="Token-info">
+                      {showTokenImgInDropdown && (
+                        <TokenIcon symbol={token.symbol} className="token-logo" displaySize={40} importSize={40} />
+                      )}
+                      <div className="Token-symbol">
+                        <div className="Token-t text-left text-[14px] font-[500] text-[#121214]">{token.symbol}</div>
+                        {/* <span className="text-accent">{token.name}</span> */}
+                      </div>
                     </div>
-                  )) ||
-                    null}
-                  <span className="text-accent">
-                    {mintAmount && <div>Mintable: {formatAmount(mintAmount, token.decimals, 2, true)} USDG</div>}
-                    {showMintingCap && !mintAmount && <div>-</div>}
-                    {!showMintingCap && showBalances && balanceUsd !== undefined && balanceUsd > 0 && (
-                      <div>${formatAmount(balanceUsd, 30, 2, true)}</div>
-                    )}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </Modal>
-      {selectedTokenLabel ? (
-        <div data-qa={qa} className="TokenSelector-box" onClick={() => setIsModalVisible(true)}>
-          {selectedTokenLabel}
-          {!showNewCaret && <BiChevronDown className="TokenSelector-caret" />}
-        </div>
-      ) : (
-        <div data-qa={qa} className="TokenSelector-box" onClick={() => setIsModalVisible(true)}>
-          <span className="inline-flex items-center">
-            {showSymbolImage && (
-              <TokenIcon className="mr-5" symbol={tokenInfo.symbol} importSize={24} displaySize={20} />
-            )}
-            <span className="Token-symbol-text">{tokenInfo.symbol}</span>
-          </span>
-          {showNewCaret && <img src={dropDownIcon} alt="Dropdown Icon" className="TokenSelector-box-caret" />}
-          {!showNewCaret && <BiChevronDown className="TokenSelector-caret" />}
-        </div>
-      )}
+                    <div className="Token-balance  text-[12px] !text-[#000] !opacity-60 !text-right">
+                      {(showBalances && balance !== undefined && (
+                        <div className="Token-text">
+                          {balance > 0 && formatAmount(balance, token.decimals, 4, true)}
+                          {balance == 0n && "-"}
+                        </div>
+                      )) ||
+                        null}
+                      {/* <span className="text-accent">
+                        {mintAmount && <div>Mintable: {formatAmount(mintAmount, token.decimals, 2, true)} USDG</div>}
+                        {showMintingCap && !mintAmount && <div>-</div>}
+                        {!showMintingCap && showBalances && balanceUsd !== undefined && balanceUsd > 0 && (
+                          <div>${formatAmount(balanceUsd, 30, 2, true)}</div>
+                        )}
+                      </span> */}
+                    </div>
+                  </div>
+                </Menu.Item>
+              );
+            })}
+          </div>
+        </Menu.Items>
+      </Menu>
     </div>
   );
 }

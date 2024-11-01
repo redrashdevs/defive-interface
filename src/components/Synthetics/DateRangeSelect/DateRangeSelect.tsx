@@ -184,12 +184,19 @@ export function DateRangeSelect({ startDate, endDate, onChange, handleClassName 
         <Popover.Button
           as={Button}
           className={handleClassName}
-          variant="secondary"
-          imgSrc={calendarIcon}
+          variant="link"
+          imgSrc={"/images/calendar-event.png"}
           refName="buttonRef"
           slim
+          style={{ textDecoration: "none" }}
         >
-          {buttonText}
+          <p
+            className="ml-4 text-[12px] font-[500] text-white no-underline opacity-60"
+            style={{ textDecoration: "none" }}
+          >
+            {" "}
+            {buttonText}
+          </p>
         </Popover.Button>
         <Popover.Panel className="DateRangeSelect-popover" ref={refs.setFloating} style={floatingStyles}>
           <div className="DateRangeSelect-common-items">
@@ -308,8 +315,9 @@ export function DateSelect({
           imgSrc={calendarIcon}
           refName="buttonRef"
           slim
+          imgClassName="mr-4"
         >
-          {buttonText}
+          <p className="ml-4 text-[12px] font-[500] text-white opacity-60">CSV</p>
         </Popover.Button>
         <Popover.Panel className="DateRangeSelect-popover" ref={refs.setFloating} style={floatingStyles}>
           <div className="DateRangeSelect-common-items">

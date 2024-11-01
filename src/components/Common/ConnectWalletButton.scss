@@ -1,15 +1,32 @@
 .connect-wallet-btn {
-  background: transparent;
-  padding: 0.85rem 1.4rem;
+  position: relative;
+  background: #fff;
+  padding-inline: 1.8rem;
   display: inline-flex;
   align-items: center;
   border: none;
-  color: var(--color-white);
+  color: rgba(10, 10, 10, 1);
+
   font-size: var(--font-sm);
   white-space: nowrap;
   cursor: pointer;
-  border: 1px solid var(--dark-blue-border);
-  border-radius: var(--border-radius-sm);
+  height: 36px !important;
+  border: 2px solid transparent;
+  border-radius: 40px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 40px; /* Match the border radius */
+    z-index: -1; /* Places the gradient behind the content */
+    padding: 4px; /* Thickness of the border */
+    margin: -4px; /* Offset to maintain the size of the outer div */
+    background: conic-gradient(from 90deg at 50% 50%, #FB1A1A 0deg, #4756F6 61.2deg, #29F8B3 118.8deg, #F1E90F 180deg, #F21AE7 241.2deg, #23CBDE 298.8deg, #FB1A1A 360deg);;
+  }
 
   .btn-icon {
     display: inline-flex;
@@ -17,16 +34,18 @@
     justify-content: center;
   }
   .btn-label {
-    font-weight: 400;
+    color: rgba(10, 10, 10, 1);
+    font-weight: 500;
     font-size: var(--font-sm);
+    padding-right: 1.8rem;
     margin-left: 0.8rem;
     letter-spacing: 0;
   }
   &:hover {
-    background: var(--dark-blue-hover);
+    // background: var(--dark-blue-hover);
   }
   &:active {
-    background: var(--dark-blue-active);
+    // background: var(--dark-blue-active);
   }
 }
 

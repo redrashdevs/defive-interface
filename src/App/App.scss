@@ -1,5 +1,9 @@
 $app-card-padding: 1.5rem;
 
+html {
+  background-color: #000;
+}
+
 .App {
   position: relative;
   min-height: 100%;
@@ -682,10 +686,10 @@ button.App-connect-wallet:hover {
 .App-header-container-left a {
   padding: 1.8rem 1.7rem;
   display: block;
-  color: var(--color-slate-100);
-  font-size: var(--font-base);
+  color: rgba(231, 231, 226, 0.4);
+  font-size: 14px;
   line-height: 1.8rem;
-  font-weight: normal;
+  font-weight: 500;
 }
 
 .App-header-container-left .a.active,
@@ -925,6 +929,7 @@ button.App-button-option:disabled {
 
 .App-content {
   position: static !important;
+  background-color: #000;
 }
 
 .App-footer {
@@ -1089,21 +1094,28 @@ button.App-button {
     opacity: 0;
   }
 }
-
+.App-header {
+  background: #000 !important;
+}
 .zoomOut {
   animation-name: zoomOut;
 }
 
 .positive {
-  color: var(--color-green-500);
+  color: rgba(51, 172, 66, 1);
 }
-
+.positive-shallow {
+  color: rgba(51, 172, 66, 0.24);
+}
 .positive-background {
   background: linear-gradient(45deg, rgba(10, 115, 75, 1) 0%, rgba(12, 154, 100, 1) 100%);
 }
 
 .negative {
   color: var(--error-red);
+}
+.neutral {
+  color: rgba(36, 36, 41, 1);
 }
 
 .negative-background {

@@ -1,4 +1,16 @@
 .TradeHistorySynthetics {
+  .trader-wrapper {
+    background: rgba(18, 18, 20, 1);
+    border-radius: 12px;
+    font-weight: 500;
+    th {
+      color: rgba(255, 255, 255, 0.24);
+      font-size: 12px;
+      font-weight: 500;
+      text-align: left;
+      
+    }
+  }
   &-horizontal-scroll-container {
     overflow-x: auto;
   }

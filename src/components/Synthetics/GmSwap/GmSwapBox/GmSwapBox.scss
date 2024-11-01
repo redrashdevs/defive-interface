@@ -1,6 +1,167 @@
+
+.Exchange-swap-section {
+  height: 8.5rem;
+  padding-top: 0;
+  background: none;
+  padding-inline: 0px;
+  margin: 0;
+  outline: none;
+  .buy-input-top-row {
+    padding-inline: 8px;
+    div {
+      color: rgba(103, 103, 122, 1);
+    }
+    .Exchange-swap-label {
+      color: rgba(255, 255, 255, 0.64);
+    }
+  }
+  .Exchange-swap-section-bottom {
+    background: rgba(27, 27, 31, 1);
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 0px;
+  }
+  .PositionEditor-token-symbol {
+    background: rgba(36, 36, 41, 1);
+    height: 24px;
+    padding: 2px 4px 2px 2px;
+    border-radius: 16px;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: right;
+    color: #fff;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .TokenSelector-box {
+    background: rgba(36, 36, 41, 1);
+    height: 24px;
+    padding: 2px 4px 2px 2px;
+    border-radius: 16px;
+    &:hover {
+      .TokenSelector-caret {
+        fill: #fff;
+      }
+    }
+    img {
+      width: 20px;
+      height: 20px;
+    }
+    .TokenSelector-caret {
+      width: 16px;
+      height: 16px;
+      
+    }
+    .Token-symbol-text {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      text-align: right;
+      color: #fff;
+    }
+  }
+  .MarketSelector {
+    background: rgba(36, 36, 41, 1);
+    height:  24px;
+    padding: 0 4px 2px 2px;
+    border-radius: 16px;
+    .TokenSelector-box {
+      background: none;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      text-align: left;
+      color: #fff;
+    }
+  }
+  .Exchange-swap-input-container {
+    input {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.64);
+    }
+  }
+}
 .GmSwapBox {
-  border-radius: 0.4rem;
-  padding: 1.5rem;
+  border-radius: 12px;
+  padding: 16px;
+  background: #121214;
+  .Exchange-swap-option-tabs {
+    background: #09090A;
+    padding-inline: 2px;
+    padding-block: 4px;
+    border-radius: 8px;
+    .Tab-option {
+      border-radius: 8px;
+      color: rgba(255, 255, 255, 0.32);
+      font-size: 14px;
+      margin-inline: 2px;
+      &:hover {
+        background: #121214 !important;
+      }
+    }
+    .Tab-option:first-child {
+      &.active {
+        background: rgba(51, 172, 66, 0.16);
+        color: rgba(51, 172, 66, 1);
+      }
+    }
+
+    .Tab-option:nth-child(2) {
+      &.active {
+        background: rgba(255, 48, 62, 0.16);
+        color: rgba(255, 48, 62, 1);
+      }
+    }
+    .Tab-option:nth-child(3) {
+      &.active {
+        background: rgba(255, 202, 17, 0.16);
+        color: rgba(255, 202, 17, 1);
+      }
+    }
+  }
+  .GmSwapBox-asset-options-tabs {
+    .Tab-option {
+      color: rgba(103, 103, 122, 1);
+      font-size: 14px;
+      border-radius: 16px;
+      padding-block: 6px;
+      padding-inline: 12px;
+      &.active {
+        color: #fff;
+        background: rgba(54, 54, 61, 1);
+      }
+    }
+  }
+
+
+  .primary-action {
+      background: rgba(242, 240, 237, 1);
+      color: rgba(10, 10, 10, 1);
+      font-family: Plus Jakarta Sans;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 12px;
+      margin-top: 12px;
+  }
+
+  .fee-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-align: left;
+    color: rgba(103, 103, 122, 1);
+  }
+  .fee-content {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: right;
+  }
 }
 
 .GmSwapBox-asset-options-tabs {

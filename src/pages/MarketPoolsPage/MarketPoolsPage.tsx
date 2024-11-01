@@ -23,6 +23,7 @@ import { GmSwapBox } from "components/Synthetics/GmSwap/GmSwapBox/GmSwapBox";
 import { MarketStats } from "components/Synthetics/MarketStats/MarketStats";
 
 import "./MarketPoolsPage.scss";
+import { Link } from "react-router-dom";
 
 export function MarketPoolsPage() {
   const { chainId } = useChainId();
@@ -60,22 +61,13 @@ export function MarketPoolsPage() {
 
   return (
     <SEO title={getPageTitle("V2 Pools")}>
-      <div className="default-container page-layout">
-        <PageTitle
-          title="V2 Pools"
-          isTop
-          subtitle={
-            <>
-              <Trans>
-                Purchase <ExternalLink href="https://docs.gmx.io/docs/providing-liquidity/v2">GM Tokens</ExternalLink>{" "}
-                to earn fees from swaps and leverage trading.
-              </Trans>
-              <br />
-              <Trans>Shift GM Tokens between eligible pools without paying buy/sell fees.</Trans>
-            </>
-          }
-          qa="pools-page"
-        />
+      <div className="container mx-auto px-[16px] pt-32 lg:px-[100px]">
+        <Link to={"/earn"}>
+          <div className="mb-32 flex h-[40px] w-[180px] items-center justify-evenly rounded-[40px] bg-[#242429] py-8 ">
+            <img src="/images/arrow-narrow-left.svg" />
+            <p className="whitespace-nowrap text-[#D6D6D6]">Back to pools</p>
+          </div>
+        </Link>
 
         <div className="MarketPoolsPage-content">
           <MarketStats
@@ -88,7 +80,7 @@ export function MarketPoolsPage() {
             marketToken={marketToken}
           />
 
-          <div className="MarketPoolsPage-swap-box" ref={gmSwapBoxRef}>
+          <div className="MarketPoolsPage-swap-box xl:pl-32" ref={gmSwapBoxRef}>
             <GmSwapBox
               selectedMarketAddress={selectedMarketKey}
               onSelectMarket={setSelectedMarketKey}
@@ -99,21 +91,8 @@ export function MarketPoolsPage() {
             />
           </div>
         </div>
-
-        <div className="Tab-title-section">
-          <div className="Page-title">
-            <Trans>Select a Market</Trans>
-          </div>
-        </div>
-        <GmList
-          marketsTokensApyData={marketsTokensApyData}
-          marketsTokensIncentiveAprData={marketsTokensIncentiveAprData}
-          marketsTokensLidoAprData={marketsTokensLidoAprData}
-          shouldScrollToTop={true}
-          isDeposit
-        />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </SEO>
   );
 }
