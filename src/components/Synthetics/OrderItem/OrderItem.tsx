@@ -99,6 +99,7 @@ function Title({ order, showDebugValues }: { order: OrderInfo; showDebugValues: 
           disableHandleStyle
           handle={<TitleWithIcon bordered order={order} />}
           position="bottom-start"
+          handleClassName="no-underline"
           content={
             <>
               <StatsTooltipRow
@@ -153,6 +154,7 @@ function Title({ order, showDebugValues }: { order: OrderInfo; showDebugValues: 
     <Tooltip
       disableHandleStyle
       handle={<TitleWithIcon bordered order={order} />}
+      handleClassName="no-underline"
       position="bottom-start"
       content={
         <>
@@ -202,9 +204,12 @@ export function TitleWithIcon({ order, bordered }: { order: OrderInfo; bordered?
 
     return (
       <div
-        className={cx("inline-flex flex-wrap gap-y-8 whitespace-pre-wrap", {
-          "cursor-help *:border-b *:border-dashed *:border-b-gray-400": bordered,
-        })}
+        className={cx(
+          "inline-flex flex-wrap gap-y-8 whitespace-pre-wrap text-[12px] font-[500] text-white opacity-60",
+          {
+            // "cursor-help *:border-b *:border-dashed *:border-b-gray-400": bordered,
+          }
+        )}
       >
         <Trans>
           <span>{fromTokenText} </span>
@@ -222,15 +227,7 @@ export function TitleWithIcon({ order, bordered }: { order: OrderInfo; bordered?
     displayPlus: true,
   });
 
-  return (
-    <span
-      className={cx({
-        "cursor-help border-b border-dashed border-b-gray-400": bordered,
-      })}
-    >
-      {sizeText}
-    </span>
-  );
+  return <span className={cx(" text-[12px] font-[500] text-white opacity-60", {})}>{sizeText}</span>;
 }
 
 function MarkPrice({ order }: { order: OrderInfo }) {
@@ -265,6 +262,7 @@ function MarkPrice({ order }: { order: OrderInfo }) {
     return (
       <Tooltip
         handle={markPriceFormatted}
+        handleClassName="text-right text-[12px] font-[500] text-white !no-underline opacity-60"
         position="bottom-end"
         renderContent={() => {
           return (
@@ -299,6 +297,7 @@ function TriggerPrice({ order, hideActions }: { order: OrderInfo; hideActions: b
         {!hideActions ? (
           <Tooltip
             position="bottom-end"
+            handleClassName="!text-right"
             handle={swapRatioText}
             renderContent={() =>
               t`You will receive at least ${toAmountText} if this order is executed. This price is being updated in real time based on swap fees and price impact.`
@@ -315,9 +314,15 @@ function TriggerPrice({ order, hideActions }: { order: OrderInfo; hideActions: b
       calculatePriceDecimals(positionOrder?.indexToken?.prices?.minPrice) || positionOrder?.indexToken?.priceDecimals;
     return (
       <Tooltip
-        handle={`${positionOrder.triggerThresholdType} ${formatUsd(positionOrder.triggerPrice, {
-          displayDecimals: priceDecimals,
-        })}`}
+        handle={
+          <span className="!text-right text-[12px] font-[500] text-white no-underline opacity-60">{`${positionOrder.triggerThresholdType} ${formatUsd(
+            positionOrder.triggerPrice,
+            {
+              displayDecimals: priceDecimals,
+            }
+          )}`}</span>
+        }
+        handleClassName="!no-underline"
         position="bottom-end"
         renderContent={() => (
           <>
@@ -402,11 +407,37 @@ function OrderItemLarge({
         {isSwap ? (
           <Tooltip
             handle={
-              <SwapMarketLabel
-                bordered
-                fromSymbol={swapPathTokenSymbols?.at(0)}
-                toSymbol={swapPathTokenSymbols?.at(-1)}
-              />
+              <span
+                className={cx("text-left text-[12px] font-[500] text-white", {
+                  // "cursor-help border-b border-dashed border-b-gray-400": bordered,
+                })}
+              >
+                {swapPathTokenSymbols?.at(0) ? (
+                  <TokenIcon
+                    symbol={swapPathTokenSymbols?.at(0)!}
+                    displaySize={20}
+                    className="relative z-10  h-[16px] w-[16px]"
+                  />
+                ) : (
+                  "..."
+                )}
+                {swapPathTokenSymbols?.at(-1) ? (
+                  <TokenIcon
+                    symbol={swapPathTokenSymbols?.at(-1)!}
+                    displaySize={20}
+                    className="-ml-10 mr-5 h-[16px] w-[16px]"
+                  />
+                ) : (
+                  "..."
+                )}
+                {swapPathTokenSymbols?.at(0)}/{swapPathTokenSymbols?.at(-1)}
+                <span
+                  className="ml-4 rounded-[12px] px-8 py-2 text-[12px] text-[#FFCA11]"
+                  style={{ background: "rgba(255, 202, 17, 0.16)" }}
+                >
+                  <Trans>Long</Trans>
+                </span>
+              </span>
             }
             content={
               <>
@@ -424,12 +455,26 @@ function OrderItemLarge({
         ) : (
           <Tooltip
             handle={
-              <MarketWithDirectionLabel
-                bordered
-                indexName={indexName}
-                isLong={order.isLong}
-                tokenSymbol={tokenSymbol}
-              />
+              <div className={cx("inline text-[12px] font-[500] leading-base text-white", {})}>
+                {/* <span className={cx(isLong ? "text-green-500" : "text-red-500")}>{isLong ? t`Long` : t`Short`}</span> */}
+                <TokenIcon className="mr-5 h-[16px] w-[16px]" displaySize={20} symbol={tokenSymbol} importSize={40} />
+                <span>{indexName}</span>
+                {order.isLong ? (
+                  <span
+                    className="positive ml-4 rounded-[12px] px-8 py-2 text-[12px]"
+                    style={{ background: "rgba(51, 172, 66, 0.16)" }}
+                  >
+                    <Trans>Long</Trans>
+                  </span>
+                ) : (
+                  <span
+                    className="negative ml-4 rounded-[12px] px-8 py-2 text-[12px]"
+                    style={{ background: "rgba(255, 48, 62, 0.32)" }}
+                  >
+                    <Trans>Short</Trans>
+                  </span>
+                )}
+              </div>
             }
             content={
               <StatsTooltipRow
@@ -437,7 +482,7 @@ function OrderItemLarge({
                 value={
                   <div className="flex items-center">
                     <span>{indexName && indexName}</span>
-                    <span className="subtext leading-1">{poolName && `[${poolName}]`}</span>
+                    <span className="">{poolName && `[${poolName}]`}</span>
                   </div>
                 }
                 showDollar={false}
@@ -450,11 +495,11 @@ function OrderItemLarge({
       <ExchangeTd>
         <OrderItemTypeLabel order={order} />
       </ExchangeTd>
-      <ExchangeTd>
+      <ExchangeTd className="text-right">
         <Title order={order} showDebugValues={showDebugValues} />
       </ExchangeTd>
 
-      <ExchangeTd>
+      <ExchangeTd className="text-right">
         <TriggerPrice order={order} hideActions={hideActions} />
       </ExchangeTd>
       <ExchangeTd>
@@ -542,55 +587,53 @@ function OrderItemSmall({
   );
 
   return (
-    <div className="App-card" ref={handleSetRef}>
+    <div style={{borderBottom: '1px dotted #36363D'}} className="w-full px-16 py-16 last-of-type:!border-0" ref={handleSetRef}>
       <div>
         <div className="flex cursor-pointer items-center" onClick={onToggleOrder}>
-          {hideActions ? (
-            title
+          {title}
+          {order.isLong ? (
+            <span
+              className="positive mx-6 rounded-[12px] px-8 py-2 text-[12px]"
+              style={{ background: "rgba(51, 172, 66, 0.16)" }}
+            >
+              <Trans>Long</Trans>
+            </span>
           ) : (
-            <Checkbox isChecked={isSelected} setIsChecked={onToggleOrder}>
-              {title}
-            </Checkbox>
+            <span
+              className="negative mx-6 rounded-[12px] px-8 py-2 text-[12px]"
+              style={{ background: "rgba(255, 48, 62, 0.32)" }}
+            >
+              <Trans>Short</Trans>
+            </span>
           )}
+          {isLimitSwapOrderType(order.orderType) ? (
+            <span
+              className="mx-6 rounded-[12px] px-8 py-2 text-[12px] text-[#FFCA11]"
+              style={{ background: "rgba(255, 202, 17, 0.16)" }}
+            >
+              <Trans>Long</Trans>
+            </span>
+          ) : null}
+          <OrderItemTypeLabel isSmall order={order} />
         </div>
-        <div className="App-card-divider" />
-        <div className="App-card-content">
-          {showDebugValues && (
-            <div className="App-card-row">
-              <div className="label">Key</div>
-              <div className="debug-key muted">{order.key}</div>
-            </div>
-          )}
-          <div className="App-card-row">
-            <div className="label">
-              <Trans>Order Type</Trans>
-            </div>
-            <div>
-              <OrderItemTypeLabel order={order} />
-            </div>
-          </div>
-          <div className="App-card-row">
-            <div className="label">
+        <div className="mt-16 grid grid-cols-3 gap-4">
+          <div>
+            <p className="font-500 text-[10px] text-white opacity-30">
               <Trans>Size</Trans>
-            </div>
+            </p>
             <Title order={order} showDebugValues={showDebugValues} />
           </div>
-          <div className="App-card-row">
-            <div className="label">
+          <div>
+            <p className="font-500 text-[10px] text-white opacity-30">
               <Trans>Trigger Price</Trans>
-            </div>
-            <div>
-              <TriggerPrice order={order} hideActions={hideActions} />
-            </div>
+            </p>
+            <TriggerPrice order={order} hideActions={hideActions} />
           </div>
-
-          <div className="App-card-row">
-            <div className="label">
+          <div>
+            <p className="font-500 text-[10px] text-white opacity-30">
               <Trans>Mark Price</Trans>
-            </div>
-            <div>
-              <MarkPrice order={order} />
-            </div>
+            </p>
+            <MarkPrice order={order} />
           </div>
         </div>
       </div>
@@ -643,25 +686,22 @@ function getSwapRatioText(order: OrderInfo) {
   return { swapRatioText, markSwapRatioText };
 }
 
-function OrderItemTypeLabel({ order }: { order: OrderInfo }) {
+function OrderItemTypeLabel({ order, isSmall }: { order: OrderInfo; isSmall?: boolean }) {
   const { errors, level } = useOrderErrors(order.key);
 
   const handle = isDecreaseOrderType(order.orderType) ? getTriggerNameByOrderType(order.orderType) : t`Limit`;
 
   if (errors.length === 0) {
-    return <>{handle}</>;
+    return (
+      <span className={cx(" rounded-[12px] bg-[#242429] px-12 py-4 text-[12px] font-[500] text-white")}>{handle}</span>
+    );
   }
 
   return (
     <Tooltip
       disableHandleStyle
       handle={
-        <span
-          className={cx("cursor-help underline decoration-dashed decoration-1 underline-offset-2", {
-            "text-red-500 decoration-red-500/50": level === "error",
-            "text-yellow-500 decoration-yellow-500/50": level === "warning",
-          })}
-        >
+        <span className={cx("cursor-help rounded-[12px] bg-[#242429] px-12 py-4 text-[12px] font-[500] text-white")}>
           {handle}
         </span>
       }
@@ -669,7 +709,7 @@ function OrderItemTypeLabel({ order }: { order: OrderInfo }) {
         errors.length ? (
           <>
             {errors.map((error) => (
-              <div className="mt-20" key={error.key}>
+              <div key={error.key}>
                 <span
                   className={cx({
                     "text-red-500": error!.level === "error",

@@ -160,12 +160,21 @@ export function OrderList({
   return (
     <div ref={ref}>
       {isContainerSmall && orders.length === 0 && (
-        <div className="rounded-4 bg-slate-800 p-14">{isLoading ? t`Loading...` : t`No open orders`}</div>
+        <div className="flex h-[140px] flex-col items-center justify-center rounded-[12px] bg-[#121214] p-14 text-[14px] font-[600] text-[#36363D]">
+          {isLoading ? (
+            t`Loading...`
+          ) : (
+            <>
+              <img src="/images/empty-record.svg" />
+              <Trans>No Order History</Trans>
+            </>
+          )}
+        </div>
       )}
 
       {(isContainerSmall || isScreenSmall) && !isLoading && orders.length !== 0 && (
-        <div className="flex flex-col gap-8">
-          <div className="flex flex-wrap items-center justify-between gap-8 bg-slate-950">
+        <div className="flex flex-col gap-8 rounded-[12px] bg-[#121214]">
+          {/* <div className="flex flex-wrap items-center justify-between gap-8 bg-slate-950">
             {isContainerSmall ? (
               <div className="flex gap-8">
                 <Button variant="secondary" onClick={onSelectAllOrders}>
@@ -191,7 +200,7 @@ export function OrderList({
                 <Plural value={selectedOrdersKeys.length} one="Cancel order" other="Cancel # orders" />
               </Button>
             )}
-          </div>
+          </div> */}
           {isContainerSmall && (
             <div className="grid gap-8 sm:grid-cols-auto-fill-350">
               {orders.map((order) => (
@@ -215,62 +224,67 @@ export function OrderList({
       )}
 
       {!isContainerSmall && (
-        <ExchangeTable>
-          <thead>
-            <ExchangeTheadTr>
-              {!hideActions && (
-                <ExchangeTh className="cursor-pointer" onClick={onSelectAllOrders}>
-                  <Checkbox
-                    isPartialChecked={onlySomeOrdersSelected}
-                    isChecked={areAllOrdersSelected}
-                    setIsChecked={onSelectAllOrders}
-                  />
+        <>
+          <ExchangeTable className="rounded-[12px]">
+            <thead>
+              <ExchangeTheadTr>
+                {!hideActions && (
+                  <ExchangeTh className="cursor-pointer" onClick={onSelectAllOrders}>
+                    <Checkbox
+                      isPartialChecked={onlySomeOrdersSelected}
+                      isChecked={areAllOrdersSelected}
+                      setIsChecked={onSelectAllOrders}
+                    />
+                  </ExchangeTh>
+                )}
+                <ExchangeTh>
+                  <Trans>MARKET</Trans>
                 </ExchangeTh>
+                <ExchangeTh className="text-left">
+                  <span>TYPE</span>
+                </ExchangeTh>
+                <ExchangeTh className="text-right">
+                  <Trans>Size</Trans>
+                </ExchangeTh>
+                <ExchangeTh className="text-right">
+                  <Trans>Trigger Price</Trans>
+                </ExchangeTh>
+                <ExchangeTh className="text-right">
+                  <Trans>Mark Price</Trans>
+                </ExchangeTh>
+              </ExchangeTheadTr>
+            </thead>
+            <tbody>
+              {!isLoading &&
+                orders.map((order) => (
+                  <OrderItem
+                    isLarge
+                    isSelected={selectedOrdersKeys?.includes(order.key)}
+                    key={order.key}
+                    order={order}
+                    onToggleOrder={() => onToggleOrder(order.key)}
+                    isCanceling={cancellingOrdersKeys.includes(order.key)}
+                    onCancelOrder={() => onCancelOrder(order.key)}
+                    hideActions={hideActions}
+                    positionsInfoData={positionsData}
+                    setRef={(el) => (orderRefs.current[order.key] = el)}
+                  />
+                ))}
+            </tbody>
+          </ExchangeTable>
+          {orders.length === 0 && (
+            <div className="flex h-[150px] w-full flex-col items-center justify-center -mt-[10px] rounded-b-[12px] bg-[#121214] p-14 text-[14px] font-[600] text-[#36363D]">
+              {isLoading ? (
+                t`Loading...`
+              ) : (
+                <>
+                  <img src="/images/empty-record.svg" />
+                  <Trans>No Order History</Trans>
+                </>
               )}
-              <ExchangeTh>
-                <MarketFilterLongShort
-                  withPositions="withOrders"
-                  value={marketsDirectionsFilter}
-                  onChange={setMarketsDirectionsFilter}
-                />
-              </ExchangeTh>
-              <ExchangeTh>
-                <OrderTypeFilter value={orderTypesFilter} onChange={setOrderTypesFilter} />
-              </ExchangeTh>
-              <ExchangeTh>
-                <Trans>Size</Trans>
-              </ExchangeTh>
-              <ExchangeTh>
-                <Trans>Trigger Price</Trans>
-              </ExchangeTh>
-              <ExchangeTh>
-                <Trans>Mark Price</Trans>
-              </ExchangeTh>
-            </ExchangeTheadTr>
-          </thead>
-          <tbody>
-            {orders.length === 0 && (
-              <tr>
-                <ExchangeTd colSpan={5}>{isLoading ? t`Loading...` : t`No open orders`}</ExchangeTd>
-              </tr>
-            )}
-            {!isLoading &&
-              orders.map((order) => (
-                <OrderItem
-                  isLarge
-                  isSelected={selectedOrdersKeys?.includes(order.key)}
-                  key={order.key}
-                  order={order}
-                  onToggleOrder={() => onToggleOrder(order.key)}
-                  isCanceling={cancellingOrdersKeys.includes(order.key)}
-                  onCancelOrder={() => onCancelOrder(order.key)}
-                  hideActions={hideActions}
-                  positionsInfoData={positionsData}
-                  setRef={(el) => (orderRefs.current[order.key] = el)}
-                />
-              ))}
-          </tbody>
-        </ExchangeTable>
+            </div>
+          )}
+        </>
       )}
 
       <OrderEditorContainer />

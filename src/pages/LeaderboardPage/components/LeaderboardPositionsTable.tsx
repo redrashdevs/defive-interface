@@ -170,42 +170,47 @@ export function LeaderboardPositionsTable({
                   })} in "Capital Used" are ranked.`}
                   tooltipPosition="bottom-start"
                   columnName="rank"
+                  
                 />
                 <TableHeaderCell title={t`Address`} width={16} tooltipPosition="bottom-end" columnName="account" />
                 <TableHeaderCell
                   title={t`PnL ($)`}
-                  width={12}
+                  width={6}
                   tooltip={t`The total realized and unrealized profit and loss for the period, considering price impact and fees but excluding swap fees.`}
                   tooltipPosition="bottom-end"
                   onClick={handleColumnClick}
                   columnName="qualifyingPnl"
                   className={getSortableClass("qualifyingPnl")}
+                  isRight
                 />
                 <TableHeaderCell title={t`Position`} width={10} tooltipPosition="bottom-end" columnName="key" />
                 <TableHeaderCell
                   title={t`Entry Price`}
-                  width={10}
+                  width={6}
                   onClick={handleColumnClick}
                   columnName="entryPrice"
                   className={getSortableClass("entryPrice")}
+                  isRight
                 />
                 <TableHeaderCell
                   title={t`Size`}
-                  width={12}
+                  width={6}
                   onClick={handleColumnClick}
                   columnName="sizeInUsd"
                   className={getSortableClass("sizeInUsd")}
+                  isRight
                 />
                 <TableHeaderCell
                   title={t`Lev.`}
-                  width={1}
+                  width={3}
                   onClick={handleColumnClick}
                   columnName="leverage"
                   className={getSortableClass("leverage")}
+                  isRight
                 />
                 <TableHeaderCell
                   title={t`Liq. Price`}
-                  width={10}
+                  width={6}
                   columnName="liquidationPrice"
                   className={cx("text-right")}
                   isRight
@@ -395,7 +400,7 @@ const TableRow = memo(
         <TableCell>
           <AddressView size={20} address={position.account} breakpoint="M" />
         </TableCell>
-        <TableCell>
+        <TableCell className="!text-right">
           {/* <TooltipWithPortal
             handle={
               <span className={getSignedValueClassName(position.qualifyingPnl)}>
@@ -457,7 +462,7 @@ const TableRow = memo(
             </span>
           </span>
         </TableCell>
-        <TableCell>
+        <TableCell className="!text-right">
           {/* {formatUsd(position.entryPrice, {
             displayDecimals: marketDecimals,
           })} */}
@@ -477,7 +482,7 @@ const TableRow = memo(
             }
           </span>
         </TableCell>
-        <TableCell>
+        <TableCell className="!text-right">
           {/* <TooltipWithPortal
             handle={formatUsd(position.sizeInUsd)}
             position={index > 9 ? "top-end" : "bottom-end"}
@@ -487,7 +492,7 @@ const TableRow = memo(
           <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>{formatUsd(position.sizeInUsd)?.split(".")[0]}.</span>
           <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>{formatUsd(position.sizeInUsd)?.split(".")[1]}</span>
         </TableCell>
-        <TableCell>
+        <TableCell className="!text-right">
           <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>{formatAmount(position.leverage, 4, 2)}x</span>
         </TableCell>
         <TableCell className="text-right">
@@ -642,9 +647,9 @@ const TableRowMobile = memo(
             <p className="rank">{rank}</p>
             <div className="relative">
               <Jazzicon diameter={40} seed={jsNumberForAddress(position.account)} />
-              {rank === 1 ? <img className="absolute -bottom-6 -right-6" src="/images/rank1.png" /> : null}
-              {rank === 2 ? <img className="absolute -bottom-6 -right-6" src="/images/rank2.png" /> : null}
-              {rank === 3 ? <img className="absolute -bottom-6 -right-6" src="/images/rank3.png" /> : null}
+              {rank === 1 ? <p className="text-[24px] absolute -bottom-6 -right-6" >🥇</p> : null}
+              {rank === 2 ? <p className="text-[24px] absolute -bottom-6 -right-6" >🥈</p> : null}
+              {rank === 3 ? <p className="text-[24px] absolute -bottom-6 -right-6" >🥉</p> : null}
             </div>
           </div>
           <p className="address">{shortenAddress(position.account.replace(/^0x/, ""), 10, 0)}</p>

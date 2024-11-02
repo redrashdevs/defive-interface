@@ -191,7 +191,9 @@ export function LeaderboardAccountsTable({
     </>
   );
 
-  const contentMobile = isLoading ? <TopAccountsMobileSkeleton  count={perPage} /> : rowsData.length ? (
+  const contentMobile = isLoading ? (
+    <TopAccountsMobileSkeleton count={perPage} />
+  ) : rowsData.length ? (
     rowsData.map(({ account, index, rank }) => {
       return (
         <Link
@@ -204,9 +206,9 @@ export function LeaderboardAccountsTable({
               <p className="rank">{rank}</p>
               <div className="relative">
                 <Jazzicon diameter={40} seed={jsNumberForAddress(account.account)} />
-                {rank === 1 ? <img className="absolute -bottom-6 -right-6" src="/images/rank1.png" /> : null}
-                {rank === 2 ? <img className="absolute -bottom-6 -right-6" src="/images/rank2.png" /> : null}
-                {rank === 3 ? <img className="absolute -bottom-6 -right-6" src="/images/rank3.png" /> : null}
+                {rank === 1 ? <p className="absolute -bottom-6 -right-6 text-[24px]">🥇</p> : null}
+                {rank === 2 ? <p className="absolute -bottom-6 -right-6 text-[24px]">🥈</p> : null}
+                {rank === 3 ? <p className="absolute -bottom-6 -right-6 text-[24px]">🥉</p> : null}
               </div>
             </div>
             <p className="address">{shortenAddress(account.account.replace(/^0x/, ""), 10, 0)}</p>
@@ -297,10 +299,11 @@ export function LeaderboardAccountsTable({
                   // tooltipPosition="bottom-start"
                   columnName="rank"
                 />
-                <TableHeaderCell title={t`Address`} width={16} tooltipPosition="bottom-end" columnName="account" />
+                <TableHeaderCell title={t`Address`} width={12} tooltipPosition="bottom-end" columnName="account" />
                 <TableHeaderCell
                   title={t`PnL ($)`}
-                  width={12}
+                  width={6}
+                  isRight
                   tooltip={t`The total realized and unrealized profit and loss for the period, including fees and price impact.`}
                   tooltipPosition="bottom-end"
                   onClick={handleColumnClick}
@@ -309,7 +312,8 @@ export function LeaderboardAccountsTable({
                 />
                 <TableHeaderCell
                   title={t`PnL (%)`}
-                  width={10}
+                  width={6}
+                  isRight
                   tooltip={
                     <Trans>
                       The PnL ($) compared to the capital used.
@@ -326,7 +330,8 @@ export function LeaderboardAccountsTable({
                 />
                 <TableHeaderCell
                   title={t`Avg. Size`}
-                  width={12}
+                  width={6}
+                  isRight
                   tooltip={t`Average position size.`}
                   tooltipPosition="bottom-end"
                   onClick={handleColumnClick}
@@ -335,7 +340,8 @@ export function LeaderboardAccountsTable({
                 />
                 <TableHeaderCell
                   title={t`Avg. Lev.`}
-                  width={1}
+                  width={4}
+                  isRight
                   tooltip={t`Average leverage used.`}
                   tooltipPosition="bottom-end"
                   onClick={handleColumnClick}
@@ -344,7 +350,7 @@ export function LeaderboardAccountsTable({
                 />
                 <TableHeaderCell
                   title={t`Win/Loss`}
-                  width={10}
+                  width={4}
                   tooltip={t`Wins and losses for fully closed positions.`}
                   tooltipPosition="bottom-end"
                   onClick={handleColumnClick}
@@ -458,7 +464,7 @@ const TableRow = memo(
         <TableCell>
           <AddressView size={20} address={account.account} breakpoint="XL" />
         </TableCell>
-        <TableCell>
+        <TableCell className="!text-right">
           {/* <TooltipWithPortal
             handle={
               <span className={getSignedValueClassName(account.totalQualifyingPnl)}>
@@ -494,7 +500,7 @@ const TableRow = memo(
             </span>
           </span>
         </TableCell>
-        <TableCell>
+        <TableCell className="!text-right">
           {/* <TooltipWithPortal
             handle={
               <span className={getSignedValueClassName(account.pnlPercentage)}>
@@ -527,7 +533,7 @@ const TableRow = memo(
             {formatDelta(account.pnlPercentage, { signed: true, postfix: "%", decimals: 2 })}
           </span>
         </TableCell>
-        <TableCell>
+        <TableCell className="!text-right">
           <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>
             {account.averageSize ? formatUsd(account.averageSize)?.split(".")[0] : "$0"}.
           </span>
@@ -535,7 +541,7 @@ const TableRow = memo(
             {account.averageSize ? formatUsd(account.averageSize)?.split(".")[1] : "00"}
           </span>
         </TableCell>
-        <TableCell>
+        <TableCell className="!text-right">
           <span
             style={{ color: "rgba(255, 255, 255, 0.64)" }}
           >{`${formatAmount(account.averageLeverage ?? 0n, 4, 2)}x`}</span>

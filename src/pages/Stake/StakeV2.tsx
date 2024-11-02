@@ -86,6 +86,15 @@ import useWallet from "lib/wallets/useWallet";
 import "./StakeV2.css";
 import { GMX_DAO_LINKS, getGmxDAODelegateLink } from "./constants";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import { FreeMode } from "swiper/modules";
+import { useMedia } from "react-use";
+
 const { ZeroAddress } = ethers;
 
 function StakeModal(props: {
@@ -1449,6 +1458,7 @@ export default function StakeV2() {
   const depositBalanceData = useMemo(() => getDepositBalanceData(depositBalances), [depositBalances]);
   const stakingData = useMemo(() => getStakingData(stakingInfo), [stakingInfo]);
 
+  const isMobile = useMedia("(max-width: 400px)");
   const userTotalGmInfo = useMemo(() => {
     if (!active) return;
     return getTotalGmInfo(marketTokensData);
@@ -1833,38 +1843,93 @@ export default function StakeV2() {
           </div>
         }
       /> */}
-      <div className="buy-tabs-wrappper flex-grow overflow-auto">
-        <button
-          onClick={() => setActiveTab("All Pools")}
-          className={cx("tab-btn whitespace-nowrap", { active: activeTab === "All Pools" })}
+      {isMobile ? (
+        <Swiper
+          freeMode={true}
+          slidesPerView={"auto"}
+          centeredSlides={false}
+          spaceBetween={16}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[FreeMode]}
+          className="block md:hidden"
         >
-          <Trans>All Pools</Trans>
-        </button>
-        <button
-          onClick={() => setActiveTab("My Positions")}
-          className={cx("tab-btn ml-2 whitespace-nowrap", { active: activeTab === "My Positions" })}
-        >
-          <Trans>My Positions</Trans>
-        </button>
-        <button
-          onClick={() => setActiveTab("Stake")}
-          className={cx("tab-btn ml-2 whitespace-nowrap", { active: activeTab === "Stake" })}
-        >
-          <Trans>Stake</Trans>
-        </button>
-        <button
-          onClick={() => setActiveTab("Vesting")}
-          className={cx("tab-btn ml-2 whitespace-nowrap", { active: activeTab === "Vesting" })}
-        >
-          <Trans>Vesting</Trans>
-        </button>
-        <button
-          onClick={() => setActiveTab("Rewards")}
-          className={cx("tab-btn ml-2 whitespace-nowrap", { active: activeTab === "Rewards" })}
-        >
-          <Trans>Rewards</Trans>
-        </button>
-      </div>
+          <SwiperSlide style={{ width: 60 }}>
+            <button
+              onClick={() => setActiveTab("All Pools")}
+              className={cx("tab-btn whitespace-nowrap text-center", { active: activeTab === "All Pools" })}
+            >
+              <Trans>All Pools</Trans>
+            </button>
+          </SwiperSlide>
+          <SwiperSlide style={{ width: 90 }}>
+            <button
+              onClick={() => setActiveTab("My Positions")}
+              className={cx("tab-btn ml-2 whitespace-nowrap text-center", { active: activeTab === "My Positions" })}
+            >
+              <Trans>My Positions</Trans>
+            </button>
+          </SwiperSlide>
+          <SwiperSlide style={{ width: 60 }}>
+            <button
+              onClick={() => setActiveTab("Stake")}
+              className={cx("tab-btn ml-2 whitespace-nowrap text-center", { active: activeTab === "Stake" })}
+            >
+              <Trans>Stake</Trans>
+            </button>
+          </SwiperSlide>
+          <SwiperSlide style={{ width: 60 }}>
+            <button
+              onClick={() => setActiveTab("Vesting")}
+              className={cx("tab-btn ml-2 whitespace-nowrap text-center", { active: activeTab === "Vesting" })}
+            >
+              <Trans>Vesting</Trans>
+            </button>
+          </SwiperSlide>
+          <SwiperSlide style={{ width: 60 }}>
+            <button
+              onClick={() => setActiveTab("Rewards")}
+              className={cx("tab-btn ml-2 whitespace-nowrap text-center", { active: activeTab === "Rewards" })}
+            >
+              <Trans>Rewards</Trans>
+            </button>
+          </SwiperSlide>
+        </Swiper>
+      ) : (
+        <div className="buy-tabs-wrappper flex-grow overflow-auto">
+          <button
+            onClick={() => setActiveTab("All Pools")}
+            className={cx("tab-btn whitespace-nowrap", { active: activeTab === "All Pools" })}
+          >
+            <Trans>All Pools</Trans>
+          </button>
+          <button
+            onClick={() => setActiveTab("My Positions")}
+            className={cx("tab-btn ml-2 whitespace-nowrap", { active: activeTab === "My Positions" })}
+          >
+            <Trans>My Positions</Trans>
+          </button>
+          <button
+            onClick={() => setActiveTab("Stake")}
+            className={cx("tab-btn ml-2 whitespace-nowrap", { active: activeTab === "Stake" })}
+          >
+            <Trans>Stake</Trans>
+          </button>
+          <button
+            onClick={() => setActiveTab("Vesting")}
+            className={cx("tab-btn ml-2 whitespace-nowrap", { active: activeTab === "Vesting" })}
+          >
+            <Trans>Vesting</Trans>
+          </button>
+          <button
+            onClick={() => setActiveTab("Rewards")}
+            className={cx("tab-btn ml-2 whitespace-nowrap", { active: activeTab === "Rewards" })}
+          >
+            <Trans>Rewards</Trans>
+          </button>
+        </div>
+      )}
       {activeTab === "Stake" ? (
         <div>
           <div className="general-performance-holder my-12 px-14 py-4">
@@ -1964,43 +2029,44 @@ export default function StakeV2() {
           </div>
         </div>
       ) : null}
-      {activeTab === 'Vesting' ? <div className="general-performance-holder my-12 px-14 py-4">
-        <div className="grid grid-cols-2 gap-2 xl:grid-cols-8">
-          <div className="col-span-2 flex h-[72px] items-center">
-            <img width={48} src="/images/ic_d5_stake.png" alt="D5" />
-            <div className="ml-[16px] flex h-[72px] flex-col items-start justify-evenly">
-              <p className="title">STAKED</p>
-              <p className="subtitle">${formatAmount(gmxPrice, USD_DECIMALS, 2, true)}</p>
+      {activeTab === "Vesting" ? (
+        <div className="general-performance-holder my-12 px-14 py-4">
+          <div className="grid grid-cols-2 gap-2 xl:grid-cols-8">
+            <div className="col-span-2 flex h-[72px] items-center">
+              <img width={48} src="/images/ic_d5_stake.png" alt="D5" />
+              <div className="ml-[16px] flex h-[72px] flex-col items-start justify-evenly">
+                <p className="title">STAKED</p>
+                <p className="subtitle">${formatAmount(gmxPrice, USD_DECIMALS, 2, true)}</p>
+              </div>
+            </div>
+            <div className="col-span-2 flex h-[72px] flex-col items-start justify-evenly pl-[64px] xl:pl-0">
+              <p className="title">RESERVED</p>
+              <p className="subtitle">
+                {formatKeyAmount(vestingData, "glpVesterPairAmount", 18, 2, true)} /{" "}
+                {formatAmount(processedData?.glpBalance, 18, 2, true)}
+              </p>
+            </div>
+            <div className="col-span-2 flex h-[72px] flex-col items-start justify-evenly pl-[64px] xl:col-span-1 xl:pl-0">
+              <p className="title">VESTING STATUS</p>
+              <p className="subtitle">
+                {formatKeyAmount(vestingData, "gmxVesterClaimSum", 18, 4, true)} / $
+                {formatKeyAmount(vestingData, "gmxVesterVestedAmount", 18, 4, true)}
+              </p>
+            </div>
+            <div className="col-span-3 flex flex-col items-center justify-end pb-14 pl-[64px] md:h-[72px] md:flex-row xl:pb-0 xl:pl-0">
+              <button className="h-[40px] w-full rounded-[40px] bg-[#242429] px-24 text-[14px] text-white md:w-auto">
+                Whithdraw
+              </button>
+              <button className="my-6 h-[40px] w-full rounded-[40px] bg-[#242429] px-24 text-[14px] text-white md:mx-6 md:my-0 md:w-auto">
+                Deposit
+              </button>
+              <button className="h-[40px] w-full rounded-[40px] bg-[#242429] px-24 text-[14px] text-white md:w-auto">
+                Claim Rewards
+              </button>
             </div>
           </div>
-          <div className="col-span-2 flex h-[72px] flex-col items-start justify-evenly pl-[64px] xl:pl-0">
-            <p className="title">RESERVED</p>
-            <p className="subtitle">
-              {formatKeyAmount(vestingData, "glpVesterPairAmount", 18, 2, true)} /{" "}
-              {formatAmount(processedData?.glpBalance, 18, 2, true)}
-            </p>
-          </div>
-          <div className="col-span-2 flex h-[72px] flex-col items-start justify-evenly pl-[64px] xl:col-span-1 xl:pl-0">
-            <p className="title">VESTING STATUS</p>
-            <p className="subtitle">
-            {formatKeyAmount(vestingData, "gmxVesterClaimSum", 18, 4, true)} / ${formatKeyAmount(
-                        vestingData,
-                        "gmxVesterVestedAmount",
-                        18,
-                        4,
-                        true
-                      )}
-            </p>
-          </div>
-          <div className="col-span-3 flex md:h-[72px] flex-col md:flex-row items-center justify-end pl-[64px] pb-14 xl:pb-0 xl:pl-0">
-            <button className="h-[40px] w-full md:w-auto rounded-[40px] bg-[#242429] px-24 text-[14px] text-white">
-              Whithdraw
-            </button>
-            <button className="my-6 md:my-0 md:mx-6 h-[40px] w-full md:w-auto rounded-[40px] bg-[#242429] px-24 text-[14px] text-white">Deposit</button>
-            <button className="h-[40px] w-full md:w-auto rounded-[40px] bg-[#242429] px-24 text-[14px] text-white">Claim Rewards</button>
-          </div>
         </div>
-      </div> : null}
+      ) : null}
 
       {/* <div className="StakeV2-content">
         <div className="StakeV2-cards">
@@ -2564,7 +2630,7 @@ export default function StakeV2() {
           </div>
         </div>
       </div> */}
-      {getIsSyntheticsSupported(chainId) && (activeTab === 'All Pools' || activeTab === 'My Positions') ? (
+      {getIsSyntheticsSupported(chainId) && (activeTab === "All Pools" || activeTab === "My Positions") ? (
         <div className="StakeV2-section">
           <GmList
             marketsTokensApyData={marketsTokensApyData}

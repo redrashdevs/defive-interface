@@ -67,7 +67,7 @@ export function ClaimsHistory({ shouldShowPaginationButtons }: { shouldShowPagin
   );
   const currentPageData = getCurrentData();
 
-  const isEmpty = !account || claimActions?.length === 0;
+  const isEmpty = !account || !claimActions || claimActions?.length === 0;
   const hasFilters = Boolean(startDate || endDate || eventNameFilter.length || marketAddressesFilter.length);
 
   useEffect(() => {
@@ -82,6 +82,8 @@ export function ClaimsHistory({ shouldShowPaginationButtons }: { shouldShowPagin
   }, [currentPage, pageCount, pageIndex, setPageIndex]);
 
   const handleCsvDownload = useDownloadAsCsv(claimActions);
+
+  console.log(isEmpty, account, claimActions)
 
   return (
     <>
@@ -147,9 +149,10 @@ export function ClaimsHistory({ shouldShowPaginationButtons }: { shouldShowPagin
           )}
         </div>
 
-        {isEmpty && !hasFilters && (
-          <div className="ClaimsHistory-fake-row">
-            <Trans>No claims yet</Trans>
+        {isEmpty && !isLoading && !hasFilters && (
+          <div className="TradeHistorySynthetics-padded-cell h-[140px] flex-col flex items-center justify-center text-[14px] font-[600] text-[#36363D]">
+            <img src="/images/empty-record.svg" />
+            <Trans>No Claim History</Trans>
           </div>
         )}
 

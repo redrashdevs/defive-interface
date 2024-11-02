@@ -6,7 +6,13 @@ $tabs-threshold: 990px;
   justify-content: space-between;
   margin: 1.5rem 0;
 }
-
+.TableHeader {
+  &.header-right {
+    div {
+      justify-content: flex-end;
+    }
+  }
+}
 .Leaderboard-Title {
   display: flex;
   justify-content: space-between;
@@ -165,18 +171,27 @@ $tabs-threshold: 990px;
 }
 
 .LeaderboardRank-1::after {
-  margin-top: 16px;
-  background-image: url(../../img/rank1.png);
+  margin-top: 10px;
+  // background-image: url(../../img/rank1.png);
+  content: '🥇';
+  color: rgb(1, 1, 1);
+  font-size: 24px;
 }
 
 .LeaderboardRank-2::after {
-  margin-top: 16px;
-  background-image: url(../../img/rank2.png);
+  margin-top: 10px;
+  // background-image: url(../../img/rank1.png);
+  content: '🥈';
+  color: rgb(1, 1, 1);
+  font-size: 24px;
 }
 
 .LeaderboardRank-3::after {
-  margin-top: 16px;
-  background-image: url(../../img/rank3.png);
+  margin-top: 10px;
+  // background-image: url(../../img/rank1.png);
+  content: '🥉';
+  color: rgb(1, 1, 1);
+  font-size: 24px;
 }
 
 .LeaderboardRank-4::after {

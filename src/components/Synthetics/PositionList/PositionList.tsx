@@ -15,7 +15,7 @@ import PositionShare from "components/Exchange/PositionShare";
 import { OrderEditorContainer } from "components/OrderEditorContainer/OrderEditorContainer";
 import { PositionItem } from "components/Synthetics/PositionItem/PositionItem";
 
-import './PositionList.scss'
+import "./PositionList.scss";
 
 type Props = {
   onSelectPositionClick: (key: string, tradeMode?: TradeMode) => void;
@@ -44,11 +44,6 @@ export function PositionList(p: Props) {
 
   return (
     <div>
-      {positions.length === 0 && (
-        <div className="Exchange-list small text-[12px] p-[16px]">
-          {isLoading ? t`Loading...` : t`No open positions`}
-        </div>
-      )}
       <div className="Exchange-list small">
         {!isLoading &&
           positions.map((position) => (
@@ -99,8 +94,15 @@ export function PositionList(p: Props) {
           {positions.length === 0 && (
             <tr>
               <td colSpan={15}>
-                <div className="Exchange-empty-positions-list-note">
-                  {isLoading ? t`Loading...` : t`No open positions`}
+                <div className="Exchange-empty-positions-list-note flex h-[140px] flex-col items-center justify-center text-[14px] font-[600] text-[#36363D]">
+                  {isLoading ? (
+                    t`Loading...`
+                  ) : (
+                    <>
+                      <img src="/images/empty-record.svg" />
+                      <Trans>No Position History</Trans>
+                    </>
+                  )}
                 </div>
               </td>
             </tr>
@@ -121,7 +123,7 @@ export function PositionList(p: Props) {
                 onCancelOrder={onCancelOrder}
               />
             ))}
-            {!isLoading &&
+          {!isLoading &&
             positions.map((position) => (
               <PositionItemWrapper
                 key={position.key}
@@ -137,7 +139,7 @@ export function PositionList(p: Props) {
                 onCancelOrder={onCancelOrder}
               />
             ))}
-            {!isLoading &&
+          {!isLoading &&
             positions.map((position) => (
               <PositionItemWrapper
                 key={position.key}

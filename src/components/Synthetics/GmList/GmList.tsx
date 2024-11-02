@@ -139,17 +139,17 @@ export function GmList({
                   <ExchangeTh>
                     <Trans>POOL</Trans>
                   </ExchangeTh>
-                  <ExchangeTh>
+                  <ExchangeTh className="text-right">
                     <Sorter {...getSorterProps("price")}>
                       <Trans>PRICE</Trans>
                     </Sorter>
                   </ExchangeTh>
-                  <ExchangeTh>
+                  <ExchangeTh className="text-right">
                     <Sorter {...getSorterProps("totalSupply")}>
                       <Trans>TOTAL SUPPLY</Trans>
                     </Sorter>
                   </ExchangeTh>
-                  <ExchangeTh>
+                  <ExchangeTh className="text-right">
                     <Sorter {...getSorterProps("buyable")}>
                       <TooltipWithPortal
                         handle={<Trans>TRADING VOLUME</Trans>}
@@ -173,7 +173,7 @@ export function GmList({
                       />
                     </Sorter>
                   </ExchangeTh> */}
-                  <ExchangeTh>
+                  <ExchangeTh className="text-right">
                     <Sorter {...getSorterProps("apy")}>
                       <TooltipWithPortal
                         handle={t`APR`}
@@ -514,14 +514,14 @@ function GmListItem({
         </div>
         {/* {showDebugValues && <span style={tokenAddressStyle}>{market.marketTokenAddress}</span>} */}
       </ExchangeTd>
-      <ExchangeTd style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 14 }}>
+      <ExchangeTd className="!text-right" style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 14 }}>
         {formatUsdPrice(token.prices?.minPrice)}
       </ExchangeTd>
 
-      <ExchangeTd style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 14 }}>
+      <ExchangeTd className="!text-right" style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 14 }}>
         {/*  <br /> */}({formatUsd(totalSupplyUsd)})
       </ExchangeTd>
-      <ExchangeTd style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 14 }}>
+      <ExchangeTd className="!text-right" style={{ color: "rgba(255, 255, 255, 0.64)", fontSize: 14 }}>
         <MintableAmount
           mintableInfo={mintableInfo}
           market={market}
@@ -541,7 +541,7 @@ function GmListItem({
         />
       </ExchangeTd> */}
 
-      <ExchangeTd>
+      <ExchangeTd className="!text-right">
         <AprInfo
           showTooltip={false}
           apy={apy}

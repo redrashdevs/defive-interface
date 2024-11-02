@@ -509,7 +509,7 @@ function TVChartHeaderInfoDesktop() {
             </div>
           </div> */}
           <div className="Chart-top-scrollable mt-0" ref={scrollableRef}>
-            <div className="flex h-full flex-col justify-center">
+            <div className="w-[90px] flex h-full flex-col justify-center">
               <div
                 className={cs(
                   { negative: dayPriceChange === "-", positive: dayPriceChange === "+" },

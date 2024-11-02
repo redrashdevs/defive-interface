@@ -224,13 +224,15 @@ export function TradeHistory(p: Props) {
           )}
         </div>
         {isEmpty && hasFilters && (
-          <div className="TradeHistorySynthetics-padded-cell">
+          <div className="TradeHistorySynthetics-padded-cell h-[140px] flex-col flex items-center justify-center text-[14px] font-[600] text-[#36363D]">
+            <img src="/images/empty-record.svg" />
             <Trans>No trades match the selected filters</Trans>
           </div>
         )}
-        {isEmpty && !hasFilters && !isLoading && (
-          <div className="TradeHistorySynthetics-padded-cell">
-            <Trans>No trades yet</Trans>
+        {isEmpty && !isLoading && !hasFilters && (
+          <div className="TradeHistorySynthetics-padded-cell h-[140px] flex-col flex items-center justify-center text-[14px] font-[600] text-[#36363D]">
+            <img src="/images/empty-record.svg" />
+            <Trans>No Trade History</Trans>
           </div>
         )}
       </div>

@@ -15,8 +15,8 @@ export type StatsTooltipRowProps = {
 export default function StatsTooltipRow({
   label,
   value,
-  textClassName = "text-white",
-  labelClassName = "text-gray-300",
+  textClassName = "text-[#000] opacity-70 font-[500]",
+  labelClassName = "text-[#000] opacity-70 font-[500]",
   showDollar = true,
   unit,
   showColon = true,
@@ -24,7 +24,7 @@ export default function StatsTooltipRow({
   function renderValue() {
     if (Array.isArray(value)) {
       return (
-        <ul className="Tooltip-row-value text-[16px] font-[500] !text-[#000] opacity-60">
+        <ul className="Tooltip-row-value text-[14px] font-[500] !text-[#000] opacity-70">
           {value.map((v, i) => (
             <li className={textClassName} key={i}>
               {v}
@@ -35,7 +35,7 @@ export default function StatsTooltipRow({
     }
 
     return (
-      <span className={cx("Tooltip-row-value text-[16px] font-[500] !text-[#67677A] opacity-60", textClassName)}>
+      <span className={cx("Tooltip-row-value", textClassName)}>
         {showDollar && "$"}
         {value}
         {unit || ""}
@@ -53,9 +53,7 @@ export default function StatsTooltipRow({
 
   return (
     <div className={cx("Tooltip-row", textClassName)}>
-      <span className={cx("Tooltip-row-label !text-[10px] !font-[500] !text-[#67677A]", labelClassName)}>
-        {renderLabel()}
-      </span>
+      <span className={cx("Tooltip-row-label", labelClassName)}>{renderLabel()}</span>
       {renderValue()}
     </div>
   );
