@@ -66,14 +66,14 @@ function AddressDropdown({ account, accountUrl, disconnectAccountAndCloseSetting
                 onClick={() => copyToClipboard(account)}
                 className="flex h-[40px] items-center rounded-[8px] bg-[#FAFAFA] px-[16px]"
               >
-                <img width={20} src="/images/clipboard.png" />
+                <img width={20} src="/images/clipboard.svg" />
                 <p className="ml-8 text-right text-[14px] font-[500] text-[#354052]">{t`Copy Wallet Address`}</p>
               </div>
             </Menu.Item>
             <Menu.Item>
               <Link className="w-full" to={buildAccountDashboardUrl(account as Address, undefined, 2)}>
                 <div className="mt-6 flex h-[40px] w-full items-center rounded-[8px] bg-[#FAFAFA] px-[16px]">
-                  <img width={20} src="/images/receipt-tax.png" />
+                  <img width={20} src="/images/receipt-tax.svg" />
                   <p className="ml-8 text-right text-[14px] font-[500] text-[#354052]">{t`Transactions`}</p>
                 </div>
               </Link>
@@ -86,7 +86,7 @@ function AddressDropdown({ account, accountUrl, disconnectAccountAndCloseSetting
                 }}
                 className="mt-6 flex h-[40px] items-center rounded-[8px] bg-[#FAFAFA] px-[16px]"
               >
-                <img width={20} src="/images/wallet-off.png" />
+                <img width={20} src="/images/wallet-off.svg" />
                 <p className="ml-8 text-right text-[14px] font-[500] text-[#FF303E]">{t`Disconnect Wallet`}</p>
               </div>
             </Menu.Item>

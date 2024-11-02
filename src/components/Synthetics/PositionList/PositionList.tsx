@@ -72,22 +72,22 @@ export function PositionList(p: Props) {
             <th>
               <Trans>Position</Trans>
             </th>
-            <th>
+            <th className="!text-right">
               <Trans>Net Value</Trans>
             </th>
-            <th>
+            <th className="!text-right">
               <Trans>Size</Trans>
             </th>
-            <th>
+            <th className="!text-right">
               <Trans>Collateral</Trans>
             </th>
-            <th>
+            <th className="!text-right">
               <Trans>Entry Price</Trans>
             </th>
-            <th>
+            <th className="!text-right">
               <Trans>Mark Price</Trans>
             </th>
-            <th>
+            <th className="!text-right">
               <Trans>Liq. Price</Trans>
             </th>
           </tr>

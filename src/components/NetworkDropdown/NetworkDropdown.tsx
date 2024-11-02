@@ -118,7 +118,7 @@ function DesktopDropdown({ setActiveModal, selectorLabel, networkOptions, openSe
         <Menu.Button as="div" className="network-dropdown" data-qa="networks-dropdown-handle">
           <img width={20} src={activeNetwork.icon} alt={activeNetwork.label} />
           <p className="mx-2">{selectorLabel}</p>
-          <img src="/images/chevron-down.png" />
+          <img src="/images/chevron-down.svg" />
         </Menu.Button>
         <Menu.Items as="div" className="nmi menu-items network-dropdown-items" data-qa="networks-dropdown">
           {/* <div className="dropdown-label">

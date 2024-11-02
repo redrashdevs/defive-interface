@@ -102,7 +102,7 @@ export function AppHeaderUser({ openSettings, small, disconnectAccountAndCloseSe
                 onClick={() => setIsModalVisible(true)}
                 className="flex h-[40px] w-[40px] items-center justify-center rounded-[80px] bg-[#242429]"
               >
-                <img width={24} height={24} src="/images/menu.png" />
+                <img width={24} height={24} src="/images/menu.svg" />
               </div>
             ) : null}
           </>
@@ -168,7 +168,7 @@ export function AppHeaderUser({ openSettings, small, disconnectAccountAndCloseSe
               }}
               className="mb-16 flex h-[40px] w-full items-center justify-center rounded-[12px] bg-black text-white"
             >
-              <img src="/images/wallet-white.png" />
+              <img src="/images/wallet-white.svg" />
               <p className="ml-8 text-[14px] font-[500]">{t`Connect Wallet`}</p>
             </button>
           </div>
@@ -197,7 +197,7 @@ export function AppHeaderUser({ openSettings, small, disconnectAccountAndCloseSe
             <div className="-ml-8 mt-4" style={{ zIndex: 1 }}>
               <Jazzicon diameter={24} seed={jsNumberForAddress(account)} />
             </div>
-            <img width={24} src="/images/menu.png" />
+            <img width={24} src="/images/menu.svg" />
           </div>
         ) : (
           <>
@@ -285,7 +285,7 @@ export function AppHeaderUser({ openSettings, small, disconnectAccountAndCloseSe
                 }}
                 className="flex h-[40px] items-center rounded-[8px] bg-[#FAFAFA] px-[16px]"
               >
-                <img width={20} src="/images/clipboard.png" />
+                <img width={20} src="/images/clipboard.svg" />
                 <p className="ml-8 text-right text-[14px] font-[500] text-[#354052]">{t`Copy Wallet Address`}</p>
               </div>
               <Link
@@ -293,7 +293,7 @@ export function AppHeaderUser({ openSettings, small, disconnectAccountAndCloseSe
                 onClick={() => setIsModalVisible(false)}
                 className="mt-6 flex h-[40px] items-center rounded-[8px] bg-[#FAFAFA] px-[16px]"
               >
-                <img width={20} src="/images/receipt-tax.png" />
+                <img width={20} src="/images/receipt-tax.svg" />
                 <p className="ml-8 text-right text-[14px] font-[500] text-[#354052]">{t`Transactions`}</p>
               </Link>
               <div
@@ -303,7 +303,7 @@ export function AppHeaderUser({ openSettings, small, disconnectAccountAndCloseSe
                 }}
                 className="mt-6 flex h-[40px] items-center rounded-[8px] bg-[#FAFAFA] px-[16px]"
               >
-                <img width={20} src="/images/wallet-off.png" />
+                <img width={20} src="/images/wallet-off.svg" />
                 <p className="ml-8 text-right text-[14px] font-[500] text-[#FF303E]">{t`Disconnect Wallet`}</p>
               </div>
             </div>

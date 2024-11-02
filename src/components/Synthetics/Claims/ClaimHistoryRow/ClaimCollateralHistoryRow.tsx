@@ -146,8 +146,8 @@ export function ClaimCollateralHistoryRow(p: ClaimCollateralHistoryRowProps) {
           <span className="text-left text-[12px] font-[500] text-white opacity-40">{formattedTimestamp}</span>
         </div>
       </td>
-      <td>{marketNamesJoined}</td>
-      <td className="ClaimHistoryRow-size text-[14px] font-[500] text-white opacity-60">{sizeContent}</td>
+      <td className="!text-right">{marketNamesJoined}</td>
+      <td className="!text-right ClaimHistoryRow-size text-[14px] font-[500] text-white opacity-60">{sizeContent}</td>
     </tr>
   );
 }

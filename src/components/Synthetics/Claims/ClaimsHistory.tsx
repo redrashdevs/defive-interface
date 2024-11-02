@@ -101,7 +101,7 @@ export function ClaimsHistory({ shouldShowPaginationButtons }: { shouldShowPagin
             </div>
             <button onClick={handleCsvDownload} className="px-12">
               <div className="flex items-center">
-                <img src="/images/download.png" />
+                <img src="/images/download.svg" />
                 <p className="ml-4 text-[12px] font-[500] text-white opacity-60">CSV</p>
               </div>
             </button>
@@ -127,11 +127,11 @@ export function ClaimsHistory({ shouldShowPaginationButtons }: { shouldShowPagin
                     {/* <ActionFilter value={eventNameFilter} onChange={setEventNameFilter} /> */}
                     <Trans>ACTION</Trans>
                   </th>
-                  <th>
+                  <th className="!text-right">
                     {/* <MarketFilter excludeSpotOnly value={marketAddressesFilter} onChange={setMarketAddressesFilter} /> */}
                     <Trans>MARKET</Trans>
                   </th>
-                  <th className="ClaimsHistory-price-header">
+                  <th className="!text-right ClaimsHistory-price-header">
                     <Trans>Size</Trans>
                   </th>
                 </tr>

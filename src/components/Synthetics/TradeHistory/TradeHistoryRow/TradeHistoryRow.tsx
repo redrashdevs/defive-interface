@@ -190,20 +190,20 @@ export function TradeHistoryRow({ minCollateralUsd, tradeAction, shouldDisplayAc
           <div className="flex items-center">
             {msg.swapFromTokenSymbol ? (
               msg.action.includes("Request") ? (
-                <img src="/images/short-requested.png" width={40} />
+                <img src="/images/short-requested.svg" width={40} />
               ) : (
-                <img src="/images/swap-executed.png" width={40} />
+                <img src="/images/swap-executed.svg" width={40} />
               )
             ) : msg.isLong ? (
               msg.action.includes("Request") ? (
-                <img src="/images/long-requested.png" width={40} />
+                <img src="/images/long-requested.svg" width={40} />
               ) : (
-                <img src="/images/long-executed.png" width={40} />
+                <img src="/images/long-executed.svg" width={40} />
               )
             ) : msg.action.includes("Request") ? (
-              <img src="/images/short-requested.png" width={40} />
+              <img src="/images/short-requested.svg" width={40} />
             ) : (
-              <img src="/images/short-executed.png" width={40} />
+              <img src="/images/short-executed.svg" width={40} />
             )}
             {/* {msg.actionComment ? (
               <TooltipWithPortal
@@ -310,20 +310,20 @@ export function TradeHistoryRow({ minCollateralUsd, tradeAction, shouldDisplayAc
           <div className="flex items-center">
             {msg.swapFromTokenSymbol ? (
               msg.action.includes("Request") ? (
-                <img src="/images/short-requested.png" width={40} />
+                <img src="/images/short-requested.svg" width={40} />
               ) : (
-                <img src="/images/swap-executed.png" width={40} />
+                <img src="/images/swap-executed.svg" width={40} />
               )
             ) : msg.isLong ? (
               msg.action.includes("Request") ? (
-                <img src="/images/long-requested.png" width={40} />
+                <img src="/images/long-requested.svg" width={40} />
               ) : (
-                <img src="/images/long-executed.png" width={40} />
+                <img src="/images/long-executed.svg" width={40} />
               )
             ) : msg.action.includes("Request") ? (
-              <img src="/images/short-requested.png" width={40} />
+              <img src="/images/short-requested.svg" width={40} />
             ) : (
-              <img src="/images/short-executed.png" width={40} />
+              <img src="/images/short-executed.svg" width={40} />
             )}
             {/* {msg.actionComment ? (
               <TooltipWithPortal
@@ -373,7 +373,7 @@ export function TradeHistoryRow({ minCollateralUsd, tradeAction, shouldDisplayAc
             </Link>
           )} */}
         </td>
-        <td>
+        <td className="!text-right">
           {/* <TooltipWithPortal
             disableHandleStyle
             tooltipClassName="cursor-help *:cursor-auto"
@@ -382,7 +382,7 @@ export function TradeHistoryRow({ minCollateralUsd, tradeAction, shouldDisplayAc
           /> */}
           {marketTooltipHandle}
         </td>
-        <td className="whitesppace-nowrap text-[12px] font-[500] text-white">
+        <td className="whitesppace-nowrap !text-right text-[12px] font-[500] text-white">
           {msg.swapFromTokenSymbol ? (
             <div className="flex items-center">
               <Trans>
@@ -401,7 +401,7 @@ export function TradeHistoryRow({ minCollateralUsd, tradeAction, shouldDisplayAc
             <span className="text-[12px] font-[500] text-white opacity-60">{msg.size}</span>
           )}
         </td>
-        <td className="text-[12px] font-[500] text-white opacity-60">
+        <td className="text-[12px] !text-right font-[500] text-white opacity-60">
           {/* <TooltipWithPortal
             tooltipClassName="TradeHistoryRow-price-tooltip-portal"
             handle={msg.price}
@@ -411,7 +411,7 @@ export function TradeHistoryRow({ minCollateralUsd, tradeAction, shouldDisplayAc
           /> */}
           {msg.price}
         </td>
-        <td className="TradeHistoryRow-pnl-fees text-left">
+        <td className="TradeHistoryRow-pnl-fees !text-right">
           {!msg.pnl ? (
             <span className="text-left text-gray-300">-</span>
           ) : (

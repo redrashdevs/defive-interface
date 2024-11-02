@@ -72,9 +72,9 @@ export function ClaimFundingFeesHistoryRow({ claimAction }: ClaimFundingFeesHist
                   key={`${market.name}/${isLong}`}
                 >
                   {isLong ? (
-                    <img src="/images/long-executed.png" width={20} />
+                    <img src="/images/long-executed.svg" width={20} />
                   ) : (
-                    <img src="/images/short-executed.png" width={20} />
+                    <img src="/images/short-executed.svg" width={20} />
                   )}
                   <p
                     className={cx(
@@ -171,9 +171,9 @@ export function ClaimFundingFeesHistoryRow({ claimAction }: ClaimFundingFeesHist
         <>
           <div className={cx("inline-flex items-start text-white")}>
             {claimAction.isLongOrders[0] ? (
-              <img src="/images/long-executed.png" width={20} />
+              <img src="/images/long-executed.svg" width={20} />
             ) : (
-              <img src="/images/short-executed.png" width={20} />
+              <img src="/images/short-executed.svg" width={20} />
             )}
             <p
               className={cx(
@@ -354,8 +354,8 @@ export function ClaimFundingFeesHistoryRow({ claimAction }: ClaimFundingFeesHist
           <span className="text-left text-[12px] font-[500] text-white opacity-40">{formattedTimestamp}</span>
         </div>
       </td>
-      <td>{marketContent}</td>
-      <td className="ClaimHistoryRow-size  text-[14px] font-[500] text-white opacity-60">{sizeContent}</td>
+      <td className="!text-right">{marketContent}</td>
+      <td className="!text-right ClaimHistoryRow-size  text-[14px] font-[500] text-white opacity-60">{sizeContent}</td>
     </tr>
   );
 }

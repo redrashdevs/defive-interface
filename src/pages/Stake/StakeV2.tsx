@@ -94,6 +94,7 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
 import { useMedia } from "react-use";
+import { Link } from "react-router-dom";
 
 const { ZeroAddress } = ethers;
 
@@ -1935,7 +1936,7 @@ export default function StakeV2() {
           <div className="general-performance-holder my-12 px-14 py-4">
             <div className="grid grid-cols-2 gap-2 xl:grid-cols-4">
               <div className="flex h-[72px] items-center">
-                <img width={48} src="/images/ic_d5_stake.png" alt="D5" />
+                <img width={48} src="/images/ic_d5_stake.svg" alt="D5" />
                 <div className="ml-[16px] flex h-[72px] flex-col items-start justify-evenly">
                   <p className="title">D5 Price</p>
                   <p className="subtitle">${formatAmount(gmxPrice, USD_DECIMALS, 2, true)}</p>
@@ -1952,7 +1953,7 @@ export default function StakeV2() {
                   {(totalGmxSupply !== undefined && (
                     <div className="flex items-center">
                       {formatAmount(totalGmxSupply, 18, 0, true)}
-                      <img width={20} className="mx-4" src="/images/ic_d5_stake.png" alt="D5" />
+                      <img width={20} className="mx-4" src="/images/ic_d5_stake.svg" alt="D5" />
                       <span style={{ color: "rgba(255, 255, 255, 0.4)" }}>
                         (${formatAmount(totalSupplyUsd, USD_DECIMALS, 0, true)})
                       </span>
@@ -1975,12 +1976,12 @@ export default function StakeV2() {
             <div className="general-performance-holder px-14 py-4">
               <div className="grid grid-cols-1 gap-2 xl:grid-cols-2">
                 <div className="flex h-[72px] items-center">
-                  <img width={48} src="/images/ic_stake_wallet.png" alt="D5" />
+                  <img width={48} src="/images/ic_stake_wallet.svg" alt="D5" />
                   <div className="ml-[16px] flex h-[72px] flex-col items-start justify-evenly">
                     <p className="title">In Your Wallet</p>
                     <div className="subtitle flex items-center">
                       {formatKeyAmount(processedData, "gmxBalance", 18, 2, true)}{" "}
-                      <img width={20} className="mx-4" src="/images/ic_d5_stake.png" alt="D5" />
+                      <img width={20} className="mx-4" src="/images/ic_d5_stake.svg" alt="D5" />
                       <span style={{ color: "rgba(255, 255, 255, 0.4)" }}>
                         {" "}
                         ($
@@ -1990,9 +1991,11 @@ export default function StakeV2() {
                   </div>
                 </div>
                 <div className="flex h-[72px] items-center justify-end pl-[64px] md:pl-0">
-                  <button className="h-[40px] w-full rounded-[40px] bg-[#242429] px-32 text-[14px] text-white md:w-auto">
-                    Buy D5
-                  </button>
+                  <Link to="/buy">
+                    <button className="h-[40px] w-full rounded-[40px] bg-[#242429] px-32 text-[14px] text-white md:w-auto">
+                      Buy D5
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -2006,19 +2009,24 @@ export default function StakeV2() {
                   </div>
                 </div>
                 <div className="flex h-[72px] items-center justify-end pl-[64px] md:pl-0">
-                  <button className="mr-14 h-[40px] rounded-[40px] bg-[#242429] px-24 text-[14px] text-white">
+                  <button
+                    onClick={() => showStakeGmxModal()}
+                    className="mr-14 h-[40px] rounded-[40px] bg-[#242429] px-24 text-[14px] text-white"
+                  >
                     Delegate
                   </button>
-                  <button className="h-[40px] rounded-[40px] bg-[#242429] px-24 text-[14px] text-white">
-                    Transfer
-                  </button>
+                  <Link to="/begin_account_transfer">
+                    <button className="h-[40px] rounded-[40px] bg-[#242429] px-24 text-[14px] text-white">
+                      Transfer
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
             <div className="general-performance-holder  px-14 py-4">
               <div className="grid grid-cols-2 gap-2 xl:grid-cols-4">
                 <div className="flex h-[72px] items-center">
-                  <img src="/images/ic_d5_stake.png" alt="D5" />
+                  <img src="/images/ic_d5_stake.svg" alt="D5" />
                   <div className="ml-[16px] flex h-[72px] flex-col items-start justify-evenly">
                     <p className="title">D5 Price</p>
                     <p className="subtitle">${formatAmount(gmxPrice, USD_DECIMALS, 2, true)}</p>
@@ -2033,7 +2041,7 @@ export default function StakeV2() {
         <div className="general-performance-holder my-12 px-14 py-4">
           <div className="grid grid-cols-2 gap-2 xl:grid-cols-8">
             <div className="col-span-2 flex h-[72px] items-center">
-              <img width={48} src="/images/ic_d5_stake.png" alt="D5" />
+              <img width={48} src="/images/ic_d5_stake.svg" alt="D5" />
               <div className="ml-[16px] flex h-[72px] flex-col items-start justify-evenly">
                 <p className="title">STAKED</p>
                 <p className="subtitle">${formatAmount(gmxPrice, USD_DECIMALS, 2, true)}</p>
@@ -2054,17 +2062,46 @@ export default function StakeV2() {
               </p>
             </div>
             <div className="col-span-3 flex flex-col items-center justify-end pb-14 pl-[64px] md:h-[72px] md:flex-row xl:pb-0 xl:pl-0">
-              <button className="h-[40px] w-full rounded-[40px] bg-[#242429] px-24 text-[14px] text-white md:w-auto">
-                Whithdraw
-              </button>
-              <button className="my-6 h-[40px] w-full rounded-[40px] bg-[#242429] px-24 text-[14px] text-white md:mx-6 md:my-0 md:w-auto">
-                Deposit
-              </button>
-              <button className="h-[40px] w-full rounded-[40px] bg-[#242429] px-24 text-[14px] text-white md:w-auto">
-                Claim Rewards
-              </button>
+              {active ? (
+                <>
+                  <button
+                    onClick={() => showGlpVesterWithdrawModal()}
+                    className="h-[40px] w-full rounded-[40px] bg-[#242429] px-24 text-[14px] text-white md:w-auto"
+                  >
+                    Whithdraw
+                  </button>
+                  <button
+                    onClick={() => showGlpVesterDepositModal()}
+                    className="my-6 h-[40px] w-full rounded-[40px] bg-[#242429] px-24 text-[14px] text-white md:mx-6 md:my-0 md:w-auto"
+                  >
+                    Deposit
+                  </button>
+                  <button className="h-[40px] w-full rounded-[40px] bg-[#242429] px-24 text-[14px] text-white md:w-auto">
+                    Claim Rewards
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={openConnectModal}
+                  className="h-[40px] w-full rounded-[40px] bg-[#242429] px-24 text-[14px] text-white md:w-auto"
+                >
+                  Connect wallet
+                </button>
+              )}
             </div>
           </div>
+        </div>
+      ) : null}
+
+      {getIsSyntheticsSupported(chainId) && (activeTab === "All Pools" || activeTab === "My Positions") ? (
+        <div className="StakeV2-section">
+          <GmList
+            marketsTokensApyData={marketsTokensApyData}
+            marketsTokensIncentiveAprData={marketsTokensIncentiveAprData}
+            marketsTokensLidoAprData={marketsTokensLidoAprData}
+            isDeposit={false}
+            shouldScrollToTop
+          />
         </div>
       ) : null}
 
@@ -2630,17 +2667,6 @@ export default function StakeV2() {
           </div>
         </div>
       </div> */}
-      {getIsSyntheticsSupported(chainId) && (activeTab === "All Pools" || activeTab === "My Positions") ? (
-        <div className="StakeV2-section">
-          <GmList
-            marketsTokensApyData={marketsTokensApyData}
-            marketsTokensIncentiveAprData={marketsTokensIncentiveAprData}
-            marketsTokensLidoAprData={marketsTokensLidoAprData}
-            isDeposit={false}
-            shouldScrollToTop
-          />
-        </div>
-      ) : null}
 
       {/* <div>
         <PageTitle

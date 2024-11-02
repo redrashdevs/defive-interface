@@ -158,7 +158,7 @@ export function LeaderboardContainer() {
             <Menu.Button as="div" className="leaderboard-calendar pointer ml-4" data-qa="leaderboard-calendar-handle">
               <img width={20} src={"/images/calendar-stats.svg"} alt={"Calendar"} />
               <p className="mx-2">{leaderboardTimeframeLabels[activeLeaderboardTimeframeIndex]}</p>
-              <img src="/images/chevron-down.png" />
+              <img src="/images/chevron-down.svg" />
             </Menu.Button>
             <Menu.Items as="div" className="menu-items leaderboard-calendar-items" data-qa="leaderboard-calendar">
               <div>

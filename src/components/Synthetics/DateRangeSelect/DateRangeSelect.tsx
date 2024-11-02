@@ -185,7 +185,7 @@ export function DateRangeSelect({ startDate, endDate, onChange, handleClassName 
           as={Button}
           className={handleClassName}
           variant="link"
-          imgSrc={"/images/calendar-event.png"}
+          imgSrc={"/images/calendar-event.svg"}
           refName="buttonRef"
           slim
           style={{ textDecoration: "none" }}

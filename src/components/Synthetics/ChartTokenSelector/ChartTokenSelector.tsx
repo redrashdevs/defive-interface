@@ -1,6 +1,6 @@
 import { Trans, t } from "@lingui/macro";
 import cx from "classnames";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useMedia } from "react-use";
 
 import { useMarketsInfoData } from "context/SyntheticsStateContext/hooks/globalsHooks";
@@ -54,6 +54,16 @@ export default function ChartTokenSelector(props: Props) {
 
   const chevronClassName = oneRowLabels === undefined ? undefined : oneRowLabels ? "mt-4" : "mt-4 self-start";
 
+  useEffect(() => {
+    window.addEventListener("keydown", (e) => {
+      var evtobj = e;
+
+      if (evtobj.altKey && evtobj.key === "k") {
+        alert("alt+k");
+      }
+    });
+  }, []);
+
   return (
     <SelectorBase
       popoverPlacement="bottom-start"
@@ -71,13 +81,13 @@ export default function ChartTokenSelector(props: Props) {
           >
             <TokenIcon className="mr-8 mt-4" symbol={selectedToken.symbol} displaySize={40} importSize={24} />
             <div
-              className={cx("flex justify-start h-full mt-4", {
+              className={cx("mt-4 flex h-full justify-start", {
                 "flex-col": !oneRowLabels,
                 "flex-row items-center": oneRowLabels,
               })}
             >
               <span className="text-[16px] font-[600] text-white">
-                {selectedToken.symbol} <span className="text-[#FFFFFF] opacity-30" >{"- USD"}</span>
+                {selectedToken.symbol} <span className="text-[#FFFFFF] opacity-30">{"- USD"}</span>
               </span>
               {poolName && (
                 <span

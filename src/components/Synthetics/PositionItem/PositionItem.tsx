@@ -439,7 +439,7 @@ export function PositionItem(p: Props) {
           </div>
           {p.position.pendingUpdate && <ImSpinner2 data-qa="position-loading" className="spin position-loading-icon" />}
         </td>
-        <td>
+        <td className="!text-right">
           {/* netValue */}
           {p.position.isOpening ? (
             t`Opening...`
@@ -469,7 +469,7 @@ export function PositionItem(p: Props) {
             </>
           )}
         </td>
-        <td>
+        <td className="!text-right">
           <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>
             {p.position.sizeInUsd ? formatUsd(p.position.sizeInUsd, { maxThreshold: null })?.split(".")[0] : "$0"}.
             <span style={{ color: "rgba(255, 255, 255, 0.24)" }}>
@@ -478,7 +478,7 @@ export function PositionItem(p: Props) {
           </span>
           {/* <PositionItemOrdersLarge positionKey={p.position.key} onOrdersClick={p.onOrdersClick} /> */}
         </td>
-        <td>
+        <td className="!text-right">
           {/* collateral */}
           <div>
             {/* {renderCollateral()} */}
@@ -506,7 +506,7 @@ export function PositionItem(p: Props) {
             </span>
           </div>
         </td>
-        <td>
+        <td className="!text-right">
           {/* entryPrice */}
           {p.position.isOpening ? (
             t`Opening...`
@@ -528,7 +528,7 @@ export function PositionItem(p: Props) {
             </span>
           )}
         </td>
-        <td>
+        <td className="!text-right">
           {/* markPrice */}
           <span style={{ color: "rgba(255, 255, 255, 0.64)" }}>
             {p.position.markPrice
@@ -546,11 +546,11 @@ export function PositionItem(p: Props) {
             </span>
           </span>
         </td>
-        <td>
+        <td className="!text-right">
           {/* liqPrice */}
           {renderLiquidationPrice()}
         </td>
-        <td>
+        <td className="!text-right">
           {/* Close */}
           {/* {!p.position.isOpening && !p.hideActions && (
             <button

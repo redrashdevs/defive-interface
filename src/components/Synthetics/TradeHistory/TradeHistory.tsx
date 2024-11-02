@@ -148,7 +148,7 @@ export function TradeHistory(p: Props) {
             </div>
             <button disabled={isCsvDownloading} onClick={handleCsvDownload} className="px-12">
               <div className="flex items-center">
-                <img src="/images/download.png" />
+                <img src="/images/download.svg" />
                 <p className="ml-4 text-[12px] font-[500] text-white opacity-60">CSV</p>
               </div>
             </button>
@@ -184,7 +184,7 @@ export function TradeHistory(p: Props) {
                     {/* <ActionFilter value={actionFilter} onChange={setActionFilter} /> */}
                     <Trans>ACTION</Trans>
                   </th>
-                  <th>
+                  <th className="!text-right">
                     {/* <MarketFilterLongShort
                     withPositions="all"
                     value={marketsDirectionsFilter}
@@ -192,13 +192,13 @@ export function TradeHistory(p: Props) {
                   /> */}
                     <Trans>MARKET</Trans>
                   </th>
-                  <th>
+                  <th className="!text-right">
                     <Trans>Size</Trans>
                   </th>
-                  <th>
+                  <th className="!text-right">
                     <Trans>Price</Trans>
                   </th>
-                  <th className="text-start">
+                  <th  className="!text-right">
                     {/* <TooltipWithPortal content={<Trans>Realized PnL after fees and price impact.</Trans>}> */}
                     <Trans>RPnL ($)</Trans>
                     {/* </TooltipWithPortal> */}

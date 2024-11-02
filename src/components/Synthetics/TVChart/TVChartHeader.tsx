@@ -14,8 +14,6 @@ import { Token } from "domain/tokens";
 
 import { useChainId } from "lib/chains";
 
-import { BiChevronDown, BiChevronLeft, BiChevronRight } from "react-icons/bi";
-
 import ChartTokenSelector from "../ChartTokenSelector/ChartTokenSelector";
 import { useChartHeaderFormattedValues } from "./useChartHeaderFormattedValues";
 import TooltipWithPortal from "components/Tooltip/TooltipWithPortal";
@@ -302,17 +300,6 @@ function TVChartHeaderInfoDesktop() {
     };
   });
 
-  const leftStyles = useMemo(() => {
-    return {
-      width: `${Math.max(MIN_FADE_AREA, Math.min(scrollLeft + 8, maxFadeArea))}px`,
-    };
-  }, [scrollLeft, maxFadeArea]);
-
-  const rightStyles = useMemo(() => {
-    return {
-      width: `${Math.max(MIN_FADE_AREA, Math.min(scrollRight + 8, maxFadeArea))}px`,
-    };
-  }, [scrollRight, maxFadeArea]);
 
   const {
     avgPrice,
@@ -472,7 +459,7 @@ function TVChartHeaderInfoDesktop() {
   // const scrollToRight = useCallback(() => scrollTo(1), [scrollTo]);
 
   return (
-    <div className="flex w-full h-[76px]">
+    <div className="flex h-[76px] w-full">
       <div className="mb-10 flex w-[500px] items-center justify-between rounded-[12px] bg-[#121214] pr-12">
         <div className="flex items-center justify-start pl-12">
           <ChartTokenSelector selectedToken={selectedTokenOption} options={tokenOptions} oneRowLabels={false} />
@@ -509,7 +496,7 @@ function TVChartHeaderInfoDesktop() {
             </div>
           </div> */}
           <div className="Chart-top-scrollable mt-0" ref={scrollableRef}>
-            <div className="w-[90px] flex h-full flex-col justify-center">
+            <div className="flex h-full w-[90px] flex-col justify-center">
               <div
                 className={cs(
                   { negative: dayPriceChange === "-", positive: dayPriceChange === "+" },
