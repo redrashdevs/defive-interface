@@ -403,6 +403,11 @@ export function SyntheticsPage(p: Props) {
       <PositionEditor allowedSlippage={savedAllowedSlippage} setPendingTxns={setPendingTxns} />
 
       <InterviewModal isVisible={isInterviewModalVisible} setIsVisible={setIsInterviewModalVisible} /> */}
+      <PositionSeller setPendingTxns={setPendingTxns} />
+
+<PositionEditor allowedSlippage={savedAllowedSlippage} setPendingTxns={setPendingTxns} />
+
+<InterviewModal isVisible={isInterviewModalVisible} setIsVisible={setIsInterviewModalVisible} />
 
       {/* <Footer /> */}
     </div>

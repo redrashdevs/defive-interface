@@ -552,7 +552,7 @@ export function PositionItem(p: Props) {
         </td>
         <td className="!text-right">
           {/* Close */}
-          {/* {!p.position.isOpening && !p.hideActions && (
+          {!p.position.isOpening && !p.hideActions && (
             <button
               className="Exchange-list-action"
               onClick={p.onClosePositionClick}
@@ -561,9 +561,9 @@ export function PositionItem(p: Props) {
             >
               <Trans>Close</Trans>
             </button>
-          )} */}
+          )}
         </td>
-        {/* <td>
+        <td>
           {!p.position.isOpening && !p.hideActions && (
             <PositionDropdown
               handleEditCollateral={p.onEditCollateralClick}
@@ -574,7 +574,7 @@ export function PositionItem(p: Props) {
               handleTriggerClose={() => p.onSelectPositionClick?.(TradeMode.Trigger)}
             />
           )}
-        </td> */}
+        </td>
       </tr>
     );
   }

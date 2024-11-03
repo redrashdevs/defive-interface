@@ -123,38 +123,6 @@ export function PositionList(p: Props) {
                 onCancelOrder={onCancelOrder}
               />
             ))}
-          {!isLoading &&
-            positions.map((position) => (
-              <PositionItemWrapper
-                key={position.key}
-                position={position}
-                onEditCollateralClick={setEditingPositionKey}
-                onClosePositionClick={onClosePositionClick}
-                onOrdersClick={onOrdersClick}
-                onSelectPositionClick={onSelectPositionClick}
-                isLarge
-                onShareClick={handleSharePositionClick}
-                openSettings={openSettings}
-                hideActions={hideActions}
-                onCancelOrder={onCancelOrder}
-              />
-            ))}
-          {!isLoading &&
-            positions.map((position) => (
-              <PositionItemWrapper
-                key={position.key}
-                position={position}
-                onEditCollateralClick={setEditingPositionKey}
-                onClosePositionClick={onClosePositionClick}
-                onOrdersClick={onOrdersClick}
-                onSelectPositionClick={onSelectPositionClick}
-                isLarge
-                onShareClick={handleSharePositionClick}
-                openSettings={openSettings}
-                hideActions={hideActions}
-                onCancelOrder={onCancelOrder}
-              />
-            ))}
         </tbody>
       </table>
       {/* {positionToShare && (
