@@ -16,7 +16,7 @@ import {
 } from "domain/synthetics/markets";
 import { TokenData, TokensData, convertToTokenAmount, convertToUsd } from "domain/synthetics/tokens";
 import { useChainId } from "lib/chains";
-import { BN_ZERO, formatTokenAmountWithUsd, formatUsd } from "lib/numbers";
+import { BN_ZERO, formatAmount, formatTokenAmountWithUsd, formatUsd } from "lib/numbers";
 import { getByKey } from "lib/objects";
 import MarketTokenSelector from "../MarketTokenSelector/MarketTokenSelector";
 
@@ -83,6 +83,8 @@ export function MarketStats(p: Props) {
   const longPoolAmountUsd = marketInfo ? getPoolUsdWithoutPnl(marketInfo, true, "midPrice") : undefined;
   const shortPoolAmountUsd = marketInfo ? getPoolUsdWithoutPnl(marketInfo, false, "midPrice") : undefined;
 
+  const totalPoolUsd = (longPoolAmountUsd ?? 0n) + (shortPoolAmountUsd ?? 0n);
+
   const apy = getByKey(marketsTokensApyData, marketInfo?.marketTokenAddress);
   const incentiveApr = getByKey(marketsTokensIncentiveAprData, marketInfo?.marketTokenAddress);
   const lidoApr = getByKey(marketsTokensLidoAprData, marketInfo?.marketTokenAddress);
@@ -135,6 +137,7 @@ export function MarketStats(p: Props) {
       shortToken?.symbol,
     ]
   );
+
   const getUsdcPrice = () => {
     let dollarPrice = formatUsd(marketPrice, {
       displayDecimals: MARKET_STATS_DECIMALS,
@@ -270,8 +273,11 @@ export function MarketStats(p: Props) {
               <p className="text-left text-[12px]" style={{ color: "rgba(255, 255, 255, 0.4)" }}>
                 POOL RESERVE
               </p>
-              <div className="mt-12 h-[8px] h-full w-full rounded-[8px] bg-[#1B1B1F]">
-                <div className="h-full w-[54%] rounded-[8px] bg-[#7F7FA3]"></div>
+              <div className="mt-12 !h-[8px] h-full w-full rounded-[8px] bg-[#1B1B1F]">
+                <div
+                  style={{ width: `${(shortPoolAmountUsd! * BigInt(100)) / totalPoolUsd}%` }}
+                  className={`h-full rounded-[8px] bg-[#7F7FA3]`}
+                ></div>
               </div>
               <div className="mt-6 flex w-full items-center justify-center">
                 <img src="/images/gauge.svg" className="w-2/4" />
@@ -280,20 +286,34 @@ export function MarketStats(p: Props) {
                 <div>
                   <div className="flex h-[24px] items-center">
                     <TokenIcon
-                      symbol={getNormalizedTokenSymbol(marketInfo?.indexToken.symbol)}
+                      symbol={getNormalizedTokenSymbol(marketInfo?.shortToken.symbol)}
                       displaySize={24}
                       importSize={40}
                     />
-                    <p className="ml-[8px] text-left text-[16px] text-white">456.3K USDC</p>
+                    <p className="ml-[8px] text-left text-[16px] text-white">
+                      {formatAmount(marketInfo?.shortPoolAmount, marketInfo.shortToken.decimals, 2)}{" "}
+                      {getNormalizedTokenSymbol(marketInfo?.shortToken.symbol)}
+                    </p>
                   </div>
-                  <p className="ml-[32px] text-left text-[14px] text-white opacity-40">50.76%</p>
+                  <p className="ml-[32px] text-left text-[14px] text-white opacity-40">
+                    {((shortPoolAmountUsd! * BigInt(100)) / totalPoolUsd).toString()}%
+                  </p>
                 </div>
                 <div>
                   <div className="flex h-[24px] items-center">
-                    <p className="mr-[8px] text-right text-[16px] text-white">456.3K USDC</p>
-                    <TokenIcon symbol={"USDC"} displaySize={24} importSize={40} />
+                    <p className="mr-[8px] text-right text-[16px] text-white">
+                      {formatAmount(marketInfo?.longPoolAmount, marketInfo.longToken.decimals, 2)}{" "}
+                      {getNormalizedTokenSymbol(marketInfo?.longToken.symbol)}
+                    </p>
+                    <TokenIcon
+                      symbol={getNormalizedTokenSymbol(marketInfo?.longToken.symbol)}
+                      displaySize={24}
+                      importSize={40}
+                    />
                   </div>
-                  <p className="mr-[32px] text-right text-[14px] text-white opacity-40">50.76%</p>
+                  <p className="mr-[32px] text-right text-[14px] text-white opacity-40">
+                    {(BigInt(100) - (shortPoolAmountUsd! * BigInt(100)) / totalPoolUsd).toString()}%
+                  </p>
                 </div>
               </div>
             </div>
