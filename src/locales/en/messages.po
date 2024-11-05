@@ -345,6 +345,7 @@ msgstr "SELLABLE"
 
 #: src/components/Home/BenefitsSection/BenefitsSection.tsx
 #: src/components/Home/BenefitsSection/BenefitsSection.tsx
+#: src/components/Synthetics/ChartTokenSelector/ChartTokenSelector.tsx
 msgid "Open"
 msgstr "Open"
 
@@ -2473,6 +2474,7 @@ msgstr "Fetching token info..."
 msgid "This swap is routed through several GM pools for the lowest possible fees and price impact."
 msgstr "This swap is routed through several GM pools for the lowest possible fees and price impact."
 
+#: src/components/Synthetics/ChartTokenSelector/ChartTokenSelector.tsx
 #: src/pages/Home/Home.jsx
 #: src/pages/Home/Home.jsx
 #: src/pages/Home/Home.jsx
@@ -2689,7 +2691,6 @@ msgstr "No claims match the selected filters"
 #: src/components/Exchange/PositionSeller.jsx
 #: src/components/Exchange/SwapBox.jsx
 #: src/components/Referrals/ClaimAffiliatesModal/ClaimAffiliatesModal.tsx
-#: src/components/Synthetics/ChartTokenSelector/ChartTokenSelector.tsx
 #: src/components/Synthetics/ChartTokenSelector/ChartTokenSelector.tsx
 #: src/components/Synthetics/Claims/ClaimsHistory.tsx
 #: src/components/Synthetics/MarketCard/MarketCard.tsx
@@ -4812,6 +4813,10 @@ msgstr "Telegram bot for Open Interest on GMX"
 #: src/components/Glp/GlpSwap.jsx
 msgid "Check the \"Save on Fees\" section below to get the lowest fee percentages."
 msgstr "Check the \"Save on Fees\" section below to get the lowest fee percentages."
+
+#: src/components/Synthetics/ChartTokenSelector/ChartTokenSelector.tsx
+msgid "Navigate"
+msgstr "Navigate"
 
 #: src/components/SettingsModal/SettingsModal.tsx
 msgid "Display PnL after fees"
@@ -7524,7 +7529,9 @@ msgstr "The order may not execute as the max. allowed leverage is exceeded. Co
 #: src/components/Exchange/PositionSeller.jsx
 #: src/components/Exchange/PositionsList.jsx
 #: src/components/Exchange/PositionsList.jsx
+#: src/components/Synthetics/ChartTokenSelector/ChartTokenSelector.tsx
 #: src/components/Synthetics/OrderEditor/OrderEditor.tsx
+#: src/components/Synthetics/PositionItem/PositionItem.tsx
 #: src/components/Synthetics/PositionSeller/PositionSeller.tsx
 #: src/components/Synthetics/PositionSeller/PositionSeller.tsx
 #: src/components/Synthetics/TradeBox/TradeBox.tsx

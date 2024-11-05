@@ -4506,6 +4506,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@table-nav/react@npm:0.0.7":
+  version: 0.0.7
+  resolution: "@table-nav/react@npm:0.0.7"
+  peerDependencies:
+    "@table-nav/core": ^0.0.7
+  checksum: 98eee0ceffd162be9616863d9b63f0d93c5baaf83c2b3f8dc38fa9939eaeb86a78a8dc3586c9e0f546c0dcbf20c1923c49f2ea8c9de49c3562f3e3e4db42cdf9
+  languageName: node
+  linkType: hard
+
 "@tanstack/query-core@npm:5.25.0":
   version: 5.25.0
   resolution: "@tanstack/query-core@npm:5.25.0"
@@ -9864,6 +9873,7 @@ __metadata:
     "@rainbow-me/rainbowkit": 2.0.2
     "@splinetool/react-spline": 4.0.0
     "@splinetool/runtime": 1.9.26
+    "@table-nav/react": 0.0.7
     "@tanstack/react-query": 5.25.0
     "@taskworld.com/rereselect": 0.3.0
     "@testing-library/jest-dom": 5.16.1

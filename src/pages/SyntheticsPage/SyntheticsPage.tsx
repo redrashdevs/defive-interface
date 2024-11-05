@@ -226,7 +226,7 @@ export function SyntheticsPage(p: Props) {
   );
 
   return (
-    <div className="Exchange pt-[0px] px-8">
+    <div className="Exchange px-8 pt-[0px]">
       <Helmet>
         <style type="text/css">
           {`
@@ -405,9 +405,9 @@ export function SyntheticsPage(p: Props) {
       <InterviewModal isVisible={isInterviewModalVisible} setIsVisible={setIsInterviewModalVisible} /> */}
       <PositionSeller setPendingTxns={setPendingTxns} />
 
-<PositionEditor allowedSlippage={savedAllowedSlippage} setPendingTxns={setPendingTxns} />
+      <PositionEditor allowedSlippage={savedAllowedSlippage} setPendingTxns={setPendingTxns} />
 
-<InterviewModal isVisible={isInterviewModalVisible} setIsVisible={setIsInterviewModalVisible} />
+      <InterviewModal isVisible={isInterviewModalVisible} setIsVisible={setIsInterviewModalVisible} />
 
       {/* <Footer /> */}
     </div>

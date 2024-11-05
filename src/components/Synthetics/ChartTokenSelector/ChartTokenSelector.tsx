@@ -38,6 +38,7 @@ import {
   SelectorBaseMobileHeaderContent,
   useSelectorClose,
 } from "../SelectorBase/SelectorBase";
+import ModalWithPortal from "@/components/Modal/ModalWithPortal";
 
 type Props = {
   selectedToken: Token | undefined;
@@ -47,7 +48,7 @@ type Props = {
 
 export default function ChartTokenSelector(props: Props) {
   const { options, selectedToken, oneRowLabels } = props;
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const marketInfo = useSelector(selectTradeboxMarketInfo);
   const { isSwap } = useSelector(selectTradeboxTradeFlags);
   const poolName = marketInfo && !isSwap ? getMarketPoolName(marketInfo) : null;
@@ -59,63 +60,65 @@ export default function ChartTokenSelector(props: Props) {
       var evtobj = e;
 
       if (evtobj.altKey && evtobj.key === "k") {
-        alert("alt+k");
+        setIsModalOpen(true);
+      }
+      if (evtobj.key == "27") {
+        setIsModalOpen(false);
       }
     });
   }, []);
 
   return (
-    <SelectorBase
-      popoverPlacement="bottom-start"
-      popoverYOffset={16}
-      popoverXOffset={-8}
-      handleClassName={oneRowLabels === false ? "mr-24" : undefined}
-      chevronClassName={chevronClassName}
-      label={
-        selectedToken ? (
-          <span
-            className={cx("inline-flex whitespace-nowrap pl-0 text-[20px] font-bold", {
-              "items-start": !oneRowLabels,
-              "items-center": oneRowLabels,
+    <>
+      {selectedToken ? (
+        <span
+          onClick={() => setIsModalOpen(true)}
+          className={cx("inline-flex whitespace-nowrap pl-0 text-[20px] font-bold", {
+            "items-start": !oneRowLabels,
+            "items-center": oneRowLabels,
+          })}
+        >
+          <TokenIcon className="mr-8 mt-4" symbol={selectedToken.symbol} displaySize={40} importSize={24} />
+          <div
+            className={cx("mt-4 flex h-full justify-start", {
+              "flex-col": !oneRowLabels,
+              "flex-row items-center": oneRowLabels,
             })}
           >
-            <TokenIcon className="mr-8 mt-4" symbol={selectedToken.symbol} displaySize={40} importSize={24} />
-            <div
-              className={cx("mt-4 flex h-full justify-start", {
-                "flex-col": !oneRowLabels,
-                "flex-row items-center": oneRowLabels,
-              })}
-            >
-              <span className="text-[16px] font-[600] text-white">
-                {selectedToken.symbol} <span className="text-[#FFFFFF] opacity-30">{"- USD"}</span>
+            <span className="text-[16px] font-[600] text-white">
+              {selectedToken.symbol} <span className="text-[#FFFFFF] opacity-30">{"- USD"}</span>
+            </span>
+            {poolName && (
+              <span
+                className={cx("text-[14px] font-normal text-[#FFFFFF] opacity-30", {
+                  "ml-8": oneRowLabels,
+                })}
+              >
+                {/* [{poolName}] */}
+                {t`Perpetuals`}
               </span>
-              {poolName && (
-                <span
-                  className={cx("text-[14px] font-normal text-[#FFFFFF] opacity-30", {
-                    "ml-8": oneRowLabels,
-                  })}
-                >
-                  {/* [{poolName}] */}
-                  {t`Perpetuals`}
-                </span>
-              )}
-            </div>
-          </span>
-        ) : (
-          "..."
-        )
-      }
-      modalLabel={t`Market`}
-      mobileModalContentPadding={false}
-    >
-      <MarketsList options={options} />
-    </SelectorBase>
+            )}
+          </div>
+        </span>
+      ) : (
+        "..."
+      )}
+      <ModalWithPortal className="Trade-markets-modal" setIsVisible={setIsModalOpen} isVisible={isModalOpen}>
+        <MarketsList
+          onClose={() => {
+            close();
+            setIsModalOpen(false);
+          }}
+          options={options}
+        />
+      </ModalWithPortal>
+    </>
   );
 }
 
 type SortField = "longLiquidity" | "shortLiquidity" | "unspecified";
 
-function MarketsList(props: { options: Token[] | undefined }) {
+function MarketsList(props: { options: Token[] | undefined; onClose: () => void }) {
   const { options } = props;
   const { tab, setTab, favoriteTokens, setFavoriteTokens } = useIndexTokensFavorites();
 
@@ -129,6 +132,8 @@ function MarketsList(props: { options: Token[] | undefined }) {
   const [searchKeyword, setSearchKeyword] = useState("");
   const isSwap = tradeType === TradeType.Swap;
 
+  const [tempSelection, setTempSelection] = useState<number>(0);
+
   const sortedTokens = useFilterSortTokens({ options, searchKeyword, tab, isSwap, favoriteTokens, direction, orderBy });
 
   const chooseSuitableMarket = useSelector(selectTradeboxChooseSuitableMarket);
@@ -138,6 +143,7 @@ function MarketsList(props: { options: Token[] | undefined }) {
     (tokenAddress: string, preferredTradeType?: PreferredTradeTypePickStrategy | undefined) => {
       setSearchKeyword("");
       close();
+      props.onClose();
 
       const chosenMarket = chooseSuitableMarket(tokenAddress, preferredTradeType, tradeType);
 
@@ -166,12 +172,12 @@ function MarketsList(props: { options: Token[] | undefined }) {
   const rowVerticalPadding = isMobile ? "py-8" : cx("py-4 group-last-of-type/row:pb-8");
   const rowHorizontalPadding = isSmallMobile ? cx("px-6 first-of-type:pl-15 last-of-type:pr-15") : "px-15";
   const thClassName = cx(
-    "sticky top-0 bg-slate-800 text-left font-normal uppercase text-gray-400 first-of-type:text-left last-of-type:[&:not(:first-of-type)]:text-right",
+    "sticky top-0 !bg-[#121214] py-4 text-right text-[10px] font-[500] uppercase text-[#67677A] first-of-type:text-left",
     rowVerticalPadding,
     rowHorizontalPadding
   );
   const tdClassName = cx(
-    "cursor-pointer rounded-4 last-of-type:text-right hover:bg-cold-blue-900",
+    "cursor-pointer text-right text-[14px] font-[500] text-[#9696A3] first-of-type:text-left",
     rowVerticalPadding,
     rowHorizontalPadding
   );
@@ -195,6 +201,36 @@ function MarketsList(props: { options: Token[] | undefined }) {
     [sortedTokens, handleMarketSelect]
   );
 
+  const handleTableKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      const token = sortedTokens![tempSelection];
+      handleMarketSelect(token.address);
+    }
+    if (e.key === "ArrowUp" && tempSelection > 0) {
+      // setIsModalOpen(true);
+      let n = tempSelection - 1;
+      console.log("HEREEEEEE", 38, n);
+      setTempSelection(n);
+    }
+    if (e.key === "ArrowDown" && tempSelection !== sortedTokens!.length - 1) {
+      let n = tempSelection + 1;
+      console.log("HEREEEEEE", 40, tempSelection, n);
+      setTempSelection(n);
+      // setIsModalOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    if (!sortedTokens?.length) return;
+    // Attach the event listener to the window
+    window.addEventListener("keydown", handleTableKeyDown);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("keydown", handleTableKeyDown);
+    };
+  }, [tempSelection, sortedTokens?.length]);
+
   const handleFavoriteClick = useCallback(
     (address: string) => {
       if (favoriteTokens?.includes(address)) {
@@ -208,29 +244,70 @@ function MarketsList(props: { options: Token[] | undefined }) {
 
   return (
     <>
-      <SelectorBaseMobileHeaderContent>
-        <SearchInput className="mt-15" value={searchKeyword} setValue={handleSetValue} onKeyDown={handleKeyDown} />
-      </SelectorBaseMobileHeaderContent>
+      {!isMobile && (
+        <div
+          className="absolute bottom-0 left-0 z-10 flex h-64 w-full items-center justify-between rounded-b-[12px] px-16  backdrop-blur-[100px]"
+          style={{ borderTop: "1px solid rgba(255, 255, 255, 0.08)", background: "rgba(18, 18, 20, 0.4)" }}
+        >
+          <div className="flex items-center">
+            <img src="/images/down-btn.svg" />
+            <img src="/images/up-btn.svg" className="mx-8" />
+            <p className="text-[14px] font-[500] text-white opacity-40">
+              <Trans>Navigate</Trans>
+            </p>
+          </div>
+          <div className="flex items-center">
+            <div className="flex items-center">
+              <img src="/images/return-btn.svg" className="mx-8" />
+              <p className="text-[14px] font-[500] text-white opacity-40">
+                <Trans>Open</Trans>
+              </p>
+            </div>
+            <div className="flex items-center">
+              <img src="/images/refresh-btn.svg" className="mx-8" />
+              <p className="text-[14px] font-[500] text-white opacity-40">
+                <Trans>Close</Trans>
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+      <div className="flex w-full items-center justify-between pb-16">
+        <SearchInput
+          className="mr-16 w-[85%]"
+          value={searchKeyword}
+          setValue={handleSetValue}
+          onKeyDown={handleKeyDown}
+        />
+        <button
+          // onClick={() => {close(); set}}
+          onClick={props.onClose}
+          style={{ width: 60 }}
+          className="flex !h-[40px] !w-[40px] items-center justify-center rounded-[12px] bg-[#1B1B1F]"
+        >
+          <img src="/images/x.svg" />
+        </button>
+      </div>
       <div
         className={cx("Synths-ChartTokenSelector", {
           "w-[448px]": !isMobile && !isSwap,
         })}
       >
-        {!isMobile && (
-          <>
-            <SearchInput className="m-15" value={searchKeyword} setValue={handleSetValue} onKeyDown={handleKeyDown} />
-            <div className="divider" />
-          </>
-        )}
         {!isSwap && (
-          <Tab
-            className="px-15 py-4"
-            options={indexTokensFavoritesTabOptions}
-            optionLabels={localizedTabOptionLabels}
-            type="inline"
-            option={tab}
-            setOption={setTab}
-          />
+          <div className="historical-tabs-wrappper !mt-0 mb-16 pt-0">
+            {indexTokensFavoritesTabOptions?.map((item, index) => {
+              return (
+                <button
+                  key={index}
+                  // @ts-ignore
+                  onClick={() => setTab(item)}
+                  className={cx("tab-btn !px-16", { active: tab === item })}
+                >
+                  <Trans>{localizedTabOptionLabels[item]}</Trans>
+                </button>
+              );
+            })}
+          </div>
         )}
 
         <div
@@ -238,32 +315,11 @@ function MarketsList(props: { options: Token[] | undefined }) {
             "max-h-[444px] overflow-x-auto": !isMobile,
           })}
         >
-          <table className={cx("text-sm w-full")}>
-            <thead className="bg-slate-800">
-              <tr>
-                <th className={thClassName} colSpan={isSwap ? 1 : 2}>
-                  <Trans>Market</Trans>
-                </th>
-                {!isSwap && (
-                  <>
-                    <th className={thClassName}>
-                      <Sorter {...getSorterProps("longLiquidity")}>
-                        <Trans>LONG LIQ.</Trans>
-                      </Sorter>
-                    </th>
-                    <th className={thClassName}>
-                      <Sorter {...getSorterProps("shortLiquidity")}>
-                        <Trans>SHORT LIQ.</Trans>
-                      </Sorter>
-                    </th>
-                  </>
-                )}
-              </tr>
-            </thead>
-
-            <tbody>
-              {sortedTokens?.map((token) => (
+          {isSwap || isMobile ? (
+            <div autoFocus>
+              {sortedTokens?.map((token, index) => (
                 <MarketListItem
+                  tempSelected={index === tempSelection}
                   key={token.address}
                   token={token}
                   isSwap={isSwap}
@@ -276,8 +332,49 @@ function MarketsList(props: { options: Token[] | undefined }) {
                   onMarketSelect={handleMarketSelect}
                 />
               ))}
-            </tbody>
-          </table>
+            </div>
+          ) : (
+            <table className={cx("text-sm w-full !h-[300px] overflow-y-auto")}>
+              <thead className="!bg-[#121214] py-4">
+                <tr className="!bg-[#121214] py-4">
+                  <th />
+                  <th style={{ textAlign: "left" }} className={thClassName}>
+                    <Trans>Market</Trans>
+                  </th>
+                  <>
+                    <th className={thClassName}>
+                      <Sorter {...getSorterProps("longLiquidity")}>
+                        <Trans>LONG LIQ.</Trans>
+                      </Sorter>
+                    </th>
+                    <th className={thClassName}>
+                      <Sorter {...getSorterProps("shortLiquidity")}>
+                        <Trans>SHORT LIQ.</Trans>
+                      </Sorter>
+                    </th>
+                  </>
+                </tr>
+              </thead>
+
+              <tbody>
+                {sortedTokens?.map((token, index) => (
+                  <MarketListItem
+                    key={token.address}
+                    token={token}
+                    isSwap={isSwap}
+                    isSmallMobile={isSmallMobile}
+                    isFavorite={favoriteTokens?.includes(token.address)}
+                    onFavorite={handleFavoriteClick}
+                    rowVerticalPadding={rowVerticalPadding}
+                    rowHorizontalPadding={rowHorizontalPadding}
+                    tdClassName={tdClassName}
+                    onMarketSelect={handleMarketSelect}
+                    tempSelected={index === tempSelection}
+                  />
+                ))}
+              </tbody>
+            </table>
+          )}
           {options && options.length > 0 && !sortedTokens?.length && (
             <div className="py-15 text-center text-gray-400">
               <Trans>No markets matched.</Trans>
@@ -369,6 +466,7 @@ function MarketListItem({
   rowHorizontalPadding,
   tdClassName,
   onMarketSelect,
+  tempSelected,
 }: {
   token: Token;
   isSwap: boolean;
@@ -379,6 +477,7 @@ function MarketListItem({
   rowHorizontalPadding: string;
   tdClassName: string;
   onMarketSelect: (address: string, preferredTradeType?: PreferredTradeTypePickStrategy | undefined) => void;
+  tempSelected?: boolean;
 }) {
   const getMaxLongShortLiquidityPool = useSelector(selectTradeboxGetMaxLongShortLiquidityPool);
 
@@ -409,46 +508,36 @@ function MarketListItem({
 
   if (isSwap) {
     return (
-      <tr key={token.symbol} className="group/row">
-        <td
-          className={cx(
-            "w-full cursor-pointer rounded-4 hover:bg-cold-blue-900",
-            rowVerticalPadding,
-            rowHorizontalPadding
-          )}
-          onClick={handleSelectLargePosition}
-        >
-          <span className="inline-flex items-center text-slate-100">
-            <TokenIcon
-              className="ChartToken-list-icon -my-5 mr-8"
-              symbol={token.symbol}
-              displaySize={16}
-              importSize={24}
-            />
-            {token.symbol}
-          </span>
-        </td>
-      </tr>
+      <div
+        onClick={handleSelectLargePosition}
+        key={token.symbol}
+        className={cx("mb-8 flex !h-[48px] items-center rounded-[8px] px-8 hover:bg-[#242429]")}
+      >
+        <span className="inline-flex items-center text-[14px] font-[500] text-white">
+          <TokenIcon
+            className="ChartToken-list-icon -my-5 mr-8 h-[32px] w-[32px]"
+            symbol={token.symbol}
+            displaySize={16}
+            importSize={24}
+          />
+          {token.symbol}
+        </span>
+      </div>
     );
   }
-
   return (
-    <tr key={token.symbol} className="group/row">
+    <tr key={token.symbol} className={cx({ "!bg-[#242429]": tempSelected }, "group/row !h-[40px] hover:bg-[#242429]")}>
       <td
-        className={cx("cursor-pointer rounded-4 pl-15 pr-4 text-center hover:bg-cold-blue-900", rowVerticalPadding)}
+        className={cx("cursor-pointer rounded-l-[8px] pl-15 pr-4 text-center", rowVerticalPadding)}
         onClick={handleFavoriteClick}
       >
         <FavoriteStar isFavorite={isFavorite} />
       </td>
       <td
-        className={cx(
-          "cursor-pointer rounded-4 pl-6 hover:bg-cold-blue-900",
-          rowVerticalPadding,
-          isSmallMobile ? "pr-6" : "pr-15"
-        )}
+        className={cx("cursor-pointer pl-6", rowVerticalPadding, isSmallMobile ? "pr-6" : "pr-15")}
         onClick={handleSelectLargePosition}
       >
-        <span className="inline-flex items-center text-slate-100">
+        <span className="inline-flex items-center text-[14px] font-[500] text-white">
           <TokenIcon
             className="ChartToken-list-icon -my-5 mr-8"
             symbol={token.symbol}
@@ -462,7 +551,7 @@ function MarketListItem({
       <td className={tdClassName} onClick={handleSelectLong}>
         {formattedMaxLongLiquidity}
       </td>
-      <td className={tdClassName} onClick={handleSelectShort}>
+      <td className={tdClassName + " rounded-r-[8px]"} onClick={handleSelectShort}>
         {maxShortLiquidityPoolFormatted}
       </td>
     </tr>

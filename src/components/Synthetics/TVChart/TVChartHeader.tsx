@@ -300,7 +300,6 @@ function TVChartHeaderInfoDesktop() {
     };
   });
 
-
   const {
     avgPrice,
     dailyVolume,
@@ -471,30 +470,6 @@ function TVChartHeaderInfoDesktop() {
       </div>
       <div className="Chart-header mb-10 ml-8 w-full rounded-[12px] !bg-[#121214] px-12">
         <div className="relative flex overflow-hidden">
-          {/* <div className="pointer-events-none absolute z-40 flex h-full w-full flex-row justify-between">
-            <div
-              className={cx("Chart-top-scrollable-fade-left", {
-                "!cursor-default": scrollLeft <= 0,
-                "opacity-100": scrollLeft > 0,
-                "opacity-0": scrollLeft <= 0,
-              })}
-              style={leftStyles}
-              onClick={scrollToLeft}
-            >
-              {scrollLeft > 0 && <BiChevronLeft className="opacity-70" size={24} />}
-            </div>
-            <div
-              className={cx("Chart-top-scrollable-fade-right", {
-                "!cursor-default": scrollRight <= 0,
-                "opacity-100": scrollRight > 0,
-                "opacity-0": scrollRight <= 0,
-              })}
-              style={rightStyles}
-              onClick={scrollToRight}
-            >
-              {scrollRight > 0 && <BiChevronRight className="opacity-70" size={24} />}
-            </div>
-          </div> */}
           <div className="Chart-top-scrollable mt-0" ref={scrollableRef}>
             <div className="flex h-full w-[90px] flex-col justify-center">
               <div
@@ -510,9 +485,6 @@ function TVChartHeaderInfoDesktop() {
             {additionalInfo}
           </div>
         </div>
-        {/* <div className="ExchangeChart-info VersionSwitch-wrapper">
-          <VersionSwitch />
-        </div> */}
       </div>
     </div>
   );
