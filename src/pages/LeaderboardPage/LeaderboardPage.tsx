@@ -11,7 +11,7 @@ export function LeaderboardPage() {
   return (
     <div className="page-layout container px-[16px] md:px-[100px]">
       <LeaderboardContainer />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

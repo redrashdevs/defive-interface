@@ -220,12 +220,12 @@ function StakeModal(props: {
 
   return (
     <div className="StakeModal">
-      <Modal isVisible={isVisible} setIsVisible={setIsVisible} label={title}>
+      <Modal className="stake-modal-wrapper" isVisible={isVisible} setIsVisible={setIsVisible} label={title}>
         {isUndelegatedGovToken ? (
           <AlertInfo type="warning" className={cx("DelegateGMXAlertInfo")} textColor="text-yellow-500">
             <Trans>
               <ExternalLink href={GMX_DAO_LINKS.VOTING_POWER} className="display-inline">
-                Delegate your undelegated {formatAmount(govTokenAmount, 18, 2, true)} GMX DAO
+                Delegate your undelegated {formatAmount(govTokenAmount, 18, 2, true)} D5 DAO
               </ExternalLink>
               <span>&nbsp;voting power before staking.</span>
             </Trans>
@@ -247,11 +247,11 @@ function StakeModal(props: {
           onInputValueChange={(e) => setValue(e.target.value)}
           showMaxButton={false}
         >
-          <div className="Stake-modal-icons">
+          <div className="Stake-modal-icons items-center">
             <img
               className="icon mr-5 h-22"
               height="22"
-              src={icons[stakingTokenSymbol.toLowerCase()]}
+              src={'/images/ic_d5_stake.svg'}
               alt={stakingTokenSymbol}
             />
             {stakingTokenSymbol}
@@ -268,10 +268,17 @@ function StakeModal(props: {
             />
           </div>
         )}
-        <div className="Exchange-swap-button-container">
-          <Button variant="primary-action" className="w-full" onClick={onClickPrimary} disabled={!isPrimaryEnabled()}>
+        <div className="Exchange-swap-button-container mt-8">
+          <button
+            className={cx(
+              { "hover:bg-[#FFFFFF] active:bg-[#CCCCCC]": isPrimaryEnabled() },
+              "!h-[40px] w-full rounded-[12px] bg-[#F2F0ED] text-[14px] font-[600] text-[#3E3E3E]"
+            )}
+            onClick={onClickPrimary}
+            disabled={!isPrimaryEnabled()}
+          >
             {getPrimaryText()}
-          </Button>
+          </button>
         </div>
       </Modal>
     </div>
@@ -392,11 +399,11 @@ function UnstakeModal(props: {
           onInputValueChange={(e) => setValue(e.target.value)}
           showMaxButton={false}
         >
-          <div className="Stake-modal-icons">
+          <div className="Stake-modal-icons items-center">
             <img
               className="icon mr-5 h-22"
               height="22"
-              src={icons[unstakingTokenSymbol.toLowerCase()]}
+              src={'/images/ic_d5_stake.svg'}
               alt={unstakingTokenSymbol}
             />
             {unstakingTokenSymbol}
@@ -426,10 +433,18 @@ function UnstakeModal(props: {
               </Trans>
             </AlertInfo>
           )}
-        <div className="Exchange-swap-button-container">
-          <Button variant="primary-action" className="w-full" onClick={onClickPrimary} disabled={!isPrimaryEnabled()}>
+        
+        <div className="Exchange-swap-button-container mt-8">
+          <button
+            className={cx(
+              { "hover:bg-[#FFFFFF] active:bg-[#CCCCCC]": isPrimaryEnabled() },
+              "!h-[40px] w-full rounded-[12px] bg-[#F2F0ED] text-[14px] font-[600] text-[#3E3E3E]"
+            )}
+            onClick={onClickPrimary}
+            disabled={!isPrimaryEnabled()}
+          >
             {getPrimaryText()}
-          </Button>
+          </button>
         </div>
       </Modal>
     </div>
@@ -1516,24 +1531,24 @@ export default function StakeV2() {
     }
 
     setIsStakeModalVisible(true);
-    setStakeModalTitle(t`Stake GMX`);
+    setStakeModalTitle(t`Stake D5`);
     setStakeModalMaxAmount(processedData?.gmxBalance);
     setStakeValue("");
     setStakingTokenSymbol("GMX");
     setStakingTokenAddress(gmxAddress);
     setStakingFarmAddress(stakedGmxTrackerAddress);
-    setStakeMethodName("stakeGmx");
+    setStakeMethodName("stakeD5");
   };
 
   const showStakeEsGmxModal = () => {
     setIsStakeModalVisible(true);
-    setStakeModalTitle(t`Stake esGMX`);
+    setStakeModalTitle(t`Stake esD5`);
     setStakeModalMaxAmount(processedData?.esGmxBalance);
     setStakeValue("");
-    setStakingTokenSymbol("esGMX");
+    setStakingTokenSymbol("esD5");
     setStakingTokenAddress(esGmxAddress);
     setStakingFarmAddress(ZeroAddress);
-    setStakeMethodName("stakeEsGmx");
+    setStakeMethodName("stakeEsD5");
   };
 
   const showGmxVesterDepositModal = () => {
@@ -1545,8 +1560,8 @@ export default function StakeV2() {
     }
 
     setIsVesterDepositModalVisible(true);
-    setVesterDepositTitle(t`GMX Vault`);
-    setVesterDepositStakeTokenLabel("staked GMX + esGMX");
+    setVesterDepositTitle(t`D5 Vault`);
+    setVesterDepositStakeTokenLabel("staked D5 + esD5");
     setVesterDepositMaxAmount(remainingVestableAmount);
     setVesterDepositBalance(processedData?.esGmxBalance);
     setVesterDepositVestedAmount(vestingData.gmxVester.vestedAmount);
@@ -1587,7 +1602,7 @@ export default function StakeV2() {
     }
 
     setIsVesterWithdrawModalVisible(true);
-    setVesterWithdrawTitle(t`Withdraw from GMX Vault`);
+    setVesterWithdrawTitle(t`Withdraw from D5 Vault`);
     setVesterWithdrawAddress(gmxVesterAddress);
   };
 
@@ -1598,7 +1613,7 @@ export default function StakeV2() {
     }
 
     setIsVesterWithdrawModalVisible(true);
-    setVesterWithdrawTitle(t`Withdraw from GLP Vault`);
+    setVesterWithdrawTitle(t`Withdraw from D5 Vault`);
     setVesterWithdrawAddress(glpVesterAddress);
   };
 
@@ -1608,7 +1623,7 @@ export default function StakeV2() {
       return;
     }
     setIsUnstakeModalVisible(true);
-    setUnstakeModalTitle(t`Unstake GMX`);
+    setUnstakeModalTitle(t`Unstake D5`);
     let maxAmount = processedData?.gmxInStakedGmx;
 
     if (maxAmount !== undefined) {
@@ -1617,13 +1632,13 @@ export default function StakeV2() {
 
     setUnstakeModalMaxAmount(maxAmount);
     setUnstakeValue("");
-    setUnstakingTokenSymbol("GMX");
-    setUnstakeMethodName("unstakeGmx");
+    setUnstakingTokenSymbol("D5");
+    setUnstakeMethodName("unstakeD5");
   };
 
   const showUnstakeEsGmxModal = () => {
     setIsUnstakeModalVisible(true);
-    setUnstakeModalTitle(t`Unstake esGMX`);
+    setUnstakeModalTitle(t`Unstake esD5`);
     let maxAmount = processedData?.esGmxInStakedGmx;
 
     if (maxAmount !== undefined) {
@@ -1632,8 +1647,8 @@ export default function StakeV2() {
 
     setUnstakeModalMaxAmount(maxAmount);
     setUnstakeValue("");
-    setUnstakingTokenSymbol("esGMX");
-    setUnstakeMethodName("unstakeEsGmx");
+    setUnstakingTokenSymbol("esD5");
+    setUnstakeMethodName("unstakeEsD5");
   };
 
   function showAffiliateVesterDepositModal() {
@@ -1733,7 +1748,7 @@ export default function StakeV2() {
         value={stakeValue}
         setValue={setStakeValue}
         signer={signer}
-        stakingTokenSymbol={stakingTokenSymbol}
+        stakingTokenSymbol={'D5'}
         stakingTokenAddress={stakingTokenAddress}
         farmAddress={stakingFarmAddress}
         rewardRouterAddress={rewardRouterAddress}
@@ -1751,7 +1766,7 @@ export default function StakeV2() {
         value={unstakeValue}
         setValue={setUnstakeValue}
         signer={signer}
-        unstakingTokenSymbol={unstakingTokenSymbol}
+        unstakingTokenSymbol={'D5'}
         rewardRouterAddress={rewardRouterAddress}
         unstakeMethodName={unstakeMethodName}
         processedData={processedData}

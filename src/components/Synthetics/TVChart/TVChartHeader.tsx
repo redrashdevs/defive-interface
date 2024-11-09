@@ -459,15 +459,8 @@ function TVChartHeaderInfoDesktop() {
 
   return (
     <div className="flex h-[76px] w-full">
-      <div className="mb-10 flex w-[500px] items-center justify-between rounded-[12px] bg-[#121214] pr-12">
-        <div className="flex items-center justify-start pl-12">
-          <ChartTokenSelector selectedToken={selectedTokenOption} options={tokenOptions} oneRowLabels={false} />
-        </div>
-        <div className="flex items-center">
-          <img className="mr-8" src="/images/cmd-btn.png" />
-          <img src="/images/k-btn.png" />
-        </div>
-      </div>
+      <ChartTokenSelector selectedToken={selectedTokenOption} options={tokenOptions} oneRowLabels={false} />
+
       <div className="Chart-header mb-10 ml-8 w-full rounded-[12px] !bg-[#121214] px-12">
         <div className="relative flex overflow-hidden">
           <div className="Chart-top-scrollable mt-0" ref={scrollableRef}>

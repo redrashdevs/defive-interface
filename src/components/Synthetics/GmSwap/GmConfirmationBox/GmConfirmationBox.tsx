@@ -27,7 +27,7 @@ import useWallet from "lib/wallets/useWallet";
 import { Operation } from "../GmSwapBox/types";
 
 import { ApproveTokenButton } from "components/ApproveTokenButton/ApproveTokenButton";
-import Button from "components/Button/Button";
+import cx from "classnames";
 import Modal from "components/Modal/Modal";
 import { NetworkFeeRow } from "components/Synthetics/NetworkFeeRow/NetworkFeeRow";
 import { GmFees } from "../GmFees/GmFees";
@@ -637,15 +637,17 @@ export function GmConfirmationBox({
             ) : null}
 
             <div className="Confirmation-box-row">
-              <Button
-                className="w-full"
-                variant="primary-action"
+              <button
+                className={cx(
+                  { "hover:bg-[#fff] active:bg-[#CCCCCC]": !submitButtonState.disabled },
+                  "mt-4 !h-[40px] w-full !rounded-[12px] bg-[#F2F0ED] text-[14px] font-[600] !text-[#000] text-[#3E3E3E]"
+                )}
                 type="submit"
                 onClick={submitButtonState.onClick}
                 disabled={submitButtonState.disabled}
               >
                 {submitButtonState.text}
-              </Button>
+              </button>
             </div>
           </>
         )}

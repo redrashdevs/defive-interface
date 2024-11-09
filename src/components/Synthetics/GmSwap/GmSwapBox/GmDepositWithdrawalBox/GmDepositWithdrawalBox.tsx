@@ -750,14 +750,16 @@ export function GmSwapBoxDepositWithdrawal(p: GmSwapBoxProps) {
         />
 
         <div className="Exchange-swap-button-container">
-          <Button
-            className="w-full"
-            variant="primary-action"
+          <button
+            className={cx(
+              { "hover:bg-[#fff] active:bg-[#CCCCCC]": !submitState.isDisabled },
+              "mt-4 !h-[40px] w-full !rounded-[12px] bg-[#F2F0ED] text-[14px] font-[600] !text-[#000] text-[#3E3E3E]"
+            )}
             onClick={submitState.onSubmit}
             disabled={submitState.isDisabled}
           >
             {submitState.text}
-          </Button>
+          </button>
         </div>
       </form>
 

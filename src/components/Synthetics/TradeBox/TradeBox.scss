@@ -40,6 +40,10 @@
   &.secondary {
     margin-top: -4px;
     margin-bottom: 24px;
+    .Tab-option:hover {
+      background-color: #24242980 !important;
+      color: #FFFFFF80 !important;
+    }
     .Tab-option {
       padding-block: 8px !important;
       font-size: 12px !important;
@@ -49,6 +53,10 @@
     }
   }
   &.main {
+  .Tab-option:hover {
+    background-color: #24242980 !important;
+    color: #FFFFFF80 !important;
+  }
   .Tab-option:nth-child(1) {
     &.active {
       background: rgba(51, 172, 66, 0.16);

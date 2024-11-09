@@ -52,9 +52,7 @@ export default function ChartTokenSelector(props: Props) {
   const marketInfo = useSelector(selectTradeboxMarketInfo);
   const { isSwap } = useSelector(selectTradeboxTradeFlags);
   const poolName = marketInfo && !isSwap ? getMarketPoolName(marketInfo) : null;
-
-  const chevronClassName = oneRowLabels === undefined ? undefined : oneRowLabels ? "mt-4" : "mt-4 self-start";
-
+  const isMobile = useMedia("(max-width: 700px)");
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
       var evtobj = e;
@@ -68,41 +66,57 @@ export default function ChartTokenSelector(props: Props) {
     });
   }, []);
 
-  return (
-    <>
-      {selectedToken ? (
-        <span
-          onClick={() => setIsModalOpen(true)}
-          className={cx("inline-flex whitespace-nowrap pl-0 text-[20px] font-bold", {
-            "items-start": !oneRowLabels,
-            "items-center": oneRowLabels,
+  const mobileContent = () =>
+    selectedToken ? (
+      <span
+        onClick={() => setIsModalOpen(true)}
+        className={cx("inline-flex whitespace-nowrap pl-0 text-[20px] font-bold", {
+          "items-start": !oneRowLabels,
+          "items-center": oneRowLabels,
+        })}
+      >
+        <TokenIcon className="mr-8 mt-4" symbol={selectedToken.symbol} displaySize={40} importSize={24} />
+        <div
+          className={cx("mt-4 flex h-full justify-start", {
+            "flex-col": !oneRowLabels,
+            "flex-row items-center": oneRowLabels,
           })}
         >
-          <TokenIcon className="mr-8 mt-4" symbol={selectedToken.symbol} displaySize={40} importSize={24} />
-          <div
-            className={cx("mt-4 flex h-full justify-start", {
-              "flex-col": !oneRowLabels,
-              "flex-row items-center": oneRowLabels,
-            })}
-          >
-            <span className="text-[16px] font-[600] text-white">
-              {selectedToken.symbol} <span className="text-[#FFFFFF] opacity-30">{"- USD"}</span>
+          <span className="text-[16px] font-[600] text-white">
+            {selectedToken.symbol} <span className="text-[#FFFFFF] opacity-30">{"- USD"}</span>
+          </span>
+          {poolName && (
+            <span
+              className={cx("text-[14px] font-normal text-[#FFFFFF] opacity-30", {
+                "ml-8": oneRowLabels,
+              })}
+            >
+              {/* [{poolName}] */}
+              {t`Perpetuals`}
             </span>
-            {poolName && (
-              <span
-                className={cx("text-[14px] font-normal text-[#FFFFFF] opacity-30", {
-                  "ml-8": oneRowLabels,
-                })}
-              >
-                {/* [{poolName}] */}
-                {t`Perpetuals`}
-              </span>
-            )}
-          </div>
-        </span>
-      ) : (
-        "..."
-      )}
+          )}
+        </div>
+      </span>
+    ) : (
+      "..."
+    );
+
+  const desktopContent = () => (
+    <div
+      onClick={() => setIsModalOpen(true)}
+      className="pointer mb-10 flex w-[500px] items-center justify-between rounded-[12px] bg-[#121214] pr-12 hover:bg-[#1B1B1F] active:bg-[#0E0E0F]"
+    >
+      <div className="flex items-center justify-start pl-12">{mobileContent()}</div>
+      <div className="flex items-center">
+        <KeyComponent content="⌘" classNames="mr-4 w-[24px]" />
+        <KeyComponent content="K" classNames="w-[24px]" />
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      {isMobile ? mobileContent() : desktopContent()}
       <ModalWithPortal className="Trade-markets-modal" setIsVisible={setIsModalOpen} isVisible={isModalOpen}>
         <MarketsList
           onClose={() => {
@@ -202,7 +216,7 @@ function MarketsList(props: { options: Token[] | undefined; onClose: () => void 
   );
 
   const handleTableKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       const token = sortedTokens![tempSelection];
       handleMarketSelect(token.address);
     }
@@ -250,21 +264,21 @@ function MarketsList(props: { options: Token[] | undefined; onClose: () => void 
           style={{ borderTop: "1px solid rgba(255, 255, 255, 0.08)", background: "rgba(18, 18, 20, 0.4)" }}
         >
           <div className="flex items-center">
-            <img src="/images/down-btn.svg" />
-            <img src="/images/up-btn.svg" className="mx-8" />
+            <KeyComponent content="↓" classNames="w-[24px]" />
+            <KeyComponent content="↑" classNames="w-[24px] mx-8" />
             <p className="text-[14px] font-[500] text-white opacity-40">
               <Trans>Navigate</Trans>
             </p>
           </div>
           <div className="flex items-center">
             <div className="flex items-center">
-              <img src="/images/return-btn.svg" className="mx-8" />
+            <KeyComponent content="return" classNames="w-[54px] mx-8" />
               <p className="text-[14px] font-[500] text-white opacity-40">
                 <Trans>Open</Trans>
               </p>
             </div>
             <div className="flex items-center">
-              <img src="/images/refresh-btn.svg" className="mx-8" />
+            <KeyComponent content="esc" classNames="w-[34px] mx-8" />
               <p className="text-[14px] font-[500] text-white opacity-40">
                 <Trans>Close</Trans>
               </p>
@@ -311,9 +325,12 @@ function MarketsList(props: { options: Token[] | undefined; onClose: () => void 
         )}
 
         <div
-          className={cx({
-            "max-h-[444px] overflow-x-auto": !isMobile,
-          })}
+          className={cx(
+            {
+              "overflow-x-auto pb-[50px]": !isMobile,
+            },
+            "!h-[444px] "
+          )}
         >
           {isSwap || isMobile ? (
             <div autoFocus>
@@ -334,7 +351,7 @@ function MarketsList(props: { options: Token[] | undefined; onClose: () => void 
               ))}
             </div>
           ) : (
-            <table className={cx("text-sm w-full !h-[300px] overflow-y-auto")}>
+            <table className={cx("text-sm !h-[300px] w-full overflow-y-auto")}>
               <thead className="!bg-[#121214] py-4">
                 <tr className="!bg-[#121214] py-4">
                   <th />
@@ -376,7 +393,7 @@ function MarketsList(props: { options: Token[] | undefined; onClose: () => void 
             </table>
           )}
           {options && options.length > 0 && !sortedTokens?.length && (
-            <div className="py-15 text-center text-gray-400">
+            <div className="py-15 text-center text-gray-400 md:-mt-[100px]">
               <Trans>No markets matched.</Trans>
             </div>
           )}
@@ -569,3 +586,12 @@ function formatUsdWithMobile(amount: bigint | undefined | false, isSmallMobile: 
 
   return formatUsd(amount)!;
 }
+
+const KeyComponent = ({ content, classNames = "" }: { content: string; classNames?: string }) => (
+  <div
+    style={{ boxShadow: "0px 2px 0px 0px rgba(255, 255, 255, 0.03)" }}
+    className={cx(classNames, "flex h-[24px] items-center justify-center rounded-[4px] bg-[#252429]")}
+  >
+    <p className="text-center text-[10px] font-[500] text-white opacity-50">{content}</p>
+  </div>
+);

@@ -90,14 +90,13 @@ export default function Modal({
           <div className="Modal-content" onClick={stopPropagation} data-qa={qa}>
             <div className="Modal-header-wrapper">
               <div className="Modal-title-bar">
-                <div className="Modal-title">{label}</div>
-                <div className="Modal-close-button pb-5" onClick={() => setIsVisible(false)}>
-                  <MdClose fontSize={20} className="Modal-close-icon" />
+                <div className=" !text-white Modal-title">{label}</div>
+                <div className="pointer Modal-close-button flex items-center justify-center w-[32px] h-[32px] rounded-[32px] bg-[#1B1B1F]" onClick={() => setIsVisible(false)}>
+                  <img src="/images/x.svg" width={16} height={16} />
                 </div>
               </div>
               {headerContent}
             </div>
-            <div className="divider" />
             <RemoveScroll className="overflow-auto">
               <div className={cx("Modal-body", { "no-content-padding": !contentPadding })} ref={modalRef}>
                 {children}

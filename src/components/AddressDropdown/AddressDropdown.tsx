@@ -45,8 +45,8 @@ function AddressDropdown({ account, accountUrl, disconnectAccountAndCloseSetting
 
   return (
     <Menu>
-      <Menu.Button as="div">
-        <button className="App-cta small transparent address-btn">
+      <Menu.Button as="div" className={''}>
+        <button className="App-cta small transparent address-btn ">
           <div className="address-img">
             <Jazzicon diameter={30} seed={jsNumberForAddress(account)} />
           </div>

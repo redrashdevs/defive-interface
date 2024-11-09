@@ -7,7 +7,6 @@
   margin: 0;
   outline: none;
   .buy-input-top-row {
-    padding-inline: 8px;
     div {
       color: rgba(103, 103, 122, 1);
     }
@@ -20,6 +19,13 @@
     border-radius: 8px;
     padding: 8px;
     margin-top: 0px;
+    &:hover {
+      background: #242429 !important;
+    }
+    &:focus-within {
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      background: rgba(27, 27, 31, 1) !important;
+    }
   }
   .PositionEditor-token-symbol {
     background: rgba(36, 36, 41, 1);
@@ -101,7 +107,8 @@
       font-size: 14px;
       margin-inline: 2px;
       &:hover {
-        background: #121214 !important;
+        background-color: #24242980 !important;
+        color: #FFFFFF80 !important;
       }
     }
     .Tab-option:first-child {

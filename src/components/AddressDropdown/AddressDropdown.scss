@@ -3,7 +3,6 @@
 }
 
 .address-btn {
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +20,7 @@
 }
 .App-header-user-address {
   height: 40px !important;
-  background: rgba(36, 36, 41, 1) !important;
+  background-color: #292927 !important;
   font-size: 14px !important;
   color: rgba(214, 214, 214, 1) !important;
   padding-inline: 16px !important;
@@ -31,11 +30,11 @@
   position: relative;
 
   &:hover {
-    background: #808aff14;
+    background-color: #333331 !important;
   }
 
   &:active {
-    background: var(--dark-blue-active);
+    background: #1A1A18 !important;
   }
 }
 

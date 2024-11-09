@@ -311,6 +311,11 @@ msgstr "Positions"
 msgid "{0} can not be sent to smart contract addresses. Select another token."
 msgstr "{0} can not be sent to smart contract addresses. Select another token."
 
+#: src/pages/Stake/StakeV2.tsx
+#: src/pages/Stake/StakeV2.tsx
+msgid "Withdraw from D5 Vault"
+msgstr "Withdraw from D5 Vault"
+
 #: src/domain/synthetics/markets/claimFundingFeesTxn.ts
 msgid "Funding Claimed"
 msgstr "Funding Claimed"
@@ -326,6 +331,10 @@ msgstr "Main Account Balance"
 #: src/pages/Actions/ActionsV1/ActionsV1.tsx
 msgid "<0><1>Check on GMX V2 {networkName}</1> or <2>switch network to {0}</2>.</0>"
 msgstr "<0><1>Check on GMX V2 {networkName}</1> or <2>switch network to {0}</2>.</0>"
+
+#: src/pages/Stake/StakeV2.tsx
+msgid "Stake D5"
+msgstr "Stake D5"
 
 #: src/components/Synthetics/PositionList/PositionList.tsx
 msgid "No Position History"
@@ -468,10 +477,6 @@ msgstr "Don't show this message again for 30 days."
 msgid "Migration Price"
 msgstr "Migration Price"
 
-#: src/pages/Stake/StakeV2.tsx
-msgid "<0>Delegate your undelegated {0} GMX DAO</0><1> voting power before staking.</1>"
-msgstr "<0>Delegate your undelegated {0} GMX DAO</0><1> voting power before staking.</1>"
-
 #: src/components/Synthetics/SubaccountModal/SubaccountModal.tsx
 msgid "This amount of {0} will be sent from your Main Account to your Subaccount to pay for transaction fees."
 msgstr "This amount of {0} will be sent from your Main Account to your Subaccount to pay for transaction fees."
@@ -568,6 +573,10 @@ msgstr "Max. Leverage Exceeded"
 #: src/components/SearchInput/SearchInput.tsx
 msgid "Search Token"
 msgstr "Search Token"
+
+#: src/pages/Stake/StakeV2.tsx
+msgid "Unstake esD5"
+msgstr "Unstake esD5"
 
 #: src/pages/BuyGMX/BuyGMX.tsx
 msgid "Buy GMX using Decentralized Exchange Aggregators:"
@@ -1386,10 +1395,6 @@ msgstr "Search"
 #: src/components/Exchange/OrderEditor.jsx
 msgid "Price is below Mark Price"
 msgstr "Price is below Mark Price"
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "Withdraw from GMX Vault"
-msgstr "Withdraw from GMX Vault"
 
 #: src/components/Exchange/PositionEditor.jsx
 msgid "Withdrawal submitted."
@@ -3393,10 +3398,6 @@ msgstr "You have an active Limit Order to Increase {longOrShortText} {sizeInToke
 msgid "Claiming Price Impact Rebate..."
 msgstr "Claiming Price Impact Rebate..."
 
-#: src/pages/Stake/StakeV2.tsx
-msgid "Unstake esGMX"
-msgstr "Unstake esGMX"
-
 #: src/components/Synthetics/TradeHistory/TradeHistoryRow/utils/position.ts
 msgid "PnL after Fees and Price Impact"
 msgstr "PnL after Fees and Price Impact"
@@ -4055,10 +4056,6 @@ msgstr "There may not be sufficient liquidity to execute your order when the Min
 msgid "Total Trades"
 msgstr "Total Trades"
 
-#: src/pages/Stake/StakeV2.tsx
-msgid "Stake GMX"
-msgstr "Stake GMX"
-
 #: src/components/Referrals/JoinReferralCode.jsx
 msgid "Referral code updated!"
 msgstr "Referral code updated!"
@@ -4356,6 +4353,10 @@ msgstr "Execute"
 #: src/pages/SyntheticsPage/SyntheticsPage.tsx
 msgid "Trades"
 msgstr "Trades"
+
+#: src/pages/Stake/StakeV2.tsx
+msgid "<0>Delegate your undelegated {0} D5 DAO</0><1> voting power before staking.</1>"
+msgstr "<0>Delegate your undelegated {0} D5 DAO</0><1> voting power before staking.</1>"
 
 #: src/pages/Ecosystem/Ecosystem.jsx
 msgid "Telegram Groups"
@@ -5012,6 +5013,10 @@ msgstr "{orderTypeText} {0} {longShortText}: {sign}{1}"
 msgid "Order request sent"
 msgstr "Order request sent"
 
+#: src/pages/Stake/StakeV2.tsx
+msgid "Stake esD5"
+msgstr "Stake esD5"
+
 #: src/components/Exchange/NoLiquidityErrorModal.tsx
 msgid "Alternatively, you can select a different \"Collateral In\" token."
 msgstr "Alternatively, you can select a different \"Collateral In\" token."
@@ -5535,10 +5540,6 @@ msgstr "Switch to {0} collateral."
 msgid "To Receive"
 msgstr "To Receive"
 
-#: src/pages/Stake/StakeV2.tsx
-msgid "GMX Vault"
-msgstr "GMX Vault"
-
 #: src/components/Header/AppHeaderUser.tsx
 #: src/components/Header/AppHeaderUser.tsx
 msgid "Leaderboards"
@@ -5882,6 +5883,10 @@ msgstr "Trade spot or perpetual BTC, ETH, AVAX and other top cryptocurrencies wi
 msgid "Max In"
 msgstr "Max In"
 
+#: src/pages/Stake/StakeV2.tsx
+msgid "D5 Vault"
+msgstr "D5 Vault"
+
 #: src/pages/Dashboard/DashboardV2.tsx
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "Max {0} Capacity"
@@ -6205,6 +6210,10 @@ msgstr "You can change this in the settings menu on the top right of the page.<0
 #: src/components/Synthetics/Claims/filters/ActionFilter.tsx
 msgid "Request Settlement of Funding Fees"
 msgstr "Request Settlement of Funding Fees"
+
+#: src/pages/Stake/StakeV2.tsx
+msgid "Unstake D5"
+msgstr "Unstake D5"
 
 #: src/components/Glp/GlpSwap.jsx
 msgid "{0} GLP (${1})"
@@ -6667,10 +6676,6 @@ msgstr "Shifting GM..."
 msgid "No markets matched."
 msgstr "No markets matched."
 
-#: src/pages/Stake/StakeV2.tsx
-msgid "Stake esGMX"
-msgstr "Stake esGMX"
-
 #: src/pages/Dashboard/DashboardV2.tsx
 #: src/pages/Dashboard/DashboardV2.tsx
 msgid "Target Min Amount"
@@ -6737,10 +6742,6 @@ msgstr "GMX Blueberry NFTs"
 #: src/components/Exchange/OrderEditor.jsx
 msgid "Enter new Price"
 msgstr "Enter new Price"
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "Withdraw from GLP Vault"
-msgstr "Withdraw from GLP Vault"
 
 #: src/components/Exchange/PositionShare.tsx
 msgid "Image generation error, please refresh and try again."
@@ -7637,10 +7638,6 @@ msgstr "<0>This will withdraw and unreserve all tokens as well as pause vesting.
 #: src/pages/OrdersOverview/OrdersOverview.jsx
 msgid "Price conditions are met"
 msgstr "Price conditions are met"
-
-#: src/pages/Stake/StakeV2.tsx
-msgid "Unstake GMX"
-msgstr "Unstake GMX"
 
 #: src/pages/Buy/Buy.tsx
 msgid "On Fantom"

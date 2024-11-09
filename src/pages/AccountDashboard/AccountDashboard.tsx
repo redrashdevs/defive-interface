@@ -95,7 +95,7 @@ export function AccountDashboard() {
 
       {/* {version === 1 && <HistoricalListsV1 account={account} chainId={chainId} />} */}
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

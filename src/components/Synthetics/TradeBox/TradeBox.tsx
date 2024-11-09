@@ -122,6 +122,7 @@ import { LimitAndTPSLGroup } from "./TradeBoxRows/LimitAndTPSLRows";
 import { LimitPriceRow } from "./TradeBoxRows/LimitPriceRow";
 import { MinReceiveRow } from "./TradeBoxRows/MinReceiveRow";
 import { TradeBoxOneClickTrading } from "./TradeBoxRows/OneClickTrading";
+import cx from "classnames";
 
 import { useRequiredActions } from "./hooks/useRequiredActions";
 import { useTPSLSummaryExecutionFee } from "./hooks/useTPSLSummaryExecutionFee";
@@ -1222,15 +1223,16 @@ export function TradeBox(p: Props) {
   );
 
   const buttonContent = (
-    <Button
-      qa="confirm-trade-button"
-      variant="primary-action"
-      className="mt-4 w-full  !rounded-[8px] !bg-white font-[500] !text-[#000] text-[#3E3E3E]"
+    <button
+      className={cx(
+        { "hover:bg-[#fff] active:bg-[#CCCCCC]": !submitButtonState.disabled },
+        "mt-4 !h-[40px] w-full !rounded-[12px] bg-[#F2F0ED] text-[14px] font-[600] !text-[#000] text-[#3E3E3E]"
+      )}
       onClick={onSubmit}
       disabled={submitButtonState.disabled && !shouldDisableValidationForTesting}
     >
       {submitButtonState.text}
-    </Button>
+    </button>
   );
   const button = tooltipContent ? (
     <Tooltip

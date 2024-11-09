@@ -60,7 +60,7 @@ export default function BuyGMXGLP() {
             </div>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </SEO>
   );

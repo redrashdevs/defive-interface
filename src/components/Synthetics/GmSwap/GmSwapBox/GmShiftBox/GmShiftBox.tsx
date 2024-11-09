@@ -300,7 +300,9 @@ export function GmShiftBox({
                 <div className="flex items-center justify-between">
                   <p className="fee-title">{t`SHIFT FEE`}</p>
                   <div className="flex items-center">
-                    <p className="negative fee-content">{formatDeltaUsd(fees.shiftFee.deltaUsd, fees.shiftFee.bps!)!}</p>
+                    <p className="negative fee-content">
+                      {formatDeltaUsd(fees.shiftFee.deltaUsd, fees.shiftFee.bps!)!}
+                    </p>
                   </div>
                 </div>
               ) : null}
@@ -324,9 +326,16 @@ export function GmShiftBox({
           )}
         </ExchangeInfo>
 
-        <Button className="w-full" variant="primary-action" type="submit" disabled={submitState.isDisabled}>
+        <button
+          className={cx(
+            { "hover:bg-[#fff] active:bg-[#CCCCCC]": !submitState.isDisabled },
+            "mt-4 !h-[40px] w-full !rounded-[12px] bg-[#F2F0ED] text-[14px] font-[600] !text-[#000] text-[#3E3E3E]"
+          )}
+          type="submit"
+          disabled={submitState.isDisabled}
+        >
           {submitState.text}
-        </Button>
+        </button>
       </form>
 
       <GmConfirmationBox
